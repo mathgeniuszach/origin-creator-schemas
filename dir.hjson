@@ -1,0 +1,11 @@
+// When the origin creator cannot find a schema for the given pack_format, it will default to the latest version before it or just 6.
+{
+    6: [
+        meta
+        tags
+        recipes
+    ]
+    7: [
+
+    ]
+}

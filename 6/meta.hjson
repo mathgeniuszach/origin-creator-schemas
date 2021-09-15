@@ -1,0 +1,30 @@
+{
+    type: object
+    props: {
+        icon: {
+            type: image
+            gap: true
+        }
+        name: {
+            type: string
+            id: true
+        }
+        id: {
+            type: string
+            allow: a-z0-9_
+        }
+        pack_format: {
+            type: integer
+            min: 1
+            gap: true
+        }
+        authors: {
+            type: list
+            vals: {type: "string"}
+        }
+        desc: {
+            type: string
+            ext: true
+        }
+    }
+}

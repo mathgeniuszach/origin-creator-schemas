@@ -1,0 +1,23 @@
+{
+    type: object
+    props: {
+        replace: {type: "boolean"},
+        values: {
+            or: [
+                {title: "simple", type: "list", vals: {type: "string", allow: "a-z0-9_#\/:-"}}
+                {title: "extra", type: "list", vals: {
+                    or: [
+                        {type: "string", allow: "a-z0-9_#\/:-"}
+                        {
+                            type: object
+                            props: {
+                                id: {type: "string", allow: "a-z0-9_#\/:-"}
+                                required: {type: "boolean", default: true}
+                            }
+                        }
+                    ]
+                }}
+            ]
+        }
+    }
+}
