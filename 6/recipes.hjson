@@ -2,7 +2,7 @@
     links: {
         item: {
             desc: A Minecraft item (or block item), vanilla or modded.
-            href: https://minecraft.fandom.com/wiki/Java_Edition_data_values/
+            href: https://minecraft.fandom.com/wiki/Java_Edition_data_values#Blocks
             type: string
             allow: a-z0-9_:-
         }
@@ -39,7 +39,8 @@
                     type: string
                 }
                 type: {
-                    enum: ["crafting_shaped", "crafting_shapeless", "smithing", "stonecutting"],
+                    gap: true
+                    enum: ["crafting_shaped", "crafting_shapeless", "smithing", "stonecutting"]
                     more: {
                         string-crafting_shaped: {
                             pattern: {
@@ -50,8 +51,7 @@
                             key: {
                                 desc: All keys used for this shaped crafting recipe.
                                 type: object
-                                extra: {link: "oritem"}
-                                gap: true
+                                extra: {nopanel: true, extend: "oritem"}
                             }
                             result: {link: "result"}
                         }

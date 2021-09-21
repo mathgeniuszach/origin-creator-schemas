@@ -6,6 +6,7 @@
             or: [
                 {title: "simple", large: true, type: "list", vals: {type: "string", allow: "a-z0-9_#\/:-"}}
                 {title: "extra", type: "list", vals: {
+                    nopanel: true
                     or: [
                         {type: "string", allow: "a-z0-9_#\/:-"}
                         {

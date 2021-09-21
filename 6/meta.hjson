@@ -23,7 +23,7 @@
             type: list
             vals: {type: "string"}
         }
-        desc: {
+        description: {
             type: string
             ext: true
         }
