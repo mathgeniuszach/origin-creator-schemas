@@ -278,24 +278,22 @@
                                 allow: a-z0-9_#\/:-
                             }
                             formula: {
-                                desc: Can be binomial_with_bonus_count for a binomial distribution (with "n=level + extra", "p=probability"), uniform_bonus_count for uniform distribution (from 0 to level * bonusMultiplier), or ore_drops for a special function used for ore drops in the vanilla game (Count * (max(0; random(0..Level + 2) - 1)+1)).
+                                desc: Can be binomial_with_bonus_count for a binomial distribution (with "n = level + extra", "p = probability"), uniform_bonus_count for uniform distribution (from 0 to level * bonusMultiplier), or ore_drops for a special function used for ore drops in the vanilla game (Count * (max(0; random(0..Level + 2) - 1)+1)).
                                 enum: ["binomial_with_bonus_count", "uniform_bonus_count", "ore_drops"]
-                                more: {
-                                    string-binomial_with_bonus_count: {
-                                        extra: {
-                                            type: integer
-                                        }
-                                        probability: {
-                                            type: number
-                                        }
-                                    }
-                                    string-uniform_bonus_count: {
-                                        bonusMultiplier: {
-                                            type: number
-                                        }
-                                    }
-                                    string-ore_drops: {}
-                                }
+                                gap: true
+                            }
+                            extra: {
+                                desc: For binomial_with_bonus_count, specifies extra in n = level + extra
+                                type: integer
+                            }
+                            probability: {
+                                desc: For binomial_with_bonus_count, specifies p.
+                                type: number
+                                gap: true
+                            }
+                            bonusMultiplier: {
+                                desc: For uniform_bonus_count, uniform distribution is from 0 to level * bonusMultiplier.
+                                type: number
                             }
                         }
                         string-copy_name: {
