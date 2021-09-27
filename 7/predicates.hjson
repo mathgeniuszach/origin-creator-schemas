@@ -114,24 +114,39 @@
                     type: object
                     props: {
                         absolute: {
-                            min: {type: "number"}
-                            max: {type: "number"}
+                            type: object
+                            props: {
+                                min: {type: "number"}
+                                max: {type: "number"}
+                            }
                         }
                         horizontal: {
-                            min: {type: "number"}
-                            max: {type: "number"}
+                            type: object
+                            props: {
+                                min: {type: "number"}
+                                max: {type: "number"}
+                            }
                         }
                         x: {
-                            min: {type: "number"}
-                            max: {type: "number"}
+                            type: object
+                            props: {
+                                min: {type: "number"}
+                                max: {type: "number"}
+                            }
                         }
                         y: {
-                            min: {type: "number"}
-                            max: {type: "number"}
+                            type: object
+                            props: {
+                                min: {type: "number"}
+                                max: {type: "number"}
+                            }
                         }
                         z: {
-                            min: {type: "number"}
-                            max: {type: "number"}
+                            type: object
+                            props: {
+                                min: {type: "number"}
+                                max: {type: "number"}
+                            }
                         }
                     }
                 }
