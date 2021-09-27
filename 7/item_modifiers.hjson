@@ -415,10 +415,10 @@
                         string-limit_count: {
                             limit: {
                                 or: [
-                                    {id: "predicate-7", link: "intprov"}
+                                    {id: "predicates-7", link: "intprov"}
                                     {type: "object", props: {
-                                        min: {id: "predicate-7", link: "intprov"}
-                                        max: {id: "predicate-7", link: "intprov"}
+                                        min: {id: "predicates-7", link: "intprov"}
+                                        max: {id: "predicates-7", link: "intprov"}
                                     }}
                                 ]
                             }
