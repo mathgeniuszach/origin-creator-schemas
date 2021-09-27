@@ -563,6 +563,7 @@
                                 link: block
                             }
                             properties: {
+                                type: object
                                 desc: (Optional) A map of block property names to values. All values are strings. The test fails if the block doesn't match.
                                 extra: {
                                     type: string
