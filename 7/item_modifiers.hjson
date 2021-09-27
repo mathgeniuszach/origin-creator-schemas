@@ -1,0 +1,157 @@
+{
+    links: {
+        modifier: {
+            desc: An item modifier that modifies an item in some way.
+            type: object
+            props: {
+                conditions: {
+                    desc: Determines conditions for this function to be applied. If multiple conditions are specified, all must pass.
+                    type: list
+                    vals: {type: "object", props: {condition: {id: "predicates-7", link: "pred"}}}
+                }
+                function: {
+                    desc: Namespaced ID of the function to apply.
+                    enum: [
+                        apply_bonus
+                        copy_name
+                        copy_nbt
+                        copy_state
+                        enchant_randomly
+                        enchant_with_levels
+                        exploration_map
+                        explosion_decay
+                        furnace_smelt
+                        fill_player_head
+                        limit_count
+                        looting_enchant
+                        set_attributes
+                        set_banner_pattern
+                        set_contents
+                        set_count
+                        set_damage
+                        set_enchantments
+                        set_loot_table
+                        set_lore
+                        set_name
+                        set_nbt
+                        set_stew_effect
+                    ]
+                    more: {
+                        string-apply_bonus: {
+                            enchantment: {
+                                desc: Enchantment ID used for level calculation.
+                                href: https://minecraft.fandom.com/wiki/Java_Edition_data_value#Enchantments
+                                type: string
+                                allow: a-z0-9_#\/:-
+                            }
+                            formula: {
+                                desc: Can be binomial_with_bonus_count for a binomial distribution (with "n=level + extra", "p=probability"), uniform_bonus_count for uniform distribution (from 0 to level * bonusMultiplier), or ore_drops for a special function used for ore drops in the vanilla game (Count * (max(0; random(0..Level + 2) - 1)+1)).
+                                enum: ["binomial_with_bonus_count", "uniform_bonus_count", "ore_drops"]
+                                more: {
+                                    string-binomial_with_bonus_count: {
+                                        extra: {
+                                            type: integer
+                                        }
+                                        probability: {
+                                            type: number
+                                        }
+                                    }
+                                    string-uniform_bonus_count: {
+                                        bonusMultiplier: {
+                                            type: number
+                                        }
+                                    }
+                                    string-ore_drops: {}
+                                }
+                            }
+                        }
+                        string-copy_name: {
+                            source: {
+                                desc: The target with the CustomName to copy the name of. Currently, this needs to be set to 'block_entity'.
+                                const: "block_entity"
+                            }
+                        }
+                        string-copy_nbt: {
+                            source: {
+                                desc: Specifies the source. Set to block_entity for the block entity of the destroyed block, this to use the entity that died or the player that gained the advancement, opened the container or broke the block, killer for the killer, or killer_player for a killer that is a player.
+                                or: [
+                                    {enum: ["block_entity", "this", "killer", "killer_player"]}
+                                    {
+                                        type: object
+                                        props: {
+                                            type: {
+                                                enum: ["context", "storage"]
+                                                more: {
+                                                    string-context: {
+                                                        target: {
+                                                            desc: Specifies the source. Set to block_entity for the block entity of the destroyed block, this to use the entity that died or the player that gained the advancement, opened the container or broke the block, killer for the killer, or killer_player for a killer that is a player.
+                                                            enum: ["block_entity", "this", "killer", "killer_player"]
+                                                        }
+                                                    }
+                                                    string-storage: {
+                                                        source: {
+                                                            desc: A resource location specifying the storage ID.
+                                                            type: string
+                                                            allow: a-z0-9_#\/:-
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                            ops: {
+                                type: list
+                                vals: {
+                                    type: object
+                                    props: {
+                                        source: {
+                                            desc: The nbt path to copy from.
+                                            type: string
+                                        }
+                                        target: {
+                                            desc: The nbt path to copy to, starting from the item's tag tag.
+                                            type: string
+                                        }
+                                        op: {
+                                            desc: Can be replace to replace any existing contents of the target, append to append to a list, or merge to merge into a compound tag.
+                                            type: string
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        string-copy_state: {
+                            block: {
+                                desc: A block ID. Function fails if the block doesn't match.
+                                href: https://minecraft.fandom.com/wiki/Resource_location
+                                type: string
+                            }
+                            properties: {
+                                desc: A list of proerty names to copy from dropped block to the item's BlockStateTag tag.
+                                type: list
+                                vals: {type: "string"}
+                            }
+                        }
+                        string-enchant_randomly: {
+                            enchantments: {
+                                desc: A list of enchantment IDs to choose from to enchant the item with. Only one will be selected, just with a random level. If omitted, all enchantments applicable to the item are possible.
+                                href: https://minecraft.fandom.com/wiki/Java_Edition_data_value#Enchantments
+                                type: list
+                                vals: {type: "string"}
+                            }
+                        }
+                        string-enchant_with_levels: {
+                            treasure: {type: "boolean"}
+                            levels: {desc: "The enchantment level to use.", id: "predicates-7", link: "intprov"}
+                        }
+                        string-exploration_map: {
+                            
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
