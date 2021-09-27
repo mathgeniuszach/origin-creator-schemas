@@ -405,18 +405,12 @@
                                     value: {type: "integer"}
                                 }
                                 string-uniform: {
-                                    min: {or: [
-                                        {type: "integer"}
-                                        {link: "numprov"}
-                                    ]}
-                                    max: {or: [
-                                        {type: "integer"}
-                                        {link: "numprov"}
-                                    ]}
+                                    min: {link: "intprov"}
+                                    max: {link: "intprov"}
                                 }
                                 string-binomial: {
                                     n: {link: "intprov"}
-                                    p: {link: "numprov"}
+                                    p: {title: "P", link: "numprov"}
                                 }
                                 string-score: {
                                     target: {
@@ -467,18 +461,12 @@
                                     value: {type: "number"}
                                 }
                                 string-uniform: {
-                                    min: {or: [
-                                        {type: "number"}
-                                        {link: "numprov"}
-                                    ]}
-                                    max: {or: [
-                                        {type: "number"}
-                                        {link: "numprov"}
-                                    ]}
+                                    min: {link: "numprov"}
+                                    max: {link: "numprov"}
                                 }
                                 string-binomial: {
-                                    n: {link: "intprov"}
-                                    p: {link: "numprov"}
+                                    n: {desc: "The amount of trials.", link: "intprov"}
+                                    p: {title: "P", desc: "The probability of success on an individual trial.", link: "numprov"}
                                 }
                                 string-score: {
                                     target: {
