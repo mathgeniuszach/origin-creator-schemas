@@ -1,6 +1,6 @@
 // When the origin creator cannot find a schema for the given pack_format, it will default to the latest version before it or just 6.
 {
-    $: 9 // Change this number every time a pull request is made to let end users know stuff has been updated
+    $: 11 // Change this number every time a pull request is made to let end users know stuff has been updated
     6: [
         meta
         tags
@@ -9,8 +9,8 @@
     7: [
         // Unfortunately, I have no way of knowing if every one of these fields will work in 1.16. Sorry about that.
         predicates
-        loot_tables
         item_modifiers
+        loot_tables
         // advancements
     ]
 }

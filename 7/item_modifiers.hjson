@@ -154,14 +154,15 @@
                             }
                         }
                     }
+                    nopanel: true
                     or: [
-                        {name: "text", type: "object", props: {
+                        {title: "text", type: "object", props: {
                             text: {
                                 desc: A string containing plain text to display directly.
                                 type: string
                             }
                         }}
-                        {name: "translate", type: "object", props: {
+                        {title: "translate", type: "object", props: {
                             translate: {
                                 desc: A translation identifier, corresponding to the identifiers found in loaded language files. Displayed as the corresponding text in the player's selected language. If no corresponding translation can be found, the identifier itself is used as the translated text.
                                 type: string
@@ -172,7 +173,7 @@
                                 vals: {link: "jsontxt"}
                             }
                         }}
-                        {name: "score", type: "object", props: {
+                        {title: "score", type: "object", props: {
                             score: {
                                 type: object
                                 props: {
@@ -191,21 +192,21 @@
                                 }
                             }
                         }}
-                        {name: "selector", type: "object", props: {
+                        {title: "selector", type: "object", props: {
                             selector: {
                                 desc: A string containing a selector.
                                 type: string
                             }
                             separator: {desc: "Optional, used as the separator between different names (defaults to a comma), if the component selects multiple entities.", link: "jsontxt"}
                         }}
-                        {name: "key", type: "object", props: {
+                        {title: "key", type: "object", props: {
                             keybind: {
                                 desc: A keybind identifier, to be displayed as the name of the button that is currently bound to that action. For example, {"keybind": "key.inventory"} displays "e" if the player is using the default control scheme.
                                 href: https://minecraft.fandom.com/wiki/Controls#Configurable_controls
                                 type: string
                             }
                         }}
-                        {name: "nbt", type: "object", props: {
+                        {title: "nbt", type: "object", props: {
                             block: {
                                 desc: A string specifying the coordinates of the block entity from which the NBT value is obtained. The coordinates can be absolute, relative, or local. Ignored if nbt is not present.
                                 type: string
