@@ -102,6 +102,7 @@
                 }
                 ingredient: {
                     desc: The ingredient or list of acceptable incredients cooked by this recipe.
+                    nopanel: true
                     extend: oritem
                 }
                 result: {extend: "item", gap: true}

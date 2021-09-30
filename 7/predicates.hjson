@@ -1,5 +1,59 @@
 {
     links: {
+        damage_pred: {
+            desc: Predicate applied to the damage.
+            type: object
+            props: {
+                bypasses_armor: {
+                    desc: Checks if the damage bypassed the armor of the player (suffocation damage predominantly).
+                    enum: [true, false]
+                    unspec: true
+                }
+                bypasses_invulnerability: {
+                    desc: Checks if the damage bypassed the invulnerability status of the player (void or /kill damage in vanilla).
+                    enum: [true, false]
+                    unspec: true
+                }
+                bypasses_magic: {
+                    desc: Checks if the damage bypassed resistance and other status effects (in vanilla, this is only caused by starvation)
+                    enum: [true, false]
+                    unspec: true
+                }
+                is_explosion: {
+                    desc: Checks if the damage originated from an explosion.
+                    enum: [true, false]
+                    unspec: true
+                }
+                is_fire: {
+                    desc: Checks if the damage originated from fire.
+                    enum: [true, false]
+                    unspec: true
+                }
+                is_magic: {
+                    desc: Checks if the damage originated from magic.
+                    enum: [true, false]
+                    unspec: true
+                }
+                is_projectile: {
+                    desc: Checks if the damage originated from a projectile.
+                    enum: [true, false]
+                    unspec: true
+                }
+                is_lightning: {
+                    desc: Checks if the damage originated from lightning.
+                    enum: [true, false]
+                    unspec: true
+                }
+                direct_entity: {
+                    desc: The entity that was the direct cause of the damage.
+                    link: entity_pred
+                }
+                source_entity: {
+                    desc: The entity that was the source of the damage (for example, the skeleton that shot the arrow that caused the damage)
+                    link: entity_pred
+                }
+            }
+        }
         location_pred: {
             desc: Properties of a location.
             type: object
@@ -106,49 +160,18 @@
                 }
             }
         }
+        entity_preds: {
+            or: [
+                {link: "entity_pred"}
+                {type: "list", vals: {link: "entity_pred"}}
+            ]
+        }
         entity_pred: {
             desc: Properties of a Minecraft entity.
             type: object
             props: {
                 distance: {
-                    type: object
-                    props: {
-                        absolute: {
-                            type: object
-                            props: {
-                                min: {type: "number"}
-                                max: {type: "number"}
-                            }
-                        }
-                        horizontal: {
-                            type: object
-                            props: {
-                                min: {type: "number"}
-                                max: {type: "number"}
-                            }
-                        }
-                        x: {
-                            type: object
-                            props: {
-                                min: {type: "number"}
-                                max: {type: "number"}
-                            }
-                        }
-                        y: {
-                            type: object
-                            props: {
-                                min: {type: "number"}
-                                max: {type: "number"}
-                            }
-                        }
-                        z: {
-                            type: object
-                            props: {
-                                min: {type: "number"}
-                                max: {type: "number"}
-                            }
-                        }
-                    }
+                    link: distance
                 }
                 effects: {
                     desc: A list of status effects. The key name is the status effect id.
@@ -378,10 +401,102 @@
                 }
             }
         }
+        intdistance: {
+            type: object
+            props: {
+                absolute: {
+                    type: object
+                    props: {
+                        min: {type: "integer"}
+                        max: {type: "integer"}
+                    }
+                }
+                horizontal: {
+                    type: object
+                    props: {
+                        min: {type: "integer"}
+                        max: {type: "integer"}
+                    }
+                }
+                x: {
+                    type: object
+                    props: {
+                        min: {type: "integer"}
+                        max: {type: "integer"}
+                    }
+                }
+                y: {
+                    type: object
+                    props: {
+                        min: {type: "integer"}
+                        max: {type: "integer"}
+                    }
+                }
+                z: {
+                    type: object
+                    props: {
+                        min: {type: "integer"}
+                        max: {type: "integer"}
+                    }
+                }
+            }
+        }
+        distance: {
+            type: object
+            props: {
+                absolute: {
+                    type: object
+                    props: {
+                        min: {type: "number"}
+                        max: {type: "number"}
+                    }
+                }
+                horizontal: {
+                    type: object
+                    props: {
+                        min: {type: "number"}
+                        max: {type: "number"}
+                    }
+                }
+                x: {
+                    type: object
+                    props: {
+                        min: {type: "number"}
+                        max: {type: "number"}
+                    }
+                }
+                y: {
+                    type: object
+                    props: {
+                        min: {type: "number"}
+                        max: {type: "number"}
+                    }
+                }
+                z: {
+                    type: object
+                    props: {
+                        min: {type: "number"}
+                        max: {type: "number"}
+                    }
+                }
+            }
+        }
+        intmm0: {
+            or: [
+                {type: "integer", min: 0}
+                {type: "object", props: {min: {type: "integer", min: 0}, max: {type: "integer", min: 0}}}
+            ]
+        }
         intmm: {
             or: [
                 {type: "integer"}
                 {type: "object", props: {min: {type: "integer"}, max: {type: "integer"}}}
+            ]
+        }
+        nummm0: {
+            or: [
+                {type: "number", min: 0}
+                {type: "object", props: {min: {type: "number", min: 0}, max: {type: "number", min: 0}}}
             ]
         }
         nummm: {
@@ -410,7 +525,7 @@
                                 }
                                 string-binomial: {
                                     n: {link: "intprov"}
-                                    p: {title: "P", link: "numprov"}
+                                    p: {link: "numprov"}
                                 }
                                 string-score: {
                                     target: {
@@ -562,57 +677,7 @@
                         string-damage_source_properties: {
                             predicate: {
                                 desc: Predicate applied to the damage source.
-                                type: object
-                                props: {
-                                    bypasses_armor: {
-                                        desc: Checks if the damage bypassed the armor of the player (suffocation damage predominantly).
-                                        enum: [true, false]
-                                        unspec: true
-                                    }
-                                    bypasses_invulnerability: {
-                                        desc: Checks if the damage bypassed the invulnerability status of the player (void or /kill damage in vanilla).
-                                        enum: [true, false]
-                                        unspec: true
-                                    }
-                                    bypasses_magic: {
-                                        desc: Checks if the damage bypassed resistance and other status effects (in vanilla, this is only caused by starvation)
-                                        enum: [true, false]
-                                        unspec: true
-                                    }
-                                    is_explosion: {
-                                        desc: Checks if the damage originated from an explosion.
-                                        enum: [true, false]
-                                        unspec: true
-                                    }
-                                    is_fire: {
-                                        desc: Checks if the damage originated from fire.
-                                        enum: [true, false]
-                                        unspec: true
-                                    }
-                                    is_magic: {
-                                        desc: Checks if the damage originated from magic.
-                                        enum: [true, false]
-                                        unspec: true
-                                    }
-                                    is_projectile: {
-                                        desc: Checks if the damage originated from a projectile.
-                                        enum: [true, false]
-                                        unspec: true
-                                    }
-                                    is_lightning: {
-                                        desc: Checks if the damage originated from lightning.
-                                        enum: [true, false]
-                                        unspec: true
-                                    }
-                                    direct_entity: {
-                                        desc: The entity that was the direct cause of the damage.
-                                        link: entity_pred
-                                    }
-                                    source_entity: {
-                                        desc: The entity that was the source of the damage (for example, the skeleton that shot the arrow that caused the damage)
-                                        link: entity_pred
-                                    }
-                                }
+                                link: damage_pred
                             }
                         }
                         string-entity_properties: {

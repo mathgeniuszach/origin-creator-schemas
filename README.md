@@ -1,0 +1,3 @@
+# Origin Creator Schemas
+
+This is a collection of versioned schemas for the [Origin Creator](https://xmgzx.github.io/apps/origin-creator/). It is what the tool uses to generate editors for each field. If you see an error with one of the schemas, feel free to report it on the Issues page or submit a pull request fixing the error. You can also add support for other types of json files through pull requests too.

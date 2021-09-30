@@ -114,6 +114,7 @@
             "generic" if none of the above apply.
             '''
             enum: ["empty", "entity", "block", "chest", "fishing", "gift", "advancement_reward", "barter", "command", "advancement_entity", "generic"]
+            default: generic
         }
         functions: {
             desc: Applies functions to all item stacks produced by this table. Functions are applied in order, so for example looting_enchant must be after set_count to work correctly. I believe this is 1.17+ only.
@@ -134,7 +135,7 @@
                         link: functions
                     }
                     rolls: {
-                        desc: specifies the number of rolls on the pool.
+                        desc: Specifies the number of rolls on the pool.
                         id: predicates-7
                         link: intprov
                     }
