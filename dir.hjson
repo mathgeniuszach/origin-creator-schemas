@@ -11,6 +11,6 @@
         predicates
         item_modifiers
         loot_tables
-        // advancements
+        advancements
     ]
 }
