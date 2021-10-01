@@ -1528,6 +1528,7 @@
 
         power_base: {
             type: object
+            show: true
             props: {
                 name: {
                     desc: The display name of the power. Can be a literal string or a translation key.
