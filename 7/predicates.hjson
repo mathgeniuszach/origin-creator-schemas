@@ -62,7 +62,7 @@
                     desc: The biome at the given location.
                     href: https://minecraft.fandom.com/wiki/Biome#Biome_IDs
                     type: string
-                    allow: a-z0-9#\/:-
+                    allow: *a-z0-9#\/:-
                 }
                 block: {
                     type: object
@@ -76,7 +76,7 @@
                         tag: {
                             desc: The block tag.
                             type: string
-                            allow: a-z0-9#\/:-
+                            allow: *a-z0-9#\/:-
                         }
                         nbt: {
                             desc: The block NBT.
@@ -104,12 +104,12 @@
                             desc: The fluid ID.
                             href: https://minecraft.fandom.com/wiki/Java_Edition_data_values#Fluids
                             type: string
-                            allow: a-z0-9#\/:-
+                            allow: *a-z0-9#\/:-
                         }
                         tag: {
                             desc: The fluid tag.
                             type: string
-                            allow: a-z0-9#\/:-
+                            allow: *a-z0-9#\/:-
                         }
                         nbt: {
                             desc: The block NBT.
@@ -133,7 +133,7 @@
                 dimension: {
                     desc: The dimension of ths location.
                     type: string
-                    allow: a-z0-9#\/:-
+                    allow: *a-z0-9#\/:-
                 }
                 feature: {
                     desc: Whether or not this location is inside a naturally generating structure.
@@ -198,7 +198,7 @@
                             unspec: true
                         }
                     }
-                    allow: a-z0-9#\/:-
+                    allow: *a-z0-9#\/:-
                 }
                 equipment: {
                     desc: Items equipped by the entity.
@@ -252,7 +252,7 @@
                                     {type: "object", extra: {type: "boolean", default: false}}
                                 ]
                             }
-                            allow: a-z0-9#\/:-
+                            allow: *a-z0-9#\/:-
                         }
                         gamemode: {
                             enum: ["survival", "adventure", "creative", "spectator"]
@@ -269,7 +269,7 @@
                                 type: boolean
                                 default: false
                             }
-                            allow: a-z0-9#\/:-
+                            allow: *a-z0-9#\/:-
                         }
                         stats: {
                             desc: List of statistics to match. Note that unlike when adding scoreboard objectives, the base (for example, minecraft:custom) and the statistic (for example, minecraft:sneak_time) are split and use proper namespaces instead of the dot-notation (minecraft.custom:minecraft.sneak_time).
@@ -280,12 +280,12 @@
                                     type: {
                                         desc: The statistic base. Possible values in vanilla are minecraft:custom, minecraft:crafted, minecraft:used, minecraft:broken, minecraft:mined, minecraft:killed, minecraft:picked_up, minecraft:dropped and minecraft:killed_by.
                                         type: string
-                                        allow: a-z0-9_#\/:-
+                                        allow: *a-z0-9_#\/:-
                                     }
                                     stat: {
                                         desc: The statistic ID. Mostly mimics the criteria used for defining scoreboard objectives.
                                         type: string
-                                        allow: a-z0-9_#\/:-
+                                        allow: *a-z0-9_#\/:-
                                     }
                                     value: {
                                         desc: The value of the statistic.
@@ -324,7 +324,7 @@
                     desc: An entity ID.
                     href: https://minecraft.fandom.com/wiki/Data_values/Entity_IDs
                     type: string
-                    allow: a-z0-9_#\/:-
+                    allow: *a-z0-9_#\/:-
                 }
             }
         }
@@ -340,7 +340,7 @@
                 tag: {
                     desc: An item data pack tag.
                     type: string
-                    allow: a-z0-9_#\/:-
+                    allow: *a-z0-9_#\/:-
                 }
                 count: {
                     desc: Amount of the item.
@@ -359,7 +359,7 @@
                     desc: A brewed potion ID.
                     href: https://minecraft.fandom.com/wiki/Potion#Item_data
                     type: string
-                    allow: a-z0-9_#\/:-
+                    allow: *a-z0-9_#\/:-
                 }
                 enchantments: {
                     desc: List of enchantments
@@ -371,7 +371,7 @@
                                 desc: An enchantment ID.
                                 href: https://minecraft.fandom.com/wiki/Java_Edition_data_values#Enchantments
                                 type: string
-                                allow: a-z0-9_#\/:-
+                                allow: *a-z0-9_#\/:-
                             }
                             levels: {
                                 desc: The level of the enchantment.
@@ -390,7 +390,7 @@
                                 desc: An enchantment ID.
                                 href: https://minecraft.fandom.com/wiki/Java_Edition_data_values#Enchantments
                                 type: string
-                                allow: a-z0-9_#\/:-
+                                allow: *a-z0-9_#\/:-
                             }
                             levels: {
                                 desc: The level of the enchantment.
@@ -621,13 +621,13 @@
             desc: A Minecraft item (or block item), vanilla or modded.
             href: https://minecraft.fandom.com/wiki/Java_Edition_data_values#Blocks
             type: string
-            allow: a-z0-9_#\/:-
+            allow: *a-z0-9_#\/:-
         }
         block: {
             desc: A Minecraft block, vanilla or modded.
             href: https://minecraft.fandom.com/wiki/Java_Edition_data_values/Blocks
             type: string
-            allow: a-z0-9_#\/:-
+            allow: *a-z0-9_#\/:-
         }
         pred: {
             desc: A predicate.
@@ -671,7 +671,7 @@
                                 extra: {
                                     type: string
                                 }
-                                allow: a-z0-9#\/:-
+                                allow: *a-z0-9#\/:-
                             }
                         }
                         string-damage_source_properties: {
@@ -745,7 +745,7 @@
                             name: {
                                 desc: The ID of another predicate to test.
                                 type: string
-                                allow: a-z0-9#\/:-
+                                allow: *a-z0-9#\/:-
                             }
                         }
                         string-survives_explosion: {}

@@ -207,7 +207,7 @@
                                             desc: A brewed potion ID.
                                             href: https://minecraft.fandom.com/wiki/Potion#Item_data
                                             type: string
-                                            allow: a-z0-9_\/:-
+                                            allow: *a-z0-9_\/:-
                                         }
                                         player: {
                                             desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
@@ -224,12 +224,12 @@
                                         from: {
                                             desc: The dimension the entity traveled from.
                                             type: string
-                                            allow: a-z0-9_\/:-
+                                            allow: *a-z0-9_\/:-
                                         }
                                         to: {
                                             desc: The dimension the entity traveled to.
                                             type: string
-                                            allow: a-z0-9_\/:-
+                                            allow: *a-z0-9_\/:-
                                         }
                                         player: {
                                             desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
@@ -380,7 +380,7 @@
                                             desc: The block that the player is standing in. Accepts block IDs
                                             href: https://minecraft.fandom.com/wiki/Java_Edition_data_values/Blocks
                                             type: string
-                                            allow: a-z0-9_\/:-
+                                            allow: *a-z0-9_\/:-
                                         }
                                         state: {
                                             desc: The block states of the block, with the key names being the state names and the values being the required values for those states.
@@ -738,7 +738,7 @@
                                         loot_table: {
                                             desc: The resource location of the generated loot table.
                                             type: string
-                                            allow: a-z0-9_#\/:-
+                                            allow: *a-z0-9_#\/:-
                                         }
                                         player: {
                                             desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
@@ -819,7 +819,7 @@
                                         recipe: {
                                             desc: The recipe that was unlocked.
                                             type: string
-                                            allow: a-z0-9_\/:-
+                                            allow: *a-z0-9_\/:-
                                         }
                                         player: {
                                             desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
@@ -938,7 +938,7 @@
                                         projectile: {
                                             desc: The projectile used to hit the target block
                                             type: string
-                                            allow: a-z0-9_\/:-
+                                            allow: *a-z0-9_\/:-
                                         }
                                         shooter: {
                                             desc: The player who shot or threw the projectile. May also be a list of predicates that must pass in order for the trigger to activate.
@@ -1111,7 +1111,7 @@
                 function: {
                     desc: A function to run. Function tags are not allowed.
                     type: string
-                    allow: a-z0-9_\/:-
+                    allow: *a-z0-9_\/:-
                 }
             }
         }

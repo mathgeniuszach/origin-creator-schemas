@@ -30,7 +30,7 @@
                         font: {
                             desc: Optional. The resource location of the font for this component in the resource pack within assets/<namespace>/font. Defaults to "minecraft:default".
                             type: string
-                            allow: a-z0-9_#\/:-
+                            allow: *a-z0-9_#\/:-
                         }
                         bold: {
                             desc: Whether to render the content in bold.
@@ -107,7 +107,7 @@
                                                         desc: The namespaced item ID.
                                                         href: https://minecraft.fandom.com/wiki/Java_Edition_data_values#Blocks
                                                         type: string
-                                                        allow: a-z0-9_#\/:-
+                                                        allow: *a-z0-9_#\/:-
                                                     }
                                                     count: {
                                                         desc: Optional. Size of the item stack.
@@ -140,7 +140,7 @@
                                                         desc: A string containing the type of the entity. Should be a namespaced entity ID. Present minecraft:pig if invalid.
                                                         href: https://minecraft.fandom.com/wiki/Java_Edition_data_values/Entities
                                                         type: string
-                                                        allow: a-z0-9_#\/:-
+                                                        allow: *a-z0-9_#\/:-
                                                     }
                                                     id: {
                                                         desc: A string containing the UUID of the entity in the hyphenated hexadecimal format. Should be a valid UUID.
@@ -218,7 +218,7 @@
                             storage: {
                                 desc: A string specifying the namespaced ID of the command storage from which the NBT value is obtained. Ignored if  nbt is not present.
                                 type: string
-                                allow: a-z0-9_#\/:-
+                                allow: *a-z0-9_#\/:-
                             }
                             nbt: {
                                 desc: The NBT path used for looking up NBT values from an entity, block entity, or storage. Requires one of  block,  entity, or  storage. Having more than one is allowed, but only one is used.
@@ -276,7 +276,7 @@
                                 desc: Enchantment ID used for level calculation.
                                 href: https://minecraft.fandom.com/wiki/Java_Edition_data_value#Enchantments
                                 type: string
-                                allow: a-z0-9_#\/:-
+                                allow: *a-z0-9_#\/:-
                             }
                             formula: {
                                 desc: Can be binomial_with_bonus_count for a binomial distribution (with "n = level + extra", "p = probability"), uniform_bonus_count for uniform distribution (from 0 to level * bonusMultiplier), or ore_drops for a special function used for ore drops in the vanilla game (Count * (max(0; random(0..Level + 2) - 1)+1)).
@@ -324,7 +324,7 @@
                                                         source: {
                                                             desc: A resource location specifying the storage ID.
                                                             type: string
-                                                            allow: a-z0-9_#\/:-
+                                                            allow: *a-z0-9_#\/:-
                                                         }
                                                     }
                                                 }
@@ -383,13 +383,13 @@
                                 desc: The type of generated structure to convert this empty map to lead to. Accepts any structure id used by the /locate command.
                                 href: https://minecraft.fandom.com/wiki/Commands/locate#Arguments
                                 type: string
-                                allow: a-z0-9_#\/:-
+                                allow: *a-z0-9_#\/:-
                             }
                             decoration: {
                                 desc: The icon used to mark the destination on the map. Accepts any of the map icon text IDs (case insensitive). If mansion or monument is used, the color of the lines on the item texture changes to match the corresponding explorer map.
                                 href: https://minecraft.fandom.com/wiki/Map#Map_icons
                                 type: string
-                                allow: a-z0-9_#\/:-
+                                allow: *a-z0-9_#\/:-
                             }
                             zoom: {
                                 desc: The zoom level of the resulting map. Defaults to 2.
@@ -449,7 +449,7 @@
                                         attribute: {
                                             desc: The name of the attribute this modifier is to act upon.
                                             type: string
-                                            allow: a-z0-9_#\/:-
+                                            allow: *a-z0-9_#\/:-
                                         }
                                         operation: {
                                             enum: ["addition", "multiply_base", "multiply_total"]
@@ -484,7 +484,7 @@
                                             desc: The pattern type. For example square_bottom_left.
                                             href: https://minecraft.fandom.com/wiki/Banner/Patterns
                                             type: string
-                                            allow: a-z0-9_#\/:-
+                                            allow: *a-z0-9_#\/:-
                                         }
                                         color: {
                                             desc: The color for this pattern.
@@ -549,7 +549,7 @@
                             name: {
                                 desc: Specifies the resource location of the loot table to be used to set the contents of this container.
                                 type: string
-                                allow: a-z0-9_#\/:-
+                                allow: *a-z0-9_#\/:-
                             }
                             seed: {
                                 desc: Optional. Specifies the loot table seed. If absent or set to 0, a random seed will be used.
@@ -605,7 +605,7 @@
                                             desc: The effect ID.
                                             href: https://minecraft.fandom.com/wiki/Effect#Effect_list
                                             type: string
-                                            allow: a-z0-9_#\/:-
+                                            allow: *a-z0-9_#\/:-
                                         }
                                         duration: {
                                             desc: The duration of the effect.

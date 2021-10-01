@@ -11,7 +11,7 @@
         }
         id: {
             type: string
-            allow: a-z0-9_
+            allow: *a-z0-9_
         }
         pack_format: {
             type: integer

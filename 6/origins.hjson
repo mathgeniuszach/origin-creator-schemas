@@ -21,7 +21,7 @@
             type: list
             vals: {
                 type: string
-                allow: a-z0-9_#\/:-
+                allow: *a-z0-9_#\/:-
                 ns: true
             }
         }
@@ -34,12 +34,12 @@
                     condition: {
                         desc: ID of an advancement which should trigger this upgrade.
                         type: string
-                        allow: a-z0-9_#\/:-
+                        allow: *a-z0-9_#\/:-
                     }
                     origin: {
                         desc: ID of an origin the origin with this upgrade should upgrade to.
                         type: string
-                        allow: a-z0-9_#\/:-
+                        allow: *a-z0-9_#\/:-
                         ns: true
                     }
                     announcement: {
