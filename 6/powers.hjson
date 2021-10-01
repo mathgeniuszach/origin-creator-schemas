@@ -1555,6 +1555,7 @@
             }
         }
         power: {
+            title: single
             extend: power_base
             props: {
                 type: {
@@ -2633,6 +2634,7 @@
             }
         }
         multi_power: {
+            title: multiple
             extend: power_base
             props: {
                 type: {
@@ -2642,12 +2644,13 @@
             }
             extra: {
                 or: [
-                    {title: "simple", link: "power"}
-                    {title: "custom", link: "custom_power"}
+                    {link: "power"}
+                    {link: "custom_power"}
                 ]
             }
         }
         custom_power: {
+            title: custom
             extend: power_base
             props: {
                 type: {
