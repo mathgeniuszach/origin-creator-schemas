@@ -5,6 +5,9 @@
         meta
         tags
         recipes
+        origin_layers
+        origins
+        powers
     ]
     7: [
         // Unfortunately, I have no way of knowing if every one of these fields will work in 1.16. Sorry about that.

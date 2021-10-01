@@ -738,7 +738,7 @@
                                         loot_table: {
                                             desc: The resource location of the generated loot table.
                                             type: string
-                                            allow: a-z0-9_\/:-#
+                                            allow: a-z0-9_#\/:-
                                         }
                                         player: {
                                             desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
