@@ -1986,8 +1986,8 @@
                         }
                         "string-origins:recipe": {
                             recipe: {
-                                id: recipes
-                                extend: recipes-6
+                                id: recipes-6
+                                extend: recipe
                                 shared: {
                                     id: {
                                         desc: A value to use specifying where to generate this recipe.
