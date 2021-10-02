@@ -8,7 +8,7 @@
         origins: {
             desc: Defines the origins that should be in this layer. Identifier strings and Conditioned Origin objects can be mixed in the same array.
             or: [
-                {title: "simple", type: "list", vals: {type: "string", allow: "*a-z0-9_#\\/:-", ns: true}}
+                {title: "simple", large: true, type: "list", vals: {type: "string", allow: "*a-z0-9_#\\/:-", ns: true}}
                 {
                     title: "extra"
                     type: list

@@ -2623,6 +2623,7 @@
                             message: {
                                 desc: The message that will be shown when sleep is prevented this way. Can be a literal text or a translation key which will be localized using a language file. Defaults to "origins.cant_sleep".
                                 type: string
+                                ext: true
                             }
                             set_spawn_point: {
                                 desc: If false, right-clicking the bed while sleeping is prevented with this power will prevent the player from setting their the spawn point.

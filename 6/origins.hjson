@@ -10,20 +10,21 @@
             type: string
             ext: true
         }
-        icon: {
-            desc: The item stack which is displayed as the icon for the origin in the top-left corner of the choose/view origin screen.
-            id: powers-6
-            link: item_stack
-            gap: true
-        }
         powers: {
             desc: IDs of the powers this origin should have.
             type: list
+            large: true
             vals: {
                 type: string
                 allow: *a-z0-9_#\/:-
                 ns: true
             }
+        }
+        icon: {
+            desc: The item stack which is displayed as the icon for the origin in the top-left corner of the choose/view origin screen.
+            id: powers-6
+            link: item_stack
+            gap: true
         }
         upgrades: {
             desc: A list of upgrades for this origin, specifying which advancements turn this origin into which other origin.
