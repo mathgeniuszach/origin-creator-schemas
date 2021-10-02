@@ -968,6 +968,7 @@
                         origins:and
                         origins:chance
                         origins:choice
+                        origins:delay
                         origins:if_else
                         origins:if_else_list
                         origins:add_velocity
@@ -1028,6 +1029,16 @@
                                         }
                                     }
                                 }
+                            }
+                        }
+                        "string-origins:delay": {
+                            action: {
+                                desc: The action which will be executed after the delay.
+                                link: entity_action
+                            }
+                            ticks: {
+                                desc: The amount of ticks until the action is executed.
+                                type: integer
                             }
                         }
                         "string-origins:if_else": {
