@@ -89,7 +89,7 @@
                             advancement: {
                                 desc: ID of the advancement the player needs to have completed in order for this condition to evaluate to true.
                                 type: string
-                                allow: *a-z0-9_#\/:-
+                                allow: *a-z0-9_#\/:.-
                             }
                         }
                         "string-origins:air": {
@@ -106,7 +106,7 @@
                             attribute: {
                                 desc: ID of the attribute of which the value should be checked.
                                 type: string
-                                allow: *a-z0-9_#\/:-
+                                allow: *a-z0-9_#\/:.-
                             }
                             comparison: {
                                 desc: How the attribute's value should be compared to the specified value.
@@ -122,7 +122,7 @@
                                 desc: If set, this is the ID of the biome the player needs to be in for this condition to evaluate to true, e.g. minecraft:savanna.
                                 href: https://minecraft.fandom.com/wiki/Biome#Biome_IDs
                                 type: string
-                                allow: *a-z0-9_#\/:-
+                                allow: *a-z0-9_#\/:.-
                             }
                             biomes: {
                                 desc: If set, these are the allowed biome IDs the player can be in for this condition to evaluate to true.
@@ -130,7 +130,7 @@
                                 type: list
                                 vals: {
                                     type: string
-                                    allow: *a-z0-9_#\/:-
+                                    allow: *a-z0-9_#\/:.-
                                 }
                             }
                             condition: {
@@ -217,14 +217,14 @@
                             dimension: {
                                 desc: ID of the dimension the player needs to be in for this condition to evaluate to true. Vanilla dimensions are minecraft:overworld, minecraft:the_nether and minecraft:the_end, but IDs of custom/modded dimensions should also work.
                                 type: string
-                                allow: *a-z0-9_#\/:-
+                                allow: *a-z0-9_#\/:.-
                             }
                         }
                         "string-origins:enchantment": {
                             enchantment: {
                                 desc: ID of the enchantment of interest.
                                 type: string
-                                allow: *a-z0-9_#\/:-
+                                allow: *a-z0-9_#\/:.-
                             }
                             calculation: {
                                 desc: Which number to compare - either the sum of levels of this enchantment on all of the player's equipment, or the max level of this enchantment on any of the player's equipment.
@@ -250,7 +250,7 @@
                             entity_type: {
                                 desc: ID of the entity type the entity needs to have to pass the check.
                                 type: string
-                                allow: *a-z0-9_#\/:-
+                                allow: *a-z0-9_#\/:.-
                             }
                         }
                         "string-origins:equipped_item": {
@@ -280,7 +280,7 @@
                             fluid: {
                                 desc: ID of the fluid tag of which the height should be checked. Most important examples: minecraft:water and minecraft:lava.
                                 type: string
-                                allow: *a-z0-9_#\/:-
+                                allow: *a-z0-9_#\/:.-
                             }
                             comparison: {
                                 desc: How the fluid height should be compared to the specified value. A fluid height of 0 means the player is not touching the fluid.
@@ -343,7 +343,7 @@
                             tag: {
                                 desc: ID of the tag the entity type needs to be in to pass the check.
                                 type: string
-                                allow: *a-z0-9_\/:-
+                                allow: *a-z0-9_\/:.-
                             }
                         }
                         "string-origins:invisible": {}
@@ -359,13 +359,13 @@
                             origin: {
                                 desc: ID of the origin the player needs to have to pass the check.
                                 type: string
-                                allow: *a-z0-9_\/:-
+                                allow: *a-z0-9_\/:.-
                                 ns: true
                             }
                             layer: {
                                 desc: If set, will check only the layer with the provided ID for the origin. By default it will check in any layer.
                                 type: string
-                                allow: *a-z0-9_\/:-
+                                allow: *a-z0-9_\/:.-
                                 ns: true
                             }
                         }
@@ -373,7 +373,7 @@
                             power: {
                                 desc: ID of the power which will be checked for being active.
                                 type: string
-                                allow: *a-z0-9_\/:-
+                                allow: *a-z0-9_\/:.-
                                 ns: true
                             }
                         }
@@ -381,7 +381,7 @@
                             power: {
                                 desc: ID of the power the player needs to have to pass the check.
                                 type: string
-                                allow: *a-z0-9_\/:-
+                                allow: *a-z0-9_\/:.-
                                 ns: true
                             }
                         }
@@ -389,7 +389,7 @@
                             predicate: {
                                 desc: ID of the predicate the entity needs to pass.
                                 type: string
-                                allow: *a-z0-9_\/:-
+                                allow: *a-z0-9_\/:.-
                             }
                         }
                         "string-origins:relative_health": {
@@ -406,7 +406,7 @@
                             resource: {
                                 desc: ID of the power type that defines the resource. Must be a Resource (Power Type) which exists on the player.
                                 type: string
-                                allow: *a-z0-9_#\/:-
+                                allow: *a-z0-9_#\/:.-
                                 ns: true
                             }
                             comparison: {
@@ -448,7 +448,7 @@
                             effect: {
                                 desc: ID of the status effect the player should have.
                                 type: string
-                                allow: *a-z0-9_#\/:-
+                                allow: *a-z0-9_#\/:.-
                             }
                             min_amplifier: {
                                 desc: The minimum amplifier the status effect should have in order to pass the check. Defaults to 0.
@@ -479,7 +479,7 @@
                             fluid: {
                                 desc: Submerged means the entities' eyes are inside that fluid. ID of the fluid tag that should be checked. Most important examples: minecraft:water and minecraft:lava.
                                 type: string
-                                allow: *a-z0-9_#\/:-
+                                allow: *a-z0-9_#\/:.-
                             }
                         }
                         "string-origins:swimming": {}
@@ -570,7 +570,7 @@
                             enchantment: {
                                 desc: ID of the enchantment of interest to check the level of on the item, e.g. minecraft:protection.
                                 type: string
-                                allow: *a-z0-9_#\/:-
+                                allow: *a-z0-9_#\/:.-
                             }
                             comparison: {
                                 desc: How the enchantment level should be compared to the specified value.
@@ -675,7 +675,7 @@
                                 desc: ID of the block that this block needs to be to pass the check.
                                 href: https://minecraft.fandom.com/wiki/Java_Edition_data_values/Blocks
                                 type: string
-                                allow: *a-z0-9_\/:-
+                                allow: *a-z0-9_\/:.-
                             }
                         }
                         "string-origins:block_state": {
@@ -722,7 +722,7 @@
                             id: {
                                 desc: ID of the tag which the block should be in to pass the check.
                                 type: string
-                                allow: *a-z0-9_\/:-
+                                allow: *a-z0-9_\/:.-
                             }
                         }
                         "string-origins:light_blocking": {}
@@ -809,7 +809,7 @@
                             tag: {
                                 desc: ID of the tag which the fluid should be in to pass the check.
                                 type: string
-                                allow: *a-z0-9_\/:-
+                                allow: *a-z0-9_\/:.-
                             }
                         }
                         "string-origins:still": {}
@@ -952,7 +952,7 @@
                             projectile: {
                                 desc: If set, the check will only pass if the projectile was of an entity type with this ID.
                                 type: string
-                                allow: *a-z0-9_#\/:-
+                                allow: *a-z0-9_#\/:.-
                             }
                         }
                     }
@@ -1136,7 +1136,7 @@
                             resource: {
                                 desc: ID of the power type that defines the resource to change the value of. Must be a Resource (Power Type) which exists on the player.
                                 type: string
-                                allow: *a-z0-9_#\/:-
+                                allow: *a-z0-9_#\/:.-
                                 ns: true
                             }
                             change: {
@@ -1148,7 +1148,7 @@
                             effect: {
                                 desc: If specified, the effect with this ID will be cleared. If not specified, all effects will be cleared.
                                 type: string
-                                allow: *a-z0-9_#\/:-
+                                allow: *a-z0-9_#\/:.-
                             }
                         }
                         "string-origins:damage": {
@@ -1224,7 +1224,7 @@
                             sound: {
                                 desc: ID of the sound to play.
                                 type: string
-                                allow: *a-z0-9_#\/:-
+                                allow: *a-z0-9_#\/:.-
                             }
                             volume: {
                                 desc: The volume of the sound.
@@ -1284,7 +1284,7 @@
                             entity_type: {
                                 desc: The ID of the entity type that will be spawned.
                                 type: string
-                                allow: *a-z0-9_\/:-
+                                allow: *a-z0-9_\/:.-
                             }
                             tag: {
                                 desc: When set, this NBT data will be applied to the new entity when it is spawned.
@@ -1300,7 +1300,7 @@
                             power: {
                                 desc: ID of the cooldown power which should trigger, as if that power has just been used.
                                 type: string
-                                allow: *a-z0-9_\/:-
+                                allow: *a-z0-9_\/:.-
                                 ns: true
                             }
                         }
@@ -1491,7 +1491,7 @@
                             block: {
                                 desc: The ID of the block to place at the specified action position. Adding means setting the block at the position, offset by the direction of the action.
                                 type: string
-                                allow: *a-z0-9_\/:-
+                                allow: *a-z0-9_\/:.-
                             }
                         }
                         "string-origins:execute_command": {
@@ -1529,7 +1529,7 @@
                             block: {
                                 desc: The ID of the block to place at the targeted position, overwriting the block already there.
                                 type: string
-                                allow: *a-z0-9_\/:-
+                                allow: *a-z0-9_\/:.-
                             }
                         }
                     }
@@ -1757,7 +1757,7 @@
                             protection_enchantment: {
                                 desc: If set, the total amount of levels of this enchantment will be counted on the player's armor to increase the onset_delay.
                                 type: string
-                                allow: *a-z0-9_#\/:-
+                                allow: *a-z0-9_#\/:.-
                             }
                             protection_effectiveness: {
                                 desc: If protection_enchantment is set, this multiplier scales how effective it will be (1.0 = time the onset_delay is increased is the same as with Hydrophobia and Water Protection).
@@ -1770,14 +1770,14 @@
                             effect: {
                                 desc: If specified, the effect with this ID can not be applied to the player.
                                 type: string
-                                allow: *a-z0-9_#\/:-
+                                allow: *a-z0-9_#\/:.-
                             }
                             effects: {
                                 desc: If specified, the effects with these IDs can not be applied to the player.
                                 type: list
                                 vals: {
                                     type: string
-                                    allow: *a-z0-9_#\/:-
+                                    allow: *a-z0-9_#\/:.-
                                 }
                             }
                         }
@@ -1817,7 +1817,7 @@
                             entity_type: {
                                 desc: The ID of the entity type that will be fired.
                                 type: string
-                                allow: *a-z0-9_#\/:-
+                                allow: *a-z0-9_#\/:.-
                             }
                             cooldown: {
                                 desc: The number of ticks the player has to wait between uses of this power.
@@ -1849,7 +1849,7 @@
                             sound: {
                                 desc: If set, the sound with this ID will be played when the power is used.
                                 type: string
-                                allow: *a-z0-9_#\/:-
+                                allow: *a-z0-9_#\/:.-
                             }
                             tag: {
                                 desc: NBT data of the entity.
@@ -1910,7 +1910,7 @@
                             sound: {
                                 desc: If set, the sound with this ID will be played when the power is used.
                                 type: string
-                                allow: *a-z0-9_#\/:-
+                                allow: *a-z0-9_#\/:.-
                             }
                             key: {
                                 desc: Which active key this power should respond to. If none is specified, this power will use the primary active power key (by default G).
@@ -1967,7 +1967,7 @@
                             particle: {
                                 desc: ID of the particle type to use.
                                 type: string
-                                allow: *a-z0-9_#\/:-
+                                allow: *a-z0-9_#\/:.-
                             }
                             frequency: {
                                 desc: How often the particles should spawn (interval in ticks).
@@ -2005,7 +2005,7 @@
                                     id: {
                                         desc: A value to use specifying where to generate this recipe.
                                         type: string
-                                        allow: *a-z0-9_#\/:-
+                                        allow: *a-z0-9_#\/:.-
                                     }
                                 }
                             }
@@ -2058,7 +2058,7 @@
                             shader: {
                                 desc: Specifies the location of the shader resource file to use.
                                 type: string
-                                allow: *a-z0-9_#\/:-
+                                allow: *a-z0-9_#\/:.-
                             }
                         }
                         "string-origins:shaking": {}
@@ -2134,7 +2134,7 @@
                             fluid: {
                                 desc: ID of the fluid tag on which the player should be able to walk. Most important examples: minecraft:water and minecraft:lava.
                                 type: string
-                                allow: *a-z0-9_#\/:-
+                                allow: *a-z0-9_#\/:.-
                             }
                         }
                         "string-origins:action_on_block_break": {
@@ -2519,19 +2519,19 @@
                             dimension: {
                                 desc: ID of the dimension the player should spawn in. Vanilla dimensions are minecraft:overworld, minecraft:the_nether and minecraft:the_end, but IDs of custom/modded dimensions should also work.
                                 type: string
-                                allow: *a-z0-9_#\/:-
+                                allow: *a-z0-9_#\/:.-
                             }
                             biome: {
                                 desc: If set, the player will spawn in the biome with this ID.
                                 href: https://minecraft.fandom.com/wiki/Biome#Biome_IDs
                                 type: string
-                                allow: *a-z0-9_#\/:-
+                                allow: *a-z0-9_#\/:.-
                             }
                             structure: {
                                 desc: ID of the structure the player should spawn in. Keep in mind that the structure needs to generate in the specified dimension!
                                 href: https://minecraft.fandom.com/wiki/Commands/locate#Arguments
                                 type: string
-                                allow: *a-z0-9_#\/:-
+                                allow: *a-z0-9_#\/:.-
                             }
                             spawn_strategy: {
                                 desc: Either default or center. default tries to find a spawn close to the coordinates of the overworld spawn (while considering the dimension_distance_multiplier). center tries to spawn the player close to 0, 0 of the dimension.
@@ -2735,7 +2735,7 @@
                 attribute: {
                     desc: ID of the attribute which will be modified by this modifier.
                     type: string
-                    allow: *a-z0-9_#\/:-
+                    allow: *a-z0-9_#\/:.-
                 }
                 operation: {
                     desc: The operation which will be performed by this modifier.
@@ -2765,7 +2765,7 @@
                     desc: The path to the file in the assets which contains what the bar looks like. See the List of resource bar files for a list of files included by default in the mod. Defaults to "origins:textures/gui/resource_bar.png".
                     href: https://origins.readthedocs.io/en/0.7.3/misc/resource_bars/
                     type: string
-                    allow: *a-z0-9_#\/:-
+                    allow: *a-z0-9_#\/:.-
                 }
                 bar_index: {
                     desc: The indexed position of the bar on the sprite to use. Please note that indexes start at 0.
@@ -2838,7 +2838,7 @@
                 effect: {
                     desc: ID of the status effect
                     type: string
-                    allow: *a-z0-9_#\/:-
+                    allow: *a-z0-9_#\/:.-
                 }
                 duration: {
                     desc: Duration of the status effect in ticks.

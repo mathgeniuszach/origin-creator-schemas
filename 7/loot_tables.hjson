@@ -42,14 +42,14 @@
                                 desc: ID name of the item to be produced, e.g. diamond. The default, if not changed by functions, is a stack of 1 of the default instance of the item.
                                 href: https://minecraft.fandom.com/wiki/Java_Edition_data_values#Blocks
                                 type: string
-                                allow: *a-z0-9_#\/:-
+                                allow: *a-z0-9_#\/:.-
                             }
                         }
                         string-tag: {
                             name: {
                                 desc: Item tag to be used, e.g. arrows.
                                 type: string
-                                allow: *a-z0-9_#\/:-
+                                allow: *a-z0-9_#\/:.-
                             }
                             expand: {
                                 type: boolean
@@ -59,7 +59,7 @@
                             name: {
                                 desc: Loot table to be used, e.g. gameplay/fishing/junk.
                                 type: string
-                                allow: *a-z0-9_#\/:-
+                                allow: *a-z0-9_#\/:.-
                             }
                         }
                         string-group: {

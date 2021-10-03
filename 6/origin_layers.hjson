@@ -8,13 +8,13 @@
         origins: {
             desc: Defines the origins that should be in this layer. Identifier strings and Conditioned Origin objects can be mixed in the same array.
             or: [
-                {title: "simple", large: true, type: "list", vals: {type: "string", allow: "*a-z0-9_#\\/:-", ns: true}}
+                {title: "simple", large: true, type: "list", vals: {type: "string", allow: "*a-z0-9_#\\/:.-", ns: true}}
                 {
                     title: "extra"
                     type: list
                     vals: {
                         or: [
-                            {type: "string", allow: "*a-z0-9_#\\/:-", ns: true}
+                            {type: "string", allow: "*a-z0-9_#\\/:.-", ns: true}
                             {
                                 type: object
                                 props: {
@@ -26,7 +26,7 @@
                                     origins: {
                                         desc: IDs of the origins which should become available when the condition is fulfilled.
                                         type: list
-                                        vals: {type: "string", allow: "*a-z0-9_#\\/:-", ns: true}
+                                        vals: {type: "string", allow: "*a-z0-9_#\\/:.-", ns: true}
                                     }
                                 }
                             }
@@ -69,12 +69,12 @@
         exclude_random: {
             desc: If specified, the origins included in this list will not be picked by the random choice.
             type: list
-            vals: {type: "string", allow: "*a-z0-9_#\\/:-", ns: true}
+            vals: {type: "string", allow: "*a-z0-9_#\\/:.-", ns: true}
         }
         default_origin: {
             desc: If set, the origin with this ID will automatically be chosen for a new player. If an orb of origin is used later on, the player will be able to choose another origin then and the default_origin will not apply. Could for example be used to make all players start as human, and then use the orb as a progression item to select an origin.
             type: string
-            allow: *a-z0-9_#\/:-
+            allow: *a-z0-9_#\/:.-
             ns: true
         }
         auto_choose: {
