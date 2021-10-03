@@ -2656,6 +2656,7 @@
                 }
             }
             extra: {
+                nopanel: true
                 or: [
                     {link: "power"}
                     {link: "custom_power"}
