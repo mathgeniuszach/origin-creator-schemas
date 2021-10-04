@@ -2363,13 +2363,9 @@
                             }
                         }
                         "string-origins:modify_break_speed": {
-                            damage_condition: {
-                                desc: If set, the modifiers will only apply to damage which satisfies this condition.
-                                link: damage_cond
-                            }
-                            target_condition: {
-                                desc: If set, the action will only be triggered when a target matching this condition is hit.
-                                link: entity_cond
+                            block_condition: {
+                                desc: If set, the modifiers will only apply to blocks which satisfy this condition.
+                                link: block_cond
                             }
                             modifier: {
                                 desc: If specified, this modifier will be applied to the break speed.
@@ -2379,14 +2375,6 @@
                                 desc: If specified, these modifiers will be applied to the break speed.
                                 type: list
                                 vals: {link: "aa_mod"}
-                            }
-                            self_action: {
-                                desc: If set, this action will be executed on the player whenever this power applies a modification.
-                                link: entity_action
-                            }
-                            target_action: {
-                                desc: If set, this action will be executed on the target whenever this power applies a modification.
-                                link: entity_action
                             }
                         }
                         "string-origins:modify_damage_dealt": {
