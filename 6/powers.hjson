@@ -719,7 +719,7 @@
                             }
                         }
                         "string-origins:in_tag": {
-                            id: {
+                            tag: {
                                 desc: ID of the tag which the block should be in to pass the check.
                                 type: string
                                 allow: *a-z0-9_\/:.-
