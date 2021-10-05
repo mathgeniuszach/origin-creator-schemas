@@ -138,7 +138,7 @@
                                 link: biome_cond
                             }
                         }
-                        "string-string-origins:block_collision": {
+                        "string-origins:block_collision": {
                             offset_x: {
                                 desc: By how much of the bounding box size should the box be offset in the X direction (e.g.: 0 = no offset, 1 = offset of exact width, 2 = offset of twice the width of the bounding box)
                                 type: number
