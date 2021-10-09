@@ -804,9 +804,11 @@
                         }
                         "string-origins:meat": {}
                         "string-origins:nbt": {
-                            desc: The NBT data to check for.
-                            type: string
-                            ext: true
+                            nbt: {
+                                desc: The NBT data to check for.
+                                type: string
+                                ext: true
+                            }
                         }
                     }
                 }
