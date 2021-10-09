@@ -1897,6 +1897,7 @@
                         origins:prevent_item_use
                         origins:prevent_sleep
                     ]
+                    default: origins:simple
                     more: {
                         "string-origins:attribute_modify_transfer": {
                             attribute: {
