@@ -1,13 +1,13 @@
 // When the origin creator cannot find a schema for the given pack_format, it will default to the latest version before it or just 6.
 {
-    $: 27 // Change this number every time a pull request is made to let end users know stuff has been updated
+    $: 28 // Change this number every time a pull request is made to let end users know stuff has been updated
     6: [
         meta
         tags
         recipes
+        powers
         origin_layers
         origins
-        powers
     ]
     7: [
         // Unfortunately, I have no way of knowing if every one of these fields will work in 1.16. Sorry about that.
@@ -15,8 +15,8 @@
         item_modifiers
         loot_tables
         advancements
+        powers
         origin_layers
         origins
-        powers
     ]
 }
