@@ -55,7 +55,7 @@
                             }
                         }
                         "string-origins:actor_condition": {
-                            entity_condition: {
+                            condition: {
                                 desc: The condition to check for on the acting entity.
                                 link: entity_cond
                             }
@@ -90,7 +90,7 @@
                         "string-origins:riding_root": {}
                         "string-origins:riding": {}
                         "string-origins:target_condition": {
-                            entity_condition: {
+                            condition: {
                                 desc: The condition to check for on the target entity.
                                 link: entity_cond
                             }
@@ -121,12 +121,14 @@
                         origins:climbing
                         origins:collided_horizontally
                         origins:command
+                        origins:creative_flying
                         origins:daytime
                         origins:dimension
                         origins:enchantment
                         origins:entity_group
                         origins:entity_type
                         origins:equipped_item
+                        origins:exists
                         origins:exposed_to_sky
                         origins:exposed_to_sun
                         origins:fall_distance
@@ -140,15 +142,21 @@
                         origins:in_rain
                         origins:in_tag
                         origins:invisible
+                        origins:living
                         origins:moving
                         origins:on_block
                         origins:on_fire
                         origins:origin
+                        origins:passenger_recursive
+                        origins:passenger
                         origins:power_active
                         origins:power
                         origins:predicate
                         origins:relative_health
                         origins:resource
+                        origins:riding_recursive
+                        origins:riding_root
+                        origins:riding
                         origins:saturation_level
                         origins:scoreboard
                         origins:sneaking
@@ -311,6 +319,7 @@
                                 default: 4
                             }
                         }
+                        "string-origins:creative_flying": {}
                         "string-origins:daytime": {}
                         "string-origins:dimension": {
                             dimension: {
@@ -362,6 +371,7 @@
                                 link: item_cond
                             }
                         }
+                        "string-origins:exists": {}
                         "string-origins:exposed_to_sky": {}
                         "string-origins:exposed_to_sun": {}
                         "string-origins:fall_distance": {
@@ -446,6 +456,7 @@
                             }
                         }
                         "string-origins:invisible": {}
+                        "string-origins:living": {}
                         "string-origins:moving": {}
                         "string-origins:on_block": {
                             block_condition: {
@@ -466,6 +477,36 @@
                                 type: string
                                 allow: *a-z0-9_\/:.-
                                 ns: true
+                            }
+                        }
+                        "string-origins:passenger_recursive": {
+                            bientity_condition: {
+                                desc: If specified, only check for the entities that fulfills the bi-entity condition.
+                                link: bi_entity_cond
+                            }
+                            comparison: {
+                                desc: How the amount of entities that are currently riding the entity should be compared to the specified value.
+                                link: comparison
+                            }
+                            compare_to: {
+                                desc: Which value the amount of entities currently riding the entity should be compared to.
+                                type: integer
+                                default: 1
+                            }
+                        }
+                        "string-origins:passenger": {
+                            bientity_condition: {
+                                desc: If specified, only check for the entities that fulfills the bi-entity condition.
+                                link: bi_entity_cond
+                            }
+                            comparison: {
+                                desc: How the amount of entities that are currently riding the entity should be compared to the specified value.
+                                link: comparison
+                            }
+                            compare_to: {
+                                desc: Which value the amount of entities currently riding the entity should be compared to.
+                                type: integer
+                                default: 1
                             }
                         }
                         "string-origins:power_active": {
@@ -515,6 +556,51 @@
                             compare_to: {
                                 desc: The value to compare to.
                                 type: integer
+                            }
+                        }
+                        "string-origins:riding_recursive": {
+                            bientity_condition: {
+                                desc: If specified, only check for the entities that fulfills the bi-entity condition.
+                                link: bi_entity_cond
+                            }
+                            comparison: {
+                                desc: How the amount of entities currently being ridden should be compared to the specified value.
+                                link: comparison
+                            }
+                            compare_to: {
+                                desc: Which value the amount of entities currently being ridden should be compared to.
+                                type: integer
+                                default: 1
+                            }
+                        }
+                        "string-origins:riding_root": {
+                            bientity_condition: {
+                                desc: If specified, only check for the entities that fulfills the bi-entity condition.
+                                link: bi_entity_cond
+                            }
+                            comparison: {
+                                desc: How the amount of entities currently being ridden should be compared to the specified value.
+                                link: comparison
+                            }
+                            compare_to: {
+                                desc: Which value the amount of entities currently being ridden should be compared to.
+                                type: integer
+                                default: 1
+                            }
+                        }
+                        "string-origins:riding": {
+                            bientity_condition: {
+                                desc: If specified, only check for the entities that fulfills the bi-entity condition.
+                                link: bi_entity_cond
+                            }
+                            comparison: {
+                                desc: How the amount of entities currently being ridden should be compared to the specified value.
+                                link: comparison
+                            }
+                            compare_to: {
+                                desc: Which value the amount of entities currently being ridden should be compared to.
+                                type: integer
+                                default: 1
                             }
                         }
                         "string-origins:saturation_level": {
@@ -626,12 +712,16 @@
                         origins:and
                         origins:or
                         origins:constant
+                        origins:empty
+                        origins:amount
                         origins:armor_value
                         origins:enchantment
+                        origins:fireproof
                         origins:food
                         origins:harvest_level
                         origins:ingredient
                         origins:meat
+                        origins:nbt
                     ]
                     more: {
                         "string-origins:and": {
@@ -653,6 +743,17 @@
                                 desc: If true, the condition is always fulfilled. If false, the condition is never fulfilled.
                                 type: boolean
                                 default: false
+                            }
+                        }
+                        "string-origins:empty": {}
+                        "string-origins:amount": {
+                            comparison: {
+                                desc: Determines how to compare the number of items in this stack to the specified value
+                                link: comparison
+                            }
+                            compare_to: {
+                                desc: The value to compare to.
+                                type: integer
                             }
                         }
                         "string-origins:armor_value": {
@@ -680,6 +781,7 @@
                                 type: integer
                             }
                         }
+                        "string-origins:fireproof": {}
                         "string-origins:food": {}
                         "string-origins:harvest_level": {
                             comparison: {
@@ -701,6 +803,11 @@
                             }
                         }
                         "string-origins:meat": {}
+                        "string-origins:nbt": {
+                            desc: The NBT data to check for.
+                            type: string
+                            ext: true
+                        }
                     }
                 }
             }
@@ -842,6 +949,10 @@
                         }
                         "string-origins:movement_blocking": {}
                         "string-origins:offset": {
+                            condition: {
+                                desc: The condition to check with the given offset.
+                                link: block_cond
+                            }
                             x: {
                                 desc: How much to offset the position on the x-axis. Defaults to 0.
                                 type: integer
@@ -853,10 +964,6 @@
                             z: {
                                 desc: How much to offset the position on the z-axis. Defaults to 0.
                                 type: integer
-                            }
-                            condition: {
-                                desc: The condition to check with the given offset.
-                                link: block_cond
                             }
                         }
                         "string-origins:replacable": {}
@@ -1120,7 +1227,7 @@
                             }
                         }
                         "string-origins:actor_action": {
-                            entity_action: {
+                            action: {
                                 desc: The action to execute on the actor entity.
                                 link: entity_action
                             }
@@ -1147,7 +1254,7 @@
                         "string-origins:set_in_love": {}
                         "string-origins:tame": {}
                         "string-origins:target_action": {
-                            entity_action: {
+                            action: {
                                 desc: The action to execute on the target entity.
                                 link: entity_action
                             }
@@ -1174,19 +1281,27 @@
                         origins:change_resource
                         origins:clear_effect
                         origins:damage
+                        origins:dismount
+                        origins:emit_game_event
                         origins:equipped_item_action
                         origins:execute_command
                         origins:exhaust
+                        origins:explode
                         origins:extinguish
                         origins:feed
                         origins:gain_air
                         origins:give
+                        origins:grant_power
                         origins:heal
+                        origins:passenger_action
                         origins:play_sound
+                        origins:revoke_power
+                        origins:riding_action
                         origins:set_fall_distance
                         origins:set_on_fire
                         origins:spawn_effect_cloud
                         origins:spawn_entity
+                        origins:toggle
                         origins:trigger_cooldown
                     ]
                     more: {
@@ -1339,6 +1454,10 @@
                                 desc: This value will be added to the resource (won't go below min or above max of the Resource Resource (Power Type)).
                                 type: integer
                             }
+                            operation: {
+                                desc: Determines if the action should add or set the value of the resource. Accepts "add" or "set".
+                                enum: ["add", "set"]
+                            }
                         }
                         "string-origins:clear_effect": {
                             effect: {
@@ -1358,6 +1477,15 @@
                                 link: damage_source
                             }
                         }
+                        "string-origins:dismount": {}
+                        "string-origins:emit_game_event": {
+                            event: {
+                                desc: The ID of a game event to emit. Click to see vanilla game events.
+                                href: https://minecraft.fandom.com/wiki/Sculk_Sensor#Vibration_amplitudes
+                                type: string
+                                allow: *a-z0-9_#\/:.-
+                            }
+                        }
                         "string-origins:equipped_item_action": {
                             equipment_slot: {
                                 desc: Which equipped item to execute the action on.
@@ -1374,17 +1502,38 @@
                                 type: string
                                 ext: true
                             }
-                            permission_level: {
-                                desc: The permission level to use for the command. 0 is a "survival player", anything higher emulates some form of operator. Click to see the Minecraft Wiki (op-permission-level) for details.
-                                href: https://minecraft.fandom.com/wiki/Server.properties#op-permission-level
-                                type: integer
-                                default: 4
-                            }
                         }
                         "string-origins:exhaust": {
                             amount: {
                                 desc: The amount of exhaustion to apply to the player.
                                 type: number
+                            }
+                        }
+                        "string-origins:explode": {
+                            power: {
+                                desc: Determines the power of the explosion.
+                                type: number
+                            }
+                            destruction_type: {
+                                desc: Determines if the explosion should destroy the terrain, destroy the terrain and drop the loot of the blocks, or none. Accepts either "destroy", "break" or "none".
+                                enum: ["break", "destroy", "none"]
+                            }
+                            damage_self: {
+                                desc: Determines if the player should take damage from the explosion.
+                                type: boolean
+                                default: true
+                            }
+                            indestructible: {
+                                desc: If set, blocks specified in this block condition object is not destroyed by the explosion.
+                                link: block_cond
+                            }
+                            destructible: {
+                                desc: If set, blocks specified in this block condition object will be the only blocks destroyed by the explosion.
+                                link: block_cond
+                            }
+                            create_fire: {
+                                desc: Determines if the explosion should create fire.
+                                type: boolean
                             }
                         }
                         "string-origins:extinguish": {}
@@ -1409,11 +1558,50 @@
                                 desc: The item stack to give to the entity.
                                 link: item_stack
                             }
+                            item_action: {
+                                desc: If set, executes an item action on the item stack before it's given to the player.
+                                link: item_action
+                            }
+                            preferred_slot: {
+                                desc: If set, this will prioritize the action to put the item in the specified slot. Accepts "chest", "feet", "head", "legs", "mainhand" or "offhand".
+                                enum: ["chest", "feet", "head", "legs", "mainhand", "offhand"]
+                                unspec: true
+                            }
+                        }
+                        "string-origins:grant_power": {
+                            power: {
+                                desc: The ID of the power to be granted to the entity.
+                                type: string
+                                allow: *a-z0-9_#\/:.-
+                                ns: true
+                            }
+                            source: {
+                                desc: The source of the power. Can realistically be anything, but make sure to keep note of it.
+                                type: string
+                            }
                         }
                         "string-origins:heal": {
                             amount: {
                                 desc: The amount of health to restore.
                                 type: number
+                            }
+                        }
+                        "string-origins:passenger_action": {
+                            action: {
+                                desc: If set, executes the specified action on the passenger entity.
+                                link: entity_action
+                            }
+                            bientity_action: {
+                                desc: If set, executes the specified action that can execute on both the passenger and the entity that's being ridden.
+                                link: bi_entity_action
+                            }
+                            bientity_condition: {
+                                desc: If set, only execute the specified actions if the bi-entity condition is fulfilled.
+                                link: bi_entity_cond
+                            }
+                            recursive: {
+                                desc: If set to true, executes the specified actions on all the passenger entities, if there are more than one.
+                                type: boolean
                             }
                         }
                         "string-origins:play_sound": {
@@ -1435,6 +1623,36 @@
                                 default: 1
                                 min: 0
                                 max: 2
+                            }
+                        }
+                        "string-origins:revoke_power": {
+                            power: {
+                                desc: The ID of the power to be revoked from the entity.
+                                type: string
+                                allow: *a-z0-9_#\/:.-
+                                ns: true
+                            }
+                            source: {
+                                desc: The source of the power.
+                                type: string
+                            }
+                        }
+                        "string-origins:riding_action": {
+                            action: {
+                                desc: If set, executes the specified action on the entity that's been ridden.
+                                link: entity_action
+                            }
+                            bientity_action: {
+                                desc: If set, executes the specified action that can execute on both the passenger and the entity that's being ridden.
+                                link: bi_entity_action
+                            }
+                            bientity_condition: {
+                                desc: If set, only execute the specified actions if the bi-entity condition is fulfilled.
+                                link: bi_entity_cond
+                            }
+                            recursive: {
+                                desc: If set to true, executes the specified actions on all entities that are being ridden, if there are more than one.
+                                type: boolean
                             }
                         }
                         "string-origins:set_fall_distance": {
@@ -1490,6 +1708,14 @@
                             entity_action: {
                                 desc: When set, this action will be executed on the new entity when it is spawned.
                                 link: entity_action
+                            }
+                        }
+                        "string-origins:toggle": {
+                            power: {
+                                desc: The namespace and ID of a power that uses the origins:toggle power type to toggle the state of.
+                                type: string
+                                allow: *a-z0-9_\/:.-
+                                ns: true
                             }
                         }
                         "string-origins:trigger_cooldown": {
