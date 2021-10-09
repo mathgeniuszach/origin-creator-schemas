@@ -2036,6 +2036,7 @@
                     desc: ID of the desired Power Type.
                     href: https://origins.readthedocs.io/en/latest/power_types/
                     enum: [
+                        origins:simple
                         origins:attribute_modify_transfer
                         origins:attribute
                         origins:burn
@@ -2072,7 +2073,6 @@
                         origins:self_glow
                         origins:shader
                         origins:shaking
-                        origins:simple
                         origins:stacking_status_effect
                         origins:starting_equipment
                         origins:status_bar_texture
@@ -2125,7 +2125,6 @@
                         origins:prevent_item_use
                         origins:prevent_sleep
                     ]
-                    default: origins:simple
                     more: {
                         "string-origins:attribute_modify_transfer": {
                             attribute: {
