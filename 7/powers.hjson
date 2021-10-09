@@ -1,5 +1,104 @@
 {
     links: {
+        bi_entity_cond: {
+            type: object
+            props: {
+                inverted: {
+                    desc: Whether or not this condition is inverted (This condition passes only when the conditions are NOT met).
+                    type: boolean
+                }
+                type: {
+                    enum: [
+                        origins:and
+                        origins:or
+                        origins:constant
+                        origins:invert
+                        origins:actor_condition
+                        origins:attack_target
+                        origins:attacker
+                        origins:both
+                        origins:can_see
+                        origins:distance
+                        origins:either
+                        origins:owner
+                        origins:riding_recursive
+                        origins:riding_root
+                        origins:riding
+                        origins:target_condition
+                    ]
+                    more: {
+                        "string-origins:and": {
+                            conditions: {
+                                desc: All of these conditions have to be fulfilled in order for this condition to be fulfilled.
+                                type: list
+                                vals: {link: "bi_entity_cond"}
+                            }
+                        }
+                        "string-origins:or": {
+                            conditions: {
+                                desc: At least one of these conditions have to be fulfilled in order for this condition to be fulfilled.
+                                type: list
+                                vals: {link: "bi_entity_cond"}
+                            }
+                        }
+                        "string-origins:constant": {
+                            value: {
+                                desc: If true, the condition is always fulfilled. If false, the condition is never fulfilled.
+                                type: boolean
+                                default: false
+                            }
+                        }
+                        "string-origins:invert": {
+                            bientity_condition: {
+                                desc: The bi-entity condition to check which will have its 'target' and 'actor' contexts swapped.
+                                link: bientity_cond
+                            }
+                        }
+                        "string-origins:actor_condition": {
+                            entity_condition: {
+                                desc: The condition to check for on the acting entity.
+                                link: entity_cond
+                            }
+                        }
+                        "string-origins:attack_target": {}
+                        "string-origins:attacker": {}
+                        "string-origins:both": {
+                            condition: {
+                                desc: The condition to check on both the actor and target entity.
+                                link: entity_cond
+                            }
+                        }
+                        "string-origins:can_see": {}
+                        "string-origins:distance": {
+                            comparison: {
+                                desc: How to compare the distance against the specified value.
+                                link: comparison
+                            }
+                            compare_to: {
+                                desc: The distance (in blocks) to compare the distance between the actor and target to.
+                                type: number
+                            }
+                        }
+                        "string-origins:either": {
+                            condition: {
+                                desc: The condition to check on the actor and target entity. It must pass for at least one of them.
+                                link: entity_cond
+                            }
+                        }
+                        "string-origins:owner": {}
+                        "string-origins:riding_recursive": {}
+                        "string-origins:riding_root": {}
+                        "string-origins:riding": {}
+                        "string-origins:target_condition": {
+                            entity_condition: {
+                                desc: The condition to check for on the target entity.
+                                link: entity_cond
+                            }
+                        }
+                    }
+                }
+            }
+        }
         entity_cond: {
             type: object
             props: {
@@ -596,7 +695,7 @@
                         "string-origins:ingredient": {
                             ingredient: {
                                 desc: An ingredient, which can be a variety of things.
-                                href: https://origins.readthedocs.io/en/0.7.3/data_types/ingredient/
+                                href: https://origins.readthedocs.io/en/latest/data_types/ingredient/
                                 id: recipes-6
                                 link: oritem
                             }
@@ -859,7 +958,7 @@
                         "string-origins:category": {
                             category: {
                                 desc: Which category the biome must be in order to succeed the check. Click to see the list of biome categories in vanilla.
-                                href: https://origins.readthedocs.io/en/0.7.3/misc/biome_categories/
+                                href: https://origins.readthedocs.io/en/latest/misc/biome_categories/
                                 type: string
                             }
                         }
@@ -944,7 +1043,7 @@
                         "string-origins:name": {
                             name: {
                                 desc: Name the damage source should have to pass the check. Click to see a list of vanilla damage source names.
-                                href: https://origins.readthedocs.io/en/0.7.3/misc/vanilla_damage_sources/
+                                href: https://origins.readthedocs.io/en/latest/misc/vanilla_damage_sources/
                                 type: string
                             }
                         }
@@ -960,6 +1059,103 @@
             }
         }
 
+        bi_entity_action: {
+            type: object
+            props: {
+                type: {
+                    enum: [
+                        origins:and
+                        origins:chance
+                        origins:choice
+                        origins:invert
+                        origins:actor_action
+                        origins:add_velocity
+                        origins:mount
+                        origins:set_in_love
+                        origins:tame
+                        origins:target_action
+                    ]
+                    more: {
+                        "string-origins:and": {
+                            actions: {
+                                desc: These actions will be executed one after the other (but in the same tick).
+                                type: list
+                                vals: {link: "bi_entity_action"}
+                            }
+                        }
+                        "string-origins:chance": {
+                            chance: {
+                                desc: The chance that the action will execute, from 0 to 1. (E.g. 0.1 means 10% chance, 0.95 means 95% chance)
+                                type: number
+                            }
+                            action: {
+                                desc: The action which might be executed.
+                                link: bi_entity_action
+                            }
+                        }
+                        "string-origins:choice": {
+                            actions: {
+                                desc: A list of actions, one of which is choosen randomly based on the assigned weights. The actions with higher weight values are more likely to be chosen.
+                                type: list
+                                vals: {
+                                    type: object
+                                    props: {
+                                        weight: {
+                                            desc: The chance of this action being executed is weight/total_weight_of_actions
+                                            type: integer
+                                            default: 1
+                                        }
+                                        element: {
+                                            desc: The action which might be executed.
+                                            link: bi_entity_action
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        "string-origins:invert": {
+                            bientity_action: {
+                                desc: The bi-entity action to execute which will have its 'target' and 'actor' contexts swapped.
+                                link: bi_entity_action
+                            }
+                        }
+                        "string-origins:actor_action": {
+                            entity_action: {
+                                desc: The action to execute on the actor entity.
+                                link: entity_action
+                            }
+                        }
+                        "string-origins:add_velocity": {
+                            x: {
+                                desc: The amount of velocity to add on the x-axis. Defaults to 0.
+                                type: number
+                            }
+                            y: {
+                                desc: The amount of velocity to add on the y-axis. Defaults to 0.
+                                type: number
+                            }
+                            z: {
+                                desc: The amount of velocity to add on the z-axis. Defaults to 0.
+                                type: number
+                            }
+                            set: {
+                                desc: If this is true, the action will act as a "set" velocity action, overriding the entity's current velocity instead of adding to it.
+                                type: boolean
+                            }
+                        }
+                        "string-origins:mount": {}
+                        "string-origins:set_in_love": {}
+                        "string-origins:tame": {}
+                        "string-origins:target_action": {
+                            entity_action: {
+                                desc: The action to execute on the target entity.
+                                link: entity_action
+                            }
+                        }
+                    }
+                }
+            }
+        }
         entity_action: {
             type: object
             props: {
@@ -1089,7 +1285,7 @@
                             }
                             space: {
                                 desc: The space to perform the velocity addition in.
-                                href: https://origins.readthedocs.io/en/0.7.3/misc/space/
+                                href: https://origins.readthedocs.io/en/latest/misc/space/
                                 enum: [
                                     world
                                     local
@@ -1319,6 +1515,8 @@
                         origins:if_else
                         origins:if_else_list
                         origins:consume
+                        origins:damage
+                        origins:modify
                     ]
                     more: {
                         "string-origins:and": {
@@ -1395,6 +1593,24 @@
                             amount: {
                                 desc: The amount of items to remove. Defaults to 1.
                                 type: integer
+                            }
+                        }
+                        "string-origins:damage": {
+                            amount: {
+                                desc: The amount of damage it should do to the item stack.
+                                type: integer
+                                default: 1
+                            }
+                            ignore_unbreaking: {
+                                desc: Determines if this action should ignore the Unbreaking enchantment.
+                                type: boolean
+                            }
+                        }
+                        "string-origins:modify": {
+                            modifier: {
+                                desc: The ID of an item modifier to apply to the item stack.
+                                type: string
+                                allow: *a-z0-9_#\/:.-
                             }
                         }
                     }
@@ -1560,6 +1776,24 @@
                     type: integer
                     gap: true
                 }
+                badges: {
+                    desc: If set, it will display icon(s) after the name of the power.
+                    type: list
+                    vals: {
+                        type: object
+                        props: {
+                            sprite: {
+                                desc: ID of the texture to be displayed as an icon.
+                                type: string
+                                allow: *a-z0-9_#\/:.-
+                            }
+                            text: {
+                                desc: The string to display when you hover over the icon.
+                                type: string
+                            }
+                        }
+                    }
+                }
                 condition: {
                     desc: If set, this power will only be active when the player with this power fulfills the condition.
                     link: entity_cond
@@ -1572,14 +1806,16 @@
             props: {
                 type: {
                     desc: ID of the desired Power Type.
-                    href: https://origins.readthedocs.io/en/0.7.3/power_types/
+                    href: https://origins.readthedocs.io/en/latest/power_types/
                     enum: [
+                        origins:attribute_modify_transfer
                         origins:attribute
                         origins:burn
                         origins:climbing
                         origins:conditioned_attribute
                         origins:conditioned_restrict_armor
                         origins:cooldown
+                        origins:creative_flight
                         origins:damage_over_time
                         origins:disable_regen
                         origins:effect_immunity
@@ -1589,44 +1825,61 @@
                         origins:exhaust
                         origins:fire_immunity
                         origins:fire_projectile
+                        origins:freeze
                         origins:ignore_water
                         origins:inventory
                         origins:invisibility
                         origins:invulnerability
+                        origins:item_on_item
                         origins:launch
                         origins:lava_vision
                         origins:model_color
                         origins:night_vision
+                        origins:overlay
                         origins:particle
                         origins:phasing
                         origins:recipe
                         origins:resource
                         origins:restrict_armor
+                        origins:self_glow
                         origins:shader
                         origins:shaking
                         origins:simple
                         origins:stacking_status_effect
                         origins:starting_equipment
+                        origins:status_bar_texture
                         origins:swimming
                         origins:toggle_night_vision
                         origins:toggle
+                        origins:tooltip
                         origins:walk_on_fluid
+                        origins:action_on_being_used
                         origins:action_on_block_break
                         origins:action_on_callback
+                        origins:action_on_entity_use
+                        origins:action_on_hit
                         origins:action_on_item_use
                         origins:action_on_land
                         origins:action_on_wake_up
                         origins:action_over_time
+                        origins:action_when_damage_taken
+                        origins:action_when_hit
                         origins:active_self
                         origins:attacker_action_when_hit
                         origins:self_action_on_hit
                         origins:self_action_on_kill
                         origins:self_action_when_hit
                         origins:target_action_on_hit
+                        origins:modify_air_speed
+                        origins:modify_block_render
                         origins:modify_break_speed
+                        origins:modify_camera_submersion
+                        origins:modify_crafting
                         origins:modify_damage_dealt
                         origins:modify_damage_taken
                         origins:modify_exhaustion
+                        origins:modify_falling
+                        origins:modify_fluid_render
                         origins:modify_food
                         origins:modify_harvest
                         origins:modify_jump
@@ -1635,14 +1888,30 @@
                         origins:modify_projectile_damage
                         origins:modify_swim_speed
                         origins:modify_xp_gain
+                        origins:prevent_being_used
                         origins:prevent_block_selection
                         origins:prevent_block_use
                         origins:prevent_death
                         origins:prevent_entity_render
+                        origins:prevent_entity_use
                         origins:prevent_item_use
                         origins:prevent_sleep
                     ]
                     more: {
+                        "string-origins:attribute_modify_transfer": {
+                            attribute: {
+                                desc: The namespace and ID of the attribute to transfer the value from.
+                                type: string
+                            }
+                            class: {
+                                desc: The path and ID of the class to transfer the value of an attribute to.
+                                type: string
+                            }
+                            multiplier: {
+                                desc: Determines the multiplier for the value. Defaults to 1.
+                                type: number
+                            }
+                        }
                         "string-origins:attribute": {
                             modifier: {
                                 desc: If specified, this modifier will be applied to its corresponding attribute.
@@ -1652,6 +1921,11 @@
                                 desc: If specified, these modifiers will be applied to their corresponding attributes.
                                 type: list
                                 vals: {link: "aa_mod"}
+                            }
+                            update_health: {
+                                desc: When true, the player's health percentage will update to match their new maximum health.
+                                type: boolean
+                                default: false
                             }
                         }
                         "string-origins:burn": {
@@ -1693,6 +1967,11 @@
                                 default: 20
                                 min: 1
                             }
+                            update_health: {
+                                desc: When true, the player's health percentage will update to match their new maximum health.
+                                type: boolean
+                                default: false
+                            }
                         }
                         "string-origins:conditioned_restrict_armor": {
                             head: {
@@ -1729,6 +2008,7 @@
                                 link: hud_render
                             }
                         }
+                        "string-origins:creative_flight": {}
                         "string-origins:damage_over_time": {
                             interval: {
                                 desc: Duration of ticks to wait between the damage.
@@ -1787,11 +2067,37 @@
                                 type: boolean
                                 default: false
                             }
+                            texture_location: {
+                                desc: If set, this will be the texture used by an Elytra granted by this power.
+                                type: string
+                                allow: *a-z0-9_#\/:.-
+                            }
                         }
                         "string-origins:entity_glow": {
                             entity_condition: {
                                 desc: If set, only entities which fulfill this condition will glow for the player with this power.
                                 link: entity_cond
+                            }
+                            bientity_condition: {
+                                desc: If set, only entities which fulfill this bi-entity condition in relation to the power holder will glow for the player with this power.
+                                link: bi_entity_condition
+                            }
+                            use_teams: {
+                                desc: Whether glowing entities should use their team's color with their glow. If set to false the entity will instead use the red, green and blue fields within this power type.
+                                type: boolean
+                                default: true
+                            }
+                            red: {
+                                desc: Value by which the red component of the glow will be multiplied. Range: 0 - 1. Defaults to 1.
+                                type: number
+                            }
+                            green: {
+                                desc: Value by which the green component of the glow will be multiplied. Range: 0 - 1. Defaults to 1.
+                                type: number
+                            }
+                            blue: {
+                                desc: Value by which the blue component of the glow will be multiplied. Range: 0 - 1. Defaults to 1.
+                                type: number
                             }
                         }
                         "string-origins:entity_group": {
@@ -1829,21 +2135,29 @@
                                 link: hud_render
                             }
                             count: {
-                                desc: The amount of projectiles to fire each use.
+                                desc: The amount of projectiles to fire each use. Defaults to 1.
                                 type: integer
                                 default: 1
                                 min: 1
                             }
+                            interval: {
+                                desc: Determines the interval for firing multiple projectiles consecutively (in ticks). If set to 0 (default), it will fire all the projectiles at the same tick.
+                                type: integer
+                                min: 0
+                            }
+                            start_delay: {
+                                desc: Determines how long the start of the firing process is delayed (in ticks). Defaults to 0.
+                                type: integer
+                                min: 0
+                            }
                             speed: {
-                                desc: The speed applied to the fired projectile.
+                                desc: The speed applied to the fired projectile. Defaults to 1.5.
                                 type: number
-                                default: 1.5
                                 min: 0
                             }
                             divergence: {
-                                desc: How much each projectile fired is affected by random spread.
+                                desc: How much each projectile fired is affected by random spread. Defaults to 1.
                                 type: number
-                                default: 1
                                 min: 0
                             }
                             sound: {
@@ -1861,9 +2175,10 @@
                                 link: key
                             }
                         }
+                        "string-origins:freeze": {}
                         "string-origins:ignore_water": {}
                         "string-origins:inventory": {
-                            name: {
+                            title: {
                                 desc: The translation key or literal text to use as the display name for the inventory. Defaults to "container.inventory".
                                 type: string
                             }
@@ -1891,6 +2206,36 @@
                             damage_condition: {
                                 desc: Specifies which damage the player will be immune to.
                                 link: damage_cond
+                            }
+                        }
+                        "string-origins:item_on_item": {
+                            using_item_condition: {
+                                desc: If set, the actions will only trigger when this condition is met by the item used to right-click an item stack.
+                                link: item_cond
+                            }
+                            on_item_condition: {
+                                desc: If set, the actions will only trigger when this condition is met by the item stack that's been right-clicked.
+                                link: item_cond
+                            }
+                            result: {
+                                desc: If set, the specified item stack will be given to the player.
+                                link: item_stack
+                            }
+                            using_item_action: {
+                                desc: If set, this action will be executed on the item stack used to right-click an item stack.
+                                link: item_action
+                            }
+                            on_item_action: {
+                                desc: If set, this action will be executed on the item stack that's been right-clicked.
+                                link: item_action
+                            }
+                            result_item_action: {
+                                desc: If set, this action will be executed on the item stack that's been right-clicked.
+                                link: item_action
+                            }
+                            entity_action: {
+                                desc: If set, this action will be executed on the player after they used an item on an item.
+                                link: item_action
                             }
                         }
                         "string-origins:launch": {
@@ -1957,10 +2302,61 @@
                         }
                         "string-origins:night_vision": {
                             strength: {
-                                desc: How strong the night vision effect is. Range: 0 - 1.
+                                desc: This power grants night vision to the player without a status effect. The night vision effect's strength is controlled by this value. Range: 0 - 1.
                                 type: number
                                 min: 0
                                 max: 1
+                            }
+                        }
+                        "string-origins:overlay": {
+                            texture: {
+                                desc: The ID of the texture to use as an overlay.
+                                type: string
+                                allow: *a-z0-9_#\/:.-
+                            }
+                            strength: {
+                                desc: Value by which the alpha (transparency) component of the texture will be multiplied. Range: 0.0 to 1.0. Defaults to 1.
+                                type: number
+                                min: 0
+                                max: 1
+                            }
+                            red: {
+                                desc: Value by which the red component of the texture will be multiplied. Range: 0.0 to 1.0. Defaults to 1.
+                                type: number
+                                min: 0
+                                max: 1
+                            }
+                            green: {
+                                desc: Value by which the green component of the texture will be multiplied. Range: 0.0 to 1.0. Defaults to 1.
+                                type: number
+                                min: 0
+                                max: 1
+                            }
+                            blue: {
+                                desc: Value by which the blue component of the texture will be multiplied. Range: 0.0 to 1.0. Defaults to 1.
+                                type: number
+                                min: 0
+                                max: 1
+                            }
+                            draw_mode: {
+                                desc: Determines whether to treat black as transparent or draw the texture as is ("nausea" or "texture" respectively).
+                                enum: ["nausea", "texture"]
+                                default: 1
+                            }
+                            draw_phase: {
+                                desc: Determines if the overlay should render below or above the HUD ("below_hud" or "above_hud" respectively).
+                                enum: ["above_hud", "below_hud"]
+                                default: 1
+                            }
+                            hide_with_hud: {
+                                desc: Determines if the overlay should be hidden if the HUD elements are hidden (with F1).
+                                type: boolean
+                                default: true
+                            }
+                            visible_in_third_person: {
+                                desc: Determines if the overlay is visible in third person.
+                                type: boolean
+                                default: false
                             }
                         }
                         "string-origins:particle": {
@@ -2054,11 +2450,49 @@
                                 link: item_cond
                             }
                         }
+                        "string-origins:self_glow": {
+                            entity_condition: {
+                                desc: If set, only entities which fulfill this condition will see the entity that has the power glow.
+                                link: entity_cond
+                            }
+                            bientity_condition: {
+                                desc: If set, only entities which fulfill this bi-entity condition in relation to the entity that has the power will see the entity that has the power glow.
+                                link: bi_entity_cond
+                            }
+                            use_teams: {
+                                desc: Whether glowing entities should use their team's color with their glow. If set to false, the entity will instead use the red, green and blue fields within this power type.
+                                type: boolean
+                                default: true
+                            }
+                            red: {
+                                desc: Value by which the red component of the glow will be multiplied. Range: 0 - 1. Defaults to 1.
+                                type: number
+                                min: 0
+                                max: 1
+                            }
+                            green: {
+                                desc: Value by which the green component of the glow will be multiplied. Range: 0 - 1. Defaults to 1.
+                                type: number
+                                min: 0
+                                max: 1
+                            }
+                            blue: {
+                                desc: Value by which the blue component of the glow will be multiplied. Range: 0 - 1. Defaults to 1.
+                                type: number
+                                min: 0
+                                max: 1
+                            }
+                        }
                         "string-origins:shader": {
                             shader: {
                                 desc: Specifies the location of the shader resource file to use.
                                 type: string
                                 allow: *a-z0-9_#\/:.-
+                            }
+                            toggleable: {
+                                desc: Determines if the applied shader can be toggled.
+                                type: boolean
+                                default: true
                             }
                         }
                         "string-origins:shaking": {}
@@ -2101,6 +2535,14 @@
                                 type: boolean
                             }
                         }
+                        "string-origins:status_bar_texture": {
+                            texture: {
+                                desc: The ID of the sprite sheet to replace the default one with. Click to see what the vanilla sprite sheet looks like.
+                                href: https://media.discordapp.net/attachments/802622603008409600/893716345055772682/unknown.png
+                                type: string
+                                allow: *a-z0-9_#\/:.-
+                            }
+                        }
                         "string-origins:swimming": {}
                         "string-origins:toggle_night_vision": {
                             active_by_default: {
@@ -2109,7 +2551,7 @@
                                 default: true
                             }
                             strength: {
-                                desc: How strong the night vision effect is. Range: 0 - 1.
+                                desc: This power grants night vision to the player without a status effect. The night vision effect's strength is controlled by this value. Range: 0 - 1. Defaults to 1.
                                 type: number
                                 min: 0
                                 max: 1
@@ -2130,11 +2572,62 @@
                                 link: key
                             }
                         }
+                        "string-origins:tooltip": {
+                            item_condition: {
+                                desc: If set, only applies the tooltip(s) to the item(s) that meets this condition.
+                                link: item_cond
+                            }
+                            text: {
+                                desc: If set, apply this string as a tooltip.
+                                type: string
+                            }
+                            texts: {
+                                desc: If set, apply these strings as a tooltip.
+                                type: list
+                                vals: {type: "string"}
+                            }
+                        }
                         "string-origins:walk_on_fluid": {
                             fluid: {
                                 desc: ID of the fluid tag on which the player should be able to walk. Most important examples: minecraft:water and minecraft:lava.
                                 type: string
                                 allow: *a-z0-9_#\/:.-
+                            }
+                        }
+                        "string-origins:action_on_being_used": {
+                            bientity_action: {
+                                desc: The action to be executed if specified.
+                                link: bi_entity_action
+                            }
+                            bientity_condition: {
+                                desc: If specified, only execute the specified actions if the bi-entity condition is fulfilled.
+                                link: bi_entity_cond
+                            }
+                            item_condition: {
+                                desc: If specified, only execute the specified actions if the item condition is fulfilled by the item in the player's specified hand(s) determined by the hands string field.
+                                link: item_cond
+                            }
+                            hands: {
+                                desc: Determines if the power should be activated if the player used the specified hand(s). Accepts "off_hand", "main_hand" or both.
+                                type: list
+                                vals: {type: "string"}
+                            }
+                            result_stack: {
+                                desc: If specified, gives an item stack to the player.
+                                link: item_stack
+                            }
+                            held_item_action: {
+                                desc: If specified, executes an item action on the item stack used for right-clicking the entity in the specified hand slot.
+                                link: item_action
+                            }
+                            result_item_action: {
+                                desc: The action to be executed on the result item stack if specified.
+                                link: item_action
+                            }
+                            action_result: {
+                                desc: Determines the result of the action. Accepts "consume", "consume_partial", "fail", "pass" or "success".
+                                enum: ["consume", "consume_partial", "fail", "pass", "success"]
+                                default: 4
                             }
                         }
                         "string-origins:action_on_block_break": {
@@ -2181,6 +2674,65 @@
                             entity_action_respawned: {
                                 desc: If set, this action will be executed on the player right after the player respawns, after the entity_action_removed.
                                 link: entity_action
+                            }
+                        }
+                        "string-origins:action_on_entity_use": {
+                            bientity_action: {
+                                desc: If set, executes a bi-entity action that can execute on both the 'actor' (player) and 'target' entity.
+                                link: bi_entity_action
+                            }
+                            bientity_condition: {
+                                desc: If set, only execute the specified actions if the bi-entity condition is fulfilled.
+                                link: bi_entity_cond
+                            }
+                            item_condition: {
+                                desc: If set, only execute the specified actions if the item condition is fulfilled by the item in the player's specified hand(s) equipment slot determined by the hands string field.
+                                link: item_cond
+                            }
+                            hands: {
+                                desc: Determines if the power should be activated if the player used a specific hand slot. Accepts "off_hand", "main_hand" or both.
+                                type: list
+                                vals: {type: "string"}
+                            }
+                            result_stack: {
+                                desc: If set, gives the result item stack to the player.
+                                link: item_stack
+                            }
+                            held_item_action: {
+                                desc: If set, executes an item action on the item stack used for right-clicking the entity in the specified hand slot.
+                                link: item_action
+                            }
+                            result_item_action: {
+                                desc: If set, executes an item action on the result item stack.
+                                link: item_action
+                            }
+                            action_result: {
+                                desc: Determines the result of the action. Accepts "consume", "consume_partial", "fail", "pass" or "success".
+                                enum: ["consume", "consume_partial", "fail", "pass", "success"]
+                                default: 4
+                            }
+                        }
+                        "string-origins:action_on_hit": {
+                            bientity_action: {
+                                desc: The action to execute upon hit.
+                                link: bi_entity_action
+                            }
+                            bientity_condition: {
+                                desc: If set, the action will only trigger when this bi-entity condition is fulfilled.
+                                link: bi_entity_cond
+                            }
+                            damage_condition: {
+                                desc: If set, the action will only trigger when this condition holds for the damage that was dealt by the entity that has the power.
+                                link: damage_cond
+                            }
+                            cooldown: {
+                                desc: Interval of ticks this power needs to recharge before the action can be executed again.
+                                type: integer
+                                min: 0
+                            }
+                            hud_render: {
+                                desc: Determines how the cooldown of this power is visualized on the HUD.
+                                link: hud_render
                             }
                         }
                         "string-origins:action_on_item_use": {
@@ -2234,6 +2786,29 @@
                             falling_action: {
                                 desc: The action to execute on the first interval tick in which the condition became false.
                                 link: entity_action
+                            }
+                        }
+                        "string-origins:action_when_hit": {
+                            bientity_action: {
+                                desc: The action to execute upon being hit.
+                                link: bi_entity_action
+                            }
+                            bientity_condition: {
+                                desc: If set, the action will only trigger when this bi-entity condition is fulfilled.
+                                link: bi_entity_cond
+                            }
+                            damage_condition: {
+                                desc: If set, the action will only trigger when this condition holds for the specified type of damage.
+                                link: damage_cond
+                            }
+                            cooldown: {
+                                desc: Interval of ticks this power needs to recharge before the action can be executed again.
+                                type: integer
+                                min: 0
+                            }
+                            hud_render: {
+                                desc: Determines how the cooldown of this power is visualized on the HUD.
+                                link: hud_render
                             }
                         }
                         "string-origins:active_self": {
@@ -2362,6 +2937,28 @@
                                 link: hud_render
                             }
                         }
+                        "string-origins:modify_air_speed": {
+                            modifier: {
+                                desc: If specified, this modifier will be applied to the entity's air speed.
+                                link: a_mod
+                            }
+                            modifiers: {
+                                desc: If specified, these modifiers will be applied to the entity's air speed.
+                                type: list
+                                vals: {link: "a_mod"}
+                            }
+                        }
+                        "string-origins:modify_block_render": {
+                            block_condition: {
+                                desc: If set, modifies how the block would look like that meets this condition.
+                                link: block_cond
+                            }
+                            block: {
+                                desc: The ID of the block that would replace the block that meets the condition from the block_condition object field would look like.
+                                type: string
+                                allow: *a-z0-9_#\/:.-
+                            }
+                        }
                         "string-origins:modify_break_speed": {
                             block_condition: {
                                 desc: If set, the modifiers will only apply to blocks which satisfy this condition.
@@ -2375,6 +2972,43 @@
                                 desc: If specified, these modifiers will be applied to the break speed.
                                 type: list
                                 vals: {link: "a_mod"}
+                            }
+                        }
+                        "string-origins:modify_camera_submersion": {
+                            from: {
+                                desc: Which submersion type to modify. In vanilla, can be none, water or lava.
+                                type: string
+                            }
+                            to: {
+                                desc: Which submersion type to change to. In vanilla, can be none, water or lava.
+                                type: string
+                            }
+                        }
+                        "string-origins:modify_crafting": {
+                            recipe: {
+                                desc: The ID of the recipe to be modified.
+                                type: string
+                                allow: *a-z0-9_#\/:.-
+                            }
+                            item_condition: {
+                                desc: If set, it will only apply the item stack from the result field, and trigger the actions when this condition is met by the result item from the crafting recipe.
+                                link: item_cond
+                            }
+                            result: {
+                                desc: If set, replaces the result item stack of the recipe.
+                                link: item_stack
+                            }
+                            item_action: {
+                                desc: If set, execute this item action on the result item stack.
+                                link: item_action
+                            }
+                            entity_action: {
+                                desc: If set, execute this entity action on the player.
+                                link: entity_action
+                            }
+                            block_action: {
+                                desc: If set, execute this block action at the block used for crafting the recipe.
+                                link: block_action
                             }
                         }
                         "string-origins:modify_damage_dealt": {
@@ -2438,6 +3072,32 @@
                                 vals: {link: "a_mod"}
                             }
                         }
+                        "string-origins:modify_falling": {
+                            velocity: {
+                                desc: How slow/fast the falling velocity should be.
+                                type: number
+                            }
+                            take_fall_damage: {
+                                desc: Whether the player should take fall damage or not.
+                                type: boolean
+                                default: true
+                            }
+                        }
+                        "string-origins:modify_fluid_render": {
+                            block_condition: {
+                                desc: If set, modifies how the block that meets this condition would look like.
+                                link: block_cond
+                            }
+                            fluid_condition: {
+                                desc: If set, modifies how the fluid that meets the condition would look like.
+                                link: fluid_cond
+                            }
+                            fluid: {
+                                desc: The ID of the fluid that would replace how the block/fluid that meets the conditions in the block_condition and/or fluid_condition object field would look like.
+                                type: string
+                                allow: *a-z0-9_#\/:.-
+                            }
+                        }
                         "string-origins:modify_food": {
                             item_condition: {
                                 desc: If set, the modifiers will only apply to food items which satisfy this condition.
@@ -2464,6 +3124,10 @@
                             entity_action: {
                                 desc: If set, this action will be executed on the player when eating this item.
                                 link: entity_action
+                            }
+                            always_edible: {
+                                desc: If set to true, makes it so that the food item can still be eaten regardless if the player's hunger bar is full.
+                                type: boolean
                             }
                         }
                         "string-origins:modify_harvest": {
@@ -2586,6 +3250,33 @@
                                 link: block_cond
                             }
                         }
+                        "string-origins:prevent_being_used": {
+                            bientity_action: {
+                                desc: The action to execute upon preventing other players from right-clicking the entity that has the power if specified.
+                                link: bi_entity_action
+                            }
+                            bientity_condition: {
+                                desc: If specified, only execute the specified actions if the bi-entity condition is fulfilled.
+                                link: bi_entity_cond
+                            }
+                            item_condition: {
+                                desc: If specified, only execute the specified actions if the item condition is fulfilled by the item in the other player's specified hand(s) equipment slot determined by the hands string field.
+                                link: item_cond
+                            }
+                            hands: {
+                                desc: Determines if the power should be activated if the other player used the specified hand slot(s). Accepts "off_hand", "main_hand" or both.
+                                type: list
+                                vals: {type: "string"}
+                            }
+                            result_stack: {
+                                desc: If specified, gives an item stack to the player.
+                                link: item_stack
+                            }
+                            result_item_action: {
+                                desc: If specified, executes an item action on the given item stack.
+                                link: item_action
+                            }
+                        }
                         "string-origins:prevent_block_use": {
                             block_condition: {
                                 desc: When set, only blocks which meet this condition will be unable to be used.
@@ -2606,6 +3297,37 @@
                             entity_condition: {
                                 desc: If set, only entities which fulfill this condition will be invisible.
                                 link: entity_cond
+                            }
+                        }
+                        "string-origins:prevent_entity_use": {
+                            bientity_action: {
+                                desc: The action to execute upon being prevented from right-clicking an entity.
+                                link: bi_entity_action
+                            }
+                            bientity_condition: {
+                                desc: If specified, only execute the specified actions if the bi-entity condition is fulfilled.
+                                link: bi_entity_cond
+                            }
+                            item_condition: {
+                                desc: If specified, only execute the specified actions if the item condition is fulfilled by the item in the player's specified hand(s) equipment slot determined by the hands string field.
+                                link: item_cond
+                            }
+                            hands: {
+                                desc: Determines if the power should be activated if the player used the specified hand slot(s). Accepts "off_hand", "main_hand" or both.
+                                type: list
+                                vals: {type: "string"}
+                            }
+                            result_stack: {
+                                desc: If specified, gives an item stack to the player.
+                                link: item_stack
+                            }
+                            held_item_action: {
+                                desc: If specified, executes an item action on the item stack used for right-clicking the entity in the specified hand slot.
+                                link: item_action
+                            }
+                            result_item_action: {
+                                desc: If specified, executes an item action on the given item stack.
+                                link: item_action
                             }
                         }
                         "string-origins:prevent_item_use": {
@@ -2700,7 +3422,7 @@
             props: {
                 slot: {
                     desc: Inventory slot position of the stack. If not specified, will be the first free slot in the inventory. Click to see for possible values.
-                    href: https://origins.readthedocs.io/en/0.7.3/misc/positioned_item_stack_slots/
+                    href: https://origins.readthedocs.io/en/latest/misc/positioned_item_stack_slots/
                     type: integer
                 }
             }
@@ -2736,7 +3458,7 @@
         }
         aa_mod: {
             desc: An Object used to specify how a specific attribute should be modified. Basically an Attribute Modifier with an additional attribute field.
-            href: https://origins.readthedocs.io/en/0.7.3/data_types/attributed_attribute_modifier/
+            href: https://origins.readthedocs.io/en/latest/data_types/attributed_attribute_modifier/
             type: object
             props: {
                 attribute: {
@@ -2760,7 +3482,7 @@
         }
         hud_render: {
             desc: An Object used to define how a resource or cooldown bar should be rendered.
-            href: https://origins.readthedocs.io/en/0.7.3/data_types/hud_render/
+            href: https://origins.readthedocs.io/en/latest/data_types/hud_render/
             type: object
             props: {
                 should_render: {
@@ -2770,7 +3492,7 @@
                 }
                 sprite_location: {
                     desc: The path to the file in the assets which contains what the bar looks like. See the List of resource bar files for a list of files included by default in the mod. Defaults to "origins:textures/gui/resource_bar.png".
-                    href: https://origins.readthedocs.io/en/0.7.3/misc/resource_bars/
+                    href: https://origins.readthedocs.io/en/latest/misc/resource_bars/
                     type: string
                     allow: *a-z0-9_#\/:.-
                 }
@@ -2783,16 +3505,20 @@
                     desc: If set (and should_render is true), the bar will only display when the entity with the power fulfills this condition.
                     link: entity_cond
                 }
+                inverted: {
+                    desc: If set to true, inverts the way the hud render process (it'll look like its value is being decreased).
+                    type: boolean
+                }
             }
         }
         damage_source: {
             desc: An Object used to specify how to deal damage to an entity.
-            href: https://origins.readthedocs.io/en/0.7.3/data_types/damage_source/
+            href: https://origins.readthedocs.io/en/latest/data_types/damage_source/
             type: object
             props: {
                 name: {
                     desc: The name of the damage source. Controls death message as well as other interactions. Consider vanilla damage sources when picking a name.
-                    href: https://origins.readthedocs.io/en/0.7.3/misc/vanilla_damage_sources/
+                    href: https://origins.readthedocs.io/en/latest/misc/vanilla_damage_sources/
                     type: string
                 }
                 bypasses_armor: {
@@ -2825,7 +3551,7 @@
                     props: {
                         key: {
                             desc: A string specifying the keybinding. Click for possible vanilla and origins values.
-                            href: https://origins.readthedocs.io/en/0.7.3/misc/keybindings/
+                            href: https://origins.readthedocs.io/en/latest/misc/keybindings/
                             type: string
                         }
                         continuous: {
