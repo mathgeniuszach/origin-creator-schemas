@@ -1317,6 +1317,7 @@
                         origins:riding_action
                         origins:set_fall_distance
                         origins:set_on_fire
+                        origins:set_resource
                         origins:spawn_effect_cloud
                         origins:spawn_entity
                         origins:toggle
@@ -1684,6 +1685,18 @@
                                 desc: The amount of seconds the entity should burn.
                                 type: integer
                                 default: 4
+                            }
+                        }
+                        "string-origins:set_resource": {
+                            resource: {
+                                desc: ID of the power type that defines the resource to change the value of. Must be a Resource (Power Type) which exists on the player.
+                                type: string
+                                allow: *a-z0-9_#\/:.-
+                                ns: true
+                            }
+                            value: {
+                                desc: The value the resource will be set to (won't go below min or above max of the Resource).
+                                type: integer
                             }
                         }
                         "string-origins:spawn_effect_cloud": {
