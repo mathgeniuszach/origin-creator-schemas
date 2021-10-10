@@ -144,6 +144,7 @@
                         origins:invisible
                         origins:living
                         origins:moving
+                        origins:nbt
                         origins:on_block
                         origins:on_fire
                         origins:origin
@@ -458,6 +459,13 @@
                         "string-origins:invisible": {}
                         "string-origins:living": {}
                         "string-origins:moving": {}
+                        "string-origins:nbt": {
+                            nbt: {
+                                desc: The NBT data to check for
+                                type: string
+                                ext: true
+                            }
+                        }
                         "string-origins:on_block": {
                             block_condition: {
                                 desc: If set, a block that satisfies this block condition needs to be right below the player's feet.
@@ -987,6 +995,7 @@
                         origins:or
                         origins:constant
                         origins:empty
+                        origins:fluid
                         origins:in_tag
                         origins:still
                     ]
@@ -1013,6 +1022,13 @@
                             }
                         }
                         "string-origins:empty": {}
+                        "string-origins:fluid": {
+                            fluid: {
+                                desc: ID of the fluid to match. Vanilla examples are minecraft:water and minecraft:lava.
+                                type: string
+                                allow: *a-z0-9_\/:.-
+                            }
+                        }
                         "string-origins:in_tag": {
                             tag: {
                                 desc: ID of the tag which the fluid should be in to pass the check.
