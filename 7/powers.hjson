@@ -25,6 +25,7 @@
                         origins:riding_root
                         origins:riding
                         origins:target_condition
+                        origins:undirected
                     ]
                     more: {
                         "string-origins:and": {
@@ -93,6 +94,12 @@
                             condition: {
                                 desc: The condition to check for on the target entity.
                                 link: entity_cond
+                            }
+                        }
+                        "string-origins:undirected": {
+                            condition: {
+                                desc: The bi-entity condition to check for truth before or after swapping the actor and target context.
+                                link: bi_entity_cond
                             }
                         }
                     }
