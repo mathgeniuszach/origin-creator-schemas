@@ -1196,6 +1196,7 @@
             props: {
                 type: {
                     enum: [
+                        origins:nothing
                         origins:and
                         origins:chance
                         origins:choice
@@ -1208,6 +1209,7 @@
                         origins:target_action
                     ]
                     more: {
+                        "string-origins:nothing": {}
                         "string-origins:and": {
                             actions: {
                                 desc: These actions will be executed one after the other (but in the same tick).
@@ -1293,6 +1295,7 @@
             props: {
                 type: {
                     enum: [
+                        origins:nothing
                         origins:and
                         origins:chance
                         origins:choice
@@ -1331,6 +1334,7 @@
                         origins:trigger_cooldown
                     ]
                     more: {
+                        "string-origins:nothing": {}
                         "string-origins:and": {
                             actions: {
                                 desc: These actions will be executed one after the other (but in the same tick).
