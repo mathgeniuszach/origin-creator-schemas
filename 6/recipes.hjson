@@ -40,9 +40,10 @@
                         }
                         type: {
                             gap: true
-                            enum: ["crafting_shaped", "crafting_shapeless", "smithing", "stonecutting"]
+                            ns: minecraft
+                            enum: ["minecraft:crafting_shaped", "minecraft:crafting_shapeless", "minecraft:smithing", "minecraft:stonecutting"]
                             more: {
-                                string-crafting_shaped: {
+                                "string-minecraft:crafting_shaped": {
                                     pattern: {
                                         desc: A list of single-character keys used to describe a pattern for shaped crafting. Each row in the crafting grid is one string in this list containing 3 or less keys. All strings in this list need to have the same amount of keys. A space can be used to indicate an empty spot.
                                         type: list
@@ -55,14 +56,14 @@
                                     }
                                     result: {link: "result"}
                                 }
-                                string-crafting_shapeless: {
+                                "string-minecraft:crafting_shapeless": {
                                     ingredients: {
                                         type: list
                                         vals: {link: "oritem"}
                                     }
                                     result: {link: "result"}
                                 }
-                                string-smithing: {
+                                "string-minecraft:smithing": {
                                     base: {
                                         desc: Ingredient specifying an item to be upgraded.
                                         or: [
@@ -79,7 +80,7 @@
                                     }
                                     result: {link: "item"}
                                 }
-                                string-stonecutting: {
+                                "string-minecraft:stonecutting": {
                                     ingredient: {link: "oritem"}
                                     result: {link: "item"}
                                     count: {type: "integer", min: 1, default: 1}
@@ -97,7 +98,8 @@
                             type: string
                         }
                         type: {
-                            enum: ["blasting", "campfire_cooking", "smelting", "smoking"]
+                            ns: minecraft
+                            enum: ["minecraft:blasting", "minecraft:campfire_cooking", "minecraft:smelting", "minecraft:smoking"]
                             gap: true
                         }
                         ingredient: {
@@ -126,20 +128,21 @@
                     type: object
                     props: {
                         type: {
+                            ns: minecraft
                             enum: [
-                                crafting_special_armordye
-                                crafting_special_bannerduplicate
-                                crafting_special_bookcloning
-                                crafting_special_firework_rocket
-                                crafting_special_firework_star
-                                crafting_special_firework_star_fade
-                                crafting_special_mapcloning
-                                crafting_special_mapextending
-                                crafting_special_repairitem
-                                crafting_special_shielddecoration
-                                crafting_special_shulkerboxcoloring
-                                crafting_special_tippedarrow
-                                crafting_special_suspiciousstew
+                                minecraft:crafting_special_armordye
+                                minecraft:crafting_special_bannerduplicate
+                                minecraft:crafting_special_bookcloning
+                                minecraft:crafting_special_firework_rocket
+                                minecraft:crafting_special_firework_star
+                                minecraft:crafting_special_firework_star_fade
+                                minecraft:crafting_special_mapcloning
+                                minecraft:crafting_special_mapextending
+                                minecraft:crafting_special_repairitem
+                                minecraft:crafting_special_shielddecoration
+                                minecraft:crafting_special_shulkerboxcoloring
+                                minecraft:crafting_special_tippedarrow
+                                minecraft:crafting_special_suspiciousstew
                             ]
                         }
                     }
