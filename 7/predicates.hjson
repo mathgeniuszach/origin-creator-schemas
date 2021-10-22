@@ -635,33 +635,34 @@
             props: {
                 condition: {
                     desc: A condition ID determining what to check for
+                    ns: minecraft
                     enum: [
-                        alternative
-                        block_state_property
-                        damage_source_properties
-                        entity_properties
-                        entity_scores
-                        inverted
-                        killed_by_player
-                        location_check
-                        match_tool
-                        random_chance
-                        random_chance_with_looting
-                        reference
-                        survives_explosion
-                        table_bonus
-                        time_check
-                        weather_check
-                        value_check
+                        minecraft:alternative
+                        minecraft:block_state_property
+                        minecraft:damage_source_properties
+                        minecraft:entity_properties
+                        minecraft:entity_scores
+                        minecraft:inverted
+                        minecraft:killed_by_player
+                        minecraft:location_check
+                        minecraft:match_tool
+                        minecraft:random_chance
+                        minecraft:random_chance_with_looting
+                        minecraft:reference
+                        minecraft:survives_explosion
+                        minecraft:table_bonus
+                        minecraft:time_check
+                        minecraft:weather_check
+                        minecraft:value_check
                     ]
                     more: {
-                        string-alternative: {
+                        "string-minecraft:alternative": {
                             terms: {
                                 type: list
                                 vals: {link: "pred"}
                             }
                         }
-                        string-block_state_property: {
+                        "string-minecraft:block_state_property": {
                             block: {
                                 link: block
                             }
@@ -674,13 +675,13 @@
                                 allow: *a-z0-9#\/:.-
                             }
                         }
-                        string-damage_source_properties: {
+                        "string-minecraft:damage_source_properties": {
                             predicate: {
                                 desc: Predicate applied to the damage source.
                                 link: damage_pred
                             }
                         }
-                        string-entity_properties: {
+                        "string-minecraft:entity_properties": {
                             entity: {
                                 desc: Specifies the entity to check for the condition. Set to "this" to use the entity that died or the player that gained the advancement, opened the container or broke the block, "killer" for the killer, or "killer_player" for a killer that is a player.
                                 enum: ["this", "killer", "killer_player"]
@@ -690,7 +691,7 @@
                                 link: entity_pred
                             }
                         }
-                        string-entity_scores: {
+                        "string-minecraft:entity_scores": {
                             entity: {
                                 desc: Specifies the entity to check for the condition. Set to "this" to use the entity that died or the player that gained the advancement, opened the container or broke the block, "killer" for the killer, or "killer_player" for a killer that is a player.
                                 enum: ["this", "killer", "killer_player"]
@@ -703,25 +704,25 @@
                                 }
                             }
                         }
-                        string-inverted: {
+                        "string-minecraft:inverted": {
                             term: {link: "pred"}
                         }
-                        string-killed_by_player: {
+                        "string-minecraft:killed_by_player": {
                             inverse: {type: "boolean"}
                         }
-                        string-location_check: {
+                        "string-minecraft:location_check": {
                             offsetX: {type: "integer"}
                             offsetY: {type: "integer"}
                             offsetZ: {type: "integer"}
                             predicate: {link: "location_pred"}
                         }
-                        string-match_tool: {
+                        "string-minecraft:match_tool": {
                             predicate: {
                                 desc: Predicate applied on tool used to mine the block.
                                 link: item_pred
                             }
                         }
-                        string-random_chance: {
+                        "string-minecraft:random_chance": {
                             chance: {
                                 desc: Success rate as a number 0.0-1.0
                                 type: number
@@ -729,7 +730,7 @@
                                 max: 1
                             }
                         }
-                        string-random_chance_with_looting: {
+                        "string-minecraft:random_chance_with_looting": {
                             chance: {
                                 desc: Success rate as a number 0.0-1.0
                                 type: number
@@ -741,15 +742,15 @@
                                 type: number
                             }
                         }
-                        string-reference: {
+                        "string-minecraft:reference": {
                             name: {
                                 desc: The ID of another predicate to test.
                                 type: string
                                 allow: *a-z0-9#\/:.-
                             }
                         }
-                        string-survives_explosion: {}
-                        string-table_bonus: {
+                        "string-minecraft:survives_explosion": {}
+                        "string-minecraft:table_bonus": {
                             enchantment: {
                                 desc: ID of enchantment to pull enchantment level from.
                                 type: integer
@@ -760,7 +761,7 @@
                                 vals: {type: "number", min: 0, max: 1}
                             }
                         }
-                        string-time_check: {
+                        "string-minecraft:time_check": {
                             value: {
                                 desc: Time in ticks or range of times to compare with the current time.
                                 or: [
@@ -777,7 +778,7 @@
                                 min: 1
                             }
                         }
-                        string-weather_check: {
+                        "string-minecraft:weather_check": {
                             raining: {
                                 desc: If true, the condition evaluates to true only if it's raining or thundering.
                                 type: boolean
@@ -787,7 +788,7 @@
                                 type: boolean
                             }
                         }
-                        string-value_check: {
+                        "string-minecraft:value_check": {
                             value: {
                                 desc: Value to compare with
                                 link: intprov

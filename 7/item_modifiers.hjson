@@ -245,33 +245,34 @@
                 }
                 function: {
                     desc: Namespaced ID of the function to apply.
+                    ns: minecraft
                     enum: [
-                        apply_bonus
-                        copy_name
-                        copy_nbt
-                        copy_state
-                        enchant_randomly
-                        enchant_with_levels
-                        exploration_map
-                        explosion_decay
-                        furnace_smelt
-                        fill_player_head
-                        limit_count
-                        looting_enchant
-                        set_attributes
-                        set_banner_pattern
-                        set_contents
-                        set_count
-                        set_damage
-                        set_enchantments
-                        set_loot_table
-                        set_lore
-                        set_name
-                        set_nbt
-                        set_stew_effect
+                        minecraft:apply_bonus
+                        minecraft:copy_name
+                        minecraft:copy_nbt
+                        minecraft:copy_state
+                        minecraft:enchant_randomly
+                        minecraft:enchant_with_levels
+                        minecraft:exploration_map
+                        minecraft:explosion_decay
+                        minecraft:furnace_smelt
+                        minecraft:fill_player_head
+                        minecraft:limit_count
+                        minecraft:looting_enchant
+                        minecraft:set_attributes
+                        minecraft:set_banner_pattern
+                        minecraft:set_contents
+                        minecraft:set_count
+                        minecraft:set_damage
+                        minecraft:set_enchantments
+                        minecraft:set_loot_table
+                        minecraft:set_lore
+                        minecraft:set_name
+                        minecraft:set_nbt
+                        minecraft:set_stew_effect
                     ]
                     more: {
-                        string-apply_bonus: {
+                        "string-minecraft:apply_bonus": {
                             enchantment: {
                                 desc: Enchantment ID used for level calculation.
                                 href: https://minecraft.fandom.com/wiki/Java_Edition_data_value#Enchantments
@@ -297,13 +298,13 @@
                                 type: number
                             }
                         }
-                        string-copy_name: {
+                        "string-minecraft:copy_name": {
                             source: {
                                 desc: The target with the CustomName to copy the name of. Currently, this needs to be set to 'block_entity'.
                                 const: "block_entity"
                             }
                         }
-                        string-copy_nbt: {
+                        "string-minecraft:copy_nbt": {
                             source: {
                                 desc: Specifies the source. Set to block_entity for the block entity of the destroyed block, this to use the entity that died or the player that gained the advancement, opened the container or broke the block, killer for the killer, or killer_player for a killer that is a player.
                                 or: [
@@ -354,7 +355,7 @@
                                 }
                             }
                         }
-                        string-copy_state: {
+                        "string-minecraft:copy_state": {
                             block: {
                                 desc: A block ID. Function fails if the block doesn't match.
                                 href: https://minecraft.fandom.com/wiki/Resource_location
@@ -366,7 +367,7 @@
                                 vals: {type: "string"}
                             }
                         }
-                        string-enchant_randomly: {
+                        "string-minecraft:enchant_randomly": {
                             enchantments: {
                                 desc: A list of enchantment IDs to choose from to enchant the item with. Only one will be selected, just with a random level. If omitted, all enchantments applicable to the item are possible.
                                 href: https://minecraft.fandom.com/wiki/Java_Edition_data_value#Enchantments
@@ -374,11 +375,11 @@
                                 vals: {type: "string"}
                             }
                         }
-                        string-enchant_with_levels: {
+                        "string-minecraft:enchant_with_levels": {
                             treasure: {type: "boolean"}
                             levels: {desc: "The enchantment level to use.", id: "predicates-7", link: "intprov"}
                         }
-                        string-exploration_map: {
+                        "string-minecraft:exploration_map": {
                             destination: {
                                 desc: The type of generated structure to convert this empty map to lead to. Accepts any structure id used by the /locate command.
                                 href: https://minecraft.fandom.com/wiki/Commands/locate#Arguments
@@ -405,15 +406,15 @@
                                 default: true
                             }
                         }
-                        string-explosion_decay: {}
-                        string-furnace_smelt: {}
-                        string-fill_player_head: {
+                        "string-minecraft:explosion_decay": {}
+                        "string-minecraft:furnace_smelt": {}
+                        "string-minecraft:fill_player_head": {
                             entity: {
                                 desc: Specifies an entity to be used for the player head. Set to this to use the entity that died or the player that gained the advancement, opened the container or broke the block, killer for the killer, or killer_player for a killer that is a player.
                                 enum: ["this", "killer", "killer_player"]
                             }
                         }
-                        string-limit_count: {
+                        "string-minecraft:limit_count": {
                             limit: {
                                 or: [
                                     {id: "predicates-7", link: "intprov"}
@@ -424,7 +425,7 @@
                                 ]
                             }
                         }
-                        string-looting_enchant: {
+                        "string-minecraft:looting_enchant": {
                             count: {
                                 desc: Specifies the number of additional items per level of looting. Note the number may be fractional, rounded after multiplying by the looting level.
                                 id: predicates-7
@@ -436,7 +437,7 @@
                                 min: 0
                             }
                         }
-                        string-set_attributes: {
+                        "string-minecraft:set_attributes": {
                             modifiers: {
                                 type: list
                                 vals: {
@@ -474,7 +475,7 @@
                                 }
                             }
                         }
-                        string-set_banner_pattern: {
+                        "string-minecraft:set_banner_pattern": {
                             patterns: {
                                 type: list
                                 vals: {
@@ -498,7 +499,7 @@
                                 type: boolean
                             }
                         }
-                        string-set_contents: {
+                        "string-minecraft:set_contents": {
                             entries: {
                                 desc: The entries to use as contents for the item container.
                                 type: list
@@ -509,7 +510,7 @@
                                 type: string
                             }
                         }
-                        string-set_count: {
+                        "string-minecraft:set_count": {
                             count: {
                                 desc: Specifies the stack size to set.
                                 id: predicates-7
@@ -520,7 +521,7 @@
                                 type: boolean
                             }
                         }
-                        string-set_damage: {
+                        "string-minecraft:set_damage": {
                             damage: {
                                 desc: Specifies the damage fraction to set (1.0 is undamaged, 0.0 is zero durability left).
                                 id: predicates-7
@@ -531,7 +532,7 @@
                                 type: boolean
                             }
                         }
-                        string-set_enchantments: {
+                        "string-minecraft:set_enchantments": {
                             enchantments: {
                                 desc: Key name is the enchantment ID. Value is a number provider specifying the enchantment level. Levels are clamped at a maximum of 255. Levels below 1 cause the enchantment to be removed, unless add is set to true, in which case only negative values will remove the enchantment if they cause the enchantment level to fall below 1.
                                 type: object
@@ -545,7 +546,7 @@
                                 type: boolean
                             }
                         }
-                        string-set_loot_table: {
+                        "string-minecraft:set_loot_table": {
                             name: {
                                 desc: Specifies the resource location of the loot table to be used to set the contents of this container.
                                 type: string
@@ -560,7 +561,7 @@
                                 type: string
                             }
                         }
-                        string-set_lore: {
+                        "string-minecraft:set_lore": {
                             lore: {
                                 desc: List of JSON text components. Each list entry represents one line of the lore. Advanced components are resolved only if entity successfully targets an entity.
                                 or: [
@@ -577,7 +578,7 @@
                                 type: boolean
                             }
                         }
-                        string-set_name: {
+                        "string-minecraft:set_name": {
                             name: {
                                 desc: A JSON text component name, allowing color, translations, etc. Advanced components are resolved only if entity successfully targets an entity.
                                 link: jsontxt
@@ -587,14 +588,14 @@
                                 enum: ["this", "killer", "killer_player"]
                             }
                         }
-                        string-set_nbt: {
+                        "string-minecraft:set_nbt": {
                             tag: {
                                 desc: Tag string to add, similar to those used by commands. Note that the first bracket is required.
                                 type: string
                                 ext: true
                             }
                         }
-                        string-set_stew_effect: {
+                        "string-minecraft:set_stew_effect": {
                             effects: {
                                 desc: A list of effects to apply on this suspicious stew.
                                 type: list
