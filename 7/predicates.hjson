@@ -654,6 +654,8 @@
                         minecraft:time_check
                         minecraft:weather_check
                         minecraft:value_check
+                        origins:origin
+                        origins:power
                     ]
                     more: {
                         "string-minecraft:alternative": {
@@ -802,6 +804,20 @@
                                         max: {link: "intprov"}
                                     }}
                                 ]
+                            }
+                        }
+                        "string-origins:origin": {
+                            origin: {
+                                desc: The ID of an origin to check for on the player.
+                                type: string
+                                allow: *a-z0-9#\/:.-
+                            }
+                        }
+                        "string-origins:power": {
+                            power: {
+                                desc: The ID of an power to check for on the player.
+                                type: string
+                                allow: *a-z0-9#\/:.-
                             }
                         }
                     }

@@ -270,6 +270,7 @@
                         minecraft:set_name
                         minecraft:set_nbt
                         minecraft:set_stew_effect
+                        origins:add_power
                     ]
                     more: {
                         "string-minecraft:apply_bonus": {
@@ -615,6 +616,25 @@
                                         }
                                     }
                                 }
+                            }
+                        }
+                        "string-origins:add_power": {
+                            slot: {
+                                desc: Slot the item should be in for the power to take effect. If a list is specified, one will be chosen randomly.
+                                enum: ["mainhand", "offhand", "feet", "legs", "chest", "head"]}
+                            }
+                            power: {
+                                desc: The ID of a power to give when the item is in hand.
+                                type: string
+                                allow: *a-z0-9_#\/:.-
+                            }
+                            hidden: {
+                                desc: Whether or not the item shows that this power will be added when held.
+                                type: boolean
+                            }
+                            negative: {
+                                desc: Whether or not to take away the specified power when held, rather than adding it.
+                                type: boolean
                             }
                         }
                     }
