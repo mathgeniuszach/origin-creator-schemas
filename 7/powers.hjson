@@ -3056,6 +3056,25 @@
                                 link: entity_action
                             }
                         }
+                        "string-origins:action_when_damage_taken": {
+                            damage_condition: {
+                                desc: If specified, the action will only trigger when this condition holds for the specified type of damage.
+                                link: damage_cond
+                            }
+                            entity_action: {
+                                desc: The action to be executed upon taking damage.
+                                link: entity_action
+                            }
+                            cooldown: {
+                                desc: Interval of ticks this power needs to recharge before the power can be triggered again.
+                                type: integer
+                                min: 0
+                            }
+                            hud_render: {
+                                desc: Determines how the cooldown of this power is visualized on the HUD.
+                                link: hud_render
+                            }
+                        }
                         "string-origins:action_when_hit": {
                             bientity_action: {
                                 desc: The action to execute upon being hit.
