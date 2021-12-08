@@ -539,6 +539,10 @@
                                 allow: *a-z0-9_\/:.-
                                 ns: true
                             }
+							source: {
+                                desc: ID of the source of the power the player needs to have to pass the check.
+                                type: string
+                            }
                         }
                         "string-origins:predicate": {
                             predicate: {
@@ -1200,6 +1204,9 @@
                         origins:and
                         origins:chance
                         origins:choice
+						origins:delay
+                        origins:if_else
+                        origins:if_else_list
                         origins:invert
                         origins:actor_action
                         origins:add_velocity
@@ -1241,6 +1248,49 @@
                                         }
                                         element: {
                                             desc: The action which might be executed.
+                                            link: bi_entity_action
+                                        }
+                                    }
+                                }
+                            }
+                        }
+						"string-origins:delay": {
+                            action: {
+                                desc: The action which will be executed after the delay.
+                                link: bi_entity_action
+                            }
+                            ticks: {
+                                desc: The amount of ticks until the action is executed.
+                                type: integer
+                            }
+                        }
+                        "string-origins:if_else": {
+                            condition: {
+                                desc: If this condition holds then if_action is executed, otherwise else_action or no action is executed.
+                                link: bi_entity_cond
+                            }
+                            if_action: {
+                                desc: The action which is executed when the condition evaluates to true.
+                                link: bi_entity_action
+                            }
+                            else_action: {
+                                desc: If present, this action will be executed when the condition evaluates to false.
+                                link: bi_entity_action
+                            }
+                        }
+                        "string-origins:if_else_list": {
+                            actions: {
+                                desc: A list of actions associated with conditions to check. The first one in the list for which the condition holds will be executed. Basically a less indentation-heavy way to represent a deeply nested If-Else Action.
+                                type: list
+                                vals: {
+                                    type: object
+                                    props: {
+                                        condition: {
+                                            desc: A condition to check for.
+                                            link: bi_entity_cond
+                                        }
+                                        action: {
+                                            desc: An action which might be executed.
                                             link: bi_entity_action
                                         }
                                     }
@@ -1777,9 +1827,11 @@
             props: {
                 type: {
                     enum: [
+						origins:nothing
                         origins:and
                         origins:chance
                         origins:choice
+                        oorigins:delay
                         origins:if_else
                         origins:if_else_list
                         origins:consume
@@ -1787,6 +1839,7 @@
                         origins:modify
                     ]
                     more: {
+						"string-origins:nothing": {}
                         "string-origins:and": {
                             actions: {
                                 desc: These actions will be executed one after the other (but in the same tick).
@@ -1822,6 +1875,16 @@
                                         }
                                     }
                                 }
+                            }
+                        }
+						"string-origins:delay": {
+                            action: {
+                                desc: The action which will be executed after the delay.
+                                link: item_action
+                            }
+                            ticks: {
+                                desc: The amount of ticks until the action is executed.
+                                type: integer
                             }
                         }
                         "string-origins:if_else": {
@@ -1890,9 +1953,11 @@
             props: {
                 type: {
                     enum: [
+						origins:nothing
                         origins:and
                         origins:chance
                         origins:choice
+                        origins:delay
                         origins:if_else
                         origins:if_else_list
                         origins:add_block
@@ -1901,6 +1966,7 @@
                         origins:set_block
                     ]
                     more: {
+						"string-origins:nothing": {}
                         "string-origins:and": {
                             actions: {
                                 desc: These actions will be executed one after the other (but in the same tick).
@@ -1936,6 +2002,16 @@
                                         }
                                     }
                                 }
+                            }
+                        }
+						"string-origins:delay": {
+                            action: {
+                                desc: The action which will be executed after the delay.
+                                link: block_action
+                            }
+                            ticks: {
+                                desc: The amount of ticks until the action is executed.
+                                type: integer
                             }
                         }
                         "string-origins:if_else": {
@@ -2489,6 +2565,10 @@
                                 desc: If set, the specified item stack will be given to the player.
                                 link: item_stack
                             }
+							result_from_on_stack: {
+                                desc: Determines how many items based on the on_item stack will be given as a result for using an item on an item. Mostly to be used in conjunction with result_item_action.
+                                type: integer
+                            }
                             using_item_action: {
                                 desc: If set, this action will be executed on the item stack used to right-click an item stack.
                                 link: item_action
@@ -2648,8 +2728,8 @@
                                 type: boolean
                             }
                             render_type: {
-                                desc: Either "remove_blocks" or "blindness" - defines how the phasing will look when inside a block.
-                                enum: ["blindness", "remove_blocks"]
+                                desc: Either "none", "remove_blocks", or "blindness" - defines how the phasing will look when inside a block.
+                                enum: ["none", "blindness", "remove_blocks"]
                             }
                             view_distance: {
                                 desc: How far the player can look through walls while phasing with the "blindness" render_type.
@@ -2838,6 +2918,11 @@
                             key: {
                                 desc: Which active key this power should respond to. If none is specified, this power will use the primary active power key (by default G).
                                 link: key
+                            }
+							retain_state: {
+                                desc: Whether this power switches back to default if the condition is no longer met.
+                                type: boolean
+                                default: true
                             }
                         }
                         "string-origins:tooltip": {
@@ -3299,7 +3384,11 @@
                             }
                         }
                         "string-origins:modify_damage_dealt": {
-                            damage_condition: {
+                            bientity_condition: {
+                                desc: If specified, the specified modifier(s) and/or action(s) will only apply if either or both 'actor' and 'target' fulfills this bi-entity condition type.
+                                link: bi_entity_cond
+                            }
+							damage_condition: {
                                 desc: If set, the modifiers will only apply to damage which satisfies this condition.
                                 link: damage_cond
                             }
@@ -3316,6 +3405,10 @@
                                 type: list
                                 vals: {link: "a_mod"}
                             }
+							bientity_action: {
+                                desc: If specified, this bi-entity action type will be executed on either or both 'actor' and 'target'.
+                                link: bi_entity_action
+                            }
                             self_action: {
                                 desc: If set, this action will be executed on the player whenever this power applies a modification.
                                 link: entity_action
@@ -3326,6 +3419,10 @@
                             }
                         }
                         "string-origins:modify_damage_taken": {
+							bientity_condition: {
+                                desc: If specified, the specified modifier(s) and/or action(s) will only apply if either or both 'actor' and 'target' fulfills this bi-entity condition type.
+                                link: bi_entity_cond
+                            }
                             damage_condition: {
                                 desc: If set, the modifiers will only apply to damage which satisfies this condition.
                                 link: damage_cond
@@ -3338,6 +3435,10 @@
                                 desc: If specified, these modifiers will be applied to the damage amount.
                                 type: list
                                 vals: {link: "a_mod"}
+                            }
+							bientity_action: {
+                                desc: If specified, this bi-entity action type will be executed on either or both 'actor' and 'target'.
+                                link: bi_entity_action
                             }
                             self_action: {
                                 desc: If set, this action will be executed on the player whenever this power applies a modification.
@@ -3390,6 +3491,14 @@
                                 desc: If set, the modifiers will only apply to food items which satisfy this condition.
                                 link: item_cond
                             }
+							item_action: {
+                                desc: If specified, this item action type will be executed on the remaining item stacks that was consumed.
+                                link: item_action
+                            }
+							replace_stack: {
+                                desc: If specified, this item stack will replace the item stack that was consumed after consuming it.
+                                link: item_stack
+                            }
                             food_modifier: {
                                 desc: If specified, this modifier will be applied to the food amount gained by eating.
                                 link: a_mod
@@ -3414,6 +3523,10 @@
                             }
                             always_edible: {
                                 desc: If set to true, makes it so that the food item can still be eaten regardless if the player's hunger bar is full.
+                                type: boolean
+                            }
+							prevent_effects: {
+                                desc: If set to true, prevent status effects from being applied.
                                 type: boolean
                             }
                         }
@@ -3584,6 +3697,10 @@
                             entity_condition: {
                                 desc: If set, only entities which fulfill this condition will be invisible.
                                 link: entity_cond
+                            }
+							bientity_condition: {
+                                desc: If set, only entities which fulfill this bi-entity condition in relation to the power holder will be invisible for the player with this power.
+                                link: bi_entity_cond
                             }
                         }
                         "string-origins:prevent_entity_use": {
