@@ -111,6 +111,7 @@
                             enter_block
                             entity_hurt_player
                             entity_killed_player
+							fall_from_height
                             filled_bucket
                             fishing_rod_hooked
                             hero_of_the_village
@@ -129,6 +130,7 @@
                             player_interacted_with_entity
                             player_killed_entity
                             recipe_unlocked
+							ride_entity_in_lava
                             shot_crossbow
                             slept_in_bed
                             slide_down_block
@@ -426,6 +428,28 @@
                                             desc: Checks the entity that was the source of the damage that killed the player (for example: The skeleton that shot the arrow). May also be a list of predicates that must pass in order for the trigger to activate.
                                             id: predicates-7
                                             link: entity_preds
+                                        }
+                                        player: {
+                                            desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
+                                            id: predicates-7
+                                            link: entity_preds
+                                        }
+                                    }
+                                }
+                            }
+							string-fall_from_height: {
+                                conditions: {
+                                    type: object
+                                    props: {
+                                        start_position: {
+                                            desc: The location where the player started falling.
+                                            id: predicates-7
+                                            link: location_pred
+                                        }
+                                        distance: {
+                                            desc: The distance the player fell.
+                                            id: predicates-7
+                                            link: distance
                                         }
                                         player: {
                                             desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
@@ -820,6 +844,28 @@
                                             desc: The recipe that was unlocked.
                                             type: string
                                             allow: *a-z0-9_\/:.-
+                                        }
+                                        player: {
+                                            desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
+                                            id: predicates-7
+                                            link: entity_preds
+                                        }
+                                    }
+                                }
+                            }
+							string-ride_entity_in_lava: {
+                                conditions: {
+                                    type: object
+                                    props: {
+                                        start_position: {
+                                            desc: The location where the player started riding the entity in lava.
+                                            id: predicates-7
+                                            link: location_pred
+                                        }
+                                        distance: {
+                                            desc: The distance the player rode the entity in lava.
+                                            id: predicates-7
+                                            link: distance
                                         }
                                         player: {
                                             desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
