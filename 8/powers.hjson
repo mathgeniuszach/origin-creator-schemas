@@ -1204,12 +1204,13 @@
                         origins:and
                         origins:chance
                         origins:choice
-						origins:delay
+			origins:delay
                         origins:if_else
                         origins:if_else_list
                         origins:invert
                         origins:actor_action
                         origins:add_velocity
+			origins:damage
                         origins:mount
                         origins:set_in_love
                         origins:tame
@@ -1325,6 +1326,17 @@
                             set: {
                                 desc: If this is true, the action will act as a "set" velocity action, overriding the entity's current velocity instead of adding to it.
                                 type: boolean
+                            }
+                        }
+			"string-origins:damage": {
+                            amount: {
+                                desc: The amount of damage to deal.
+                                type: number
+                                min: 0
+                            }
+                            source: {
+                                desc: The damage source to be used. Controls e.g. the death message, invulnerabilities (e.g. towards fire), or whether armor is taken into account.
+                                link: damage_source
                             }
                         }
                         "string-origins:mount": {}
