@@ -90,8 +90,9 @@
                         "string-origins:owner": {}
 			"string-origins:relative_rotation": {
 			    axes: {
-			    	desc: The axes to get the angle values to calculate, and compare to. HELP PLZ IDK HOW TO DO THIS ONE
-                                default: ["x", "y", "z"]
+			    	desc: The axes to get the angle values to calculate, and compare to.
+				type: list
+                                vals: {enum: ["x", "y", "z"]}
 			    }
 			    actor_rotation: {
 			    	desc: Determines the initial point of the rotation for the actor. Accepts "head" or "body".
@@ -305,8 +306,8 @@
                                 type: integer
                             }
                             shape: {
-                                desc: Whether to check in a cube or star shaped form. Either "cube" or "star"
-                                enum: ["cube", "star"]
+                                desc: Determines the shape of the radius. Accepts "cube", "star" or "sphere".
+                                enum: ["cube", "star", "sphere"]
                             }
                             comparison: {
                                 desc: How the number of blocks in the radius which fulfill block_condition should be compared to the specified value.
@@ -970,7 +971,37 @@
                                 type: string
                             }
                         }
-			"origins:distance_from_coordinates": {}
+			"origins:distance_from_coordinates": {
+			    reference: {
+                                desc: The point to compare the distance to.
+                                type: string
+                                allow: *a-z0-9_\/:.-
+				default: "world_origin"
+                            }
+			    offset: {
+                                desc: If specified, determines how much the reference point should be offset.
+				link: vector
+                            }
+			    ignore_x: {
+                                desc: Determines whether to consider the X axis to be 0.
+				type: boolean
+				default: false
+                            }
+			    ignore_y: {
+                                desc: Determines whether to consider the Y axis to be 0.
+				type: boolean
+				default: false
+                            }
+			    ignore_z: {
+                                desc: Determines whether to consider the Z axis to be 0.
+				type: boolean
+				default: false
+                            }
+			    shape: {
+                                desc: Determines the shape of the check. Accepts "cube", "star" or "sphere".
+                                enum: ["cube", "star", "sphere"]
+                            }
+			}
                         "string-origins:exposed_to_sky": {}
                         "string-origins:fluid": {
                             fluid_condition: {
@@ -1020,14 +1051,17 @@
                             x: {
                                 desc: How much to offset the position on the x-axis. Defaults to 0.
                                 type: integer
+				default: 0
                             }
                             y: {
                                 desc: How much to offset the position on the y-axis. Defaults to 0.
                                 type: integer
+				default: 0
                             }
                             z: {
                                 desc: How much to offset the position on the z-axis. Defaults to 0.
                                 type: integer
+				default: 0
                             }
                         }
                         "string-origins:replacable": {}
@@ -1539,6 +1573,8 @@
                                 enum: [
                                     world
                                     local
+				    local_horizontal
+				    local_horizontal_normalized
                                     velocity
                                     velocity_normalized
                                     velocity_horizontal
@@ -4127,6 +4163,44 @@
             enum: ["<", "<=", ">", ">=", "==", "!="]
             default: 3
         }
+	vector: {
+            desc: An Object that specifies the X, Y and Z coordinates of a certain point in space.
+            type: object
+            props: {
+                x: {
+                    desc: The X coordinate of the point.
+                    type: number
+                    default: 0
+                }
+                y: {
+                    desc: The Y coordinate of the point.
+                    type: number
+                    default: 0
+                }
+                z: {
+                    desc: The X coordinate of the point.
+                    type: number
+                    default: 0
+                }
+            }
+        }
+	particle: {
+            desc: An Object that specifies the X, Y and Z coordinates of a certain point in space.
+            type: object
+            props: {
+                type: {
+                    desc: The namespace and ID of the particle type.
+                    type: string
+                    allow: *a-z0-9_#\/:.-
+                }
+                params: {
+                    desc: The additional parameter for the particle type.
+                    type: string
+                    allow: *a-z0-9_#\/:.-
+                }
+            }
+        }
+	
     }
     or: [
         {
