@@ -21,6 +21,7 @@
                         origins:distance
                         origins:either
                         origins:owner
+			origins:relative_rotation
                         origins:riding_recursive
                         origins:riding_root
                         origins:riding
@@ -87,6 +88,30 @@
                             }
                         }
                         "string-origins:owner": {}
+			"string-origins:relative_rotation": {
+			    axes: {
+			    	desc: The axes to get the angle values to calculate, and compare to. HELP PLZ IDK HOW TO DO THIS ONE
+                                default: ["x", "y", "z"]
+			    }
+			    actor_rotation: {
+			    	desc: Determines the initial point of the rotation for the actor. Accepts "head" or "body".
+				enum: ["head", "body"]
+                                default: "head"
+			    }
+                            target_rotation: {
+			    	desc: Determines the initial potin of the rotation for the target. Accepts "head" or "body".
+				enum: ["head", "body"]
+                                default: "body"
+			    }
+			    comparison: {
+                                desc: Determines how the calculated angle value will be compared to the specified value.
+                                link: comparison
+                            }
+                            compare_to: {
+                                desc: The value to compare the calculated angle value to.
+                                type: number
+                            }
+                        }
                         "string-origins:riding_recursive": {}
                         "string-origins:riding_root": {}
                         "string-origins:riding": {}
@@ -741,6 +766,7 @@
                         origins:ingredient
                         origins:meat
                         origins:nbt
+			origins:smeltable
                     ]
                     more: {
                         "string-origins:and": {
@@ -829,6 +855,7 @@
                                 ext: true
                             }
                         }
+			"string-origins:smeltable": {}
                     }
                 }
             }
@@ -847,17 +874,22 @@
                         origins:constant
                         origins:adjacent
                         origins:attachable
+			origins:blast_resistance
                         origins:block
                         origins:block_state
+			origins:distance_from_coordinates
                         origins:exposed_to_sky
                         origins:fluid
+			origins:hardness
                         origins:height
                         origins:in_tag
                         origins:light_blocking
                         origins:light_level
+			origins:material
                         origins:movement_blocking
                         origins:offset
                         origins:replacable
+			origins:slipperiness
                         origins:water_loggable
                     ]
                     more: {
@@ -897,6 +929,16 @@
                             }
                         }
                         "string-origins:attachable": {}
+			"string-origins:blast_resistance": {
+			    comparison: {
+                                desc: Determines how the blast resistance of the block is compared to the specified value.
+                                link: comparison
+                            }
+                            compare_to: {
+                                desc: The value to compare the blast resistance of the block to.
+                                type: integer
+                            }
+			}
                         "string-origins:block": {
                             block: {
                                 desc: ID of the block that this block needs to be to pass the check.
@@ -928,6 +970,7 @@
                                 type: string
                             }
                         }
+			"origins:distance_from_coordinates": {}
                         "string-origins:exposed_to_sky": {}
                         "string-origins:fluid": {
                             fluid_condition: {
@@ -1965,7 +2008,7 @@
             props: {
                 type: {
                     enum: [
-						origins:nothing
+			origins:nothing
                         origins:and
                         origins:chance
                         origins:choice
@@ -1973,7 +2016,10 @@
                         origins:if_else
                         origins:if_else_list
                         origins:add_block
+			origins:bonemeal
                         origins:execute_command
+			origins:explode
+			origins:modify_block_state
                         origins:offset
                         origins:set_block
                     ]
@@ -2066,6 +2112,13 @@
                                 allow: *a-z0-9_\/:.-
                             }
                         }
+			"string-origins:bonemeal": {
+                            effects: {
+                                desc: Determines if the particle and other visual effects of the bonemeal-ing action should appear.
+                                type: boolean
+                                default: true
+                            }
+                        }
                         "string-origins:execute_command": {
                             command: {
                                 desc: The command to execute.
@@ -2077,6 +2130,60 @@
                                 href: https://minecraft.fandom.com/wiki/Server.properties#op-permission-level
                                 type: integer
                                 default: 4
+                            }
+                        }
+			"string-origins:explode": {
+                            power: {
+                                desc: Determines the power of the explosion.
+                                type: number
+                            }
+                            destruction_type: {
+                                desc: Determines if the explosion should destroy the terrain, destroy the terrain and drop the loot of the blocks, or none. Accepts either "destroy", "break" or "none".
+                                enum: ["break", "destroy", "none"]
+                            }
+                            damage_self: {
+                                desc: Determines if the exploding block should be affected by the summoned explosion.
+                                type: boolean
+                                default: true
+                            }
+                            indestructible: {
+                                desc: If set, blocks specified in this block condition object is not destroyed by the explosion.
+                                link: block_cond
+                            }
+                            destructible: {
+                                desc: If set, blocks specified in this block condition object will be the only blocks destroyed by the explosion.
+                                link: block_cond
+                            }
+                            create_fire: {
+                                desc: Determines if the explosion should create fire.
+                                type: boolean
+                            }
+                        }
+			"string-origins:modify_block_state": {
+			    property: {
+                                desc: The name of the property that should be checked. Examples are facing or age. See: Block States (MC Wiki)
+                                type: string
+                            }
+                            operation: {
+                                desc: Determines how the value specified in the change field is operated on the specified property. Accepts "add" or "set".
+                                enum: ["add", "set"]
+				default: "add"
+                            }
+			    change: {
+                                desc: If specified, the value to add, remove or set to/from the specified property if the specified property is an integer.
+                                type: integer
+                            }
+                            value: {
+                                desc: If specified, the boolean to use as the new value for the specified property if the specified property is a boolean.
+                                type: boolean
+                            }
+                            enum: {
+                                desc: If specified, the string to use as the new value for the specified property if the specified property is a string.
+                                type: string
+                            }
+                            cycle: {
+                                desc: If specified, cycles through all the states of the specified property, regardless if it's a string, integer, or boolean.
+                                type: boolean
                             }
                         }
                         "string-origins:offset": {
