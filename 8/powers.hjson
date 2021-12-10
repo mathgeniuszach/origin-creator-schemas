@@ -1001,6 +1001,27 @@
                                 desc: Determines the shape of the check. Accepts "cube", "star" or "sphere".
                                 enum: ["cube", "star", "sphere"]
                             }
+			    scale_reference_to_dimension: {
+                                desc: Determines whether to check for the reference point whilst considering the coordinate scale of the dimension.
+				type: boolean
+				default: true
+                            }
+			    result_on_the_wrong_dimension: {
+                                desc: If specified, this value will override the result of the comparison if the block being tested is not in the reference's dimension.
+				type: boolean
+                            }
+			    round_to_digit: {
+                                desc: If specified, rounds the result to the closest number with the specified amount of digits after the comma. Negative numbers also work.
+                                type: integer
+                            }
+			    comparison: {
+                                desc: Determines how the calculated distance is compared to the specified value.
+                                link: comparison
+                            }
+                            compare_to: {
+                                desc: The value to compare the calculated distance to.
+                                type: number
+                            }
 			}
                         "string-origins:exposed_to_sky": {}
                         "string-origins:fluid": {
@@ -1009,6 +1030,16 @@
                                 link: fluid_cond
                             }
                         }
+			"string-origins:hardness": {
+			    comparison: {
+                                desc: Determines how the hardness value of the block is compared to the specified value.
+                                link: comparison
+                            }
+                            compare_to: {
+                                desc: The value to compare the hardness value of the block to.
+                                type: integer
+                            }
+			}
                         "string-origins:height": {
                             comparison: {
                                 desc: How the Y position of the block should be compared to the specified value.
@@ -1042,6 +1073,17 @@
                                 type: integer
                             }
                         }
+			"string-origins:material": {
+			    material: {
+                                desc: If specified, checks if the block classifies as this material.
+                                link: material
+                            }
+                            materials: {
+                                desc: If specified, checks if the block classifies as one of these materials.
+                                type: list
+                                vals: {link: "material"}
+                            }
+			}
                         "string-origins:movement_blocking": {}
                         "string-origins:offset": {
                             condition: {
@@ -1065,6 +1107,16 @@
                             }
                         }
                         "string-origins:replacable": {}
+			"string-origins:slipperiness": {
+			    comparison: {
+                                desc: Determines how the slipperiness value of the block is compared to the specified value.
+                                link: comparison
+                            }
+                            compare_to: {
+                                desc: The value to compare the slipperiness value of the block to.
+                                type: integer
+                            }
+			}
                         "string-origins:water_loggable": {}
                     }
                 }
@@ -3680,7 +3732,7 @@
                                 desc: If set to true, makes it so that the food item can still be eaten regardless if the player's hunger bar is full.
                                 type: boolean
                             }
-							prevent_effects: {
+			    prevent_effects: {
                                 desc: If set to true, prevent status effects from being applied.
                                 type: boolean
                             }
@@ -4200,7 +4252,6 @@
                 }
             }
         }
-	
     }
     or: [
         {
