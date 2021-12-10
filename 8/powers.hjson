@@ -2380,6 +2380,7 @@
                         origins:invisibility
                         origins:invulnerability
                         origins:item_on_item
+                        origins:keep_inventory
                         origins:launch
                         origins:lava_vision
                         origins:model_color
@@ -2403,6 +2404,7 @@
                         origins:walk_on_fluid
                         origins:action_on_being_used
                         origins:action_on_block_break
+                        origins:action_on_block_use
                         origins:action_on_callback
                         origins:action_on_entity_use
                         origins:action_on_hit
@@ -2434,14 +2436,20 @@
                         origins:modify_lava_speed
                         origins:modify_player_spawn
                         origins:modify_projectile_damage
+                        origins:modify_slipperiness
+                        origins:modify_status_effect_amplifier
+                        origins:modify_status_effect_duration
                         origins:modify_swim_speed
                         origins:modify_xp_gain
                         origins:prevent_being_used
                         origins:prevent_block_selection
                         origins:prevent_block_use
                         origins:prevent_death
+                        origins:prevent_elytra_flight
+                        origins:prevent_entity_collision
                         origins:prevent_entity_render
                         origins:prevent_entity_use
+                        origins:prevent_feature_render
                         origins:prevent_item_use
                         origins:prevent_sleep
                     ]
@@ -2788,6 +2796,17 @@
                             entity_action: {
                                 desc: If set, this action will be executed on the player after they used an item on an item.
                                 link: item_action
+                            }
+                        }
+                        "string-origins:keep_inventory": {
+                            item_condition: {
+                                desc: If specified, only make the items that fulfill the specified item condition type persist in the entity's inventory.
+                                link: item_cond
+                            }
+                            slots: {
+                                desc: If specified, only make the items that are in the listed inventory slots persist in the entity's inventory. See Positioned Item Stack Slots for possible values.
+                                type: list
+                                vals: {type: "int"}
                             }
                         }
                         "string-origins:launch": {
@@ -3208,6 +3227,50 @@
                                 desc: If this is true, the actions will only execute when the player succeeds in harvesting the block (e.g. they will not trigger when stone is broken by hand).
                                 type: boolean
                                 default: true
+                            }
+                        }
+                        "string-origins:action_on_block_use": {
+                            block_condition: {
+                                desc: If specified, only execute the specified actions if this condition is fulfilled by the used block.
+                                link: block_cond
+                            }
+                            item_condition: {
+                                desc: If specified, only execute the specified actions if this condition is fulfilled by the item in the 'actor' (the player that has the power) entity's specified hand(s) determined by the hands string field.
+                                link: item_cond
+                            }
+                            directions: {
+                                desc: If specified, only execute the specified actions if you used the specified face of the block. Defaults to all directions.
+                                type: list
+                                vals: {enum: ["north", "east", "south", "west", "up", "down"]}
+                            }
+                            hands: {
+                                desc: Determines if the power should be activated if the player used the specified hand(s). Accepts "off_hand", "main_hand" or both. Defaults to both.
+                                type: list
+                                vals: {enum: ["off_hand", "main_hand"]}
+                            }
+                            entity_action: {
+                                desc: If specified, this entity action type will be executed if all conditions are met.
+                                type: entity_action
+                            }
+                            block_action: {
+                                desc: If specified, the used block will run this action if all conditions are met.
+                                type: block_action
+                            }
+                            result_stack: {
+                                desc: If specified, gives the item to the 'actor' (the player that has the power) entity.
+                                link: item_stack
+                            }
+                            held_item_action: {
+                                desc: If specified, this action will be executed on the item used for right-clicking the 'target' entity in the specified hand(s) determined by the hands string field.
+                                link: item_action
+                            }
+                            result_item_action: {
+                                desc: If specified, this action will be executed on the item that is given to the 'actor' (the player that has the power) entity.
+                                link: item_action
+                            }
+                            action_result: {
+                                desc: Determines the result of the 'use action'. Defaults to "success".
+                                enum: ["success", "consume", "consume_partial", "fail", "pass"]
                             }
                         }
                         "string-origins:action_on_callback": {
@@ -3830,6 +3893,43 @@
                                 link: entity_action
                             }
                         }
+                        "string-origins:modify_slipperiness": {
+                            block_condition: {
+                                desc: If specified, the modifier(s) will only apply to the blocks that fulfills this condition.
+                                link: block_cond
+                            }
+                            modifier: {
+                                desc: If specified, this modifier will be applied to the entity's slipperiness.
+                                link: a_mod
+                            }
+                            modifiers: {
+                                desc: If specified, these modifiers will be applied to the entity's slipperiness.
+                                type: list
+                                vals: {link: "a_mod"}
+                            }
+                        }
+                        "string-origins:modify_status_effect_amplifier": {
+                            status_effect: {
+                                desc: The namespace and ID of the status effect that will have its amplifier modified.
+                                type: string
+                                allow: *a-z0-9_#\/:.-
+                            }
+                            modifier: {
+                                desc: The modifier to apply to the amplifier of the specified status effect.
+                                link: a_mod
+                            }
+                        }
+                        "string-origins:modify_status_effect_duration": {
+                            status_effect: {
+                                desc: The namespace and ID of the status effect that will have its duration modified.
+                                type: string
+                                allow: *a-z0-9_#\/:.-
+                            }
+                            modifier: {
+                                desc: The modifier to apply to the duration of the specified status effect.
+                                link: a_mod
+                            }
+                        }
                         "string-origins:modify_swim_speed": {
                             modifier: {
                                 desc: If specified, this modifier will be applied to the player's swim speed.
@@ -3901,6 +4001,18 @@
                                 link: entity_action
                             }
                         }
+                        "string-origins:prevent_elytra_flight": {
+                            entity_action: {
+                                desc: If specified, execute this entity action type upon preventing the entity that has the power.
+                                link: entity_action
+                            }
+                        }
+                        "string-origins:prevent_entity_collision": {
+                            bientity_condition: {
+                                desc: If specified, collision is only affected as long as both the 'actor' (the entity with the power), and the 'target' fulfill the specified conditions.
+                                link: bi_entity_cond
+                            }
+                        }
                         "string-origins:prevent_entity_render": {
                             entity_condition: {
                                 desc: If set, only entities which fulfill this condition will be invisible.
@@ -3940,6 +4052,22 @@
                             result_item_action: {
                                 desc: If specified, executes an item action on the given item stack.
                                 link: item_action
+                            }
+                        }
+                        "string-origins:prevent_feature_render": {
+                            feature: {
+                                desc: If specified, this feature renderer (e.g: armor layer, sheep wool layer, or the sub-classes that extends the FeatureRender super-class) will not be rendered to the entity that has the power.
+                                href: https://origins.readthedocs.io/en/latest/types/power_types/prevent_feature_render/
+                                type: string
+                                allow: *a-z0-9_#\/:.-
+                            }
+                            features: {
+                                desc: If specified, these feature renderers will not be rendered.
+                                type: list
+                                vals: {
+                                    type: string
+                                    allow: *a-z0-9_#\/:.-
+                                }
                             }
                         }
                         "string-origins:prevent_item_use": {
