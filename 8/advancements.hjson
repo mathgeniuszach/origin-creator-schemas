@@ -111,7 +111,7 @@
                             enter_block
                             entity_hurt_player
                             entity_killed_player
-							fall_from_height
+                            fall_from_height
                             filled_bucket
                             fishing_rod_hooked
                             hero_of_the_village
@@ -130,7 +130,7 @@
                             player_interacted_with_entity
                             player_killed_entity
                             recipe_unlocked
-							ride_entity_in_lava
+                            ride_entity_in_lava
                             shot_crossbow
                             slept_in_bed
                             slide_down_block
@@ -437,7 +437,7 @@
                                     }
                                 }
                             }
-							string-fall_from_height: {
+                            string-fall_from_height: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -853,7 +853,7 @@
                                     }
                                 }
                             }
-							string-ride_entity_in_lava: {
+                            string-ride_entity_in_lava: {
                                 conditions: {
                                     type: object
                                     props: {

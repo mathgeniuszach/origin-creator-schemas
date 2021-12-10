@@ -21,7 +21,7 @@
                         origins:distance
                         origins:either
                         origins:owner
-			origins:relative_rotation
+                        origins:relative_rotation
                         origins:riding_recursive
                         origins:riding_root
                         origins:riding
@@ -88,23 +88,23 @@
                             }
                         }
                         "string-origins:owner": {}
-			"string-origins:relative_rotation": {
-			    axes: {
-			    	desc: The axes to get the angle values to calculate, and compare to.
-				type: list
+                        "string-origins:relative_rotation": {
+                            axes: {
+                                desc: The axes to get the angle values to calculate, and compare to.
+                                type: list
                                 vals: {enum: ["x", "y", "z"]}
-			    }
-			    actor_rotation: {
-			    	desc: Determines the initial point of the rotation for the actor. Accepts "head" or "body".
-				enum: ["head", "body"]
-                                default: "head"
-			    }
+                            }
+                            actor_rotation: {
+                                desc: Determines the initial point of the rotation for the actor. Accepts "head" or "body".
+                                enum: ["head", "body"]
+                                default: 0
+                            }
                             target_rotation: {
-			    	desc: Determines the initial potin of the rotation for the target. Accepts "head" or "body".
-				enum: ["head", "body"]
-                                default: "body"
-			    }
-			    comparison: {
+                                desc: Determines the initial position of the rotation for the target. Accepts "head" or "body".
+                                enum: ["head", "body"]
+                                default: 1
+                            }
+                            comparison: {
                                 desc: Determines how the calculated angle value will be compared to the specified value.
                                 link: comparison
                             }
@@ -565,7 +565,7 @@
                                 allow: *a-z0-9_\/:.-
                                 ns: true
                             }
-							source: {
+                            source: {
                                 desc: ID of the source of the power the player needs to have to pass the check.
                                 type: string
                             }
@@ -767,7 +767,7 @@
                         origins:ingredient
                         origins:meat
                         origins:nbt
-			origins:smeltable
+                        origins:smeltable
                     ]
                     more: {
                         "string-origins:and": {
@@ -856,7 +856,7 @@
                                 ext: true
                             }
                         }
-			"string-origins:smeltable": {}
+                        "string-origins:smeltable": {}
                     }
                 }
             }
@@ -875,22 +875,22 @@
                         origins:constant
                         origins:adjacent
                         origins:attachable
-			origins:blast_resistance
+                        origins:blast_resistance
                         origins:block
                         origins:block_state
-			origins:distance_from_coordinates
+                        origins:distance_from_coordinates
                         origins:exposed_to_sky
                         origins:fluid
-			origins:hardness
+                        origins:hardness
                         origins:height
                         origins:in_tag
                         origins:light_blocking
                         origins:light_level
-			origins:material
+                        origins:material
                         origins:movement_blocking
                         origins:offset
                         origins:replacable
-			origins:slipperiness
+                        origins:slipperiness
                         origins:water_loggable
                     ]
                     more: {
@@ -930,8 +930,8 @@
                             }
                         }
                         "string-origins:attachable": {}
-			"string-origins:blast_resistance": {
-			    comparison: {
+            "string-origins:blast_resistance": {
+                comparison: {
                                 desc: Determines how the blast resistance of the block is compared to the specified value.
                                 link: comparison
                             }
@@ -939,7 +939,7 @@
                                 desc: The value to compare the blast resistance of the block to.
                                 type: integer
                             }
-			}
+            }
                         "string-origins:block": {
                             block: {
                                 desc: ID of the block that this block needs to be to pass the check.
@@ -971,50 +971,45 @@
                                 type: string
                             }
                         }
-			"origins:distance_from_coordinates": {
-			    reference: {
+                        "origins:distance_from_coordinates": {
+                            reference: {
                                 desc: The point to compare the distance to.
-                                type: string
-                                allow: *a-z0-9_\/:.-
-				default: "world_origin"
+                                enum: ["world_origin", "world_spawn"]
                             }
-			    offset: {
+                            offset: {
                                 desc: If specified, determines how much the reference point should be offset.
-				link: vector
+                                link: vector
                             }
-			    ignore_x: {
+                            ignore_x: {
                                 desc: Determines whether to consider the X axis to be 0.
-				type: boolean
-				default: false
+                                type: boolean
                             }
-			    ignore_y: {
+                            ignore_y: {
                                 desc: Determines whether to consider the Y axis to be 0.
-				type: boolean
-				default: false
+                                type: boolean
                             }
-			    ignore_z: {
+                            ignore_z: {
                                 desc: Determines whether to consider the Z axis to be 0.
-				type: boolean
-				default: false
+                                type: boolean
                             }
-			    shape: {
+                            shape: {
                                 desc: Determines the shape of the check. Accepts "cube", "star" or "sphere".
                                 enum: ["cube", "star", "sphere"]
                             }
-			    scale_reference_to_dimension: {
+                            scale_reference_to_dimension: {
                                 desc: Determines whether to check for the reference point whilst considering the coordinate scale of the dimension.
-				type: boolean
-				default: true
+                                type: boolean
+                                default: true
                             }
-			    result_on_the_wrong_dimension: {
+                            result_on_the_wrong_dimension: {
                                 desc: If specified, this value will override the result of the comparison if the block being tested is not in the reference's dimension.
-				type: boolean
+                                type: boolean
                             }
-			    round_to_digit: {
+                            round_to_digit: {
                                 desc: If specified, rounds the result to the closest number with the specified amount of digits after the comma. Negative numbers also work.
                                 type: integer
                             }
-			    comparison: {
+                            comparison: {
                                 desc: Determines how the calculated distance is compared to the specified value.
                                 link: comparison
                             }
@@ -1022,7 +1017,7 @@
                                 desc: The value to compare the calculated distance to.
                                 type: number
                             }
-			}
+                        }
                         "string-origins:exposed_to_sky": {}
                         "string-origins:fluid": {
                             fluid_condition: {
@@ -1030,8 +1025,8 @@
                                 link: fluid_cond
                             }
                         }
-			"string-origins:hardness": {
-			    comparison: {
+                        "string-origins:hardness": {
+                            comparison: {
                                 desc: Determines how the hardness value of the block is compared to the specified value.
                                 link: comparison
                             }
@@ -1039,7 +1034,7 @@
                                 desc: The value to compare the hardness value of the block to.
                                 type: integer
                             }
-			}
+                        }
                         "string-origins:height": {
                             comparison: {
                                 desc: How the Y position of the block should be compared to the specified value.
@@ -1073,17 +1068,22 @@
                                 type: integer
                             }
                         }
-			"string-origins:material": {
-			    material: {
-                                desc: If specified, checks if the block classifies as this material.
-                                link: material
+                        "string-origins:material": {
+                            material: {
+                                desc: If specified, checks if the block classifies as this material. Click to see a list of valid materials.
+                                type: string
+                                allow: *a-z0-9_\/:.-
+                                href: https://origins.readthedocs.io/en/latest/misc/extras/materials/
                             }
                             materials: {
                                 desc: If specified, checks if the block classifies as one of these materials.
                                 type: list
-                                vals: {link: "material"}
+                                vals: {
+                                    type: string
+                                    allow: *a-z0-9_\/:.-
+                                }
                             }
-			}
+                        }
                         "string-origins:movement_blocking": {}
                         "string-origins:offset": {
                             condition: {
@@ -1093,22 +1093,19 @@
                             x: {
                                 desc: How much to offset the position on the x-axis. Defaults to 0.
                                 type: integer
-				default: 0
                             }
                             y: {
                                 desc: How much to offset the position on the y-axis. Defaults to 0.
                                 type: integer
-				default: 0
                             }
                             z: {
                                 desc: How much to offset the position on the z-axis. Defaults to 0.
                                 type: integer
-				default: 0
                             }
                         }
                         "string-origins:replacable": {}
-			"string-origins:slipperiness": {
-			    comparison: {
+                        "string-origins:slipperiness": {
+                            comparison: {
                                 desc: Determines how the slipperiness value of the block is compared to the specified value.
                                 link: comparison
                             }
@@ -1116,7 +1113,7 @@
                                 desc: The value to compare the slipperiness value of the block to.
                                 type: integer
                             }
-			}
+                        }
                         "string-origins:water_loggable": {}
                     }
                 }
@@ -1333,13 +1330,13 @@
                         origins:and
                         origins:chance
                         origins:choice
-			origins:delay
+                        origins:delay
                         origins:if_else
                         origins:if_else_list
                         origins:invert
                         origins:actor_action
                         origins:add_velocity
-			origins:damage
+                        origins:damage
                         origins:mount
                         origins:set_in_love
                         origins:tame
@@ -1384,7 +1381,7 @@
                                 }
                             }
                         }
-						"string-origins:delay": {
+                        "string-origins:delay": {
                             action: {
                                 desc: The action which will be executed after the delay.
                                 link: bi_entity_action
@@ -1457,7 +1454,7 @@
                                 type: boolean
                             }
                         }
-			"string-origins:damage": {
+                        "string-origins:damage": {
                             amount: {
                                 desc: The amount of damage to deal.
                                 type: number
@@ -1625,8 +1622,8 @@
                                 enum: [
                                     world
                                     local
-				    local_horizontal
-				    local_horizontal_normalized
+                                    local_horizontal
+                                    local_horizontal_normalized
                                     velocity
                                     velocity_normalized
                                     velocity_horizontal
@@ -1970,7 +1967,7 @@
             props: {
                 type: {
                     enum: [
-						origins:nothing
+                        origins:nothing
                         origins:and
                         origins:chance
                         origins:choice
@@ -1982,7 +1979,7 @@
                         origins:modify
                     ]
                     more: {
-						"string-origins:nothing": {}
+                        "string-origins:nothing": {}
                         "string-origins:and": {
                             actions: {
                                 desc: These actions will be executed one after the other (but in the same tick).
@@ -2020,7 +2017,7 @@
                                 }
                             }
                         }
-						"string-origins:delay": {
+                        "string-origins:delay": {
                             action: {
                                 desc: The action which will be executed after the delay.
                                 link: item_action
@@ -2096,7 +2093,7 @@
             props: {
                 type: {
                     enum: [
-			origins:nothing
+                        origins:nothing
                         origins:and
                         origins:chance
                         origins:choice
@@ -2104,15 +2101,15 @@
                         origins:if_else
                         origins:if_else_list
                         origins:add_block
-			origins:bonemeal
+                        origins:bonemeal
                         origins:execute_command
-			origins:explode
-			origins:modify_block_state
+                        origins:explode
+                        origins:modify_block_state
                         origins:offset
                         origins:set_block
                     ]
                     more: {
-						"string-origins:nothing": {}
+                        "string-origins:nothing": {}
                         "string-origins:and": {
                             actions: {
                                 desc: These actions will be executed one after the other (but in the same tick).
@@ -2150,7 +2147,7 @@
                                 }
                             }
                         }
-						"string-origins:delay": {
+                        "string-origins:delay": {
                             action: {
                                 desc: The action which will be executed after the delay.
                                 link: block_action
@@ -2200,7 +2197,7 @@
                                 allow: *a-z0-9_\/:.-
                             }
                         }
-			"string-origins:bonemeal": {
+                        "string-origins:bonemeal": {
                             effects: {
                                 desc: Determines if the particle and other visual effects of the bonemeal-ing action should appear.
                                 type: boolean
@@ -2220,7 +2217,7 @@
                                 default: 4
                             }
                         }
-			"string-origins:explode": {
+                        "string-origins:explode": {
                             power: {
                                 desc: Determines the power of the explosion.
                                 type: number
@@ -2247,17 +2244,17 @@
                                 type: boolean
                             }
                         }
-			"string-origins:modify_block_state": {
-			    property: {
+                        "string-origins:modify_block_state": {
+                            property: {
                                 desc: The name of the property that should be checked. Examples are facing or age. See: Block States (MC Wiki)
                                 type: string
                             }
                             operation: {
                                 desc: Determines how the value specified in the change field is operated on the specified property. Accepts "add" or "set".
                                 enum: ["add", "set"]
-				default: "add"
+                                default: 0
                             }
-			    change: {
+                            change: {
                                 desc: If specified, the value to add, remove or set to/from the specified property if the specified property is an integer.
                                 type: integer
                             }
@@ -2772,7 +2769,7 @@
                                 desc: If set, the specified item stack will be given to the player.
                                 link: item_stack
                             }
-							result_from_on_stack: {
+                            result_from_on_stack: {
                                 desc: Determines how many items based on the on_item stack will be given as a result for using an item on an item. Mostly to be used in conjunction with result_item_action.
                                 type: integer
                             }
@@ -2916,13 +2913,17 @@
                         }
                         "string-origins:particle": {
                             particle: {
-                                desc: ID of the particle type to use.
+                                desc: The particle type that will be spawned.
                                 type: string
                                 allow: *a-z0-9_#\/:.-
                             }
                             frequency: {
-                                desc: How often the particles should spawn (interval in ticks).
+                                desc: Determines how often the particles should spawn (interval in ticks).
                                 type: integer
+                            }
+                            visible_in_first_person: {
+                                desc: Determines whether the particle should be visible in first person.
+                                type: boolean
                             }
                         }
                         "string-origins:phasing": {
@@ -3126,7 +3127,7 @@
                                 desc: Which active key this power should respond to. If none is specified, this power will use the primary active power key (by default G).
                                 link: key
                             }
-							retain_state: {
+                            retain_state: {
                                 desc: Whether this power switches back to default if the condition is no longer met.
                                 type: boolean
                                 default: true
@@ -3595,7 +3596,7 @@
                                 desc: If specified, the specified modifier(s) and/or action(s) will only apply if either or both 'actor' and 'target' fulfills this bi-entity condition type.
                                 link: bi_entity_cond
                             }
-							damage_condition: {
+                            damage_condition: {
                                 desc: If set, the modifiers will only apply to damage which satisfies this condition.
                                 link: damage_cond
                             }
@@ -3612,7 +3613,7 @@
                                 type: list
                                 vals: {link: "a_mod"}
                             }
-							bientity_action: {
+                            bientity_action: {
                                 desc: If specified, this bi-entity action type will be executed on either or both 'actor' and 'target'.
                                 link: bi_entity_action
                             }
@@ -3626,7 +3627,7 @@
                             }
                         }
                         "string-origins:modify_damage_taken": {
-							bientity_condition: {
+                            bientity_condition: {
                                 desc: If specified, the specified modifier(s) and/or action(s) will only apply if either or both 'actor' and 'target' fulfills this bi-entity condition type.
                                 link: bi_entity_cond
                             }
@@ -3643,7 +3644,7 @@
                                 type: list
                                 vals: {link: "a_mod"}
                             }
-							bientity_action: {
+                            bientity_action: {
                                 desc: If specified, this bi-entity action type will be executed on either or both 'actor' and 'target'.
                                 link: bi_entity_action
                             }
@@ -3698,11 +3699,11 @@
                                 desc: If set, the modifiers will only apply to food items which satisfy this condition.
                                 link: item_cond
                             }
-							item_action: {
+                            item_action: {
                                 desc: If specified, this item action type will be executed on the remaining item stacks that was consumed.
                                 link: item_action
                             }
-							replace_stack: {
+                            replace_stack: {
                                 desc: If specified, this item stack will replace the item stack that was consumed after consuming it.
                                 link: item_stack
                             }
@@ -3732,7 +3733,7 @@
                                 desc: If set to true, makes it so that the food item can still be eaten regardless if the player's hunger bar is full.
                                 type: boolean
                             }
-			    prevent_effects: {
+                            prevent_effects: {
                                 desc: If set to true, prevent status effects from being applied.
                                 type: boolean
                             }
@@ -3905,7 +3906,7 @@
                                 desc: If set, only entities which fulfill this condition will be invisible.
                                 link: entity_cond
                             }
-							bientity_condition: {
+                            bientity_condition: {
                                 desc: If set, only entities which fulfill this bi-entity condition in relation to the power holder will be invisible for the player with this power.
                                 link: bi_entity_cond
                             }
@@ -4215,8 +4216,8 @@
             enum: ["<", "<=", ">", ">=", "==", "!="]
             default: 3
         }
-	vector: {
-            desc: An Object that specifies the X, Y and Z coordinates of a certain point in space.
+        vector: {
+            desc: An object that specifies the X, Y and Z coordinates of a certain point in space.
             type: object
             props: {
                 x: {
@@ -4233,22 +4234,6 @@
                     desc: The X coordinate of the point.
                     type: number
                     default: 0
-                }
-            }
-        }
-	particle: {
-            desc: An Object that specifies the X, Y and Z coordinates of a certain point in space.
-            type: object
-            props: {
-                type: {
-                    desc: The namespace and ID of the particle type.
-                    type: string
-                    allow: *a-z0-9_#\/:.-
-                }
-                params: {
-                    desc: The additional parameter for the particle type.
-                    type: string
-                    allow: *a-z0-9_#\/:.-
                 }
             }
         }

@@ -812,6 +812,13 @@
                                 allow: *a-z0-9_#\/:.-
                             }
                         }
+                        "string-origins:power": {
+                            power: {
+                                desc: The ID of an power to check for on the player.
+                                type: string
+                                allow: *a-z0-9_#\/:.-
+                            }
+                        }
                     }
                 }
             }
