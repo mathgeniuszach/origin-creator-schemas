@@ -2727,6 +2727,7 @@
                         origins:prevent_entity_render
                         origins:prevent_entity_use
                         origins:prevent_feature_render
+                        origins:prevent_game_event
                         origins:prevent_item_use
                         origins:prevent_sleep
                     ]
@@ -4344,6 +4345,31 @@
                                     type: string
                                     allow: *a-z0-9_#\/:.-
                                 }
+                            }
+                        }
+                        "string-origins:prevent_game_event": {
+                            event: {
+                                desc: If specified, the game event with this namespace and ID will be prevent from being emitted by the entity.
+                                href: https://origins.readthedocs.io/en/latest/types/power_types/prevent_game_event/
+                                type: string
+                                allow: *a-z0-9_#\/:.-
+                            }
+                            events: {
+                                desc: If specified, the game events with these namespace and IDs will be prevent from being emitted by the entity.
+                                type: list
+                                vals: {
+                                    type: string
+                                    allow: *a-z0-9_#\/:.-
+                                }
+                            }
+                            tag: {
+                                desc: If specified, the game events inside game event tag will be prevented from being emitted by the entity.
+                                type: string
+                                allow: *a-z0-9_#\/:.-
+                            }
+                            entity_action: {
+                                desc: If specified, this action will be executed on the entity upon preventing game events.
+                                link: entity_action
                             }
                         }
                         "string-origins:prevent_item_use": {

@@ -98,56 +98,56 @@
                 props: {
                     trigger: {
                         enum: [
-                            bee_nest_destroyed
-                            bred_animals
-                            brewed_potion
-                            changed_dimension
-                            channeled_lightning
-                            construct_beacon
-                            consume_item
-                            cured_zombie_villager
-                            effects_changed
-                            enchanted_item
-                            enter_block
-                            entity_hurt_player
-                            entity_killed_player
-                            fall_from_height
-                            filled_bucket
-                            fishing_rod_hooked
-                            hero_of_the_village
-                            impossible
-                            inventory_changed
-                            item_durability_changed
-                            item_used_on_block
-                            killed_by_crossbow
-                            levitation
-                            lightning_strike
-                            location
-                            nether_travel
-                            placed_block
-                            player_generates_container_loot
-                            player_hurt_entity
-                            player_interacted_with_entity
-                            player_killed_entity
-                            recipe_unlocked
-                            ride_entity_in_lava
-                            shot_crossbow
-                            slept_in_bed
-                            slide_down_block
-                            started_riding
-                            summoned_entity
-                            tame_animal
-                            target_hit
-                            thrown_item_picked_up_by_entity
-                            tick
-                            used_ender_eye
-                            used_totem
-                            using_item
-                            villager_trade
-                            voluntary_exile
+                            minecraft:bee_nest_destroyed
+                            minecraft:bred_animals
+                            minecraft:brewed_potion
+                            minecraft:changed_dimension
+                            minecraft:channeled_lightning
+                            minecraft:construct_beacon
+                            minecraft:consume_item
+                            minecraft:cured_zombie_villager
+                            minecraft:effects_changed
+                            minecraft:enchanted_item
+                            minecraft:enter_block
+                            minecraft:entity_hurt_player
+                            minecraft:entity_killed_player
+                            minecraft:fall_from_height
+                            minecraft:filled_bucket
+                            minecraft:fishing_rod_hooked
+                            minecraft:hero_of_the_village
+                            minecraft:impossible
+                            minecraft:inventory_changed
+                            minecraft:item_durability_changed
+                            minecraft:item_used_on_block
+                            minecraft:killed_by_crossbow
+                            minecraft:levitation
+                            minecraft:lightning_strike
+                            minecraft:location
+                            minecraft:nether_travel
+                            minecraft:placed_block
+                            minecraft:player_generates_container_loot
+                            minecraft:player_hurt_entity
+                            minecraft:player_interacted_with_entity
+                            minecraft:player_killed_entity
+                            minecraft:recipe_unlocked
+                            minecraft:ride_entity_in_lava
+                            minecraft:shot_crossbow
+                            minecraft:slept_in_bed
+                            minecraft:slide_down_block
+                            minecraft:started_riding
+                            minecraft:summoned_entity
+                            minecraft:tame_animal
+                            minecraft:target_hit
+                            minecraft:thrown_item_picked_up_by_entity
+                            minecraft:tick
+                            minecraft:used_ender_eye
+                            minecraft:used_totem
+                            minecraft:using_item
+                            minecraft:villager_trade
+                            minecraft:voluntary_exile
                         ]
                         more: {
-                            string-bee_nest_destroyed: {
+                            string-minecraft:bee_nest_destroyed: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -174,7 +174,7 @@
                                     }
                                 }
                             }
-                            string-bred_animals: {
+                            string-minecraft:bred_animals: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -201,7 +201,7 @@
                                     }
                                 }
                             }
-                            string-brewed_potion: {
+                            string-minecraft:brewed_potion: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -219,7 +219,7 @@
                                     }
                                 }
                             }
-                            string-changed_dimension: {
+                            string-minecraft:changed_dimension: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -241,7 +241,7 @@
                                     }
                                 }
                             }
-                            string-channeled_lightning: {
+                            string-minecraft:channeled_lightning: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -261,7 +261,7 @@
                                     }
                                 }
                             }
-                            string-construct_beacon: {
+                            string-minecraft:construct_beacon: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -278,7 +278,7 @@
                                     }
                                 }
                             }
-                            string-consume_item: {
+                            string-minecraft:consume_item: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -295,7 +295,7 @@
                                     }
                                 }
                             }
-                            string-cured_zombie_villager: {
+                            string-minecraft:cured_zombie_villager: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -317,7 +317,7 @@
                                     }
                                 }
                             }
-                            string-effects_changed: {
+                            string-minecraft:effects_changed: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -352,7 +352,7 @@
                                     }
                                 }
                             }
-                            string-enchanted_item: {
+                            string-minecraft:enchanted_item: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -374,7 +374,7 @@
                                     }
                                 }
                             }
-                            string-enter_block: {
+                            string-minecraft:enter_block: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -399,7 +399,7 @@
                                     }
                                 }
                             }
-                            string-entity_hurt_player: {
+                            string-minecraft:entity_hurt_player: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -415,7 +415,7 @@
                                     }
                                 }
                             }
-                            string-entity_killed_player: {
+                            string-minecraft:entity_killed_player: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -437,7 +437,7 @@
                                     }
                                 }
                             }
-                            string-fall_from_height: {
+                            string-minecraft:fall_from_height: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -459,7 +459,7 @@
                                     }
                                 }
                             }
-                            string-filled_bucket: {
+                            string-minecraft:filled_bucket: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -476,7 +476,7 @@
                                     }
                                 }
                             }
-                            string-fishing_rod_hooked: {
+                            string-minecraft:fishing_rod_hooked: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -503,7 +503,7 @@
                                     }
                                 }
                             }
-                            string-hero_of_the_village: {
+                            string-minecraft:hero_of_the_village: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -520,8 +520,8 @@
                                     }
                                 }
                             }
-                            string-impossible: {}
-                            string-inventory_changed: {
+                            string-minecraft:impossible: {}
+                            string-minecraft:inventory_changed: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -561,7 +561,7 @@
                                     }
                                 }
                             }
-                            string-item_durability_changed: {
+                            string-minecraft:item_durability_changed: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -588,7 +588,7 @@
                                     }
                                 }
                             }
-                            string-item_used_on_block: {
+                            string-minecraft:item_used_on_block: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -610,7 +610,7 @@
                                     }
                                 }
                             }
-                            string-killed_by_crossbow: {
+                            string-minecraft:killed_by_crossbow: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -634,7 +634,7 @@
                                     }
                                 }
                             }
-                            string-levitation: {
+                            string-minecraft:levitation: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -655,7 +655,7 @@
                                     }
                                 }
                             }
-                            string-lightning_strike: {
+                            string-minecraft:lightning_strike: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -677,7 +677,7 @@
                                     }
                                 }
                             }
-                            string-location: {
+                            string-minecraft:location: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -694,7 +694,7 @@
                                     }
                                 }
                             }
-                            string-nether_travel: {
+                            string-minecraft:nether_travel: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -721,7 +721,7 @@
                                     }
                                 }
                             }
-                            string-placed_block: {
+                            string-minecraft:placed_block: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -755,7 +755,7 @@
                                     }
                                 }
                             }
-                            string-player_generates_container_loot: {
+                            string-minecraft:player_generates_container_loot: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -772,7 +772,7 @@
                                     }
                                 }
                             }
-                            string-player_hurt_entity: {
+                            string-minecraft:player_hurt_entity: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -793,7 +793,7 @@
                                     }
                                 }
                             }
-                            string-player_interacted_with_entity: {
+                            string-minecraft:player_interacted_with_entity: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -815,7 +815,7 @@
                                     }
                                 }
                             }
-                            string-player_killed_entity: {
+                            string-minecraft:player_killed_entity: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -836,7 +836,7 @@
                                     }
                                 }
                             }
-                            string-recipe_unlocked: {
+                            string-minecraft:recipe_unlocked: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -853,7 +853,7 @@
                                     }
                                 }
                             }
-                            string-ride_entity_in_lava: {
+                            string-minecraft:ride_entity_in_lava: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -875,7 +875,7 @@
                                     }
                                 }
                             }
-                            string-shot_crossbow: {
+                            string-minecraft:shot_crossbow: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -892,7 +892,7 @@
                                     }
                                 }
                             }
-                            string-slept_in_bed: {
+                            string-minecraft:slept_in_bed: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -909,7 +909,7 @@
                                     }
                                 }
                             }
-                            string-slide_down_block: {
+                            string-minecraft:slide_down_block: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -926,7 +926,7 @@
                                     }
                                 }
                             }
-                            string-started_riding: {
+                            string-minecraft:started_riding: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -938,7 +938,7 @@
                                     }
                                 }
                             }
-                            string-summoned_entity: {
+                            string-minecraft:summoned_entity: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -955,7 +955,7 @@
                                     }
                                 }
                             }
-                            string-tame_animal: {
+                            string-minecraft:tame_animal: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -972,7 +972,7 @@
                                     }
                                 }
                             }
-                            string-target_hit: {
+                            string-minecraft:target_hit: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -999,7 +999,7 @@
                                     }
                                 }
                             }
-                            string-thrown_item_picked_up_by_entity: {
+                            string-minecraft:thrown_item_picked_up_by_entity: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -1021,7 +1021,7 @@
                                     }
                                 }
                             }
-                            string-tick: {
+                            string-minecraft:tick: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -1033,7 +1033,7 @@
                                     }
                                 }
                             }
-                            string-used_ender_eye: {
+                            string-minecraft:used_ender_eye: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -1050,7 +1050,7 @@
                                     }
                                 }
                             }
-                            string-used_totem: {
+                            string-minecraft:used_totem: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -1067,7 +1067,7 @@
                                     }
                                 }
                             }
-                            string-using_item: {
+                            string-minecraft:using_item: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -1084,7 +1084,7 @@
                                     }
                                 }
                             }
-                            string-villager_trade: {
+                            string-minecraft:villager_trade: {
                                 conditions: {
                                     type: object
                                     props: {
@@ -1106,7 +1106,7 @@
                                     }
                                 }
                             }
-                            string-voluntary_exile: {
+                            string-minecraft:voluntary_exile: {
                                 conditions: {
                                     type: object
                                     props: {
