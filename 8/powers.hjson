@@ -3527,11 +3527,11 @@
                             }
                             entity_action: {
                                 desc: If specified, this entity action type will be executed if all conditions are met.
-                                type: entity_action
+                                link: entity_action
                             }
                             block_action: {
                                 desc: If specified, the used block will run this action if all conditions are met.
-                                type: block_action
+                                link: block_action
                             }
                             result_stack: {
                                 desc: If specified, gives the item to the 'actor' (the player that has the power) entity.
