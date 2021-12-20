@@ -358,12 +358,6 @@
                                 type: integer
                                 default: 1
                             }
-                            permission_level: {
-                                desc: The permission level to use for the command. 0 is a "survival player", anything higher emulates some form of operator. Click for more details.
-                                href: https://minecraft.fandom.com/wiki/Server.properties#op-permission-level
-                                type: integer
-                                default: 4
-                            }
                         }
                         "string-origins:creative_flying": {}
                         "string-origins:daytime": {}
@@ -2486,12 +2480,6 @@
                                 desc: The command to execute.
                                 type: string
                                 ext: true
-                            }
-                            permission_level: {
-                                desc: The permission level to use for the command. 0 is a "survival player", anything higher emulates some form of operator. Click to see tje Minecraft Wiki (op-permission-level) for details.
-                                href: https://minecraft.fandom.com/wiki/Server.properties#op-permission-level
-                                type: integer
-                                default: 4
                             }
                         }
                         "string-origins:explode": {
