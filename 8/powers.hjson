@@ -2191,7 +2191,7 @@
                             }
                             count: {
                                 desc: How much of the specified particle type will be spawned.
-                                type: int
+                                type: integer
                                 min: 1
                                 default: 1
                             }
