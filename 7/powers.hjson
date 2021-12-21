@@ -846,6 +846,7 @@
                         origins:light_blocking
                         origins:light_level
                         origins:movement_blocking
+                        origins:nbt
                         origins:offset
                         origins:replacable
                         origins:water_loggable
@@ -959,6 +960,13 @@
                             }
                         }
                         "string-origins:movement_blocking": {}
+                        "string-origins:nbt": {
+                            nbt: {
+                                desc: The NBT data to check for
+                                type: string
+                                ext: true
+                            }
+                        }
                         "string-origins:offset": {
                             condition: {
                                 desc: The condition to check with the given offset.
