@@ -358,12 +358,6 @@
                                 type: integer
                                 default: 1
                             }
-                            permission_level: {
-                                desc: The permission level to use for the command. 0 is a "survival player", anything higher emulates some form of operator. Click for more details.
-                                href: https://minecraft.fandom.com/wiki/Server.properties#op-permission-level
-                                type: integer
-                                default: 4
-                            }
                         }
                         "string-origins:creative_flying": {}
                         "string-origins:daytime": {}
@@ -1022,6 +1016,7 @@
                         origins:light_level
                         origins:material
                         origins:movement_blocking
+                        origins:nbt
                         origins:offset
                         origins:replacable
                         origins:slipperiness
@@ -1105,7 +1100,7 @@
                                 type: string
                             }
                         }
-                        "origins:distance_from_coordinates": {
+                        "string-origins:distance_from_coordinates": {
                             reference: {
                                 desc: The point to compare the distance to.
                                 enum: ["world_origin", "world_spawn"]
@@ -1219,6 +1214,13 @@
                             }
                         }
                         "string-origins:movement_blocking": {}
+                        "string-origins:nbt": {
+                            nbt: {
+                                desc: The NBT data to check for
+                                type: string
+                                ext: true
+                            }
+                        }
                         "string-origins:offset": {
                             condition: {
                                 desc: The condition to check with the given offset.
@@ -2197,7 +2199,7 @@
                             }
                             count: {
                                 desc: How much of the specified particle type will be spawned.
-                                type: int
+                                type: integer
                                 min: 1
                                 default: 1
                             }
@@ -2486,12 +2488,6 @@
                                 desc: The command to execute.
                                 type: string
                                 ext: true
-                            }
-                            permission_level: {
-                                desc: The permission level to use for the command. 0 is a "survival player", anything higher emulates some form of operator. Click to see tje Minecraft Wiki (op-permission-level) for details.
-                                href: https://minecraft.fandom.com/wiki/Server.properties#op-permission-level
-                                type: integer
-                                default: 4
                             }
                         }
                         "string-origins:explode": {
