@@ -1100,7 +1100,7 @@
                                 type: string
                             }
                         }
-                        "origins:distance_from_coordinates": {
+                        "string-origins:distance_from_coordinates": {
                             reference: {
                                 desc: The point to compare the distance to.
                                 enum: ["world_origin", "world_spawn"]
