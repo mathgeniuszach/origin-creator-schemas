@@ -747,7 +747,7 @@
                             name: {
                                 desc: The ID of another predicate to test.
                                 type: string
-                                allow: *a-z0-9#\/:.-
+                                allow: *a-z0-9_#\/:.-
                             }
                         }
                         "string-minecraft:survives_explosion": {}
