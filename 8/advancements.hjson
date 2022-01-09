@@ -146,6 +146,7 @@
                             minecraft:using_item
                             minecraft:villager_trade
                             minecraft:voluntary_exile
+                            origins:chose_origin
                         ]
                         more: {
                             "string-minecraft:bee_nest_destroyed": {
@@ -1120,6 +1121,18 @@
                                             desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
                                             id: predicates-7
                                             link: entity_preds
+                                        }
+                                    }
+                                }
+                            }
+                            "string-origins:chose_origin": {
+                                conditions: {
+                                    type: object
+                                    props: {
+                                        origin: {
+                                            desc: The origin that was chosen.
+                                            type: string
+                                            allow: *a-z0-9_\/:.-
                                         }
                                     }
                                 }

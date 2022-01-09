@@ -2250,7 +2250,7 @@
                         origins:and
                         origins:chance
                         origins:choice
-                        oorigins:delay
+                        origins:delay
                         origins:if_else
                         origins:if_else_list
                         origins:consume
