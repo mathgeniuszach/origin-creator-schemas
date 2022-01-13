@@ -2502,7 +2502,7 @@
                             }
                             entity_action: {
                                 desc: If set, this action will be executed on the player after they used an item on an item.
-                                link: item_action
+                                link: entity_action
                             }
                         }
                         "string-origins:launch": {
