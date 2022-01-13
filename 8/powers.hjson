@@ -3358,6 +3358,11 @@
                                 desc: When the status effects are applied, their duration will be stacks * duration_per_stack in ticks.
                                 type: integer
                             }
+                            tick_rate: {
+                                desc: Determines how fast the power will gain/lose stacks in ticks.
+                                type: integer
+                                default: 10
+                            }
                             effect: {
                                 desc: If set, this status effect will be applied by this power.
                                 link: effect
