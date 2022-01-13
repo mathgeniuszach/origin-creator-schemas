@@ -3080,7 +3080,7 @@
                             slots: {
                                 desc: If specified, only make the items that are in the listed inventory slots persist in the entity's inventory. See Positioned Item Stack Slots for possible values.
                                 type: list
-                                vals: {type: "int"}
+                                vals: {type: "integer"}
                             }
                         }
                         "string-origins:launch": {
