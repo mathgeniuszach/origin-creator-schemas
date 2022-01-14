@@ -4258,6 +4258,10 @@
                                 desc: If specified, gives an item stack to the player.
                                 link: item_stack
                             }
+                            held_item_action: {
+                                desc: If specified, this action will be executed on the item used for right-clicking the 'target' (the entity that has the power) entity in the 'actor' (player) entity's specified hand(s) determined by the hands string array field.
+                                link: item_action
+                            }
                             result_item_action: {
                                 desc: If specified, executes an item action on the given item stack.
                                 link: item_action
