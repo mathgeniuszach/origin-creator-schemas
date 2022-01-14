@@ -3524,7 +3524,7 @@
                             hands: {
                                 desc: Determines if the power should be activated if the player used the specified hand(s). Accepts "off_hand", "main_hand" or both. Defaults to both.
                                 type: list
-                                vals: {enum: ["off_hand", "main_hand"]}
+                                vals: {type: "string"}
                             }
                             entity_action: {
                                 desc: If specified, this entity action type will be executed if all conditions are met.
