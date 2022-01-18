@@ -623,7 +623,7 @@
                             }
                         }
                         "string-origins:power_type": {
-                            power: {
+                            power_type: {
                                 desc: The namespace and ID of a power type of some power to check that the player has.
                                 type: string
                                 allow: *a-z0-9_\/:.-
