@@ -621,10 +621,6 @@
                                 allow: *a-z0-9_\/:.-
                                 ns: true
                             }
-                            source: {
-                                desc: ID of the source of the power the player needs to have to pass the check.
-                                type: string
-                            }
                         }
                         "string-origins:power_type": {
                             power: {
