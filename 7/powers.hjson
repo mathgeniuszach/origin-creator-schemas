@@ -593,15 +593,6 @@
                                 desc: If specified, only check for the entities that fulfills the bi-entity condition.
                                 link: bi_entity_cond
                             }
-                            comparison: {
-                                desc: How the amount of entities currently being ridden should be compared to the specified value.
-                                link: comparison
-                            }
-                            compare_to: {
-                                desc: Which value the amount of entities currently being ridden should be compared to.
-                                type: integer
-                                default: 1
-                            }
                         }
                         "string-origins:saturation_level": {
                             comparison: {
