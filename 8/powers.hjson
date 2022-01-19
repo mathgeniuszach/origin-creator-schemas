@@ -1566,10 +1566,12 @@
                             client: {
                                 desc: If this is false, the action will not execute on the client.
                                 type: boolean
+                                default: true
                             }
                             server: {
                                 desc: If this is false, the action will not execute on the server.
                                 type: boolean
+                                default: true
                             }
                             set: {
                                 desc: If this is true, the action will act as a "set" velocity action, overriding the entity's current velocity instead of adding to it.
@@ -1757,6 +1759,16 @@
                                     velocity_horizontal
                                     velocity_horizontal_normalized
                                 ]
+                            }
+                            client: {
+                                desc: If this is false, the action will not execute on the client.
+                                type: boolean
+                                default: true
+                            }
+                            server: {
+                                desc: If this is false, the action will not execute on the server.
+                                type: boolean
+                                default: true
                             }
                             set: {
                                 desc: If this is true, the action will act as a "set" velocity action, overriding the entity's current velocity instead of adding to it.
