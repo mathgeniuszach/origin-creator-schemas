@@ -1563,6 +1563,14 @@
                                 desc: The amount of velocity to add on the z-axis. Defaults to 0.
                                 type: number
                             }
+                            client: {
+                                desc: If this is false, the action will not execute on the client.
+                                type: boolean
+                            }
+                            server: {
+                                desc: If this is false, the action will not execute on the server.
+                                type: boolean
+                            }
                             set: {
                                 desc: If this is true, the action will act as a "set" velocity action, overriding the entity's current velocity instead of adding to it.
                                 type: boolean
