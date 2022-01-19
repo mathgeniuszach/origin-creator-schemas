@@ -2218,7 +2218,13 @@
                                 type: number
                             }
                         }
-                        "string-origins:swing_hand": {}
+                        "string-origins:swing_hand": {
+                            hand: {
+                                desc: Determines which hand is swung.
+                                enum: ["MAIN_HAND", "OFF_HAND"]
+                                default: 0
+                            }
+                        }
                         "string-origins:toggle": {
                             power: {
                                 desc: The namespace and ID of a power that uses the origins:toggle power type to toggle the state of.
