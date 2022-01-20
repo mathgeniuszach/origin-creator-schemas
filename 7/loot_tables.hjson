@@ -109,12 +109,13 @@
             "gift" for a cat or villager gift,
             "advancement_reward" if it's used as a reward for an advancement,
             "barter" for loot from bartering with piglins,
-            "command" for /execute, selector for predicate= in selectors,
+            "command" for /execute,
+            "selector" for predicate= in selectors,
             "advancement_entity" for entity predicates in advancements or
             "generic" if none of the above apply.
             '''
-            enum: ["empty", "entity", "block", "chest", "fishing", "gift", "advancement_reward", "barter", "command", "advancement_entity", "generic"]
-            default: generic
+            enum: ["minecraft:empty", "minecraft:entity", "minecraft:block", "minecraft:chest", "minecraft:fishing", "minecraft:gift", "minecraft:advancement_reward", "minecraft:barter", "minecraft:command", "minecraft:selector", "minecraft:advancement_entity", "minecraft:generic"]
+            default: minecraft:generic
         }
         functions: {
             desc: Applies functions to all item stacks produced by this table. Functions are applied in order, so for example looting_enchant must be after set_count to work correctly. I believe this is 1.17+ only.

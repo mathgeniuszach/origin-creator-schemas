@@ -621,13 +621,9 @@
                                 allow: *a-z0-9_\/:.-
                                 ns: true
                             }
-                            source: {
-                                desc: ID of the source of the power the player needs to have to pass the check.
-                                type: string
-                            }
                         }
                         "string-origins:power_type": {
-                            power: {
+                            power_type: {
                                 desc: The namespace and ID of a power type of some power to check that the player has.
                                 type: string
                                 allow: *a-z0-9_\/:.-
@@ -751,29 +747,11 @@
                                 desc: If specified, only check for the entities that fulfills the bi-entity condition.
                                 link: bi_entity_cond
                             }
-                            comparison: {
-                                desc: How the amount of entities currently being ridden should be compared to the specified value.
-                                link: comparison
-                            }
-                            compare_to: {
-                                desc: Which value the amount of entities currently being ridden should be compared to.
-                                type: integer
-                                default: 1
-                            }
                         }
                         "string-origins:riding": {
                             bientity_condition: {
                                 desc: If specified, only check for the entities that fulfills the bi-entity condition.
                                 link: bi_entity_cond
-                            }
-                            comparison: {
-                                desc: How the amount of entities currently being ridden should be compared to the specified value.
-                                link: comparison
-                            }
-                            compare_to: {
-                                desc: Which value the amount of entities currently being ridden should be compared to.
-                                type: integer
-                                default: 1
                             }
                         }
                         "string-origins:saturation_level": {
@@ -1585,6 +1563,16 @@
                                 desc: The amount of velocity to add on the z-axis. Defaults to 0.
                                 type: number
                             }
+                            client: {
+                                desc: If this is false, the action will not execute on the client.
+                                type: boolean
+                                default: true
+                            }
+                            server: {
+                                desc: If this is false, the action will not execute on the server.
+                                type: boolean
+                                default: true
+                            }
                             set: {
                                 desc: If this is true, the action will act as a "set" velocity action, overriding the entity's current velocity instead of adding to it.
                                 type: boolean
@@ -1771,6 +1759,16 @@
                                     velocity_horizontal
                                     velocity_horizontal_normalized
                                 ]
+                            }
+                            client: {
+                                desc: If this is false, the action will not execute on the client.
+                                type: boolean
+                                default: true
+                            }
+                            server: {
+                                desc: If this is false, the action will not execute on the server.
+                                type: boolean
+                                default: true
                             }
                             set: {
                                 desc: If this is true, the action will act as a "set" velocity action, overriding the entity's current velocity instead of adding to it.
@@ -2220,7 +2218,13 @@
                                 type: number
                             }
                         }
-                        "string-origins:swing_hand": {}
+                        "string-origins:swing_hand": {
+                            hand: {
+                                desc: Determines which hand is swung.
+                                enum: ["MAIN_HAND", "OFF_HAND"]
+                                default: 0
+                            }
+                        }
                         "string-origins:toggle": {
                             power: {
                                 desc: The namespace and ID of a power that uses the origins:toggle power type to toggle the state of.
@@ -3069,7 +3073,7 @@
                             }
                             entity_action: {
                                 desc: If set, this action will be executed on the player after they used an item on an item.
-                                link: item_action
+                                link: entity_action
                             }
                         }
                         "string-origins:keep_inventory": {
@@ -3080,7 +3084,7 @@
                             slots: {
                                 desc: If specified, only make the items that are in the listed inventory slots persist in the entity's inventory. See Positioned Item Stack Slots for possible values.
                                 type: list
-                                vals: {type: "int"}
+                                vals: {type: "integer"}
                             }
                         }
                         "string-origins:launch": {
@@ -3358,6 +3362,11 @@
                                 desc: When the status effects are applied, their duration will be stacks * duration_per_stack in ticks.
                                 type: integer
                             }
+                            tick_rate: {
+                                desc: Determines how fast the power will gain/lose stacks in ticks.
+                                type: integer
+                                default: 10
+                            }
                             effect: {
                                 desc: If set, this status effect will be applied by this power.
                                 link: effect
@@ -3519,7 +3528,7 @@
                             hands: {
                                 desc: Determines if the power should be activated if the player used the specified hand(s). Accepts "off_hand", "main_hand" or both. Defaults to both.
                                 type: list
-                                vals: {enum: ["off_hand", "main_hand"]}
+                                vals: {type: "string"}
                             }
                             entity_action: {
                                 desc: If specified, this entity action type will be executed if all conditions are met.
@@ -4252,6 +4261,10 @@
                             result_stack: {
                                 desc: If specified, gives an item stack to the player.
                                 link: item_stack
+                            }
+                            held_item_action: {
+                                desc: If specified, executes an item action on the item stack used for right-clicking the entity in the specified hand slot.
+                                link: item_action
                             }
                             result_item_action: {
                                 desc: If specified, executes an item action on the given item stack.

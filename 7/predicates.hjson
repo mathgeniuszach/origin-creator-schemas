@@ -163,7 +163,7 @@
         entity_preds: {
             or: [
                 {link: "entity_pred"}
-                {type: "list", vals: {link: "entity_pred"}}
+                {type: "list", vals: {link: "pred"}}
             ]
         }
         entity_pred: {

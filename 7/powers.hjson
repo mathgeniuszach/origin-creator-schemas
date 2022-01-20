@@ -587,29 +587,11 @@
                                 desc: If specified, only check for the entities that fulfills the bi-entity condition.
                                 link: bi_entity_cond
                             }
-                            comparison: {
-                                desc: How the amount of entities currently being ridden should be compared to the specified value.
-                                link: comparison
-                            }
-                            compare_to: {
-                                desc: Which value the amount of entities currently being ridden should be compared to.
-                                type: integer
-                                default: 1
-                            }
                         }
                         "string-origins:riding": {
                             bientity_condition: {
                                 desc: If specified, only check for the entities that fulfills the bi-entity condition.
                                 link: bi_entity_cond
-                            }
-                            comparison: {
-                                desc: How the amount of entities currently being ridden should be compared to the specified value.
-                                link: comparison
-                            }
-                            compare_to: {
-                                desc: Which value the amount of entities currently being ridden should be compared to.
-                                type: integer
-                                default: 1
                             }
                         }
                         "string-origins:saturation_level": {
@@ -2502,7 +2484,7 @@
                             }
                             entity_action: {
                                 desc: If set, this action will be executed on the player after they used an item on an item.
-                                link: item_action
+                                link: entity_action
                             }
                         }
                         "string-origins:launch": {
