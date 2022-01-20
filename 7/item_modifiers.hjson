@@ -270,6 +270,7 @@
                         minecraft:set_lore
                         minecraft:set_name
                         minecraft:set_nbt
+                        minecraft:set_potion
                         minecraft:set_stew_effect
                         apoli:add_power
                     ]
@@ -595,6 +596,14 @@
                                 desc: Tag string to add, similar to those used by commands. Note that the first bracket is required.
                                 type: string
                                 ext: true
+                            }
+                        }
+                        "string-minecraft:set_potion": {
+                            id: {
+                                desc: The potion ID.
+                                href: https://minecraft.fandom.com/wiki/Potion#Java_Edition
+                                type: string
+                                allow: *a-z0-9_#\/:.-
                             }
                         }
                         "string-minecraft:set_stew_effect": {
