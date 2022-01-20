@@ -109,11 +109,12 @@
             "gift" for a cat or villager gift,
             "advancement_reward" if it's used as a reward for an advancement,
             "barter" for loot from bartering with piglins,
-            "command" for /execute, selector for predicate= in selectors,
+            "command" for /execute,
+            "selector" for predicate= in selectors,
             "advancement_entity" for entity predicates in advancements or
             "generic" if none of the above apply.
             '''
-            enum: ["minecraft:empty", "minecraft:entity", "minecraft:block", "minecraft:chest", "minecraft:fishing", "minecraft:gift", "minecraft:advancement_reward", "minecraft:barter", "minecraft:command", "minecraft:advancement_entity", "minecraft:generic"]
+            enum: ["minecraft:empty", "minecraft:entity", "minecraft:block", "minecraft:chest", "minecraft:fishing", "minecraft:gift", "minecraft:advancement_reward", "minecraft:barter", "minecraft:command", "minecraft:selector", "minecraft:advancement_entity", "minecraft:generic"]
             default: minecraft:generic
         }
         functions: {
