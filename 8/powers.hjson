@@ -3248,7 +3248,7 @@
                         "string-origins:recipe": {
                             recipe: {
                                 id: recipes-6
-                                extend: recipe
+                                extend: recipe_limited
                                 shared: {
                                     id: {
                                         desc: A value to use specifying where to generate this recipe.
