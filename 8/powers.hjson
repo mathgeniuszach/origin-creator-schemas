@@ -3248,7 +3248,7 @@
                         "string-origins:recipe": {
                             recipe: {
                                 id: recipes-6
-                                link: power_recipe
+                                extend: power_recipe
                                 desc: The recipe to craft, including an id field which can be any arbitrary (but unique) identifier.
                             }
                         }
