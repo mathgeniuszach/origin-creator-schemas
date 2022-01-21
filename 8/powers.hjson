@@ -3248,14 +3248,8 @@
                         "string-origins:recipe": {
                             recipe: {
                                 id: recipes-6
-                                extend: recipe_limited
-                                shared: {
-                                    id: {
-                                        desc: A value to use specifying where to generate this recipe.
-                                        type: string
-                                        allow: *a-z0-9_#\/:.-
-                                    }
-                                }
+                                link: recipe_limited
+                                desc: The recipe to craft, including an id field which can be any arbitrary (but unique) identifier.
                             }
                         }
                         "string-origins:resource": {
