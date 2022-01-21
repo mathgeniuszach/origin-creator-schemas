@@ -27,9 +27,14 @@
                 count: {type: "integer", min: 1}
             }
         }
-        recipe_limited: {
+        power_recipe: {
             type: object
             props: {
+                id: {
+                    desc: A value to use specifying where to generate this recipe.
+                    type: string
+                    allow: *a-z0-9_#\/:.-
+                }
                 group: {
                     desc: A string identifier. Used to group multiple recipes together in the recipe book.
                     type: string
