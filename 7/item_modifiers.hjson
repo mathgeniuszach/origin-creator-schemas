@@ -240,8 +240,8 @@
             props: {
                 conditions: {
                     desc: Determines conditions for this function to be applied. If multiple conditions are specified, all must pass.
-                    type: list
-                    vals: {id: "predicates-7", link: "pred"}
+                    id: "predicates-7"
+                    link: "pred"
                 }
                 function: {
                     desc: Namespaced ID of the function to apply.
