@@ -630,6 +630,7 @@
             allow: *a-z0-9_#\/:.-
         }
         pred: {
+            type: object
             extra: {
                 nopanel: true
                 link: "single_pred"
