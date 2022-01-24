@@ -163,7 +163,7 @@
         entity_preds: {
             or: [
                 {link: "entity_pred"}
-                {type: "list", vals: {link: "pred"}}
+                {type: "list", vals: {link: "single_pred"}}
             ]
         }
         entity_pred: {
@@ -632,9 +632,9 @@
         pred: {
             type: list
             desc: A predicate.
-            vals: {link: "pred_single"}
+            vals: {link: "single_pred"}
         }
-        pred_single: {
+        single_pred: {
             type: object
             props: {
                 condition: {
@@ -664,7 +664,7 @@
                         "string-minecraft:alternative": {
                             terms: {
                                 type: list
-                                vals: {link: "pred_single"}
+                                vals: {link: "single_pred"}
                             }
                         }
                         "string-minecraft:block_state_property": {
