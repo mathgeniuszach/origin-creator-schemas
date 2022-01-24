@@ -651,8 +651,7 @@
                 }
             }
         }
-    }
-    modifiers: {
+        modifiers: {
             or: [
                 {title: "single", link: "modifier"}
                 {title: "multiple", type: "list", vals: {link: "modifier"}}
