@@ -630,7 +630,11 @@
             allow: *a-z0-9_#\/:.-
         }
         pred: {
+            type: list
             desc: A predicate.
+            vals: {link: "pred_single"}
+        }
+        pred_single: {
             type: object
             props: {
                 condition: {
@@ -660,7 +664,7 @@
                         "string-minecraft:alternative": {
                             terms: {
                                 type: list
-                                vals: {link: "pred"}
+                                vals: {link: "pred_single"}
                             }
                         }
                         "string-minecraft:block_state_property": {
