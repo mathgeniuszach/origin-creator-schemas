@@ -2,8 +2,8 @@
     links: {
         conditions: {
             desc: Determines conditions for this function to be applied. If multiple conditions are specified, all must pass.
-            id: "predicates-7"
-            link: "pred"
+            type: list
+            vals: {id: "predicates-7", link: "single_pred"}
         }
         functions: {
             type: list
