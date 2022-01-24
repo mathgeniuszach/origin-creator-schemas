@@ -9,7 +9,7 @@
             type: list
             vals: {
                 id: item_modifiers-7
-                link: modifier
+                link: single_modifier
             }
         }
         entry: {
