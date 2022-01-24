@@ -3656,6 +3656,7 @@
                 nopanel: true
                 or: [
                     {link: "power"}
+                    {link: "multi_power"}
                     {link: "custom_power"}
                 ]
             }
