@@ -630,10 +630,8 @@
             allow: *a-z0-9_#\/:.-
         }
         pred: {
-            or: [
-                {link: "single_pred"}
-                {type: "list", vals: {link: "single_pred"}}
-            ]
+            nopanel: true
+            link: "single_pred"
         }
         single_pred: {
             desc: A predicate.
