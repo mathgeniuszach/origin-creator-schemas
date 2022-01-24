@@ -658,5 +658,5 @@
             ]
         }
     }
-    link: modifiers
+    link: modifier
 }
