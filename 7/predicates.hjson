@@ -630,8 +630,10 @@
             allow: *a-z0-9_#\/:.-
         }
         pred: {
-            nopanel: true
-            link: "single_pred"
+            extra: {
+                nopanel: true
+                link: "single_pred"
+            }
         }
         single_pred: {
             desc: A predicate.
