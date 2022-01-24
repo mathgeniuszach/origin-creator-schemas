@@ -630,10 +630,10 @@
             allow: *a-z0-9_#\/:.-
         }
         pred: {
-            type: object
-            extra: {
-                link: "single_pred"
-            }
+            or: [
+                {title: "single", link: "single_pred"}
+                {title: "multiple", type: "list", vals: {link: "single_pred"}}
+            ]
         }
         single_pred: {
             desc: A predicate.
