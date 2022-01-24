@@ -234,6 +234,12 @@
                 }
             ]
         }
+        modifiers: {
+            or: [
+                {title: "single", link: "modifier"}
+                {title: "multiple", type: "list", vals: {link: "modifier"}}
+            ]
+        }
         modifier: {
             desc: An item modifier that modifies an item in some way.
             type: object
@@ -652,5 +658,5 @@
             }
         }
     }
-    link: modifier
+    link: modifiers
 }
