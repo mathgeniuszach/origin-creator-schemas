@@ -632,7 +632,6 @@
         pred: {
             type: object
             extra: {
-                nopanel: true
                 link: "single_pred"
             }
         }
