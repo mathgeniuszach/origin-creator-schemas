@@ -27,6 +27,47 @@
                 count: {type: "integer", min: 1}
             }
         }
+        power_recipe: {
+            type: object
+            props: {
+                id: {
+                    desc: A value to use specifying where to generate this recipe.
+                    type: string
+                    allow: *a-z0-9_#\/:.-
+                }
+                group: {
+                    desc: A string identifier. Used to group multiple recipes together in the recipe book.
+                    type: string
+                }
+                type: {
+                    gap: true
+                    ns: minecraft
+                    enum: ["minecraft:crafting_shaped", "minecraft:crafting_shapeless"]
+                    more: {
+                        "string-minecraft:crafting_shaped": {
+                            pattern: {
+                                desc: A list of single-character keys used to describe a pattern for shaped crafting. Each row in the crafting grid is one string in this list containing 3 or less keys. All strings in this list need to have the same amount of keys. A space can be used to indicate an empty spot.
+                                type: list
+                                vals: {type: "string"}
+                            }
+                            key: {
+                                desc: All keys used for this shaped crafting recipe.
+                                type: object
+                                extra: {nopanel: true, extend: "oritem"}
+                            }
+                            result: {link: "result"}
+                        }
+                        "string-minecraft:crafting_shapeless": {
+                            ingredients: {
+                                type: list
+                                vals: {link: "oritem"}
+                            }
+                            result: {link: "result"}
+                        }
+                    }
+                }
+            }
+        }
         recipe: {
             type: or
             or: [

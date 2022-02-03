@@ -3,13 +3,13 @@
         conditions: {
             desc: Determines conditions for this function to be applied. If multiple conditions are specified, all must pass.
             type: list
-            vals: {id: "predicates-7", link: "pred"}
+            vals: {id: "predicates-7", link: "single_pred"}
         }
         functions: {
             type: list
             vals: {
                 id: item_modifiers-7
-                link: modifier
+                link: single_modifier
             }
         }
         entry: {

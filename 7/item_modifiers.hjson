@@ -235,13 +235,19 @@
             ]
         }
         modifier: {
+            or: [
+                {title: "single", link: "single_modifier"}
+                {title: "multiple", type: "list", vals: {link: "single_modifier"}}
+            ]
+        }
+        single_modifier: {
             desc: An item modifier that modifies an item in some way.
             type: object
             props: {
                 conditions: {
                     desc: Determines conditions for this function to be applied. If multiple conditions are specified, all must pass.
                     type: list
-                    vals: {id: "predicates-7", link: "pred"}
+                    vals: {id: "predicates-7", link: "single_pred"}
                 }
                 function: {
                     desc: Namespaced ID of the function to apply.

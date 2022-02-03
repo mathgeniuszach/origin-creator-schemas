@@ -3248,14 +3248,8 @@
                         "string-origins:recipe": {
                             recipe: {
                                 id: recipes-6
-                                extend: recipe
-                                shared: {
-                                    id: {
-                                        desc: A value to use specifying where to generate this recipe.
-                                        type: string
-                                        allow: *a-z0-9_#\/:.-
-                                    }
-                                }
+                                extend: power_recipe
+                                desc: The recipe to craft, including an id field which can be any arbitrary (but unique) identifier.
                             }
                         }
                         "string-origins:resource": {
@@ -4420,6 +4414,7 @@
                 nopanel: true
                 or: [
                     {link: "power"}
+                    {link: "multi_power"}
                     {link: "custom_power"}
                 ]
             }
