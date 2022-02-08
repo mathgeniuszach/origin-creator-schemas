@@ -570,12 +570,12 @@
                                         delta: {
                                             desc: The change in durability (negative numbers are used to indicate a decrease in durability).
                                             id: predicates-7
-                                            link: intmm0
+                                            link: intmm
                                         }
                                         durability: {
                                             desc: The remaining durability of the item.
                                             id: predicates-7
-                                            link: intmm0
+                                            link: intmm
                                         }
                                         item: {
                                             desc: The item before it was damaged, allows you to check the durability before the item was damaged.
