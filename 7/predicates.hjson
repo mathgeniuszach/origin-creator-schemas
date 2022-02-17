@@ -712,7 +712,7 @@
                             }
                         }
                         "string-minecraft:inverted": {
-                            term: {link: "pred"}
+                            term: {link: "single_pred"}
                         }
                         "string-minecraft:killed_by_player": {
                             inverse: {type: "boolean"}
