@@ -35,7 +35,16 @@
                 }
                 type: {
                     desc: Namespaced ID type of entry. Can be "item" for item entries, "tag" for item tags, "loot_table" to produce items from another loot table, "group" for child entries, "alternatives" to select one sub-entry from a list, "sequence" to select sub-entries until one entry cannot be granted, "dynamic" to generate block specific drops, or "empty" for an entry that generates nothing.
-                    enum: ["minecraft:item", "minecraft:tag", "minecraft:loot_table", "minecraft:group", "minecraft:alternatives", "minecraft:sequence", "minecraft:dynamic", "minecraft:empty"]
+                    enum: [
+                        minecraft:item
+                        minecraft:tag
+                        minecraft:loot_table
+                        minecraft:group
+                        minecraft:alternatives
+                        minecraft:sequence
+                        minecraft:dynamic
+                        minecraft:empty
+                    ]
                     more: {
                         "string-minecraft:item": {
                             name: {
