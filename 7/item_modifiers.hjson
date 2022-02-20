@@ -290,7 +290,7 @@
                             }
                             formula: {
                                 desc: Can be binomial_with_bonus_count for a binomial distribution (with "n = level + extra", "p = probability"), uniform_bonus_count for uniform distribution (from 0 to level * bonusMultiplier), or ore_drops for a special function used for ore drops in the vanilla game (Count * (max(0; random(0..Level + 2) - 1)+1)).
-                                enum: ["binomial_with_bonus_count", "uniform_bonus_count", "ore_drops"]
+                                enum: ["minecraft:binomial_with_bonus_count", "minecraft:uniform_bonus_count", "minecraft:ore_drops"]
                                 gap: true
                             }
                             extra: {
