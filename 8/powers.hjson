@@ -949,7 +949,7 @@
                         "string-origins:ingredient": {
                             ingredient: {
                                 desc: An ingredient, which can be a variety of things.
-                                href: https://origins.readthedocs.io/en/latest/data_types/ingredient/
+                                href: https://origins.readthedocs.io/en/latest/types/item_condition_types/ingredient/
                                 id: recipes-6
                                 link: oritem
                             }
@@ -4538,7 +4538,7 @@
                 }
                 sprite_location: {
                     desc: The path to the file in the assets which contains what the bar looks like. See the List of resource bar files for a list of files included by default in the mod. Defaults to "origins:textures/gui/resource_bar.png".
-                    href: https://origins.readthedocs.io/en/latest/misc/resource_bars/
+                    href: https://origins.readthedocs.io/en/latest/misc/extras/sprites/
                     type: string
                     allow: *a-z0-9_#\/:.-
                 }
