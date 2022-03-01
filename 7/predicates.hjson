@@ -514,20 +514,20 @@
                     props: {
                         type: {
                             desc: The type of this number provider. Keep in mind "score" is only available in 1.17+
-                            enum: ["constant", "uniform", "binomial", "score"]
+                            enum: ["minecraft:constant", "minecraft:uniform", "minecraft:binomial", "minecraft:score"]
                             more: {
-                                string-constant: {
+                                "string-minecraft:constant": {
                                     value: {type: "integer"}
                                 }
-                                string-uniform: {
+                                "string-minecraft:uniform": {
                                     min: {link: "intprov"}
                                     max: {link: "intprov"}
                                 }
-                                string-binomial: {
+                                "string-minecraft:binomial": {
                                     n: {link: "intprov"}
                                     p: {link: "numprov"}
                                 }
-                                string-score: {
+                                "string-minecraft:score": {
                                     target: {
                                         or: [
                                             {enum: ["this", "killer", "direct_killer", "player_killer"]}
@@ -570,20 +570,20 @@
                     props: {
                         type: {
                             desc: The type of this number provider. Keep in mind "score" is only available in 1.17+
-                            enum: ["constant", "uniform", "binomial", "score"]
+                            enum: ["minecraft:constant", "minecraft:uniform", "minecraft:binomial", "minecraft:score"]
                             more: {
-                                string-constant: {
+                                "string-minecraft:constant": {
                                     value: {type: "number"}
                                 }
-                                string-uniform: {
+                                "string-minecraft:uniform": {
                                     min: {link: "numprov"}
                                     max: {link: "numprov"}
                                 }
-                                string-binomial: {
+                                "string-minecraft:binomial": {
                                     n: {desc: "The amount of trials.", link: "intprov"}
                                     p: {title: "P", desc: "The probability of success on an individual trial.", link: "numprov"}
                                 }
-                                string-score: {
+                                "string-minecraft:score": {
                                     target: {
                                         or: [
                                             {enum: ["this", "killer", "direct_killer", "player_killer"]}
@@ -712,7 +712,7 @@
                             }
                         }
                         "string-minecraft:inverted": {
-                            term: {link: "pred"}
+                            term: {link: "single_pred"}
                         }
                         "string-minecraft:killed_by_player": {
                             inverse: {type: "boolean"}

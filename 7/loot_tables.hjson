@@ -35,9 +35,18 @@
                 }
                 type: {
                     desc: Namespaced ID type of entry. Can be "item" for item entries, "tag" for item tags, "loot_table" to produce items from another loot table, "group" for child entries, "alternatives" to select one sub-entry from a list, "sequence" to select sub-entries until one entry cannot be granted, "dynamic" to generate block specific drops, or "empty" for an entry that generates nothing.
-                    enum: ["item", "tag", "loot_table", "group", "alternatives", "sequence", "dynamic", "empty"]
+                    enum: [
+                        minecraft:item
+                        minecraft:tag
+                        minecraft:loot_table
+                        minecraft:group
+                        minecraft:alternatives
+                        minecraft:sequence
+                        minecraft:dynamic
+                        minecraft:empty
+                    ]
                     more: {
-                        string-item: {
+                        "string-minecraft:item": {
                             name: {
                                 desc: ID name of the item to be produced, e.g. diamond. The default, if not changed by functions, is a stack of 1 of the default instance of the item.
                                 href: https://minecraft.fandom.com/wiki/Java_Edition_data_values#Blocks
@@ -45,7 +54,7 @@
                                 allow: *a-z0-9_#\/:.-
                             }
                         }
-                        string-tag: {
+                        "string-minecraft:tag": {
                             name: {
                                 desc: Item tag to be used, e.g. arrows.
                                 type: string
@@ -55,41 +64,41 @@
                                 type: boolean
                             }
                         }
-                        string-loot_table: {
+                        "string-minecraft:loot_table": {
                             name: {
                                 desc: Loot table to be used, e.g. gameplay/fishing/junk.
                                 type: string
                                 allow: *a-z0-9_#\/:.-
                             }
                         }
-                        string-group: {
+                        "string-minecraft:group": {
                             children: {
                                 desc: A list of entries that are used to generate loot. Can be used for convenience, e.g. if one condition applies for multiple entries.
                                 type: list
                                 vals: {link: "entry"}
                             }
                         }
-                        string-alternatives: {
+                        "string-minecraft:alternatives": {
                             children: {
                                 desc: A list of entries of which the first, and only the first, successful entry gets generated.
                                 type: list
                                 vals: {link: "entry"}
                             }
                         }
-                        string-sequence: {
+                        "string-minecraft:sequence": {
                             children: {
                                 desc: A list of entries that are used until the first entry fails. After an entry fails, no more entries of this list are generated.
                                 type: list
                                 vals: {link: "entry"}
                             }
                         }
-                        string-dynamic: {
+                        "string-minecraft:dynamic": {
                             name: {
                                 desc: '"contents" for block entity contents or "self" for banners and player skulls.'
                                 enum: ["contents", "self"]
                             }
                         }
-                        string-empty: {}
+                        "string-minecraft:empty": {}
                     }
                 }
             }
