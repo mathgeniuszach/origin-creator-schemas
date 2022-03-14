@@ -204,6 +204,7 @@
                         origins:submerged_in
                         origins:swimming
                         origins:tamed
+                        origins:time_of_day
                         origins:using_effective_tool
                         origins:using_item
                         origins:xp_levels
@@ -820,6 +821,16 @@
                         }
                         "string-origins:swimming": {}
                         "string-origins:tamed": {}
+                        "string-origins:time_of_day": {
+                            comparison: {
+                                desc: How the current day time ticks of the world should be compared to the specified value.
+                                link: comparison
+                            }
+                            compare_to: {
+                                desc: The value to compare to.
+                                type: integer
+                            }
+                        }
                         "string-origins:using_effective_tool": {}
                         "string-origins:using_item": {
                             item_condition: {
