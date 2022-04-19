@@ -50,9 +50,9 @@
             gap: true
         }
         gui_title: {
-            desc: If specified, the choose/view origin title for the layer (the text that shows at the top of the GUI) will be overridden by this.
-            href: https://origins.readthedocs.io/en/latest/types/data_types/gui_title/
+            desc: The display name of the layer. Will show at the top of the GUI saying "Choose your [name here]". Can be a literal string or a translation key.
             type: string
+            gap: true
         }
         missing_name: {
             desc: The display name of the origin that will show when viewing the origin if no origin has been assigned to this layer. Can be a literal string or a translation key.
