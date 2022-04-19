@@ -52,19 +52,7 @@
         gui_title: {
             desc: If specified, the choose/view origin title for the layer (the text that shows at the top of the GUI) will be overridden by this.
             href: https://origins.readthedocs.io/en/latest/types/data_types/gui_title/
-            type: object
-            props: {
-                choose_origin: {
-                    desc: If specified, this will override the title that shows up when choosing an origin in the layer.
-                    type: string
-                    ext: true
-                }
-                view_origin: {
-                    desc: If specified, this will override the title that shows up when viewing an origin in the layer.
-                    type: string
-                    ext: true
-                }
-            }
+            type: string
         }
         missing_name: {
             desc: The display name of the origin that will show when viewing the origin if no origin has been assigned to this layer. Can be a literal string or a translation key.
