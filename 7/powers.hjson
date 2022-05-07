@@ -885,7 +885,7 @@
                             }
                             comparison: {
                                 desc: If the property contains an integer value, this is the comparison the will be used to compare the property's value to the specified compare_to integer.
-                                link: comparison
+                                link: opt_comparison
                             }
                             compare_to: {
                                 desc: The value to compare to if the property is an integer.
@@ -3890,6 +3890,11 @@
             desc: How the state should be compared to the specified value.
             enum: ["<", "<=", ">", ">=", "==", "!="]
             default: 3
+        }
+        opt_comparison: {
+            desc: How the state should be compared to the specified value.
+            enum: ["<", "<=", ">", ">=", "==", "!="]
+            unspec: true
         }
     }
     or: [

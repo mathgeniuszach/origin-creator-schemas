@@ -1048,16 +1048,16 @@
                             }
                         }
                         "string-origins:attachable": {}
-            "string-origins:blast_resistance": {
-                comparison: {
-                                desc: Determines how the blast resistance of the block is compared to the specified value.
-                                link: comparison
-                            }
-                            compare_to: {
-                                desc: The value to compare the blast resistance of the block to.
-                                type: integer
-                            }
-            }
+                        "string-origins:blast_resistance": {
+                            comparison: {
+                                            desc: Determines how the blast resistance of the block is compared to the specified value.
+                                            link: comparison
+                                        }
+                                        compare_to: {
+                                            desc: The value to compare the blast resistance of the block to.
+                                            type: integer
+                                        }
+                        }
                         "string-origins:block": {
                             block: {
                                 desc: ID of the block that this block needs to be to pass the check.
@@ -1073,7 +1073,7 @@
                             }
                             comparison: {
                                 desc: If the property contains an integer value, this is the comparison the will be used to compare the property's value to the specified compare_to integer.
-                                link: comparison
+                                link: opt_comparison
                             }
                             compare_to: {
                                 desc: The value to compare to if the property is an integer.
@@ -4659,6 +4659,11 @@
             desc: How the state should be compared to the specified value.
             enum: ["<", "<=", ">", ">=", "==", "!="]
             default: 3
+        }
+        opt_comparison: {
+            desc: How the state should be compared to the specified value.
+            enum: ["<", "<=", ">", ">=", "==", "!="]
+            unspec: true
         }
         vector: {
             desc: An object that specifies the X, Y and Z coordinates of a certain point in space.
