@@ -8,6 +8,7 @@
                     type: boolean
                 }
                 type: {
+                    href: https://origins.readthedocs.io/en/1.1.4/types/entity_condition_types/
                     enum: [
                         origins:and
                         origins:or
