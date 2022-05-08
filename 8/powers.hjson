@@ -1486,6 +1486,10 @@
                                 desc: The action which might be executed.
                                 link: bi_entity_action
                             }
+                            fail_action: {
+                                desc: The action to execute if the specified action in the action field is not executed.
+                                link: bi_entity_action
+                            }
                         }
                         "string-origins:choice": {
                             actions: {
@@ -1679,6 +1683,10 @@
                             }
                             action: {
                                 desc: The action which might be executed.
+                                link: entity_action
+                            }
+                            fail_action: {
+                                desc: The action to execute if the specified action in the action field is not executed.
                                 link: entity_action
                             }
                         }
@@ -2291,6 +2299,10 @@
                                 desc: The action which might be executed.
                                 link: item_action
                             }
+                            fail_action: {
+                                desc: The action to execute if the specified action in the action field is not executed.
+                                link: item_action
+                            }
                         }
                         "string-origins:choice": {
                             actions: {
@@ -2419,6 +2431,10 @@
                             }
                             action: {
                                 desc: The action which might be executed.
+                                link: block_action
+                            }
+                            fail_action: {
+                                desc: The action to execute if the specified action in the action field is not executed.
                                 link: block_action
                             }
                         }
