@@ -44,6 +44,11 @@
             desc: If set to false, the data in this file will be appended to an already existing version of this layer. Useful to add custom origins to the default origin layer for example. If set to true, the layer will be replaced and only the origins specified in this file will appear.
             type: boolean
         }
+        loading_priority: {
+            desc: Specifies when this power is loaded. Higher numbers mean it's loaded later, which means it will override those with lower loading priorities which share the same ID.
+            type: integer
+            gap: true
+        }
         name: {
             desc: The display name of the layer. Will show at the top of the GUI saying "Choose your [name here]". Can be a literal string or a translation key.
             type: string
