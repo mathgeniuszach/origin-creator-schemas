@@ -955,7 +955,7 @@
                             }
                             compare_to: {
                                 desc: The value to compare to.
-                                type: integer
+                                type: number
                             }
                         }
                         "string-origins:ingredient": {
