@@ -24,5 +24,6 @@
         powers
         origin_layers
         origins
+        predicates
     ]
 }
