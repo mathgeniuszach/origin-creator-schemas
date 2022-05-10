@@ -817,11 +817,6 @@
                                 type: string
                                 allow: *a-z0-9_#\/:.-
                             }
-                            layer: {
-                                desc: The layer to test if the origin is in. Optional.
-                                type: string
-                                allow: *a-z0-9_#\/:.-
-                            }
                         }
                         "string-origins:power": {
                             power: {
