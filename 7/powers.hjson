@@ -51,7 +51,7 @@
                             }
                         }
                         "string-origins:invert": {
-                            bientity_condition: {
+                            condition: {
                                 desc: The bi-entity condition to check which will have its 'target' and 'actor' contexts swapped.
                                 link: bi_entity_cond
                             }
@@ -1233,7 +1233,7 @@
                             }
                         }
                         "string-origins:invert": {
-                            bientity_action: {
+                            action: {
                                 desc: The bi-entity action to execute which will have its 'target' and 'actor' contexts swapped.
                                 link: bi_entity_action
                             }
