@@ -2598,7 +2598,7 @@
                             block: {
                                 desc: The ID of the block to place at the targeted position, overwriting the block already there.
                                 type: string
-                                allow: *a-z0-9_\/:.-
+                                allow: *a-z0-9_\/:.-[]={}
                             }
                         }
                     }
