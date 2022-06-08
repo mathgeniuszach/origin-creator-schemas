@@ -2863,6 +2863,7 @@
                                 desc: Cooldown duration in ticks.
                                 type: integer
                                 min: 0
+                                default: 1
                             }
                             hud_render: {
                                 desc: Specifies how and if a cooldown bar is rendered.
@@ -2973,6 +2974,7 @@
                                 desc: Duration of ticks to wait between applying exhaustion.
                                 type: integer
                                 min: 0
+                                default: 20
                             }
                             exhaustion: {
                                 desc: How much exhaustion will be applied each interval.
@@ -2990,6 +2992,7 @@
                                 desc: The number of ticks the player has to wait between uses of this power.
                                 type: integer
                                 min: 0
+                                default: 1
                             }
                             hud_render: {
                                 desc: Specifies how and if a cooldown bar is rendered.
@@ -3005,21 +3008,25 @@
                                 desc: Determines the interval for firing multiple projectiles consecutively (in ticks). If set to 0 (default), it will fire all the projectiles at the same tick.
                                 type: integer
                                 min: 0
+                                default: 0
                             }
                             start_delay: {
                                 desc: Determines how long the start of the firing process is delayed (in ticks). Defaults to 0.
                                 type: integer
                                 min: 0
+                                default: 0
                             }
                             speed: {
                                 desc: The speed applied to the fired projectile. Defaults to 1.5.
                                 type: number
                                 min: 0
+                                default: 1.5
                             }
                             divergence: {
                                 desc: How much each projectile fired is affected by random spread. Defaults to 1.
                                 type: number
                                 min: 0
+                                default: 1.0
                             }
                             sound: {
                                 desc: If set, the sound with this ID will be played when the power is used.
@@ -3119,6 +3126,7 @@
                                 desc: The number of ticks the player has to wait between uses of this power.
                                 type: integer
                                 min: 0
+                                default: 1
                             }
                             speed: {
                                 desc: The speed applied to the player in the upwards direction.
@@ -3656,6 +3664,7 @@
                                 desc: Interval of ticks this power needs to recharge before the action can be executed again.
                                 type: integer
                                 min: 0
+                                default: 1
                             }
                             hud_render: {
                                 desc: Determines how the cooldown of this power is visualized on the HUD.
@@ -3701,6 +3710,7 @@
                                 desc: Interval of ticks between subsequent executions of the action. Must be a value of at least 1.
                                 type: integer
                                 min: 1
+                                default: 20
                             }
                             entity_action: {
                                 desc: The action to execute on the player each interval.
@@ -3728,6 +3738,7 @@
                                 desc: Interval of ticks this power needs to recharge before the power can be triggered again.
                                 type: integer
                                 min: 0
+                                default: 1
                             }
                             hud_render: {
                                 desc: Determines how the cooldown of this power is visualized on the HUD.
@@ -3751,6 +3762,7 @@
                                 desc: Interval of ticks this power needs to recharge before the action can be executed again.
                                 type: integer
                                 min: 0
+                                default: 1
                             }
                             hud_render: {
                                 desc: Determines how the cooldown of this power is visualized on the HUD.
@@ -3789,6 +3801,7 @@
                                 desc: Interval of ticks this power needs to recharge before the action can be executed again.
                                 type: integer
                                 min: 0
+                                default: 1
                             }
                             hud_render: {
                                 desc: Determines how the cooldown of this power is visualized on the HUD.
@@ -3835,6 +3848,7 @@
                                 desc: Interval of ticks this power needs to recharge before the action can be executed again.
                                 type: integer
                                 min: 0
+                                default: 1
                             }
                             hud_render: {
                                 desc: Determines how the cooldown of this power is visualized on the HUD.
@@ -3854,6 +3868,7 @@
                                 desc: Interval of ticks this power needs to recharge before the action can be executed again.
                                 type: integer
                                 min: 0
+                                default: 1
                             }
                             hud_render: {
                                 desc: Determines how the cooldown of this power is visualized on the HUD.
@@ -3877,6 +3892,7 @@
                                 desc: Interval of ticks this power needs to recharge before the action can be executed again.
                                 type: integer
                                 min: 0
+                                default: 1
                             }
                             hud_render: {
                                 desc: Determines how the cooldown of this power is visualized on the HUD.
