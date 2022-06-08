@@ -883,13 +883,17 @@
                         origins:empty
                         origins:amount
                         origins:armor_value
+                        origins:durability
                         origins:enchantment
                         origins:fireproof
                         origins:food
                         origins:harvest_level
                         origins:ingredient
+                        origins:is_damageable
+                        origins:is_equippable
                         origins:meat
                         origins:nbt
+                        origins:relative_durability
                         origins:smeltable
                     ]
                     more: {
@@ -935,6 +939,16 @@
                                 type: integer
                             }
                         }
+                        "string-origins:durability": {
+                            comparison: {
+                                desc: How the durability should be compared to the specified value.
+                                link: comparison
+                            }
+                            compare_to: {
+                                desc: The value to compare to.
+                                type: integer
+                            }
+                        }
                         "string-origins:enchantment": {
                             enchantment: {
                                 desc: ID of the enchantment of interest to check the level of on the item, e.g. minecraft:protection.
@@ -971,12 +985,24 @@
                                 link: oritem
                             }
                         }
+                        "string-origins:is_damageable": {}
+                        "string-origins:is_equippable": {}
                         "string-origins:meat": {}
                         "string-origins:nbt": {
                             nbt: {
                                 desc: The NBT data to check for.
                                 type: string
                                 ext: true
+                            }
+                        }
+                        "string-origins:relative_durability": {
+                            comparison: {
+                                desc: How the relative durability should be compared to the specified value.
+                                link: comparison
+                            }
+                            compare_to: {
+                                desc: The value to compare to.
+                                type: float
                             }
                         }
                         "string-origins:smeltable": {}
@@ -1390,9 +1416,14 @@
                         origins:constant
                         origins:amount
                         origins:attacker
+                        origins:bypasses_armor
+                        origins:explosive
                         origins:fire
+                        origins:from_falling
                         origins:name
+                        origins:out_of_world
                         origins:projectile
+                        origins:unblockable
                     ]
                     more: {
                         "string-origins:and": {
@@ -1432,7 +1463,10 @@
                                 link: entity_cond
                             }
                         }
+                        "string-origins:bypasses_armor": {}
+                        "string-origins:explosive": {}
                         "string-origins:fire": {}
+                        "string-origins:from_falling": {}
                         "string-origins:name": {
                             name: {
                                 desc: Name the damage source should have to pass the check. Click to see a list of vanilla damage source names.
@@ -1440,6 +1474,7 @@
                                 type: string
                             }
                         }
+                        "string-origins:out_of_world": {}
                         "string-origins:projectile": {
                             projectile: {
                                 desc: If set, the check will only pass if the projectile was of an entity type with this ID.
@@ -1447,6 +1482,7 @@
                                 allow: *a-z0-9_#\/:.-
                             }
                         }
+                        "string-origins:unblockable": {}
                     }
                 }
             }
@@ -1464,6 +1500,7 @@
                         origins:delay
                         origins:if_else
                         origins:if_else_list
+                        origins:side
                         origins:invert
                         origins:actor_action
                         origins:add_velocity
@@ -1559,6 +1596,16 @@
                                 }
                             }
                         }
+                        "string-origins:side": {
+                            side: {
+                                desc: The side, either "client" or "server", to apply this action on.
+                                enum: ["client", "server"]
+                            }
+                            action: {
+                                desc: The action to apply.
+                                link: bi_entity_action
+                            }
+                        }
                         "string-origins:invert": {
                             action: {
                                 desc: The bi-entity action to execute which will have its 'target' and 'actor' contexts swapped.
@@ -1635,6 +1682,7 @@
                         origins:delay
                         origins:if_else
                         origins:if_else_list
+                        origins:side
                         origins:add_velocity
                         origins:add_xp
                         origins:apply_effect
@@ -1762,6 +1810,16 @@
                                         }
                                     }
                                 }
+                            }
+                        }
+                        "string-origins:side": {
+                            side: {
+                                desc: The side, either "client" or "server", to apply this action on.
+                                enum: ["client", "server"]
+                            }
+                            action: {
+                                desc: The action to apply.
+                                link: entity_action
                             }
                         }
                         "string-origins:add_velocity": {
@@ -2420,9 +2478,12 @@
                         origins:delay
                         origins:if_else
                         origins:if_else_list
+                        origins:side
                         origins:consume
                         origins:damage
+                        origins:merge_nbt
                         origins:modify
+                        origins:remove_enchantment
                     ]
                     more: {
                         "string-origins:nothing": {}
@@ -2510,6 +2571,16 @@
                                 }
                             }
                         }
+                        "string-origins:side": {
+                            side: {
+                                desc: The side, either "client" or "server", to apply this action on.
+                                enum: ["client", "server"]
+                            }
+                            action: {
+                                desc: The action to apply.
+                                link: item_action
+                            }
+                        }
                         "string-origins:consume": {
                             amount: {
                                 desc: The amount of items to remove. Defaults to 1.
@@ -2527,11 +2598,41 @@
                                 type: boolean
                             }
                         }
+                        "string-origins:merge_nbt": {
+                            nbt: {
+                                desc: The NBT to merge into the item.
+                                type: string
+                                ext: true
+                            }
+                        }
                         "string-origins:modify": {
                             modifier: {
                                 desc: The ID of an item modifier to apply to the item stack.
                                 type: string
                                 allow: *a-z0-9_#\/:.-
+                            }
+                        }
+                        "string-origins:remove_enchantment": {
+                            enchantment: {
+                                desc: If set, specifies a single enchantment to remove,
+                                type: string
+                                allow: *a-z0-9_#\/:.-
+                            }
+                            enchantments: {
+                                desc: If set, specifies a single enchantment to remove,
+                                type: list
+                                vals: {
+                                    type: string
+                                    allow: *a-z0-9_#\/:.-
+                                }
+                            }
+                            levels: {
+                                desc: If set, specifies the maximum number of levels to remove.
+                                type: int
+                            }
+                            reset_repair_cost: {
+                                desc: Whether or not to reset the repair cost on the item.
+                                type: boolean
                             }
                         }
                     }
@@ -2550,6 +2651,7 @@
                         origins:delay
                         origins:if_else
                         origins:if_else_list
+                        origins:side
                         origins:add_block
                         origins:bonemeal
                         origins:execute_command
@@ -2642,6 +2744,16 @@
                                         }
                                     }
                                 }
+                            }
+                        }
+                        "string-origins:side": {
+                            side: {
+                                desc: The side, either "client" or "server", to apply this action on.
+                                enum: ["client", "server"]
+                            }
+                            action: {
+                                desc: The action to apply.
+                                link: block_action
                             }
                         }
                         "string-origins:add_block": {
