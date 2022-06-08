@@ -1645,6 +1645,7 @@
                         origins:crafting_table
                         origins:damage
                         origins:dismount
+                        origins:drop_inventory
                         origins:emit_game_event
                         origins:ender_chest
                         origins:equipped_item_action
@@ -1657,9 +1658,14 @@
                         origins:give
                         origins:grant_power
                         origins:heal
+                        origins:modify_death_ticks
+                        origins:modify_inventory
+                        origins:modify_resource
+                        origins:modify_stat
                         origins:passenger_action
                         origins:play_sound
                         origins:raycast
+                        origins:replace_inventory
                         origins:revoke_power
                         origins:riding_action
                         origins:set_fall_distance
@@ -1883,6 +1889,45 @@
                             }
                         }
                         "string-origins:dismount": {}
+                        "string-origins:drop_inventory": {
+                            inventory_type: {
+                                desc: Either "inventory" or "power". If "inventory", drops items in the player's main inventory. If "power", Drops items to the player's bonus inventory given with a power.
+                                enum: ["inventory", "power"]
+                            }
+                            entity_action: {
+                                desc: If set, applies this action to the entity that has their inventory being dropped.
+                                link: entity_action
+                            }
+                            item_action: {
+                                desc: Item action applied to the items in the given slots.
+                                link: item_action
+                            }
+                            item_condition: {
+                                desc: If set, this item condition must match the items in the given slots to have the action applied.
+                                link: item_cond
+                            }
+                            slots: {
+                                link: slots
+                            }
+                            slot: {
+                                link: slot
+                            }
+                            power: {
+                                desc: If "Inventory Type" is set to "power", this is the power linked to the inventory to drop.
+                                type: string
+                                allow: *a-z0-9_#\/:.-
+                                ns: true
+                            }
+                            throw_randomly: {
+                                desc: Whether or not to throw the item in a random direction around the player instead of in front of them.
+                                type: boolean
+                            }
+                            retain_ownership: {
+                                desc: Whether or not the item's "Owner" tag is set to the player the item came from.
+                                type: boolean
+                                default: true
+                            }
+                        }
                         "string-origins:emit_game_event": {
                             event: {
                                 desc: The ID of a game event to emit. Click to see vanilla game events.
@@ -1990,6 +2035,65 @@
                             amount: {
                                 desc: The amount of health to restore.
                                 type: number
+                            }
+                        }
+                        "string-origins:modify_death_ticks": {
+                            modifier: {
+                                desc: If specified, this modifier will be applied to its corresponding attribute.
+                                link: a_mod
+                            }
+                        }
+                        "string-origins:modify_inventory": {
+                            inventory_type: {
+                                desc: Either "inventory" or "power". If "inventory", applies modifications to the player's main inventory. If "power", Applies modifications to the player's bonus inventory given with a power.
+                                enum: ["inventory", "power"]
+                            }
+                            entity_action: {
+                                desc: If set, applies this action to the entity that has their inventory being modified.
+                                link: entity_action
+                            }
+                            item_action: {
+                                desc: Item action applied to the items in the given slots.
+                                link: item_action
+                            }
+                            item_condition: {
+                                desc: If set, this item condition must match the items in the given slots to have the action applied.
+                                link: item_cond
+                            }
+                            slots: {
+                                link: slots
+                            }
+                            slot: {
+                                link: slot
+                            }
+                            power: {
+                                desc: If "Inventory Type" is set to "power", this is the power linked to the inventory to modify.
+                                type: string
+                                allow: *a-z0-9_#\/:.-
+                                ns: true
+                            }
+                        }
+                        "string-origins:modify_resource": {
+                            resource: {
+                                desc: The resource to modify.
+                                type: string
+                                allow: *a-z0-9_#\/:.-
+                                ns: true
+                            }
+                            modifier: {
+                                desc: The modifier to apply to the given power resource.
+                                link: a_mod
+                            }
+                        }
+                        "string-origins:modify_stat": {
+                            stat: {
+                                desc: The statistic to modify.
+                                type: string
+                                href: https://minecraft.fandom.com/wiki/Statistics#Resource_location
+                            }
+                            modifier: {
+                                desc: The modifier to apply to the given stat.
+                                link: a_mod
                             }
                         }
                         "string-origins:passenger_action": {
@@ -2116,6 +2220,40 @@
                             command_along_ray_only_on_hit: {
                                 desc: Determines if the command specified in the command_along_ray field should be executed only if the raycast has hit a block/entity.
                                 type: boolean
+                            }
+                        }
+                        "string-origins:replace_inventory": {
+                            inventory_type: {
+                                desc: Either "inventory" or "power". If "inventory", applies replacements to the player's main inventory. If "power", Applies replacements to the player's bonus inventory given with a power.
+                                enum: ["inventory", "power"]
+                            }
+                            entity_action: {
+                                desc: If set, applies this action to the entity that has their inventory being replaced.
+                                link: entity_action
+                            }
+                            item_action: {
+                                desc: Item action applied to the items in the given slots.
+                                link: item_action
+                            }
+                            item_condition: {
+                                desc: If set, this item condition must match the items in the given slots to have the action applied.
+                                link: item_cond
+                            }
+                            slots: {
+                                link: slots
+                            }
+                            slot: {
+                                link: slot
+                            }
+                            power: {
+                                desc: If "Inventory Type" is set to "power", this is the power linked to the inventory to replace.
+                                type: string
+                                allow: *a-z0-9_#\/:.-
+                                ns: true
+                            }
+                            stack: {
+                                desc: The item stack to replace with.
+                                link: item_stack
                             }
                         }
                         "string-origins:revoke_power": {
@@ -2698,6 +2836,7 @@
                         origins:particle
                         origins:phasing
                         origins:recipe
+                        origins:replace_loot_table
                         origins:resource
                         origins:restrict_armor
                         origins:self_glow
@@ -2730,6 +2869,7 @@
                         origins:self_action_when_hit
                         origins:target_action_on_hit
                         origins:modify_air_speed
+                        origins:modify_attribute
                         origins:modify_block_render
                         origins:modify_break_speed
                         origins:modify_camera_submersion
@@ -2740,7 +2880,10 @@
                         origins:modify_falling
                         origins:modify_fluid_render
                         origins:modify_food
+                        origins:modify_grindstone
                         origins:modify_harvest
+                        origins:modify_healing
+                        origins:modify_insomnia_ticks
                         origins:modify_jump
                         origins:modify_lava_speed
                         origins:modify_player_spawn
@@ -2749,6 +2892,7 @@
                         origins:modify_status_effect_amplifier
                         origins:modify_status_effect_duration
                         origins:modify_swim_speed
+                        origins:modify_velocity
                         origins:modify_xp_gain
                         origins:prevent_being_used
                         origins:prevent_block_selection
@@ -2762,6 +2906,7 @@
                         origins:prevent_game_event
                         origins:prevent_item_use
                         origins:prevent_sleep
+                        origins:prevent_sprinting
                     ]
                     more: {
                         "string-origins:attribute_modify_transfer": {
@@ -3294,6 +3439,33 @@
                                 id: recipes-6
                                 extend: power_recipe
                                 desc: The recipe to craft, including an id field which can be any arbitrary (but unique) identifier.
+                            }
+                        }
+                        "string-origins:replace_loot_table": {
+                            replace: {
+                                desc: A map that maps the ids of loot tables to replace with the ids of other loot tables to replace them with.
+                                type: object
+                                extra: {
+                                    type: string
+                                    allow: *a-z0-9_#\/:.-
+                                }
+                            }
+                            priority: {
+                                desc: Priority of applying this replacement, vs others.
+                                type: int
+                                default: 0
+                            }
+                            bientity_condition: {
+                                desc: A bi-entity condition between the player and the entity with a loot table.
+                                link: bi_entity_cond
+                            }
+                            item_condition: {
+                                desc: An item condition of the item to change the loot table of.
+                                link: item_cond
+                            }
+                            block_condition: {
+                                desc: A block condition of the block to change the loot table of.
+                                link: block_cond
                             }
                         }
                         "string-origins:resource": {
@@ -3934,6 +4106,22 @@
                                 vals: {link: "a_mod"}
                             }
                         }
+                        "string-origins:modify_attribute": {
+                            attribute: {
+                                desc: ID of the attribute of which the modifier should be applied.
+                                type: string
+                                allow: *a-z0-9_#\/:.-
+                            }
+                            modifier: {
+                                desc: If specified, this modifier will be applied to the entity's attribute.
+                                link: a_mod
+                            }
+                            modifiers: {
+                                desc: If specified, these modifiers will be applied to the entity's attribute.
+                                type: list
+                                vals: {link: "a_mod"}
+                            }
+                        }
                         "string-origins:modify_block_render": {
                             block_condition: {
                                 desc: If set, modifies how the block would look like that meets this condition.
@@ -4156,6 +4344,53 @@
                                 type: boolean
                             }
                         }
+                        "string-origins:modify_grindstone": {
+                            block_condition: {
+                                desc: Optional, a block condition that must match the grindstone for the power to be applied.
+                                link: block_cond
+                            }
+                            block_action: {
+                                desc: Optional. a block action applied to the grindstone after grinding is complete.
+                                link: block_action
+                            }
+                            top_condition: {
+                                desc: Optional, an item condition that must match the top slot of the grindstone for the power to be applied.
+                                link: item_cond
+                            }
+                            bottom_condition: {
+                                desc: Optional, an item condition that must match the bottom slot of the grindstone for the power to be applied.
+                                link: item_cond
+                            }
+                            output_condition: {
+                                desc: Optional, an item condition that must match the output of the grindstone for the power to be applied.
+                                link: item_cond
+                            }
+                            item_action: {
+                                desc: Optional, an item action applied to the item before grinding.
+                                link: item_action
+                            }
+                            item_action_after_grinding: {
+                                desc: Optional, an item action applied to the item after grinding.
+                                link: item_action
+                            }
+                            result_type: {
+                                desc: If specified, changes how the result stack is gotten. Use "specified" to use the stack specified by "Result Stack"
+                                enum: ["unchanged", "specified", "from_top", "from_bottom"]
+                                unspec: true
+                            }
+                            result_stack: {
+                                desc: If specified, changes the result stack that comes from the grindstone. Make sure "Result Type" is set to "specified."
+                                link: item_stack
+                            }
+                            entity_action: {
+                                desc: Optional, an entity action applied on the player after grinding is complete.
+                                link: entity_action
+                            }
+                            xp_modifier: {
+                                desc: If set, this modifier will apply to the xp gained by grinding the item.
+                                link: a_mod
+                            }
+                        }
                         "string-origins:modify_harvest": {
                             block_condition: {
                                 desc: If set, the modification will only apply to blocks which satisfy this condition.
@@ -4165,6 +4400,28 @@
                                 desc: When true, the player will be able to harvest the blocks. When false, the player will not be able to harvest the blocks.
                                 type: boolean
                                 default: false
+                            }
+                        }
+                        "string-origins:modify_healing": {
+                            modifier: {
+                                desc: If specified, this modifier will be applied to the entity's healing.
+                                link: a_mod
+                            }
+                            modifiers: {
+                                desc: If specified, these modifiers will be applied to the entity's healing.
+                                type: list
+                                vals: {link: "a_mod"}
+                            }
+                        }
+                        "string-origins:modify_insomnia_ticks": {
+                            modifier: {
+                                desc: If specified, this modifier will be applied to the insomnia ticks.
+                                link: a_mod
+                            }
+                            modifiers: {
+                                desc: If specified, these modifiers will be applied to the insomnia ticks.
+                                type: list
+                                vals: {link: "a_mod"}
                             }
                         }
                         "string-origins:modify_jump": {
@@ -4312,6 +4569,22 @@
                                 vals: {link: "a_mod"}
                             }
                         }
+                        "string-origins:modify_velocity": {
+                            modifier: {
+                                desc: If specified, this modifier will be applied to the player's velocity in the given axes.
+                                link: a_mod
+                            }
+                            modifiers: {
+                                desc: If specified, these modifiers will be applied to the player's velocity in the given axes.
+                                type: list
+                                vals: {link: "a_mod"}
+                            }
+                            axes: {
+                                desc: The axes to modify.
+                                type: list
+                                vals: {enum: ["x", "y", "z"]}
+                            }
+                        }
                         "string-origins:modify_xp_gain": {
                             modifier: {
                                 desc: If specified, this modifier will be applied to the experience gained.
@@ -4345,7 +4618,7 @@
                             hands: {
                                 desc: Determines if the power should be activated if the other player used the specified hand slot(s). Accepts "off_hand", "main_hand" or both.
                                 type: list
-                                vals: {type: "string"}
+                                vals: {enum: ["off_hand", "main_hand"]}
                             }
                             result_stack: {
                                 desc: If specified, gives an item stack to the player.
@@ -4492,6 +4765,7 @@
                                 default: true
                             }
                         }
+                        "string-origins:prevent_sprinting": {}
                     }
                 }
             }
@@ -4560,11 +4834,7 @@
         pos_item_stack: {
             extend: item_stack
             props: {
-                slot: {
-                    desc: Inventory slot position of the stack. If not specified, will be the first free slot in the inventory. Click to see for possible values.
-                    href: https://origins.readthedocs.io/en/latest/misc/extras/positioned_item_stack_slots/#positioned_item_stack_slots
-                    type: integer
-                }
+                slot: {link: "slot"}
             }
         }
         mod_op: {
@@ -4793,6 +5063,16 @@
                     }
                 }
             ]
+        }
+        slot: {
+            desc: A slot in an inventory to apply to.
+            href: https://origins.readthedocs.io/en/latest/misc/extras/positioned_item_stack_slots/#positioned_item_stack_slots
+            type: integer
+        }
+        slots: {
+            desc: A list of slots in an inventory to apply to.
+            type: list
+            vals: {link: "slot"}
         }
     }
     or: [
