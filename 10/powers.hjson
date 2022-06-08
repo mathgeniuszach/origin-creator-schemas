@@ -1464,6 +1464,7 @@
                         origins:delay
                         origins:if_else
                         origins:if_else_list
+                        origins:side
                         origins:invert
                         origins:actor_action
                         origins:add_velocity
@@ -1559,6 +1560,16 @@
                                 }
                             }
                         }
+                        "string-origins:side": {
+                            side: {
+                                desc: The side, either "client" or "server", to apply this action on.
+                                enum: ["client", "server"]
+                            }
+                            action: {
+                                desc: The action to apply.
+                                link: bi_entity_action
+                            }
+                        }
                         "string-origins:invert": {
                             action: {
                                 desc: The bi-entity action to execute which will have its 'target' and 'actor' contexts swapped.
@@ -1635,6 +1646,7 @@
                         origins:delay
                         origins:if_else
                         origins:if_else_list
+                        origins:side
                         origins:add_velocity
                         origins:add_xp
                         origins:apply_effect
@@ -1762,6 +1774,16 @@
                                         }
                                     }
                                 }
+                            }
+                        }
+                        "string-origins:side": {
+                            side: {
+                                desc: The side, either "client" or "server", to apply this action on.
+                                enum: ["client", "server"]
+                            }
+                            action: {
+                                desc: The action to apply.
+                                link: entity_action
                             }
                         }
                         "string-origins:add_velocity": {
@@ -2420,6 +2442,7 @@
                         origins:delay
                         origins:if_else
                         origins:if_else_list
+                        origins:side
                         origins:consume
                         origins:damage
                         origins:merge_nbt
@@ -2512,6 +2535,16 @@
                                 }
                             }
                         }
+                        "string-origins:side": {
+                            side: {
+                                desc: The side, either "client" or "server", to apply this action on.
+                                enum: ["client", "server"]
+                            }
+                            action: {
+                                desc: The action to apply.
+                                link: item_action
+                            }
+                        }
                         "string-origins:consume": {
                             amount: {
                                 desc: The amount of items to remove. Defaults to 1.
@@ -2582,6 +2615,7 @@
                         origins:delay
                         origins:if_else
                         origins:if_else_list
+                        origins:side
                         origins:add_block
                         origins:bonemeal
                         origins:execute_command
@@ -2674,6 +2708,16 @@
                                         }
                                     }
                                 }
+                            }
+                        }
+                        "string-origins:side": {
+                            side: {
+                                desc: The side, either "client" or "server", to apply this action on.
+                                enum: ["client", "server"]
+                            }
+                            action: {
+                                desc: The action to apply.
+                                link: block_action
                             }
                         }
                         "string-origins:add_block": {
