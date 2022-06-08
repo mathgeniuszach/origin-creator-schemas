@@ -12,7 +12,6 @@
         id: {
             type: string
             allow: *a-z0-9_
-            refresh: true
         }
         pack_format: {
             desc:
@@ -30,6 +29,7 @@
             type: integer
             min: 1
             max: 10
+            refresh: true
             gap: true
         }
         authors: {
