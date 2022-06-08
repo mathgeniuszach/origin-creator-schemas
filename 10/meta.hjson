@@ -38,6 +38,22 @@
         description: {
             type: string
             ext: true
+            gap: true
+        }
+        filter: {
+            type: object
+            props: {
+                block: {
+                    type: list
+                    vals: {
+                        type: object
+                        props: {
+                            namespace: {type: "string"}
+                            path: {type: "string"}
+                        }
+                    }
+                }
+            }
         }
     }
 }
