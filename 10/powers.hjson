@@ -767,6 +767,11 @@
                             }
                         }
                         "string-origins:scoreboard": {
+                            name: {
+                                desc: The name of the player to retrieve the scoreboard objective from. 
+                                type: string
+                                allow: *a-z0-9_#\/:.-
+                            }
                             objective: {
                                 desc: The name of the scoreboard objective to retrieve the value from (referred to as the score) and compare.
                                 type: string
@@ -2863,6 +2868,7 @@
                                 desc: Cooldown duration in ticks.
                                 type: integer
                                 min: 0
+                                default: 1
                             }
                             hud_render: {
                                 desc: Specifies how and if a cooldown bar is rendered.
@@ -2908,6 +2914,10 @@
                         }
                         "string-origins:disable_regen": {}
                         "string-origins:effect_immunity": {
+                            inverted: {
+                                desc: If set to true, only the effect(s) specified can be applied to the player.
+                                type: boolean
+                            }
                             effect: {
                                 desc: If specified, the effect with this ID can not be applied to the player.
                                 type: string
@@ -2973,6 +2983,7 @@
                                 desc: Duration of ticks to wait between applying exhaustion.
                                 type: integer
                                 min: 0
+                                default: 20
                             }
                             exhaustion: {
                                 desc: How much exhaustion will be applied each interval.
@@ -2990,6 +3001,7 @@
                                 desc: The number of ticks the player has to wait between uses of this power.
                                 type: integer
                                 min: 0
+                                default: 1
                             }
                             hud_render: {
                                 desc: Specifies how and if a cooldown bar is rendered.
@@ -3005,21 +3017,25 @@
                                 desc: Determines the interval for firing multiple projectiles consecutively (in ticks). If set to 0 (default), it will fire all the projectiles at the same tick.
                                 type: integer
                                 min: 0
+                                default: 0
                             }
                             start_delay: {
                                 desc: Determines how long the start of the firing process is delayed (in ticks). Defaults to 0.
                                 type: integer
                                 min: 0
+                                default: 0
                             }
                             speed: {
                                 desc: The speed applied to the fired projectile. Defaults to 1.5.
                                 type: number
                                 min: 0
+                                default: 1.5
                             }
                             divergence: {
                                 desc: How much each projectile fired is affected by random spread. Defaults to 1.
                                 type: number
                                 min: 0
+                                default: 1.0
                             }
                             sound: {
                                 desc: If set, the sound with this ID will be played when the power is used.
@@ -3119,6 +3135,7 @@
                                 desc: The number of ticks the player has to wait between uses of this power.
                                 type: integer
                                 min: 0
+                                default: 1
                             }
                             speed: {
                                 desc: The speed applied to the player in the upwards direction.
@@ -3469,6 +3486,11 @@
                                 type: list
                                 vals: {type: "string"}
                             }
+                            order: {
+                                desc: Specifies the position of this tooltip among the other lines of information about the specified item(s).
+                                type: integer
+                                default: 0
+                            }
                         }
                         "string-origins:walk_on_fluid": {
                             fluid: {
@@ -3511,6 +3533,11 @@
                                 desc: Determines the result of the action. Accepts "consume", "consume_partial", "fail", "pass" or "success".
                                 enum: ["consume", "consume_partial", "fail", "pass", "success"]
                                 default: 4
+                            }
+                            priority: {
+                                desc: Specifies which actions this action should override. Higher numbers mean it's higher priority, which means it will override actions with lower priorities that would have otherwise executed.
+                                type: integer
+                                default: 0
                             }
                         }
                         "string-origins:action_on_block_break": {
@@ -3638,6 +3665,11 @@
                                 enum: ["consume", "consume_partial", "fail", "pass", "success"]
                                 default: 4
                             }
+                            priority: {
+                                desc: Specifies which actions this action should override. Higher numbers mean it's higher priority, which means it will override actions with lower priorities that would have otherwise executed.
+                                type: integer
+                                default: 0
+                            }
                         }
                         "string-origins:action_on_hit": {
                             bientity_action: {
@@ -3656,6 +3688,7 @@
                                 desc: Interval of ticks this power needs to recharge before the action can be executed again.
                                 type: integer
                                 min: 0
+                                default: 1
                             }
                             hud_render: {
                                 desc: Determines how the cooldown of this power is visualized on the HUD.
@@ -3701,6 +3734,7 @@
                                 desc: Interval of ticks between subsequent executions of the action. Must be a value of at least 1.
                                 type: integer
                                 min: 1
+                                default: 20
                             }
                             entity_action: {
                                 desc: The action to execute on the player each interval.
@@ -3728,6 +3762,7 @@
                                 desc: Interval of ticks this power needs to recharge before the power can be triggered again.
                                 type: integer
                                 min: 0
+                                default: 1
                             }
                             hud_render: {
                                 desc: Determines how the cooldown of this power is visualized on the HUD.
@@ -3751,6 +3786,7 @@
                                 desc: Interval of ticks this power needs to recharge before the action can be executed again.
                                 type: integer
                                 min: 0
+                                default: 1
                             }
                             hud_render: {
                                 desc: Determines how the cooldown of this power is visualized on the HUD.
@@ -3789,6 +3825,7 @@
                                 desc: Interval of ticks this power needs to recharge before the action can be executed again.
                                 type: integer
                                 min: 0
+                                default: 1
                             }
                             hud_render: {
                                 desc: Determines how the cooldown of this power is visualized on the HUD.
@@ -3835,6 +3872,7 @@
                                 desc: Interval of ticks this power needs to recharge before the action can be executed again.
                                 type: integer
                                 min: 0
+                                default: 1
                             }
                             hud_render: {
                                 desc: Determines how the cooldown of this power is visualized on the HUD.
@@ -3854,6 +3892,7 @@
                                 desc: Interval of ticks this power needs to recharge before the action can be executed again.
                                 type: integer
                                 min: 0
+                                default: 1
                             }
                             hud_render: {
                                 desc: Determines how the cooldown of this power is visualized on the HUD.
@@ -3877,6 +3916,7 @@
                                 desc: Interval of ticks this power needs to recharge before the action can be executed again.
                                 type: integer
                                 min: 0
+                                default: 1
                             }
                             hud_render: {
                                 desc: Determines how the cooldown of this power is visualized on the HUD.
@@ -3945,6 +3985,10 @@
                                 link: item_stack
                             }
                             item_action: {
+                                desc: If set, execute this item action on the result item stack.
+                                link: item_action
+                            }
+                            item_action_after_crafting: {
                                 desc: If set, execute this item action on the result item stack.
                                 link: item_action
                             }
@@ -4021,6 +4065,14 @@
                             attacker_action: {
                                 desc: If set, this action will be executed on the attacker whenever this power applies a modification.
                                 link: entity_action
+                            }
+                            apply_armor_condition: {
+                                desc: If set, the damage will only be reduced by armor if the player satisfies this condition.
+                                link: entity_cond
+                            }
+                            damage_armor_condition: {
+                                desc: If set, the player's armor will only be damaged if said player satisfies this condition.
+                                link: entity_cond
                             }
                         }
                         "string-origins:modify_exhaustion": {
@@ -4213,9 +4265,17 @@
                         }
                         "string-origins:modify_status_effect_amplifier": {
                             status_effect: {
-                                desc: The namespace and ID of the status effect that will have its amplifier modified.
+                                desc: If specified, the namespace and ID of the status effect that will have its amplifier modified.
                                 type: string
                                 allow: *a-z0-9_#\/:.-
+                            }
+                            status_effects: {
+                                desc: If specified, the namespace and ID of the status effects that will have their amplifiers modified.
+                                type: list
+                                vals: {
+                                    type: string
+                                    allow: *a-z0-9_#\/:.-
+                                }
                             }
                             modifier: {
                                 desc: The modifier to apply to the amplifier of the specified status effect.
@@ -4224,9 +4284,17 @@
                         }
                         "string-origins:modify_status_effect_duration": {
                             status_effect: {
-                                desc: The namespace and ID of the status effect that will have its duration modified.
+                                desc: If specified, the namespace and ID of the status effect that will have its duration modified.
                                 type: string
                                 allow: *a-z0-9_#\/:.-
+                            }
+                            status_effects: {
+                                desc: If specified, the namespace and ID of the status effects that will have their durations modified.
+                                type: list
+                                vals: {
+                                    type: string
+                                    allow: *a-z0-9_#\/:.-
+                                }
                             }
                             modifier: {
                                 desc: The modifier to apply to the duration of the specified status effect.
