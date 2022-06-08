@@ -20,7 +20,7 @@
                                 props: {
                                     condition: {
                                         desc: The condition that the player needs to fulfill to get access to the origins specified here.
-                                        id: powers-8
+                                        id: powers-10
                                         link: entity_cond
                                     }
                                     origins: {
