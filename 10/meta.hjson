@@ -12,6 +12,7 @@
         id: {
             type: string
             allow: *a-z0-9_
+            refresh: true
         }
         pack_format: {
             desc:
