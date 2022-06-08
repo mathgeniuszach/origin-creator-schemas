@@ -22,7 +22,7 @@
         }
         icon: {
             desc: The item stack which is displayed as the icon for the origin in the top-left corner of the choose/view origin screen.
-            id: powers-8
+            id: powers-10
             link: item_stack
             gap: true
         }
