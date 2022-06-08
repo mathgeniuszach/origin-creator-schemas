@@ -26,4 +26,13 @@
         origins
         predicates
     ]
+    10: [
+        predicates
+        item_modifiers
+        advancements
+        powers
+        origin_layers
+        origins
+        meta
+    ]
 }
