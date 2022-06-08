@@ -3205,7 +3205,7 @@
                                 type: string
                             }
                             container_type: {
-                                Determines the type inventory to open. Accepts "CHEST", "DOUBLE_CHEST", "DROPPER", "DISPENSER" or "HOPPER".
+                                desc: Determines the type inventory to open. Accepts "CHEST", "DOUBLE_CHEST", "DROPPER", "DISPENSER" or "HOPPER".
                                 enum: ["CHEST", "DOUBLE_CHEST", "DROPPER", "DISPENSER", "HOPPER"]
                             }
                             drop_on_death: {
