@@ -27,11 +27,12 @@
         predicates
     ]
     10: [
-        meta
+        predicates
+        item_modifiers
         advancements
+        powers
         origin_layers
         origins
-        powers
-        predicates
+        meta
     ]
 }
