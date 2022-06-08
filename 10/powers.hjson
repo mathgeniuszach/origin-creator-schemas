@@ -883,13 +883,17 @@
                         origins:empty
                         origins:amount
                         origins:armor_value
+                        origins:durability
                         origins:enchantment
                         origins:fireproof
                         origins:food
                         origins:harvest_level
                         origins:ingredient
+                        origins:is_damageable
+                        origins:is_equippable
                         origins:meat
                         origins:nbt
+                        origins:relative_durability
                         origins:smeltable
                     ]
                     more: {
@@ -935,6 +939,16 @@
                                 type: integer
                             }
                         }
+                        "string-origins:durability": {
+                            comparison: {
+                                desc: How the durability should be compared to the specified value.
+                                link: comparison
+                            }
+                            compare_to: {
+                                desc: The value to compare to.
+                                type: integer
+                            }
+                        }
                         "string-origins:enchantment": {
                             enchantment: {
                                 desc: ID of the enchantment of interest to check the level of on the item, e.g. minecraft:protection.
@@ -971,12 +985,24 @@
                                 link: oritem
                             }
                         }
+                        "string-origins:is_damageable": {}
+                        "string-origins:is_equippable": {}
                         "string-origins:meat": {}
                         "string-origins:nbt": {
                             nbt: {
                                 desc: The NBT data to check for.
                                 type: string
                                 ext: true
+                            }
+                        }
+                        "string-origins:relative_durability": {
+                            comparison: {
+                                desc: How the relative durability should be compared to the specified value.
+                                link: comparison
+                            }
+                            compare_to: {
+                                desc: The value to compare to.
+                                type: float
                             }
                         }
                         "string-origins:smeltable": {}
@@ -1390,9 +1416,14 @@
                         origins:constant
                         origins:amount
                         origins:attacker
+                        origins:bypasses_armor
+                        origins:explosive
                         origins:fire
+                        origins:from_falling
                         origins:name
+                        origins:out_of_world
                         origins:projectile
+                        origins:unblockable
                     ]
                     more: {
                         "string-origins:and": {
@@ -1432,7 +1463,10 @@
                                 link: entity_cond
                             }
                         }
+                        "string-origins:bypasses_armor": {}
+                        "string-origins:explosive": {}
                         "string-origins:fire": {}
+                        "string-origins:from_falling": {}
                         "string-origins:name": {
                             name: {
                                 desc: Name the damage source should have to pass the check. Click to see a list of vanilla damage source names.
@@ -1440,6 +1474,7 @@
                                 type: string
                             }
                         }
+                        "string-origins:out_of_world": {}
                         "string-origins:projectile": {
                             projectile: {
                                 desc: If set, the check will only pass if the projectile was of an entity type with this ID.
@@ -1447,6 +1482,7 @@
                                 allow: *a-z0-9_#\/:.-
                             }
                         }
+                        "string-origins:unblockable": {}
                     }
                 }
             }
