@@ -2422,7 +2422,9 @@
                         origins:if_else_list
                         origins:consume
                         origins:damage
+                        origins:merge_nbt
                         origins:modify
+                        origins:remove_enchantment
                     ]
                     more: {
                         "string-origins:nothing": {}
@@ -2527,11 +2529,41 @@
                                 type: boolean
                             }
                         }
+                        "string-origins:merge_nbt": {
+                            nbt: {
+                                desc: The NBT to merge into the item.
+                                type: string
+                                ext: true
+                            }
+                        }
                         "string-origins:modify": {
                             modifier: {
                                 desc: The ID of an item modifier to apply to the item stack.
                                 type: string
                                 allow: *a-z0-9_#\/:.-
+                            }
+                        }
+                        "string-origins:remove_enchantment": {
+                            enchantment: {
+                                desc: If set, specifies a single enchantment to remove,
+                                type: string
+                                allow: *a-z0-9_#\/:.-
+                            }
+                            enchantments: {
+                                desc: If set, specifies a single enchantment to remove,
+                                type: list
+                                vals: {
+                                    type: string
+                                    allow: *a-z0-9_#\/:.-
+                                }
+                            }
+                            levels: {
+                                desc: If set, specifies the maximum number of levels to remove.
+                                type: int
+                            }
+                            reset_repair_cost: {
+                                desc: Whether or not to reset the repair cost on the item.
+                                type: boolean
                             }
                         }
                     }
