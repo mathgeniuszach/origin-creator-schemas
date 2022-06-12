@@ -524,6 +524,7 @@
                     type: boolean
                 }
                 type: {
+                    href: https://origins.readthedocs.io/en/0.7.3/item_conditions/
                     enum: [
                         origins:and
                         origins:or
@@ -615,6 +616,7 @@
                     type: boolean
                 }
                 type: {
+                    href: https://origins.readthedocs.io/en/0.7.3/block_conditions/
                     enum: [
                         origins:and
                         origins:or
@@ -775,6 +777,7 @@
                     type: boolean
                 }
                 type: {
+                    href: https://origins.readthedocs.io/en/0.7.3/fluid_conditions/
                     enum: [
                         origins:and
                         origins:or
@@ -826,6 +829,7 @@
                     type: boolean
                 }
                 type: {
+                    href: https://origins.readthedocs.io/en/0.7.3/biome_conditions/
                     enum: [
                         origins:and
                         origins:or
@@ -893,6 +897,7 @@
                     type: boolean
                 }
                 type: {
+                    href: https://origins.readthedocs.io/en/0.7.3/damage_conditions/
                     enum: [
                         origins:and
                         origins:or
@@ -965,6 +970,7 @@
             type: object
             props: {
                 type: {
+                    href: https://origins.readthedocs.io/en/0.7.3/entity_actions/
                     enum: [
                         origins:and
                         origins:chance
@@ -1315,6 +1321,7 @@
             type: object
             props: {
                 type: {
+                    href: https://origins.readthedocs.io/en/0.7.3/item_actions/
                     enum: [
                         origins:and
                         origins:chance
@@ -1408,6 +1415,7 @@
             type: object
             props: {
                 type: {
+                    href: https://origins.readthedocs.io/en/0.7.3/block_actions/
                     enum: [
                         origins:and
                         origins:chance

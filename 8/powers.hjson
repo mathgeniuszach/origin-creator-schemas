@@ -8,7 +8,7 @@
                     type: boolean
                 }
                 type: {
-                    href: https://origins.readthedocs.io/en/1.4.1/types/entity_condition_types/
+                    href: https://origins.readthedocs.io/en/1.4.1/types/bientity_condition_types/
                     enum: [
                         origins:and
                         origins:or
@@ -141,6 +141,7 @@
                     type: boolean
                 }
                 type: {
+                    href: https://origins.readthedocs.io/en/1.4.1/types/entity_condition_types/
                     enum: [
                         origins:and
                         origins:or
@@ -871,6 +872,7 @@
                     type: boolean
                 }
                 type: {
+                    href: https://origins.readthedocs.io/en/1.4.1/types/item_condition_types/
                     enum: [
                         origins:and
                         origins:or
@@ -987,6 +989,7 @@
                     type: boolean
                 }
                 type: {
+                    href: https://origins.readthedocs.io/en/1.4.1/types/block_condition_types/
                     enum: [
                         origins:and
                         origins:or
@@ -1253,6 +1256,7 @@
                     type: boolean
                 }
                 type: {
+                    href: https://origins.readthedocs.io/en/1.4.1/types/fluid_condition_types/
                     enum: [
                         origins:and
                         origins:or
@@ -1312,6 +1316,7 @@
                     type: boolean
                 }
                 type: {
+                    href: https://origins.readthedocs.io/en/1.4.1/types/biome_condition_types/
                     enum: [
                         origins:and
                         origins:or
@@ -1379,6 +1384,7 @@
                     type: boolean
                 }
                 type: {
+                    href: https://origins.readthedocs.io/en/1.4.1/types/damage_condition_types/
                     enum: [
                         origins:and
                         origins:or
@@ -1451,6 +1457,7 @@
             type: object
             props: {
                 type: {
+                    href: https://origins.readthedocs.io/en/1.4.1/types/bientity_action_types/
                     enum: [
                         origins:nothing
                         origins:and
@@ -1622,6 +1629,7 @@
             type: object
             props: {
                 type: {
+                    href: https://origins.readthedocs.io/en/1.4.1/types/entity_action_types/
                     enum: [
                         origins:nothing
                         origins:and
@@ -2269,6 +2277,7 @@
             type: object
             props: {
                 type: {
+                    href: https://origins.readthedocs.io/en/1.4.1/types/item_action_types/
                     enum: [
                         origins:nothing
                         origins:and
@@ -2399,6 +2408,7 @@
             type: object
             props: {
                 type: {
+                    href: https://origins.readthedocs.io/en/1.4.1/types/block_action_types/
                     enum: [
                         origins:nothing
                         origins:and

@@ -8,7 +8,7 @@
                     type: boolean
                 }
                 type: {
-                    href: https://origins.readthedocs.io/en/1.0.3/entity_conditions/
+                    href: https://origins.readthedocs.io/en/1.1.4/types/bientity_condition_types/
                     enum: [
                         origins:and
                         origins:or
@@ -115,6 +115,7 @@
                     type: boolean
                 }
                 type: {
+                    href: https://origins.readthedocs.io/en/1.1.4/types/entity_condition_types/
                     enum: [
                         origins:and
                         origins:or
@@ -700,6 +701,7 @@
                     type: boolean
                 }
                 type: {
+                    href: https://origins.readthedocs.io/en/1.1.4/types/item_condition_types/
                     enum: [
                         origins:and
                         origins:or
@@ -789,7 +791,7 @@
                         "string-origins:ingredient": {
                             ingredient: {
                                 desc: An ingredient, which can be a variety of things.
-                                href: https://origins.readthedocs.io/en/1.0.3/data_types/ingredient/
+                                href: https://origins.readthedocs.io/en/1.1.4/types/data_types/ingredient/
                                 id: recipes-6
                                 link: oritem
                             }
@@ -814,6 +816,7 @@
                     type: boolean
                 }
                 type: {
+                    href: https://origins.readthedocs.io/en/1.1.4/types/block_condition_types/
                     enum: [
                         origins:and
                         origins:or
@@ -982,6 +985,7 @@
                     type: boolean
                 }
                 type: {
+                    href: https://origins.readthedocs.io/en/1.1.4/types/fluid_condition_types/
                     enum: [
                         origins:and
                         origins:or
@@ -1041,6 +1045,7 @@
                     type: boolean
                 }
                 type: {
+                    href: https://origins.readthedocs.io/en/1.1.4/types/biome_condition_types/
                     enum: [
                         origins:and
                         origins:or
@@ -1075,7 +1080,7 @@
                         "string-origins:category": {
                             category: {
                                 desc: Which category the biome must be in order to succeed the check. Click to see the list of biome categories in vanilla.
-                                href: https://origins.readthedocs.io/en/1.0.3/misc/biome_categories/
+                                href: https://origins.readthedocs.io/en/1.1.4/misc/extras/biome_categories/
                                 type: string
                             }
                         }
@@ -1108,6 +1113,7 @@
                     type: boolean
                 }
                 type: {
+                    href: https://origins.readthedocs.io/en/1.1.4/types/damage_condition_types/
                     enum: [
                         origins:and
                         origins:or
@@ -1159,8 +1165,8 @@
                         "string-origins:fire": {}
                         "string-origins:name": {
                             name: {
-                                desc: Name the damage source should have to pass the check. Click to see a list of vanilla damage source names.
-                                href: https://origins.readthedocs.io/en/1.0.3/misc/vanilla_damage_sources/
+                                desc: Name the damage source should have to pass the check. Click to see a list of damage source names in vanilla and the origins mod.
+                                href: https://origins.readthedocs.io/en/1.1.4/misc/extras/damage_sources/
                                 type: string
                             }
                         }
@@ -1180,6 +1186,7 @@
             type: object
             props: {
                 type: {
+                    href: https://origins.readthedocs.io/en/1.1.4/types/bientity_action_types/
                     enum: [
                         origins:nothing
                         origins:and
@@ -1279,6 +1286,7 @@
             type: object
             props: {
                 type: {
+                    href: https://origins.readthedocs.io/en/1.1.4/types/entity_action_types/
                     enum: [
                         origins:nothing
                         origins:and
@@ -1415,7 +1423,7 @@
                             }
                             space: {
                                 desc: The space to perform the velocity addition in.
-                                href: https://origins.readthedocs.io/en/1.0.3/misc/space/
+                                href: https://origins.readthedocs.io/en/1.1.4/misc/extras/space/
                                 enum: [
                                     world
                                     local
@@ -1763,6 +1771,7 @@
             type: object
             props: {
                 type: {
+                    href: https://origins.readthedocs.io/en/1.1.4/types/item_action_types/
                     enum: [
                         origins:and
                         origins:chance
@@ -1876,6 +1885,7 @@
             type: object
             props: {
                 type: {
+                    href: https://origins.readthedocs.io/en/1.1.4/types/block_action_types/
                     enum: [
                         origins:and
                         origins:chance
@@ -2054,7 +2064,7 @@
             props: {
                 type: {
                     desc: ID of the desired Power Type.
-                    href: https://origins.readthedocs.io/en/1.0.3/power_types/
+                    href: https://origins.readthedocs.io/en/1.1.4/types/power_types/
                     enum: [
                         origins:simple
                         origins:attribute_modify_transfer
@@ -3709,7 +3719,7 @@
             props: {
                 slot: {
                     desc: Inventory slot position of the stack. If not specified, will be the first free slot in the inventory. Click to see for possible values.
-                    href: https://origins.readthedocs.io/en/1.0.3/misc/positioned_item_stack_slots/
+                    href: https://origins.readthedocs.io/en/1.1.4/misc/extras/positioned_item_stack_slots/
                     type: integer
                 }
             }
@@ -3726,7 +3736,7 @@
         }
         a_mod: {
             desc: An Object used to specify how a specific attribute should be modified.
-            href: https://origins.readthedocs.io/en/1.0.3/data_types/attribute_modifier/
+            href: https://origins.readthedocs.io/en/1.1.4/types/data_types/attribute_modifier/
             type: object
             props: {
                 operation: {
@@ -3745,7 +3755,7 @@
         }
         aa_mod: {
             desc: An Object used to specify how a specific attribute should be modified. Basically an Attribute Modifier with an additional attribute field.
-            href: https://origins.readthedocs.io/en/1.0.3/data_types/attributed_attribute_modifier/
+            href: https://origins.readthedocs.io/en/1.1.4/types/data_types/attributed_attribute_modifier/
             type: object
             props: {
                 attribute: {
@@ -3769,7 +3779,7 @@
         }
         hud_render: {
             desc: An Object used to define how a resource or cooldown bar should be rendered.
-            href: https://origins.readthedocs.io/en/1.0.3/data_types/hud_render/
+            href: https://origins.readthedocs.io/en/1.1.4/types/data_types/hud_render/
             type: object
             props: {
                 should_render: {
@@ -3779,7 +3789,7 @@
                 }
                 sprite_location: {
                     desc: The path to the file in the assets which contains what the bar looks like. See the List of resource bar files for a list of files included by default in the mod. Defaults to "origins:textures/gui/resource_bar.png".
-                    href: https://origins.readthedocs.io/en/1.0.3/misc/resource_bars/
+                    href: https://origins.readthedocs.io/en/1.1.4/misc/extras/sprites/#list_of_resource_bar_files
                     type: string
                     allow: *a-z0-9_#\/:.-
                 }
@@ -3800,12 +3810,12 @@
         }
         damage_source: {
             desc: An Object used to specify how to deal damage to an entity.
-            href: https://origins.readthedocs.io/en/1.0.3/data_types/damage_source/
+            href: https://origins.readthedocs.io/en/1.1.4/types/data_types/damage_source/
             type: object
             props: {
                 name: {
-                    desc: The name of the damage source. Controls death message as well as other interactions. Consider vanilla damage sources when picking a name.
-                    href: https://origins.readthedocs.io/en/1.0.3/misc/vanilla_damage_sources/
+                    desc: The name of the damage source. Controls death message as well as other interactions. Consider existing damage sources when picking a name.
+                    href: https://origins.readthedocs.io/en/1.1.4/misc/extras/damage_sources/
                     type: string
                 }
                 bypasses_armor: {
@@ -3838,7 +3848,7 @@
                     props: {
                         key: {
                             desc: A string specifying the keybinding. Click for possible vanilla and origins values.
-                            href: https://origins.readthedocs.io/en/1.0.3/misc/keybindings/
+                            href: https://origins.readthedocs.io/en/1.1.4/misc/extras/keybindings/
                             type: string
                         }
                         continuous: {
