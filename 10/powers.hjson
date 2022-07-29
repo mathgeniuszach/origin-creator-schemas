@@ -2870,6 +2870,61 @@
             }
         }
 
+        badge: {
+            type: object
+            props: {
+                type: {
+                    href: https://origins.readthedocs.io/en/latest/types/badge_types/
+                    desc: The namespace and ID of the desired badge type.
+                    enum: [
+                        origins:sprite
+                        origins:crafting_recipe
+                        origins:keybind
+                        origins:tooltip
+                    ]
+                    more: {
+                        "string-origins:sprite": {}
+                        "string-origins:crafting_recipe": {
+                            recipe: {
+                                desc: The recipe to display, including an id field which can be any arbitrary identifier.
+                                id: recipes-6
+                                link: power_recipe
+                            }
+                            prefix: {
+                                desc: If specified, this text will be used as the prefix for the tooltip.
+                                id: item_modifiers-10
+                                link: jsontxt
+                            }
+                            suffix: {
+                                desc: If specified, this text will be used as the suffix for the tooltip.
+                                id: item_modifiers-10
+                                link: jsontxt
+                            }
+
+                        }
+                        "string-origins:keybind": {
+                            text: {
+                                desc: The text to use in the tooltip when hovering over the badge. "%s" will be translated to the keybind specified in the power.
+                                id: item_modifiers-10
+                                link: jsontxt
+                            }
+                        }
+                        "string-origins:tooltip": {
+                            text: {
+                                desc: The text to use in the tooltip when hovering over the badge.
+                                id: item_modifiers-10
+                                link: jsontxt
+                            }
+                        }
+                    }
+                }
+                sprite: {
+                    desc: The namespace, path and ID of the texture to use as the icon of the badge.
+                    type: string
+                    allow: *a-z0-9_#\/:.-
+                }
+            }
+        }
         power_base: {
             type: object
             show: true
@@ -2896,20 +2951,7 @@
                 badges: {
                     desc: If set, it will display icon(s) after the name of the power.
                     type: list
-                    vals: {
-                        type: object
-                        props: {
-                            sprite: {
-                                desc: ID of the texture to be displayed as an icon.
-                                type: string
-                                allow: *a-z0-9_#\/:.-
-                            }
-                            text: {
-                                desc: The string to display when you hover over the icon.
-                                type: string
-                            }
-                        }
-                    }
+                    vals: {link: "badge"}
                 }
                 condition: {
                     desc: If set, this power will only be active when the player with this power fulfills the condition.
