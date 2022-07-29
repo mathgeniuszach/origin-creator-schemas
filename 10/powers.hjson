@@ -4969,14 +4969,42 @@
             }
         }
         mod_op: {
+            href: https://origins.readthedocs.io/en/latest/types/data_types/attribute_modifier_operation/
             desc:
             '''
             Can be one of
-            "addition", which adds (or subtracts) the modifier value to the base: NewValue = BaseValue + ModifierValue.
-            "multiply_base", which adds (or subtracts) a portion of the base value: NewValue = CurrentValue + (BaseValue * ModifierValue).
-            "multiply_total", which multiplies the total value by this value: NewTotalValue = TotalValue * (1 + ModifierValue).
+            "add_base_early", which adds (or subtracts) the modifier value to the base value. (NewBaseValue = BaseValue + ModifierValue).
+            "multiply_base_additive", which adds (or subtracts) the base value multiplied by the modifier value to the current base value. (NewBaseValue = BaseValue + (BaseValue * ModifierValue)).
+            "multiply_base_multiplicative", which multiplies the current base value by the modifier value. (NewBaseValue = BaseValue * (1 + ModifierValue)).
+            "add_base_late", which adds (or subtracts) the modifier value to the base value. (NewBaseValue = BaseValue + ModifierValue).
+            "min_base", which uses the modifier value as the minimum value for the base value using Java's built-in Math#max method. (NewBaseValue = Math.max(BaseValue, ModifierValue)).
+            "max_base", which uses the modifier value as the maximum value for the base value using Java's built-in Math#min method. (NewBaseValue = Math.min(BaseValue, ModifierValue)).
+            "set_base", which sets the modifier value as the base value. (NewBaseValue = ModifierValue).
+            "multiply_total_additive", which multiplies the total value by the current total value multiplied by the modifier value. (NewTotalValue = TotalValue * (TotalValue * ModifierValue)).
+            "multiply_total_multiplicative", which multiplies the total value by the modifier value + 1. (NewTotalValue = TotalValue * (1 + ModifierValue)).
+            "min_total", which uses the modifier value as the minimum value for the total value using Java's built-in Math#max method. (NewTotalValue = Math.max(TotalValue, ModifierValue)).
+            "max_total", which uses the modifier value as the maximum value for the total value using Java's built-in Math#min method. (NewTotalValue = Math.min(TotalValue, ModifierValue)).
+            "set_total", which sets the modifier value as the total value. (NewTotalValue = ModifierValue).
             '''
-            enum: ["addition", "multiply_base", "multiply_total"]
+            enum: [
+                "add_base_early",
+                "multiply_base_additive",
+                "multiply_base_multiplicative",
+                "add_base_late",
+                "min_base",
+                "max_base",
+                "set_base",
+                "multiply_total_additive",
+                "multiply_total_multiplicative",
+                "min_total",
+                "max_total",
+                "set_total"
+            ],
+            convert: {
+                addition: "add_base_early",
+                multiply_base: "multiply_base_additive",
+                multiply_total: "multiply_total_multiplicative"
+            }
         }
         a_mod: {
             desc: An Object used to specify how a specific attribute should be modified.
