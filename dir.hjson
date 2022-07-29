@@ -1,6 +1,6 @@
 // When the origin creator cannot find a schema for the given pack_format, it will default to the latest version before it or just 6.
 {
-    $: 68 // Change this number every time a pull request is made to let end users know stuff has been updated
+    $: 69 // Change this number every time a pull request is made to let end users know stuff has been updated
     6: [
         meta
         tags
