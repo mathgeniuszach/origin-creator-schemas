@@ -5057,7 +5057,6 @@
             type: object
             props: {
                 operation: {
-                    desc: The operation which will be performed by this modifier.
                     link: mod_op
                 }
                 value: {
@@ -5081,7 +5080,6 @@
                     allow: *a-z0-9_#\/:.-
                 }
                 operation: {
-                    desc: The operation which will be performed by this modifier.
                     link: mod_op
                 }
                 value: {
