@@ -5028,10 +5028,7 @@
             "max_total", which uses the modifier value as the maximum value for the total value using Java's built-in Math#min method. (NewTotalValue = Math.min(TotalValue, ModifierValue)).
             "set_total", which sets the modifier value as the total value. (NewTotalValue = ModifierValue).
 
-            These options are only here for legacy support, but they are also available (prefer the above options when possible):
-            "addition", which adds (or subtracts) the modifier value to the base: NewValue = BaseValue + ModifierValue. The new equivalent is "add_base_early".
-            "multiply_base", which adds (or subtracts) a portion of the base value: NewValue = CurrentValue + (BaseValue * ModifierValue). The new equivalent is "multiply_base_additive".
-            "multiply_total", which multiplies the total value by this value: NewTotalValue = TotalValue * (1 + ModifierValue). The new equivalent is "multiply_total_multiplicative".
+            Tje other three options are only here for legacy support.
             '''
             enum: [
                 "add_base_early",
