@@ -261,6 +261,7 @@
                         "string-origins:attribute": {
                             attribute: {
                                 desc: ID of the attribute of which the value should be checked.
+                                href: https://minecraft.fandom.com/wiki/Attribute
                                 type: string
                                 allow: *a-z0-9_#\/:.-
                             }
@@ -3076,6 +3077,7 @@
                         "string-origins:attribute_modify_transfer": {
                             attribute: {
                                 desc: The namespace and ID of the attribute to transfer the value from.
+                                href: https://minecraft.fandom.com/wiki/Attribute
                                 type: string
                             }
                             class: {
@@ -4282,6 +4284,7 @@
                         "string-origins:modify_attribute": {
                             attribute: {
                                 desc: ID of the attribute of which the modifier should be applied.
+                                href: https://minecraft.fandom.com/wiki/Attribute
                                 type: string
                                 allow: *a-z0-9_#\/:.-
                             }
@@ -5073,6 +5076,7 @@
             props: {
                 attribute: {
                     desc: ID of the attribute which will be modified by this modifier.
+                    href: https://minecraft.fandom.com/wiki/Attribute
                     type: string
                     allow: *a-z0-9_#\/:.-
                 }
