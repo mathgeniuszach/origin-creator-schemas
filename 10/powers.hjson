@@ -5027,6 +5027,11 @@
             "min_total", which uses the modifier value as the minimum value for the total value using Java's built-in Math#max method. (NewTotalValue = Math.max(TotalValue, ModifierValue)).
             "max_total", which uses the modifier value as the maximum value for the total value using Java's built-in Math#min method. (NewTotalValue = Math.min(TotalValue, ModifierValue)).
             "set_total", which sets the modifier value as the total value. (NewTotalValue = ModifierValue).
+
+            These options are only here for legacy support, but they are also available (prefer the above options when possible):
+            "addition", which adds (or subtracts) the modifier value to the base: NewValue = BaseValue + ModifierValue. The new equivalent is "add_base_early".
+            "multiply_base", which adds (or subtracts) a portion of the base value: NewValue = CurrentValue + (BaseValue * ModifierValue). The new equivalent is "multiply_base_additive".
+            "multiply_total", which multiplies the total value by this value: NewTotalValue = TotalValue * (1 + ModifierValue). The new equivalent is "multiply_total_multiplicative".
             '''
             enum: [
                 "add_base_early",
@@ -5040,13 +5045,11 @@
                 "multiply_total_multiplicative",
                 "min_total",
                 "max_total",
-                "set_total"
+                "set_total",
+                "additon",
+                "multiply_base",
+                "multiply_total"
             ],
-            convert: {
-                addition: "add_base_early",
-                multiply_base: "multiply_base_additive",
-                multiply_total: "multiply_total_multiplicative"
-            }
         }
         a_mod: {
             desc: An Object used to specify how a specific attribute should be modified.
