@@ -2,7 +2,8 @@
     links: {
         bi_entity_cond: {
             or: [
-            {
+                {
+                    title: original
                     type: object
                     props: {
                         inverted: {
@@ -135,12 +136,13 @@
                         }
                     }
                 }
-                {link: "nany"}
+                {title: "custom", link: "nany"}
             ]
         }
         entity_cond: {
             or: [
                 {
+                    title: original
                     type: object
                     props: {
                         inverted: {
@@ -871,12 +873,13 @@
                         }
                     }
                 }
-                {link: "nany"}
+                {title: "custom", link: "nany"}
             ]
         }
         item_cond: {
             or: [
                 {
+                    title: original
                     type: object
                     props: {
                         inverted: {
@@ -993,12 +996,13 @@
                         }
                     }
                 }
-                {link: "nany"}
+                {title: "custom", link: "nany"}
             ]
         }
         block_cond: {
             or: [
                 {
+                    title: original
                     type: object
                     props: {
                         inverted: {
@@ -1265,12 +1269,13 @@
                         }
                     }
                 }
-                {link: "nany"}
+                {title: "custom", link: "nany"}
             ]
         }
         fluid_cond: {
             or: [
                 {
+                    title: original
                     type: object
                     props: {
                         inverted: {
@@ -1330,12 +1335,13 @@
                         }
                     }
                 }
-                {link: "nany"}
+                {title: "custom", link: "nany"}
             ]
         }
         biome_cond: {
             or: [
                 {
+                    title: original
                     type: object
                     props: {
                         inverted: {
@@ -1403,12 +1409,13 @@
                         }
                     }
                 }
-                {link: "nany"}
+                {title: "custom", link: "nany"}
             ]
         }
         damage_cond: {
             or: [
                 {
+                    title: original
                     type: object
                     props: {
                         inverted: {
@@ -1484,13 +1491,14 @@
                         }
                     }
                 }
-                {link: "nany"}
+                {title: "custom", link: "nany"}
             ]
         }
 
         bi_entity_action: {
             or: [
                 {
+                    title: original
                     type: object
                     props: {
                         type: {
@@ -1662,12 +1670,13 @@
                         }
                     }
                 }
-                {link: "nany"}
+                {title: "custom", link: "nany"}
             ]
         }
         entity_action: {
             or: [
                 {
+                    title: original
                     type: object
                     props: {
                         type: {
@@ -2315,12 +2324,13 @@
                         }
                     }
                 }
-                {link: "nany"}
+                {title: "custom", link: "nany"}
             ]
         }
         item_action: {
             or: [
                 {
+                    title: original
                     type: object
                     props: {
                         type: {
@@ -2451,12 +2461,13 @@
                         }
                     }
                 }
-                {link: "nany"}
+                {title: "custom", link: "nany"}
             ]
         }
         block_action: {
             or: [
                 {
+                    title: original
                     type: object
                     props: {
                         type: {
@@ -2666,7 +2677,7 @@
                         }
                     }
                 }
-                {link: "nany"}
+                {title: "custom", link: "nany"}
             ]
         }
 
