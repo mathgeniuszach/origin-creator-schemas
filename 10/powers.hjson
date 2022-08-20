@@ -137,7 +137,7 @@
                         }
                     }
                 }
-                {title: "custom", link: "nany"}
+                {title: "custom", link: "custom_condition"}
             ]
         }
         entity_cond: {
@@ -881,7 +881,7 @@
                         }
                     }
                 }
-                {title: "custom", link: "nany"}
+                {title: "custom", link: "custom_condition"}
             ]
         }
         item_cond: {
@@ -1031,7 +1031,7 @@
                         }
                     }
                 }
-                {title: "custom", link: "nany"}
+                {title: "custom", link: "custom_condition"}
             ]
         }
         block_cond: {
@@ -1305,7 +1305,7 @@
                         }
                     }
                 }
-                {title: "custom", link: "nany"}
+                {title: "custom", link: "custom_condition"}
             ]
         }
         fluid_cond: {
@@ -1372,7 +1372,7 @@
                         }
                     }
                 }
-                {title: "custom", link: "nany"}
+                {title: "custom", link: "custom_condition"}
             ]
         }
         biome_cond: {
@@ -1447,7 +1447,7 @@
                         }
                     }
                 }
-                {title: "custom", link: "nany"}
+                {title: "custom", link: "custom_condition"}
             ]
         }
         damage_cond: {
@@ -1540,7 +1540,7 @@
                         }
                     }
                 }
-                {title: "custom", link: "nany"}
+                {title: "custom", link: "custom_condition"}
             ]
         }
 
@@ -1731,7 +1731,7 @@
                         }
                     }
                 }
-                {title: "custom", link: "nany"}
+                {title: "custom", link: "custom_action"}
             ]
         }
         entity_action: {
@@ -2535,7 +2535,7 @@
                         }
                     }
                 }
-                {title: "custom", link: "nany"}
+                {title: "custom", link: "custom_action"}
             ]
         }
         item_action: {
@@ -2716,7 +2716,7 @@
                         }
                     }
                 }
-                {title: "custom", link: "nany"}
+                {title: "custom", link: "custom_action"}
             ]
         }
         block_action: {
@@ -2944,7 +2944,7 @@
                         }
                     }
                 }
-                {title: "custom", link: "nany"}
+                {title: "custom", link: "custom_action"}
             ]
         }
 
@@ -5063,6 +5063,27 @@
                 {type: "list", vals: {link: "nany"}}
                 {type: "object", extra: {link: "nany"}}
             ]
+        }
+        custom_action: {
+            type: object
+            props: {
+                type: {
+                    type: string
+                    allow: *a-z0-9_#\/:.-
+                }
+            }
+            extra: {link: "nany"}
+        }
+        custom_condition: {
+            type: object
+            props: {
+                inverted: {type: "boolean"}
+                type: {
+                    type: string
+                    allow: *a-z0-9_#\/:.-
+                }
+            }
+            extra: {link: "nany"}
         }
         item_stack: {
             desc: An Object which defines a new item stack.
