@@ -1,7 +1,7 @@
 {
     links: {
         entity_cond: {
-            unspec: true
+            unspec: none
             or: [
                 {
                     title: original
@@ -524,7 +524,7 @@
             ]
         }
         item_cond: {
-            unspec: true
+            unspec: none
             or: [
                 {
                     title: original
@@ -623,7 +623,7 @@
             ]
         }
         block_cond: {
-            unspec: true
+            unspec: none
             or: [
                 {
                     title: original
@@ -791,7 +791,7 @@
             ]
         }
         fluid_cond: {
-            unspec: true
+            unspec: none
             or: [
                 {
                     title: original
@@ -850,7 +850,7 @@
             ]
         }
         biome_cond: {
-            unspec: true
+            unspec: none
             or: [
                 {
                     title: original
@@ -925,7 +925,7 @@
             ]
         }
         damage_cond: {
-            unspec: true
+            unspec: none
             or: [
                 {
                     title: original
@@ -1009,7 +1009,7 @@
         }
 
         entity_action: {
-            unspec: true
+            unspec: none
             or: [
                 {
                     title: original
@@ -1367,7 +1367,7 @@
             ]
         }
         item_action: {
-            unspec: true
+            unspec: none
             or: [
                 {
                     title: original
@@ -1468,7 +1468,7 @@
             ]
         }
         block_action: {
-            unspec: true
+            unspec: none
             or: [
                 {
                     title: original
