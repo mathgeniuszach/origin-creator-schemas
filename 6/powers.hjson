@@ -2745,6 +2745,7 @@
         }
         custom_action: {
             type: object
+            show: true
             props: {
                 type: {
                     type: string
@@ -2755,6 +2756,7 @@
         }
         custom_condition: {
             type: object
+            show: true
             props: {
                 inverted: {type: "boolean"}
                 type: {
