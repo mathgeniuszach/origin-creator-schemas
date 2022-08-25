@@ -5257,18 +5257,25 @@
             }
         }
         key: {
-            type: object
-            props: {
-                key: {
-                    desc: A string specifying the keybinding. Click for possible vanilla and origins values.
-                    href: https://origins.readthedocs.io/en/latest/misc/extras/keybindings/
-                    type: string
+            or: [
+                {
+                    title: new
+                    type: object
+                    props: {
+                        key: {
+                            desc: A string specifying the keybinding. Click for possible vanilla and origins values.
+                            href: https://origins.readthedocs.io/en/latest/misc/extras/keybindings/
+                            type: string
+                        }
+                        continuous: {
+                            desc: Whether the keybinding should only trigger the power on the first tick the key is held down, or, if set to true, continuously on each tick while the key is held.
+                            type: boolean
+                        }
+                    }
                 }
-                continuous: {
-                    desc: Whether the keybinding should only trigger the power on the first tick the key is held down, or, if set to true, continuously on each tick while the key is held.
-                    type: boolean
-                }
-            }
+                {title: "old", enum: ["primary", "secondary"]}
+            ]
+            unspec: true
         }
         effect: {
             desc: An Object used to define a status effect with duration, amplifier, etc.
