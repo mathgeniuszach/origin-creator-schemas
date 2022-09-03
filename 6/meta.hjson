@@ -11,6 +11,8 @@
         }
         id: {
             type: string
+            default: my_pack
+            nonempty: true
             allow: *a-z0-9_
         }
         pack_format: {
