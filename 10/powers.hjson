@@ -1,3 +1,4 @@
+# latest - 1.7.1
 {
     links: {
         bi_entity_cond: {
@@ -5162,6 +5163,11 @@
                 value: {
                     desc: The value with which to apply the operation to the value.
                     type: number
+                }
+                resource: {
+                    desc: If specified, the value of this power will be used instead of the value specified in the value field.
+                    type: string
+                    allow: *a-z0-9_#\/:.-
                 }
                 name: {
                     desc: (Optional) A descriptive name for the modifier, describing where it comes from.
