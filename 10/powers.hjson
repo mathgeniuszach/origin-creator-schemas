@@ -5376,12 +5376,34 @@
         slot: {
             desc: A slot in an inventory to apply to.
             href: https://origins.readthedocs.io/en/latest/types/data_types/item_slot/
-            type: string
+            or: [
+                {
+                    type: string
+                    allow: *a-z0-9_#\/:.-
+                }
+                {
+                    type: integer
+                }
+            ]
         }
         slots: {
             desc: A list of slots in an inventory to apply to.
-            type: list
-            vals: {link: "slot"}
+            href: https://origins.readthedocs.io/en/latest/types/data_types/item_slot/
+            or: [
+                {
+                    name: new
+                    type: list
+                    vals: {
+                        type: string
+                        allow: *a-z0-9_#\/:.-
+                    }
+                }
+                {
+                    name: old
+                    type: list
+                    vals: {link: "slot"}
+                }
+            ]
         }
     }
     or: [
