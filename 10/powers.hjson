@@ -5375,8 +5375,8 @@
         }
         slot: {
             desc: A slot in an inventory to apply to.
-            href: https://origins.readthedocs.io/en/latest/misc/extras/positioned_item_stack_slots/#positioned_item_stack_slots
-            type: integer
+            href: https://origins.readthedocs.io/en/latest/types/data_types/item_slot/
+            type: string
         }
         slots: {
             desc: A list of slots in an inventory to apply to.
