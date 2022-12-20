@@ -5126,7 +5126,7 @@
             "multiply_total", which multiplies the total value by the modifier value + 1.
                 (NewValue = OldValue * (1 + ModifierValue)).
 
-            The "base" is the default value for that attribute for the entity in question before any operations are applied.
+            The BaseValue for that attribute for the entity in question after ONLY all "addition" operations have been applied.
             All "addition" operations occur first, then all "multiply_base" operations, then on the result all "multiply_total" operations are applied.
             '''
             enum: [
