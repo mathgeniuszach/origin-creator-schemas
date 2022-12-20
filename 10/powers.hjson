@@ -3180,7 +3180,7 @@
                             update_health: {
                                 desc: When true, the player's health percentage will update to match their new maximum health.
                                 type: boolean
-                                default: false
+                                default: true
                             }
                         }
                         "string-origins:burn": {
@@ -3225,7 +3225,7 @@
                             update_health: {
                                 desc: When true, the player's health percentage will update to match their new maximum health.
                                 type: boolean
-                                default: false
+                                default: true
                             }
                         }
                         "string-origins:conditioned_restrict_armor": {
