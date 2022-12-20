@@ -5176,7 +5176,7 @@
             type: object
             props: {
                 operation: {
-                    link: mod_op
+                    link: a_mod_op
                 }
                 value: {
                     desc: The value with which to apply the operation to the value.
