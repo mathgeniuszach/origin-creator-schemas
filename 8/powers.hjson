@@ -4614,9 +4614,15 @@
             desc:
             '''
             Can be one of
-            "addition", which adds (or subtracts) the modifier value to the base: NewValue = BaseValue + ModifierValue.
-            "multiply_base", which adds (or subtracts) a portion of the base value: NewValue = CurrentValue + (BaseValue * ModifierValue).
-            "multiply_total", which multiplies the total value by this value: NewTotalValue = TotalValue * (1 + ModifierValue).
+            "addition", which adds (or subtracts) the modifier value to the base value.
+                (NewValue = OldValue + ModifierValue).
+            "multiply_base", which adds (or subtracts) the base value multiplied by the modifier value to the base value.
+                (NewValue = OldValue + BaseValue * (1 + ModifierValue)).
+            "multiply_total", which multiplies the total value by the modifier value + 1.
+                (NewValue = OldValue * (1 + ModifierValue)).
+
+            The "base" is the default value for that attribute for the entity in question before any operations are applied.
+            All "addition" operations occur first, then all "multiply_base" operations, then on the result all "multiply_total" operations are applied.
             '''
             enum: ["addition", "multiply_base", "multiply_total"]
         }
