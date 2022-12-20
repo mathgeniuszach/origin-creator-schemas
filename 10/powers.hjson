@@ -5114,7 +5114,25 @@
                 slot: {link: "slot"}
             }
         }
-        mod_op: {
+        aa_mod_op: {
+            href: https://origins.readthedocs.io/en/latest/types/data_types/attributed_attribute_modifier_operation/
+            desc:
+            '''
+            Can be one of
+            "addition", which adds (or subtracts) the modifier value to the base value. (NewValue = OldValue + ModifierValue).
+            "multiply_base", which adds (or subtracts) the base value multiplied by the modifier value to the base value. (NewValue = OldValue + BaseValue * (1 + ModifierValue)).
+            "multiply_total", which multiplies the total value by the modifier value + 1. (NewValue = OldValue * (1 + ModifierValue)).
+
+            The "base" is the default value for that attribute for the entity in question before any operations are applied.
+            All "addition" operations occur first, then all "multiply_base" operations, then on the result all "multiply_total" operations are applied.
+            '''
+            enum: [
+                "addition",
+                "multiply_base",
+                "multiply_total"
+            ]
+        }
+        a_mod_op: {
             href: https://origins.readthedocs.io/en/latest/types/data_types/attribute_modifier_operation/
             desc:
             '''
@@ -5132,7 +5150,7 @@
             "max_total", which uses the modifier value as the maximum value for the total value using Java's built-in Math#min method. (NewTotalValue = Math.min(TotalValue, ModifierValue)).
             "set_total", which sets the modifier value as the total value. (NewTotalValue = ModifierValue).
 
-            Tje other three options are only here for legacy support.
+            The other three options are only here for legacy support.
             '''
             enum: [
                 "add_base_early",
@@ -5187,7 +5205,7 @@
                     allow: *a-z0-9_#\/:.-
                 }
                 operation: {
-                    link: mod_op
+                    link: aa_mod_op
                 }
                 value: {
                     desc: The value with which to apply the operation to the value.
