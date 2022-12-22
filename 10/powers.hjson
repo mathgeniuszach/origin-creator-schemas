@@ -3032,16 +3032,16 @@
                     type: list
                     vals: {link: "badge"}
                 }
-                condition: {
-                    desc: If set, this power will only be active when the player with this power fulfills the condition.
-                    link: entity_cond
-                }
             }
         }
         power: {
             title: single
             extend: power_base
             props: {
+                condition: {
+                    desc: If set, this power will only be active when the player with this power fulfills the condition.
+                    link: entity_cond
+                }
                 type: {
                     desc: ID of the desired Power Type.
                     href: https://origins.readthedocs.io/en/latest/types/power_types/
@@ -5045,6 +5045,10 @@
             title: custom
             extend: power_base
             props: {
+                condition: {
+                    desc: If set, this power will only be active when the player with this power fulfills the condition.
+                    link: entity_cond
+                }
                 type: {
                     desc: ID of the desired Power Type.
                     type: string
