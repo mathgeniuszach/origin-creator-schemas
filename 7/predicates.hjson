@@ -142,7 +142,10 @@
                 }
                 light: {
                     desc: The light level of visible light. <7 is where mobs spawn.
-                    link: intmm
+                    type: object
+                    props: {
+                        light: {link: "intmm"}
+                    }
                 }
                 position: {
                     desc: The exact coordinates of the given position.
