@@ -685,9 +685,9 @@
                                             '''
                                             Determines how the raycast handles blocks.
 
-                                            If set to "outline", the raycast will take the shape of the collision box of the block into account.
-                                            If set to "visual", the raycast will ignore blocks that are see-through (e.g: Glass, Tinted Glass, etc.).
-                                            If set to "collider", the raycast will take physical collision of the block into account.
+                                            If set to "outline", the ray will take the shape of the block into account, only stopping if the ray has hit a face of the block.
+                                            If set to "visual", The ray will only stop at blocks that are not see-through. (e.g: Glass, Tinted Glass, etc.).
+                                            If set to "collider", the ray will only stop at blocks that cannot be walked through.
                                             '''
                                         enum: ["outline", "visual", "collider"]
                                     }
@@ -696,9 +696,9 @@
                                             '''
                                             Determines how the raycast handles fluids.
 
-                                            If set to "any", the raycast will ignore source and flowing fluids.
-                                            If set to "source", the raycast will only go through source fluids.
-                                            If set to "none", the raycast won't go through any kind of fluids.
+                                            If set to "any", the ray will stop at both flowing and source fluids.
+                                            If set to "source", the ray will only stop at source fluids.
+                                            If set to "none", the ray will not stop at both flowing and source fluids.
                                             '''
                                         enum: ["any", "source", "none"]
                                         gap: true
@@ -2116,9 +2116,9 @@
                                             '''
                                             Determines how the raycast handles blocks.
 
-                                            If set to "outline", the raycast will take the shape of the collision box of the block into account.
-                                            If set to "visual", the raycast will ignore blocks that are see-through (e.g: Glass, Tinted Glass, etc.).
-                                            If set to "collider", the raycast will take physical collision of the block into account.
+                                            If set to "outline", the ray will take the shape of the block into account, only stopping if the ray has hit a face of the block.
+                                            If set to "visual", The ray will only stop at blocks that are not see-through. (e.g: Glass, Tinted Glass, etc.).
+                                            If set to "collider", the ray will only stop at blocks that cannot be walked through.
                                             '''
                                         enum: ["outline", "visual", "collider"]
                                     }
@@ -2127,9 +2127,9 @@
                                             '''
                                             Determines how the raycast handles fluids.
 
-                                            If set to "any", the raycast will ignore source and flowing fluids.
-                                            If set to "source", the raycast will only go through source fluids.
-                                            If set to "none", the raycast won't go through any kind of fluids.
+                                            If set to "any", the ray will stop at both flowing and source fluids.
+                                            If set to "source", the ray will only stop at source fluids.
+                                            If set to "none", the ray will not stop at both flowing and source fluids.
                                             '''
                                         enum: ["any", "source", "none"]
                                         gap: true
