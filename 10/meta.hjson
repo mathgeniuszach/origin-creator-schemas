@@ -3,14 +3,17 @@
     props: {
         icon: {
             type: image
+            desc: The icon file which will be exported with the pack.
             gap: true
         }
         name: {
             type: string
+            desc: The name of your pack, visible in the top left.
             id: true
         }
         id: {
             type: string
+            desc: The pack's default namespace.
             default: my_pack
             nonempty: true
             allow: *a-z0-9_
@@ -36,15 +39,22 @@
         }
         authors: {
             type: list
+            desc: A list of people who made this pack, one name per line.
             vals: {type: "string"}
         }
         description: {
             type: string
+            desc: A short description of what your pack does, about one sentence long.
             ext: true
             gap: true
         }
         filter: {
             type: object
+            desc: 
+                '''
+                Section for filtering out files from data packs applied below this one.
+                Any file that matches one of the patterns inside block will be treated as if it was not present in the pack at all.
+                '''
             props: {
                 block: {
                     type: list
