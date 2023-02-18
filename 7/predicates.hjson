@@ -634,7 +634,7 @@
         }
         pred: {
             or: [
-                {title: "single", link: "single_pred", nopanel: true}
+                {title: "single", extend: "single_pred", nopanel: true}
                 {title: "multiple", type: "list", vals: {link: "single_pred"}}
             ]
         }
