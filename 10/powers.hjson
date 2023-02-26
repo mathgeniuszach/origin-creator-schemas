@@ -3035,7 +3035,7 @@
             }
         }
         power: {
-            title: single
+            title: simple
             extend: power_base
             props: {
                 condition: {
