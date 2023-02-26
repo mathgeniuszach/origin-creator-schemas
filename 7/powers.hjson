@@ -2089,7 +2089,7 @@
             ]
         }
 
-        power_base: {
+        power_meta: {
             type: object
             show: true
             props: {
@@ -2101,16 +2101,6 @@
                     desc: The description of the power. Can be a literal string or a translation key.
                     type: string
                     ext: true
-                    gap: true
-                }
-                hidden: {
-                    desc: If set to true, this power will not be displayed in the power list of the origin.
-                    type: boolean
-                }
-                loading_priority: {
-                    desc: Specifies when this power is loaded. Higher numbers mean it's loaded later, which means it will override those with lower loading priorities which share the same ID.
-                    type: integer
-                    gap: true
                 }
                 badges: {
                     desc: If set, it will display icon(s) after the name of the power.
@@ -2129,12 +2119,23 @@
                             }
                         }
                     }
+                    gap: true
+                }
+                hidden: {
+                    desc: If set to true, this power will not be displayed in the power list of the origin.
+                    type: boolean
+                }
+                loading_priority: {
+                    desc: Specifies when this power is loaded. Higher numbers mean it's loaded later, which means it will override those with lower loading priorities which share the same ID.
+                    type: integer
+                    gap: true
                 }
             }
         }
-        power: {
+        power_base: {
             title: simple
-            extend: power_base
+            type: object
+            show: true
             props: {
                 condition: {
                     desc: If set, this power will only be active when the player with this power fulfills the condition.
@@ -3731,26 +3732,10 @@
                 }
             }
         }
-        multi_power: {
-            title: multiple
-            extend: power_base
-            props: {
-                type: {
-                    desc: ID of the desired Power Type.
-                    const: origins:multiple
-                }
-            }
-            extra: {
-                nopanel: true
-                or: [
-                    {link: "power"}
-                    {link: "custom_power"}
-                ]
-            }
-        }
-        custom_power: {
+        custom_power_base: {
             title: custom
-            extend: power_base
+            type: object
+            show: true
             props: {
                 condition: {
                     desc: If set, this power will only be active when the player with this power fulfills the condition.
@@ -3763,6 +3748,37 @@
             }
             extra: {
                 link: nany
+            }
+        }
+        power: {
+            title: power
+            extend: [
+                power_meta
+                power_base
+            ]
+        }
+        custom_power: {
+            title: custom
+            extend: [
+                power_meta
+                custom_power_base
+            ]
+        }
+        multi_power: {
+            title: multiple
+            extend: power_meta
+            props: {
+                type: {
+                    desc: ID of the desired Power Type.
+                    const: origins:multiple
+                }
+            }
+            extra: {
+                nopanel: true
+                or: [
+                    {link: "power_base"}
+                    {link: "custom_power_base"}
+                ]
             }
         }
 

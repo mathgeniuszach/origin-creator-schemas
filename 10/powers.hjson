@@ -3004,7 +3004,7 @@
                 }
             }
         }
-        power_base: {
+        power_meta: {
             type: object
             show: true
             props: {
@@ -3016,6 +3016,11 @@
                     desc: The description of the power. Can be a literal string or a translation key.
                     type: string
                     ext: true
+                }
+                badges: {
+                    desc: If set, it will display icon(s) after the name of the power.
+                    type: list
+                    vals: {link: "badge"}
                     gap: true
                 }
                 hidden: {
@@ -3027,16 +3032,12 @@
                     type: integer
                     gap: true
                 }
-                badges: {
-                    desc: If set, it will display icon(s) after the name of the power.
-                    type: list
-                    vals: {link: "badge"}
-                }
             }
         }
-        power: {
+        power_base: {
             title: simple
-            extend: power_base
+            type: object
+            show: true
             props: {
                 condition: {
                     desc: If set, this power will only be active when the player with this power fulfills the condition.
@@ -5024,26 +5025,10 @@
                 }
             }
         }
-        multi_power: {
-            title: multiple
-            extend: power_base
-            props: {
-                type: {
-                    desc: ID of the desired Power Type.
-                    const: origins:multiple
-                }
-            }
-            extra: {
-                nopanel: true
-                or: [
-                    {link: "power"}
-                    {link: "custom_power"}
-                ]
-            }
-        }
-        custom_power: {
+        custom_power_base: {
             title: custom
-            extend: power_base
+            type: object
+            show: true
             props: {
                 condition: {
                     desc: If set, this power will only be active when the player with this power fulfills the condition.
@@ -5056,6 +5041,37 @@
             }
             extra: {
                 link: nany
+            }
+        }
+        power: {
+            title: power
+            extend: [
+                power_meta
+                power_base
+            ]
+        }
+        custom_power: {
+            title: custom
+            extend: [
+                power_meta
+                custom_power_base
+            ]
+        }
+        multi_power: {
+            title: multiple
+            extend: power_meta
+            props: {
+                type: {
+                    desc: ID of the desired Power Type.
+                    const: origins:multiple
+                }
+            }
+            extra: {
+                nopanel: true
+                or: [
+                    {link: "power_base"}
+                    {link: "custom_power_base"}
+                ]
             }
         }
 

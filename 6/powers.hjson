@@ -1612,7 +1612,7 @@
             ]
         }
 
-        power_base: {
+        power_meta: {
             type: object
             show: true
             props: {
@@ -1635,16 +1635,17 @@
                     type: integer
                     gap: true
                 }
+            }
+        }
+        power_base: {
+            title: simple
+            type: object
+            show: true
+            props: {
                 condition: {
                     desc: If set, this power will only be active when the player with this power fulfills the condition.
                     link: entity_cond
                 }
-            }
-        }
-        power: {
-            title: simple
-            extend: power_base
-            props: {
                 type: {
                     desc: ID of the desired Power Type.
                     href: https://origins.readthedocs.io/en/0.7.3/power_types/
@@ -2703,9 +2704,41 @@
                 }
             }
         }
+        custom_power_base: {
+            title: custom
+            type: object
+            show: true
+            props: {
+                condition: {
+                    desc: If set, this power will only be active when the player with this power fulfills the condition.
+                    link: entity_cond
+                }
+                type: {
+                    desc: ID of the desired Power Type.
+                    type: string
+                }
+            }
+            extra: {
+                link: nany
+            }
+        }
+        power: {
+            title: power
+            extend: [
+                power_meta
+                power_base
+            ]
+        }
+        custom_power: {
+            title: custom
+            extend: [
+                power_meta
+                custom_power_base
+            ]
+        }
         multi_power: {
             title: multiple
-            extend: power_base
+            extend: power_meta
             props: {
                 type: {
                     desc: ID of the desired Power Type.
@@ -2715,22 +2748,9 @@
             extra: {
                 nopanel: true
                 or: [
-                    {link: "power"}
-                    {link: "custom_power"}
+                    {link: "power_base"}
+                    {link: "custom_power_base"}
                 ]
-            }
-        }
-        custom_power: {
-            title: custom
-            extend: power_base
-            props: {
-                type: {
-                    desc: ID of the desired Power Type.
-                    type: string
-                }
-            }
-            extra: {
-                link: nany
             }
         }
 
