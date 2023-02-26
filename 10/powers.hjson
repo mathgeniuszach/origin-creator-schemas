@@ -3042,6 +3042,7 @@
                 condition: {
                     desc: If set, this power will only be active when the player with this power fulfills the condition.
                     link: entity_cond
+                    gap: true
                 }
                 type: {
                     desc: ID of the desired Power Type.
@@ -5033,6 +5034,7 @@
                 condition: {
                     desc: If set, this power will only be active when the player with this power fulfills the condition.
                     link: entity_cond
+                    gap: true
                 }
                 type: {
                     desc: ID of the desired Power Type.
