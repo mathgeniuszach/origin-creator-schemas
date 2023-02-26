@@ -83,6 +83,7 @@
             type: boolean
         }
         allow_random_unchoosable: {
+            title: Random Unchoosable
             desc: Whether origins which are unchoosable (unchoosable field set to true in the origin file) should be included in the random option. Can for example be used to force players to choose a random origin, by setting this to true and making all origins in the layer unchoosable.
             type: boolean
         }
