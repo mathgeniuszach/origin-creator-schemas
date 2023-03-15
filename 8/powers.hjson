@@ -2740,7 +2740,6 @@
         power_base: {
             title: simple
             type: object
-            hooks: ["fix_cond"]
             show: true
             props: {
                 condition: {
@@ -2751,6 +2750,7 @@
                 type: {
                     desc: ID of the desired Power Type.
                     href: https://origins.readthedocs.io/en/1.4.1/types/power_types/
+                    hooks: ["fix_cond"]
                     enum: [
                         origins:simple
                         origins:attribute_modify_transfer
