@@ -8,13 +8,13 @@
         origins: {
             desc: Defines the origins that should be in this layer. Identifier strings and Conditioned Origin objects can be mixed in the same array.
             or: [
-                {title: "simple", type: "list", vals: {type: "string", allow: "*a-z0-9_#\\/:.-", ns: true}}
+                {title: "simple", type: "list", vals: {type: "string", allow: "*a-z0-9_#\\/:.-", hooks: ["ns"]}}
                 {
                     title: "extra"
                     type: list
                     vals: {
                         or: [
-                            {type: "string", allow: "*a-z0-9_#\\/:.-", ns: true}
+                            {type: "string", allow: "*a-z0-9_#\\/:.-", hooks: ["ns"]}
                             {
                                 type: object
                                 props: {
@@ -26,7 +26,7 @@
                                     origins: {
                                         desc: IDs of the origins which should become available when the condition is fulfilled.
                                         type: list
-                                        vals: {type: "string", allow: "*a-z0-9_#\\/:.-", ns: true}
+                                        vals: {type: "string", allow: "*a-z0-9_#\\/:.-", hooks: ["ns"]}
                                     }
                                 }
                             }

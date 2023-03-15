@@ -366,13 +366,13 @@
                                         desc: ID of the origin the player needs to have to pass the check.
                                         type: string
                                         allow: *a-z0-9_\/:.-
-                                        ns: true
+                                        hooks: ["ns"]
                                     }
                                     layer: {
                                         desc: If set, will check only the layer with the provided ID for the origin. By default it will check in any layer.
                                         type: string
                                         allow: *a-z0-9_\/:.-
-                                        ns: true
+                                        hooks: ["ns"]
                                     }
                                 }
                                 "string-origins:power_active": {
@@ -380,7 +380,7 @@
                                         desc: ID of the power which will be checked for being active.
                                         type: string
                                         allow: *a-z0-9_\/:.-
-                                        ns: true
+                                        hooks: ["ns"]
                                     }
                                 }
                                 "string-origins:power": {
@@ -388,7 +388,7 @@
                                         desc: ID of the power the player needs to have to pass the check.
                                         type: string
                                         allow: *a-z0-9_\/:.-
-                                        ns: true
+                                        hooks: ["ns"]
                                     }
                                 }
                                 "string-origins:predicate": {
@@ -413,7 +413,7 @@
                                         desc: ID of the power type that defines the resource. Must be a Resource (Power Type) which exists on the player.
                                         type: string
                                         allow: *a-z0-9_#\/:.-
-                                        ns: true
+                                        hooks: ["ns"]
                                     }
                                     comparison: {
                                         desc: How the resource's value should be compared to the specified value.
@@ -1193,7 +1193,7 @@
                                         desc: ID of the power type that defines the resource to change the value of. Must be a Resource (Power Type) which exists on the player.
                                         type: string
                                         allow: *a-z0-9_#\/:.-
-                                        ns: true
+                                        hooks: ["ns"]
                                     }
                                     change: {
                                         desc: This value will be added to the resource (won't go below min or above max of the Resource Resource (Power Type)).
@@ -1357,7 +1357,7 @@
                                         desc: ID of the cooldown power which should trigger, as if that power has just been used.
                                         type: string
                                         allow: *a-z0-9_\/:.-
-                                        ns: true
+                                        hooks: ["ns"]
                                     }
                                 }
                             }

@@ -590,13 +590,13 @@
                                         desc: ID of the origin the player needs to have to pass the check.
                                         type: string
                                         allow: *a-z0-9_\/:.-
-                                        ns: true
+                                        hooks: ["ns"]
                                     }
                                     layer: {
                                         desc: If set, will check only the layer with the provided ID for the origin. By default it will check in any layer.
                                         type: string
                                         allow: *a-z0-9_\/:.-
-                                        ns: true
+                                        hooks: ["ns"]
                                     }
                                 }
                                 "string-origins:passenger_recursive": {
@@ -634,7 +634,7 @@
                                         desc: ID of the power which will be checked for being active.
                                         type: string
                                         allow: *a-z0-9_\/:.-
-                                        ns: true
+                                        hooks: ["ns"]
                                     }
                                 }
                                 "string-origins:power_type": {
@@ -642,7 +642,7 @@
                                         desc: The namespace and ID of a power type of some power to check that the player has.
                                         type: string
                                         allow: *a-z0-9_\/:.-
-                                        ns: true
+                                        hooks: ["ns"]
                                     }
                                 }
                                 "string-origins:power": {
@@ -650,7 +650,7 @@
                                         desc: ID of the power the player needs to have to pass the check.
                                         type: string
                                         allow: *a-z0-9_\/:.-
-                                        ns: true
+                                        hooks: ["ns"]
                                     }
                                     source: {
                                         desc: ID of the source of the power the player needs to have to pass the check.
@@ -731,7 +731,7 @@
                                         desc: ID of the power type that defines the resource. Must be a Resource (Power Type) which exists on the player.
                                         type: string
                                         allow: *a-z0-9_#\/:.-
-                                        ns: true
+                                        hooks: ["ns"]
                                     }
                                     comparison: {
                                         desc: How the resource's value should be compared to the specified value.
@@ -1916,7 +1916,7 @@
                                         desc: ID of the power type that defines the resource to change the value of. Must be a Resource (Power Type) which exists on the player.
                                         type: string
                                         allow: *a-z0-9_#\/:.-
-                                        ns: true
+                                        hooks: ["ns"]
                                     }
                                     change: {
                                         desc: This value will be added to the resource (won't go below min or above max of the Resource Resource (Power Type)).
@@ -2043,7 +2043,7 @@
                                         desc: The ID of the power to be granted to the entity.
                                         type: string
                                         allow: *a-z0-9_#\/:.-
-                                        ns: true
+                                        hooks: ["ns"]
                                     }
                                     source: {
                                         desc: The source of the power. Can realistically be anything, but make sure to keep note of it.
@@ -2187,7 +2187,7 @@
                                         desc: The ID of the power to be revoked from the entity.
                                         type: string
                                         allow: *a-z0-9_#\/:.-
-                                        ns: true
+                                        hooks: ["ns"]
                                     }
                                     source: {
                                         desc: The source of the power.
@@ -2230,7 +2230,7 @@
                                         desc: ID of the power type that defines the resource to change the value of. Must be a Resource (Power Type) which exists on the player.
                                         type: string
                                         allow: *a-z0-9_#\/:.-
-                                        ns: true
+                                        hooks: ["ns"]
                                     }
                                     value: {
                                         desc: The value the resource will be set to (won't go below min or above max of the Resource).
@@ -2319,7 +2319,7 @@
                                         desc: The namespace and ID of a power that uses the origins:toggle power type to toggle the state of.
                                         type: string
                                         allow: *a-z0-9_\/:.-
-                                        ns: true
+                                        hooks: ["ns"]
                                     }
                                 }
                                 "string-origins:trigger_cooldown": {
@@ -2327,7 +2327,7 @@
                                         desc: ID of the cooldown power which should trigger, as if that power has just been used.
                                         type: string
                                         allow: *a-z0-9_\/:.-
-                                        ns: true
+                                        hooks: ["ns"]
                                     }
                                 }
                             }
