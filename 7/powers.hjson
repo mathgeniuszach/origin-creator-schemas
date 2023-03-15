@@ -117,6 +117,7 @@
         }
         entity_cond: {
             unspec: none
+            hooks: ["fix_type"]
             or: [
                 {
                     title: original
@@ -2135,6 +2136,7 @@
         power_base: {
             title: simple
             type: object
+            hooks: ["fix_cond"]
             show: true
             props: {
                 condition: {
