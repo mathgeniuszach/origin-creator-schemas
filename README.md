@@ -4,6 +4,6 @@ This is a collection of versioned schemas for the [Origin Creator](https://xmgzx
 
 ![](https://i.creativecommons.org/l/by-nc/4.0/88x31.png)
 
-This work is licensed under the CC BY-NC license (Creative Commons Attribution-NonCommercial 4.0 International License).
+This work is licensed under the [CC BY-NC](https://creativecommons.org/licenses/by-nc/4.0/) license (Creative Commons Attribution-NonCommercial 4.0 International License).
 
 For reference, this license does not apply to any projects created through the Origin Creator, and is here to ensure that the Origin Creator remains free. 
