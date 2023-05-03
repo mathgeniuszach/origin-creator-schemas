@@ -2327,6 +2327,7 @@
                                     miss_action: {
                                         desc: If specified, execute this entity action type if the raycast did not hit an entity/block.
                                         link: entity_action
+                                        gap: true
                                     }
                                     command_at_hit: {
                                         desc: The command to execute upon the block/entity the raycast has hit.
@@ -5072,6 +5073,7 @@
             }
             extra: {
                 nopanel: true
+                allow: *a-z0-9_#\/:.-
                 or: [
                     {link: "power_base"}
                     {link: "custom_power_base"}
