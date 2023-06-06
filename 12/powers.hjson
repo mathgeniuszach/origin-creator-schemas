@@ -1025,7 +1025,7 @@
                                     }
                                     compare_to: {
                                         desc: The value to compare to.
-                                        type: number
+                                        type: float
                                     }
                                 }
                                 "string-origins:smeltable": {}
@@ -2973,12 +2973,12 @@
                             }
                             prefix: {
                                 desc: If specified, this text will be used as the prefix for the tooltip.
-                                id: item_modifiers-10
+                                id: item_modifiers-12
                                 link: jsontxt
                             }
                             suffix: {
                                 desc: If specified, this text will be used as the suffix for the tooltip.
-                                id: item_modifiers-10
+                                id: item_modifiers-12
                                 link: jsontxt
                             }
 
@@ -2986,14 +2986,14 @@
                         "string-origins:keybind": {
                             text: {
                                 desc: The text to use in the tooltip when hovering over the badge. "%s" will be translated to the keybind specified in the power.
-                                id: item_modifiers-10
+                                id: item_modifiers-12
                                 link: jsontxt
                             }
                         }
                         "string-origins:tooltip": {
                             text: {
                                 desc: The text to use in the tooltip when hovering over the badge.
-                                id: item_modifiers-10
+                                id: item_modifiers-12
                                 link: jsontxt
                             }
                         }
@@ -5119,7 +5119,7 @@
             type: object
             props: {
                 item: {
-                    id: predicates-10
+                    id: predicates-12
                     link: item
                 }
                 amount: {

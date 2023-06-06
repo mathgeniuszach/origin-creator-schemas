@@ -1,0 +1,673 @@
+{
+    links: {
+        jsontxtbase: {
+            type: object
+            nopanel: true
+            props: {
+                extra: {
+                    desc: A list of additional raw JSON text components to be displayed after this one. Child text components inherit all formatting and interactivity from the parent component, unless they explicitly override them.
+                    type: list
+                    vals: {link: "jsontxt"}
+                }
+                color: {
+                    desc: Optional. The color to render the content in. Set to "#<hex>" to insert any color in the hexadecimal color format. Example: Using "#FF0000" makes the component red. Must be a full 6-digit value, not 3-digit.
+                    or: [
+                        {
+                            enum: ["black", "dark_blue", "dark_green", "dark_aqua", "dark_red", "dark_purple", "gold", "gray", "dark_gray", "blue", "green", "aqua", "red", "light_purple", "yellow", "white", "reset"]
+                            unspec: true
+                        }
+                        {
+                            type: string
+                            allow: 0-9a-fA-F#
+                        }
+                    ]
+                }
+                font: {
+                    desc: Optional. The resource location of the font for this component in the resource pack within assets/<namespace>/font. Defaults to "minecraft:default".
+                    type: string
+                    allow: *a-z0-9_#\/:.-
+                }
+                bold: {
+                    desc: Whether to render the content in bold.
+                    enum: [true, false]
+                    unspec: true
+                }
+                italic: {
+                    desc: Whether to render the content in italics. Note that text that is italicized by default, such as custom item names, can be unitalicized by setting this to false.
+                    enum: [true, false]
+                    unspec: true
+                }
+                underlined: {
+                    desc: Whether to underline the content.
+                    enum: [true, false]
+                    unspec: true
+                }
+                strikethrough: {
+                    desc: Whether to strikethrough the content.
+                    enum: [true, false]
+                    unspec: true
+                }
+                obfuscated: {
+                    desc: Whether to render the content obfuscated.
+                    enum: [true, false]
+                    unspec: true
+                }
+                insertion: {
+                    desc: Optional. When the text is shift-clicked by a player, this string is inserted in their chat input. It does not overwrite any existing text the player was writing. This only works in chat messages.
+                    type: string
+                }
+                clickEvent: {
+                    desc: Optional. Allows for events to occur when the player clicks on text. Only work in chat messages and written books, unless specified otherwise.
+                    type: object
+                    props: {
+                        action: {
+                            desc: The action to perform when clicked.
+                            enum: ["open_url", "open_file", "run_command", "suggest_command", "change_page", "copy_to_clipboard"]
+                        }
+                        value: {
+                            desc: The URL, file path, chat, command or book page used by the specified action.
+                            type: string
+                        }
+                    }
+                }
+                hoverEvent: {
+                    desc: Optional. Allows for a tooltip to be displayed when the player hovers their mouse over text.
+                    type: object
+                    props: {
+                        action: {
+                            desc: The type of tooltip to show.
+                            enum: ["show_text", "show_item", "show_entity"]
+                            more: {
+                                string-show_text: {
+                                    value: {
+                                        desc: Deprecated, use contents instead.
+                                        link: jsontxt
+                                    }
+                                    contents: {
+                                        desc: Another raw JSON text component. Can be any valid text component type: string, array, or object. Note that  clickEvent and  hoverEvent do not function within the tooltip.
+                                        link: jsontxt
+                                    }
+                                }
+                                string-show_item: {
+                                    value: {
+                                        desc: Deprecated, use contents instead.
+                                        type: string
+                                        ext: true
+                                    }
+                                    contents: {
+                                        desc: The item that should be displayed.
+                                        type: object
+                                        props: {
+                                            id: {
+                                                desc: The namespaced item ID.
+                                                href: https://minecraft.fandom.com/wiki/Java_Edition_data_values#Blocks
+                                                type: string
+                                                allow: *a-z0-9_#\/:.-
+                                            }
+                                            count: {
+                                                desc: Optional. Size of the item stack.
+                                                type: integer
+                                                min: 1
+                                            }
+                                            tag: {
+                                                desc: Optional. A string containing the serialized NBT of the additional information about the item, discussed more in the subsections of the player format page.
+                                                type: string
+                                                ext: true
+                                            }
+                                        }
+                                    }
+                                }
+                                string-show_entity: {
+                                    value: {
+                                        desc: Deprecated, use contents instead.
+                                        type: string
+                                        ext: true
+                                    }
+                                    contents: {
+                                        desc: The entity that should be displayed.
+                                        type: object
+                                        props: {
+                                            name: {
+                                                desc: Optional. Hidden if not present. A raw JSON text that is displayed as the name of the entity.
+                                                link: jsontxt
+                                            }
+                                            type: {
+                                                desc: A string containing the type of the entity. Should be a namespaced entity ID. Present minecraft:pig if invalid.
+                                                href: https://minecraft.fandom.com/wiki/Java_Edition_data_values/Entities
+                                                type: string
+                                                allow: *a-z0-9_#\/:.-
+                                            }
+                                            id: {
+                                                desc: A string containing the UUID of the entity in the hyphenated hexadecimal format. Should be a valid UUID.
+                                                type: string
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        jsontxt: {
+            desc: A JSON text component.
+            or: [
+                {type: "string"}
+                {type: "boolean", default: false}
+                {type: "number"}
+                {type: "list", vals: {link: "jsontxt"}}
+                {title: "text", type: "object", extend: "jsontxtbase", props: {
+                    text: {
+                        desc: A string containing plain text to display directly.
+                        type: string
+                    }
+                }}
+                {title: "translate", type: "object", extend: "jsontxtbase", props: {
+                    translate: {
+                        desc: A translation identifier, corresponding to the identifiers found in loaded language files. Displayed as the corresponding text in the player's selected language. If no corresponding translation can be found, the identifier itself is used as the translated text.
+                        type: string
+                    }
+                    with: {
+                        desc: Optional. A list of raw JSON text components to be inserted into slots in the translation text. Ignored if  translate is not present.
+                        type: list
+                        vals: {link: "jsontxt"}
+                    }
+                }}
+                {title: "score", type: "object", extend: "jsontxtbase", props: {
+                    score: {
+                        type: object
+                        props: {
+                            name: {
+                                desc: The name of the score holder whose score should be displayed. This can be a selector like @p or an explicit name. If the text is a selector, the selector must be guaranteed to never select more than one entity, possibly by adding limit=1. If the text is "*", it shows the reader's own score (for example, /tellraw @a {"score":{"name":"*","objective":"obj"}} shows every online player their own score in the "obj" objective).
+                                type: string
+                            }
+                            objective: {
+                                desc: The internal name of the objective to display the player's score in.
+                                type: string
+                            }
+                            value: {
+                                desc: Optional. If present, this value is displayed regardless of what the score would have been.
+                                type: string
+                            }
+                        }
+                    }
+                }}
+                {title: "selector", type: "object", extend: "jsontxtbase", props: {
+                    selector: {
+                        desc: A string containing a selector.
+                        type: string
+                    }
+                    separator: {desc: "Optional, used as the separator between different names (defaults to a comma), if the component selects multiple entities.", link: "jsontxt"}
+                }}
+                {title: "key", type: "object", extend: "jsontxtbase", props: {
+                    keybind: {
+                        desc: A keybind identifier, to be displayed as the name of the button that is currently bound to that action. For example, {"keybind": "key.inventory"} displays "e" if the player is using the default control scheme.
+                        href: https://minecraft.fandom.com/wiki/Controls#Configurable_controls
+                        type: string
+                    }
+                }}
+                {title: "nbt", type: "object", extend: "jsontxtbase", props: {
+                    block: {
+                        desc: A string specifying the coordinates of the block entity from which the NBT value is obtained. The coordinates can be absolute, relative, or local. Ignored if nbt is not present.
+                        type: string
+                    }
+                    entity: {
+                        desc: A string specifying the target selector for the entity or entities from which the NBT value is obtained. Ignored if nbt is not present.
+                        type: string
+                    }
+                    storage: {
+                        desc: A string specifying the namespaced ID of the command storage from which the NBT value is obtained. Ignored if  nbt is not present.
+                        type: string
+                        allow: *a-z0-9_#\/:.-
+                    }
+                    nbt: {
+                        desc: The NBT path used for looking up NBT values from an entity, block entity, or storage. Requires one of  block,  entity, or  storage. Having more than one is allowed, but only one is used.
+                        type: string
+                    }
+                    interpret: {
+                        desc: If true, the game attempts to parse the text of each NBT value as a raw JSON text component. Ignored if nbt is not present.
+                        type: boolean
+                    }
+                    separator: {desc: "Optional, used as the separator between different tags (defaults to a comma), if the component selects multiple tags.", link: "jsontxt"}
+                }}
+            ]
+        }
+        modifier: {
+            or: [
+                {title: "single", link: "single_modifier"}
+                {title: "multiple", type: "list", vals: {link: "single_modifier"}}
+            ]
+        }
+        single_modifier: {
+            desc: An item modifier that modifies an item in some way.
+            type: object
+            props: {
+                conditions: {
+                    desc: Determines conditions for this function to be applied. If multiple conditions are specified, all must pass.
+                    type: list
+                    vals: {id: "predicates-12", link: "single_pred"}
+                }
+                function: {
+                    desc: Namespaced ID of the function to apply.
+                    ns: minecraft
+                    norepr: true
+                    enum: [
+                        minecraft:apply_bonus
+                        minecraft:copy_name
+                        minecraft:copy_nbt
+                        minecraft:copy_state
+                        minecraft:enchant_randomly
+                        minecraft:enchant_with_levels
+                        minecraft:exploration_map
+                        minecraft:explosion_decay
+                        minecraft:furnace_smelt
+                        minecraft:fill_player_head
+                        minecraft:limit_count
+                        minecraft:looting_enchant
+                        minecraft:set_attributes
+                        minecraft:set_banner_pattern
+                        minecraft:set_contents
+                        minecraft:set_count
+                        minecraft:set_damage
+                        minecraft:set_enchantments
+                        minecraft:set_loot_table
+                        minecraft:set_lore
+                        minecraft:set_name
+                        minecraft:set_nbt
+                        minecraft:set_potion
+                        minecraft:set_stew_effect
+                        apoli:add_power
+                        apoli:remove_power
+                    ]
+                    more: {
+                        "string-minecraft:apply_bonus": {
+                            enchantment: {
+                                desc: Enchantment ID used for level calculation.
+                                href: https://minecraft.fandom.com/wiki/Java_Edition_data_value#Enchantments
+                                type: string
+                                allow: *a-z0-9_#\/:.-
+                            }
+                            formula: {
+                                desc: Can be binomial_with_bonus_count for a binomial distribution (with "n = level + extra", "p = probability"), uniform_bonus_count for uniform distribution (from 0 to level * bonusMultiplier), or ore_drops for a special function used for ore drops in the vanilla game (Count * (max(0; random(0..Level + 2) - 1)+1)).
+                                enum: ["minecraft:binomial_with_bonus_count", "minecraft:uniform_bonus_count", "minecraft:ore_drops"]
+                                gap: true
+                            }
+                            extra: {
+                                desc: For binomial_with_bonus_count, specifies extra in n = level + extra
+                                type: integer
+                            }
+                            probability: {
+                                desc: For binomial_with_bonus_count, specifies p.
+                                type: number
+                                gap: true
+                            }
+                            bonusMultiplier: {
+                                desc: For uniform_bonus_count, uniform distribution is from 0 to level * bonusMultiplier.
+                                type: number
+                            }
+                        }
+                        "string-minecraft:copy_name": {
+                            source: {
+                                desc: The target with the CustomName to copy the name of. Currently, this needs to be set to 'block_entity'.
+                                const: "block_entity"
+                            }
+                        }
+                        "string-minecraft:copy_nbt": {
+                            source: {
+                                desc: Specifies the source. Set to block_entity for the block entity of the destroyed block, this to use the entity that died or the player that gained the advancement, opened the container or broke the block, killer for the killer, or killer_player for a killer that is a player.
+                                or: [
+                                    {enum: ["block_entity", "this", "killer", "killer_player"]}
+                                    {
+                                        type: object
+                                        props: {
+                                            type: {
+                                                enum: ["context", "storage"]
+                                                more: {
+                                                    string-context: {
+                                                        target: {
+                                                            desc: Specifies the source. Set to block_entity for the block entity of the destroyed block, this to use the entity that died or the player that gained the advancement, opened the container or broke the block, killer for the killer, or killer_player for a killer that is a player.
+                                                            enum: ["block_entity", "this", "killer", "killer_player"]
+                                                        }
+                                                    }
+                                                    string-storage: {
+                                                        source: {
+                                                            desc: A resource location specifying the storage ID.
+                                                            type: string
+                                                            allow: *a-z0-9_#\/:.-
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                            ops: {
+                                type: list
+                                vals: {
+                                    type: object
+                                    props: {
+                                        source: {
+                                            desc: The nbt path to copy from.
+                                            type: string
+                                        }
+                                        target: {
+                                            desc: The nbt path to copy to, starting from the item's tag tag.
+                                            type: string
+                                        }
+                                        op: {
+                                            desc: Can be replace to replace any existing contents of the target, append to append to a list, or merge to merge into a compound tag.
+                                            type: string
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        "string-minecraft:copy_state": {
+                            block: {
+                                desc: A block ID. Function fails if the block doesn't match.
+                                href: https://minecraft.fandom.com/wiki/Resource_location
+                                type: string
+                            }
+                            properties: {
+                                desc: A list of proerty names to copy from dropped block to the item's BlockStateTag tag.
+                                type: list
+                                vals: {type: "string"}
+                            }
+                        }
+                        "string-minecraft:enchant_randomly": {
+                            enchantments: {
+                                desc: A list of enchantment IDs to choose from to enchant the item with. Only one will be selected, just with a random level. If omitted, all enchantments applicable to the item are possible.
+                                href: https://minecraft.fandom.com/wiki/Java_Edition_data_value#Enchantments
+                                type: list
+                                vals: {type: "string"}
+                            }
+                        }
+                        "string-minecraft:enchant_with_levels": {
+                            treasure: {type: "boolean"}
+                            levels: {desc: "The enchantment level to use.", id: "predicates-12", link: "intprov"}
+                        }
+                        "string-minecraft:exploration_map": {
+                            destination: {
+                                desc: The type of generated structure to convert this empty map to lead to. Accepts any structure id used by the /locate command.
+                                href: https://minecraft.fandom.com/wiki/Commands/locate#Arguments
+                                type: string
+                                allow: *a-z0-9_#\/:.-
+                            }
+                            decoration: {
+                                desc: The icon used to mark the destination on the map. Accepts any of the map icon text IDs (case insensitive). If mansion or monument is used, the color of the lines on the item texture changes to match the corresponding explorer map.
+                                href: https://minecraft.fandom.com/wiki/Map#Map_icons
+                                type: string
+                                allow: *a-z0-9_#\/:.-
+                            }
+                            zoom: {
+                                desc: The zoom level of the resulting map. Defaults to 2.
+                                type: integer
+                            }
+                            search_radius: {
+                                desc: The size, in chunks, of the area to search for structures. The area checked is square, not circular. Radius 0 causes only the current chunk to be searched, radius 1 causes the current chunk and eight adjacent chunks to be searched, and so on. Defaults to 50.
+                                type: integer
+                            }
+                            skip_existing_chunks: {
+                                desc: Don't search in chunks that have already been generated. Defaults to true.
+                                type: boolean
+                                default: true
+                            }
+                        }
+                        "string-minecraft:explosion_decay": {}
+                        "string-minecraft:furnace_smelt": {}
+                        "string-minecraft:fill_player_head": {
+                            entity: {
+                                desc: Specifies an entity to be used for the player head. Set to this to use the entity that died or the player that gained the advancement, opened the container or broke the block, killer for the killer, or killer_player for a killer that is a player.
+                                enum: ["this", "killer", "killer_player"]
+                            }
+                        }
+                        "string-minecraft:limit_count": {
+                            limit: {
+                                or: [
+                                    {id: "predicates-12", link: "intprov"}
+                                    {type: "object", props: {
+                                        min: {id: "predicates-12", link: "intprov"}
+                                        max: {id: "predicates-12", link: "intprov"}
+                                    }}
+                                ]
+                            }
+                        }
+                        "string-minecraft:looting_enchant": {
+                            count: {
+                                desc: Specifies the number of additional items per level of looting. Note the number may be fractional, rounded after multiplying by the looting level.
+                                id: predicates-12
+                                link: intprov
+                            }
+                            limit: {
+                                desc: Specifies the maximum amount of items in the stack after the looting calculation. If the value is 0, no limit is applied.
+                                type: integer
+                                min: 0
+                            }
+                        }
+                        "string-minecraft:set_attributes": {
+                            modifiers: {
+                                type: list
+                                vals: {
+                                    type: object
+                                    props: {
+                                        name: {
+                                            desc: Name of the modifier.
+                                            type: string
+                                        }
+                                        attribute: {
+                                            desc: The name of the attribute this modifier is to act upon.
+                                            type: string
+                                            allow: *a-z0-9_#\/:.-
+                                        }
+                                        operation: {
+                                            enum: ["addition", "multiply_base", "multiply_total"]
+                                        }
+                                        amount: {
+                                            desc: Specifies the amount of the modifier.
+                                            id: predicates-12
+                                            link: numprov
+                                        }
+                                        id: {
+                                            desc: Optional; UUID of the modifier following. If none specified, a new UUID is generated.
+                                            type: string
+                                        }
+                                        slot: {
+                                            desc: Slot the item could be in for the modifier to take effect. If a list is specified, one will be chosen randomly.
+                                            or: [
+                                                {enum: ["mainhand", "offhand", "feet", "legs", "chest", "head"]}
+                                                {type: "list", vals: {type: "string"}}
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        "string-minecraft:set_banner_pattern": {
+                            patterns: {
+                                type: list
+                                vals: {
+                                    type: object
+                                    props: {
+                                        pattern: {
+                                            desc: The pattern type. For example square_bottom_left.
+                                            href: https://minecraft.fandom.com/wiki/Banner/Patterns
+                                            type: string
+                                            allow: *a-z0-9_#\/:.-
+                                        }
+                                        color: {
+                                            desc: The color for this pattern.
+                                            enum: ["white", "orange", "magenta", "light_blue", "yellow", "lime", "pink", "gray", "light_gray", "cyan", "purple", "blue", "brown", "green", "red", "black"]
+                                        }
+                                    }
+                                }
+                            }
+                            append: {
+                                desc: If true, new patterns will be appended to existing ones.
+                                type: boolean
+                            }
+                        }
+                        "string-minecraft:set_contents": {
+                            entries: {
+                                desc: The entries to use as contents for the item container.
+                                type: list
+                                vals: {id: "loot_tables-7", link: "entry"}
+                            }
+                            type: {
+                                desc: The type to be written in "BlockEntityTag.id". 1.18+ only.
+                                type: string
+                            }
+                        }
+                        "string-minecraft:set_count": {
+                            count: {
+                                desc: Specifies the stack size to set.
+                                id: predicates-12
+                                link: intprov
+                            }
+                            add: {
+                                desc: If true, changes will be relative to current count.
+                                type: boolean
+                            }
+                        }
+                        "string-minecraft:set_damage": {
+                            damage: {
+                                desc: Specifies the damage fraction to set (1.0 is undamaged, 0.0 is zero durability left).
+                                id: predicates-12
+                                link: numprov
+                            }
+                            add: {
+                                desc: If true, change will be relative to current damage.
+                                type: boolean
+                            }
+                        }
+                        "string-minecraft:set_enchantments": {
+                            enchantments: {
+                                desc: Key name is the enchantment ID. Value is a number provider specifying the enchantment level. Levels are clamped at a maximum of 255. Levels below 1 cause the enchantment to be removed, unless add is set to true, in which case only negative values will remove the enchantment if they cause the enchantment level to fall below 1.
+                                type: object
+                                extra: {
+                                    id: predicates-12
+                                    link: intprov
+                                }
+                            }
+                            add: {
+                                desc: Optional. If true, change will be relative to current level. A nonexistent enchantment will be presumed to start at 0.
+                                type: boolean
+                            }
+                        }
+                        "string-minecraft:set_loot_table": {
+                            name: {
+                                desc: Specifies the resource location of the loot table to be used to set the contents of this container.
+                                type: string
+                                allow: *a-z0-9_#\/:.-
+                            }
+                            seed: {
+                                desc: Optional. Specifies the loot table seed. If absent or set to 0, a random seed will be used.
+                                type: integer
+                            }
+                            type: {
+                                desc: The type to be written in "BlockEntityTag.id". 1.18+ only.
+                                type: string
+                            }
+                        }
+                        "string-minecraft:set_lore": {
+                            lore: {
+                                desc: List of JSON text components. Each list entry represents one line of the lore. Advanced components are resolved only if entity successfully targets an entity.
+                                or: [
+                                    {type: "list", vals: {type: "string"}}
+                                    {type: "list", vals: {link: "jsontxt"}}
+                                ]
+                            }
+                            entity: {
+                                desc: Specifies the entity to act as the source @s in the JSON text component. Set to this to use the entity that died or the player that gained the advancement, opened the container or broke the block, killer for the killer, or killer_player for a killer that is a player.
+                                enum: ["this", "killer", "killer_player"]
+                            }
+                            replace: {
+                                desc: If true, replaces all existing lines of lore, if false appends the list.
+                                type: boolean
+                            }
+                        }
+                        "string-minecraft:set_name": {
+                            name: {
+                                desc: A JSON text component name, allowing color, translations, etc. Advanced components are resolved only if entity successfully targets an entity.
+                                link: jsontxt
+                            }
+                            entity: {
+                                desc: Specifies the entity to act as the source @s in the JSON text component. Set to this to use the entity that died or the player that gained the advancement, opened the container or broke the block, killer for the killer, or killer_player for a killer that is a player.
+                                enum: ["this", "killer", "killer_player"]
+                            }
+                        }
+                        "string-minecraft:set_nbt": {
+                            tag: {
+                                desc: Tag string to add, similar to those used by commands. Note that the first bracket is required.
+                                type: string
+                                ext: true
+                            }
+                        }
+                        "string-minecraft:set_potion": {
+                            id: {
+                                desc: The potion ID.
+                                href: https://minecraft.fandom.com/wiki/Potion#Java_Edition
+                                type: string
+                                allow: *a-z0-9_#\/:.-
+                            }
+                        }
+                        "string-minecraft:set_stew_effect": {
+                            effects: {
+                                desc: A list of effects to apply on this suspicious stew.
+                                type: list
+                                vals: {
+                                    type: object
+                                    props: {
+                                        type: {
+                                            desc: The effect ID.
+                                            href: https://minecraft.fandom.com/wiki/Effect#Effect_list
+                                            type: string
+                                            allow: *a-z0-9_#\/:.-
+                                        }
+                                        duration: {
+                                            desc: The duration of the effect.
+                                            id: predicates-12
+                                            link: intprov
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        "string-apoli:add_power": {
+                            slot: {
+                                desc: Slot the item should be in for the power to take effect. If a list is specified, one will be chosen randomly.
+                                enum: ["mainhand", "offhand", "feet", "legs", "chest", "head"]
+                            }
+                            power: {
+                                desc: The ID of a power to give when the item is in hand.
+                                type: string
+                                allow: *a-z0-9_#\/:.-
+                            }
+                            hidden: {
+                                desc: Whether or not the item shows that this power will be added when held.
+                                type: boolean
+                            }
+                            negative: {
+                                desc: Whether or not to take away the specified power when held, rather than adding it.
+                                type: boolean
+                            }
+                        }
+                        "string-apoli:remove_power": {
+                            slot: {
+                                desc: Slot that the power will be removed from. If a list is specified, one will be chosen randomly.
+                                enum: ["mainhand", "offhand", "feet", "legs", "chest", "head"]
+                            }
+                            power: {
+                                desc: The ID of a power to remove.
+                                type: string
+                                allow: *a-z0-9_#\/:.-
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    link: modifier
+}
