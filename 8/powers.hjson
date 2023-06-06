@@ -4610,7 +4610,7 @@
             type: object
             props: {
                 item: {
-                    id: predicates-7
+                    id: predicates-8
                     link: item
                 }
                 amount: {

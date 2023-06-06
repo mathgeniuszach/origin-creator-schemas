@@ -1,4 +1,4 @@
-# latest - 1.7.1
+# 1.7.1
 {
     links: {
         bi_entity_cond: {
@@ -5119,7 +5119,7 @@
             type: object
             props: {
                 item: {
-                    id: predicates-7
+                    id: predicates-10
                     link: item
                 }
                 amount: {

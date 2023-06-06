@@ -246,7 +246,7 @@
                 conditions: {
                     desc: Determines conditions for this function to be applied. If multiple conditions are specified, all must pass.
                     type: list
-                    vals: {id: "predicates-7", link: "single_pred"}
+                    vals: {id: "predicates-10", link: "single_pred"}
                 }
                 function: {
                     desc: Namespaced ID of the function to apply.
@@ -386,7 +386,7 @@
                         }
                         "string-minecraft:enchant_with_levels": {
                             treasure: {type: "boolean"}
-                            levels: {desc: "The enchantment level to use.", id: "predicates-7", link: "intprov"}
+                            levels: {desc: "The enchantment level to use.", id: "predicates-10", link: "intprov"}
                         }
                         "string-minecraft:exploration_map": {
                             destination: {
@@ -426,10 +426,10 @@
                         "string-minecraft:limit_count": {
                             limit: {
                                 or: [
-                                    {id: "predicates-7", link: "intprov"}
+                                    {id: "predicates-10", link: "intprov"}
                                     {type: "object", props: {
-                                        min: {id: "predicates-7", link: "intprov"}
-                                        max: {id: "predicates-7", link: "intprov"}
+                                        min: {id: "predicates-10", link: "intprov"}
+                                        max: {id: "predicates-10", link: "intprov"}
                                     }}
                                 ]
                             }
@@ -437,7 +437,7 @@
                         "string-minecraft:looting_enchant": {
                             count: {
                                 desc: Specifies the number of additional items per level of looting. Note the number may be fractional, rounded after multiplying by the looting level.
-                                id: predicates-7
+                                id: predicates-10
                                 link: intprov
                             }
                             limit: {
@@ -466,7 +466,7 @@
                                         }
                                         amount: {
                                             desc: Specifies the amount of the modifier.
-                                            id: predicates-7
+                                            id: predicates-10
                                             link: numprov
                                         }
                                         id: {
@@ -522,7 +522,7 @@
                         "string-minecraft:set_count": {
                             count: {
                                 desc: Specifies the stack size to set.
-                                id: predicates-7
+                                id: predicates-10
                                 link: intprov
                             }
                             add: {
@@ -533,7 +533,7 @@
                         "string-minecraft:set_damage": {
                             damage: {
                                 desc: Specifies the damage fraction to set (1.0 is undamaged, 0.0 is zero durability left).
-                                id: predicates-7
+                                id: predicates-10
                                 link: numprov
                             }
                             add: {
@@ -546,7 +546,7 @@
                                 desc: Key name is the enchantment ID. Value is a number provider specifying the enchantment level. Levels are clamped at a maximum of 255. Levels below 1 cause the enchantment to be removed, unless add is set to true, in which case only negative values will remove the enchantment if they cause the enchantment level to fall below 1.
                                 type: object
                                 extra: {
-                                    id: predicates-7
+                                    id: predicates-10
                                     link: intprov
                                 }
                             }
@@ -627,7 +627,7 @@
                                         }
                                         duration: {
                                             desc: The duration of the effect.
-                                            id: predicates-7
+                                            id: predicates-10
                                             link: intprov
                                         }
                                     }
