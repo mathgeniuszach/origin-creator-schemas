@@ -1,4 +1,4 @@
-# 1.7.1
+# 1.8.0 - 1.9.0
 {
     links: {
         bi_entity_cond: {
@@ -187,6 +187,7 @@
                                 origins:fluid_height
                                 origins:food_level
                                 origins:gamemode
+                                origins:glowing
                                 origins:health
                                 origins:in_block_anywhere
                                 origins:in_block
@@ -309,6 +310,10 @@
                                     }
                                 }
                                 "string-origins:block_collision": {
+                                    block_condition: {
+                                        desc: If specified, the condition type will only evaluate to true if the bounding box of the entity is colliding with a block that fulfills this condition.
+                                        link: block_cond
+                                    }
                                     offset_x: {
                                         desc: By how much of the bounding box size should the box be offset in the X direction (e.g.: 0 = no offset, 1 = offset of exact width, 2 = offset of twice the width of the bounding box)
                                         type: number
@@ -531,6 +536,7 @@
                                         enum: ["survival", "creative", "adventure", "spectator"]
                                     }
                                 }
+                                "string-origins:glowing": {}
                                 "string-origins:health": {
                                     comparison: {
                                         desc: How the player's health should be compared to the specified value. Ranges from 0 - 20.
@@ -974,7 +980,7 @@
                                 }
                                 "string-origins:enchantment": {
                                     enchantment: {
-                                        desc: ID of the enchantment of interest to check the level of on the item, e.g. minecraft:protection.
+                                        desc: Optional; ID of the enchantment of interest to check the level of on the item, e.g. minecraft:protection. If not provided, all enchantments are counted.
                                         type: string
                                         allow: *a-z0-9_#\/:.-
                                     }
@@ -1475,6 +1481,7 @@
                                 origins:explosive
                                 origins:fire
                                 origins:from_falling
+                                origins:in_tag
                                 origins:name
                                 origins:out_of_world
                                 origins:projectile
@@ -1522,6 +1529,14 @@
                                 "string-origins:explosive": {}
                                 "string-origins:fire": {}
                                 "string-origins:from_falling": {}
+                                "string-origins:in_tag": {
+                                    tag: {
+                                        href: https://minecraft.fandom.com/wiki/Tag#Damage_types
+                                        desc: The namespace and ID of the tag which the damage type should be in to pass the check.
+                                        type: string
+                                        allow: *a-z0-9_#\/:.-
+                                    }
+                                }
                                 "string-origins:name": {
                                     name: {
                                         desc: Name the damage source should have to pass the check. Click to see a list of vanilla damage source names.
@@ -1535,6 +1550,10 @@
                                         desc: If set, the check will only pass if the projectile was of an entity type with this ID.
                                         type: string
                                         allow: *a-z0-9_#\/:.-
+                                    }
+                                    projectile_condition: {
+                                        desc: If set, the check will only pass if the projectile entity fulfills this condition.
+                                        link: entity_cond
                                     }
                                 }
                                 "string-origins:unblockable": {}
@@ -1719,6 +1738,11 @@
                                         desc: The damage source to be used. Controls e.g. the death message, invulnerabilities (e.g. towards fire), or whether armor is taken into account.
                                         link: damage_source
                                     }
+                                    damage_type: {
+                                        desc: The damage type to be used. Controls e.g. the death message, invulnerabilities (e.g. towards fire), or whether armor is taken into account.
+                                        type: string
+                                        allow: *a-z0-9_#\/:.-
+                                    }
                                 }
                                 "string-origins:mount": {}
                                 "string-origins:set_in_love": {}
@@ -1775,6 +1799,7 @@
                                 origins:feed
                                 origins:gain_air
                                 origins:give
+                                origins:grant_advancement
                                 origins:grant_power
                                 origins:heal
                                 origins:modify_death_ticks
@@ -1785,8 +1810,10 @@
                                 origins:play_sound
                                 origins:raycast
                                 origins:replace_inventory
+                                origins:revoke_advancement
                                 origins:revoke_power
                                 origins:riding_action
+                                origins:selector_action
                                 origins:set_fall_distance
                                 origins:set_on_fire
                                 origins:set_resource
@@ -2016,6 +2043,11 @@
                                         desc: The damage source to be used. Controls e.g. the death message, invulnerabilities (e.g. towards fire), or whether armor is taken into account.
                                         link: damage_source
                                     }
+                                    damage_type: {
+                                        desc: The damage type to be used. Controls e.g. the death message, invulnerabilities (e.g. towards fire), or whether armor is taken into account.
+                                        type: string
+                                        allow: *a-z0-9_#\/:.-
+                                    }
                                 }
                                 "string-origins:dismount": {}
                                 "string-origins:drop_inventory": {
@@ -2040,6 +2072,10 @@
                                     }
                                     slot: {
                                         link: slot
+                                    }
+                                    amount: {
+                                        desc: If specified, the affected items will be split by this amount.
+                                        type: integer
                                     }
                                     power: {
                                         desc: If "Inventory Type" is set to "power", this is the power linked to the inventory to drop.
@@ -2146,6 +2182,13 @@
                                         desc: If set, this will prioritize the action to put the item in the specified slot. Accepts "chest", "feet", "head", "legs", "mainhand" or "offhand".
                                         enum: ["chest", "feet", "head", "legs", "mainhand", "offhand"]
                                         unspec: true
+                                    }
+                                }
+                                "string-origins:grant_advancement": {
+                                    advancement: {
+                                        desc: The namespace and ID of the advancement to be granted to the player.
+                                        type: string
+                                        allow: *a-z0-9_#\/:.-
                                     }
                                 }
                                 "string-origins:grant_power": {
@@ -2385,6 +2428,17 @@
                                         desc: The item stack to replace with.
                                         link: item_stack
                                     }
+                                    merge_nbt: {
+                                        desc: Determines whether to merge the NBTs of the item that will be replaced and the NBTs of the item that will be used as a replacement.
+                                        type: boolean
+                                    }
+                                }
+                                "string-origins:revoke_advancement": {
+                                    advancement: {
+                                        desc: The namespace and ID of the advancement to be revoked from the player.
+                                        type: string
+                                        allow: *a-z0-9_#\/:.-
+                                    }
                                 }
                                 "string-origins:revoke_power": {
                                     power: {
@@ -2414,6 +2468,22 @@
                                     recursive: {
                                         desc: If set to true, executes the specified actions on all entities that are being ridden, if there are more than one.
                                         type: boolean
+                                    }
+                                }
+                                "string-origins:selector_action": {
+                                    selector: {
+                                        href: https://minecraft.fandom.com/wiki/Target_selectors
+                                        desc: The selector to use for selecting entities. It can be the username of a player, the UUID of the entity or a target selector.
+                                        type: string
+                                        ext: true
+                                    }
+                                    bientity_action: {
+                                        desc: If specified, this action will be executed on either or both the actor and target entities.
+                                        link: bi_entity_action
+                                    }
+                                    bientity_condition: {
+                                        desc: If specified, the specified action will only be executed if this condition is fulfilled by either or both the actor and target entities.
+                                        link: bi_entity_cond
                                     }
                                 }
                                 "string-origins:set_fall_distance": {
@@ -2739,13 +2809,14 @@
                                 origins:delay
                                 origins:if_else
                                 origins:if_else_list
+                                origins:offset
                                 origins:side
+                                origins:area_of_effect
                                 origins:add_block
                                 origins:bonemeal
                                 origins:execute_command
                                 origins:explode
                                 origins:modify_block_state
-                                origins:offset
                                 origins:set_block
                             ]
                             more: {
@@ -2834,6 +2905,24 @@
                                         }
                                     }
                                 }
+                                "string-origins:offset": {
+                                    action: {
+                                        desc: The action to apply with the given offset.
+                                        link: block_action
+                                    }
+                                    x: {
+                                        desc: How much to offset the position on the x-axis. Defaults to 0.
+                                        type: integer
+                                    }
+                                    y: {
+                                        desc: How much to offset the position on the y-axis. Defaults to 0.
+                                        type: integer
+                                    }
+                                    z: {
+                                        desc: How much to offset the position on the z-axis. Defaults to 0.
+                                        type: integer
+                                    }
+                                }
                                 "string-origins:side": {
                                     side: {
                                         desc: The side, either "client" or "server", to apply this action on.
@@ -2841,6 +2930,25 @@
                                     }
                                     action: {
                                         desc: The action to apply.
+                                        link: block_action
+                                    }
+                                }
+                                "string-origins:area_of_effect": {
+                                    radius: {
+                                        desc: Determines the radius of the area to execute the action on.
+                                        type: integer
+                                        default: 10
+                                    }
+                                    shape: {
+                                        desc: The shape in which to affect blocks.
+                                        enum: ["cube", "star", "sphere"]
+                                    }
+                                    block_condition: {
+                                        desc: If specified, the specified action will only apply to blocks that fulfill this condition.
+                                        link: block_cond
+                                    }
+                                    block_action: {
+                                        desc: The action to apply to the blocks.
                                         link: block_action
                                     }
                                 }
@@ -2917,24 +3025,6 @@
                                     cycle: {
                                         desc: If specified, cycles through all the states of the specified property, regardless if it's a string, integer, or boolean.
                                         type: boolean
-                                    }
-                                }
-                                "string-origins:offset": {
-                                    action: {
-                                        desc: The action to apply with the given offset.
-                                        link: block_action
-                                    }
-                                    x: {
-                                        desc: How much to offset the position on the x-axis. Defaults to 0.
-                                        type: integer
-                                    }
-                                    y: {
-                                        desc: How much to offset the position on the y-axis. Defaults to 0.
-                                        type: integer
-                                    }
-                                    z: {
-                                        desc: How much to offset the position on the z-axis. Defaults to 0.
-                                        type: integer
                                     }
                                 }
                                 "string-origins:set_block": {
@@ -3070,6 +3160,7 @@
                         origins:fire_immunity
                         origins:fire_projectile
                         origins:freeze
+                        origins:grounded
                         origins:ignore_water
                         origins:inventory
                         origins:invisibility
@@ -3295,6 +3386,11 @@
                                 desc: If set, this is the damage source that will be used to deal the damage.
                                 link: damage_source
                             }
+                            damage_type: {
+                                desc: The damage type this power uses.
+                                type: string
+                                allow: *a-z0-9_#\/:.-
+                            }
                             protection_enchantment: {
                                 desc: If set, the total amount of levels of this enchantment will be counted on the player's armor to increase the onset_delay.
                                 type: string
@@ -3447,6 +3543,7 @@
                             }
                         }
                         "string-origins:freeze": {}
+                        "string-origins:grounded": {}
                         "string-origins:ignore_water": {}
                         "string-origins:inventory": {
                             title: {
@@ -3480,6 +3577,11 @@
                                 desc: Whether or not the player's armor should be shown.
                                 type: boolean
                                 default: false
+                            }
+                            render_outline: {
+                                desc: Determines whether the glowing outline should be shown or not.
+                                type: boolean
+                                default: true
                             }
                         }
                         "string-origins:invulnerability": {
@@ -3664,8 +3766,36 @@
                                 desc: Determines how often the particles should spawn (interval in ticks).
                                 type: integer
                             }
+                            count: {
+                                desc: Determines the amount of particles to spawn.
+                                type: integer
+                                default: 1
+                            }
+                            speed: {
+                                desc: Determines the speed of the specified particle type.
+                                type: number
+                                default: 0.0
+                            }
+                            spread: {
+                                desc: Determines the size of the three-dimensional cuboid volume to spawn the specified particle type in.
+                                type: object
+                                props: {
+                                    x: {type: "number", default: 0.25}
+                                    y: {type: "number", default: 0.5}
+                                    z: {type: "number", default: 0.25}
+                                }
+                            }
+                            offset_y: {
+                                desc: The offset of where the particle will be centered in the Y axis.
+                                type: number
+                                default: 1.0
+                            }
                             visible_in_first_person: {
                                 desc: Determines whether the particle should be visible in first person.
+                                type: boolean
+                            }
+                            visible_while_invisible: {
+                                desc: Determines whether the particle type should be visible if the entity is invisible.
                                 type: boolean
                             }
                         }
@@ -4137,6 +4267,23 @@
                             item_condition: {
                                 desc: If set, the actions will only trigger when this item condition is met by the item stack before use.
                                 link: item_cond
+                            }
+                            trigger: {
+                                desc:
+                                '''
+                                Defines when the action is executed.
+                                "finish" - The action will execute when the entity finishes (as in, completes) using an item which has a use duration, such as eating food.
+                                "start" - The action will execute when the entity starts using an item which has a use duration.
+                                "stop" - The action will execute when the entity stops using an item which has a use duration, before the maximum use duration has been reached. Compared to finish, this can be used to detect shooting a bow, for example.
+                                "during" - The action will be called every tick while the entity is using an item which has a use duration.
+                                "instant" - The action will not fire for items with a use duration, but will instead fire when an item is used which triggers its effect instantly, such as an ender pearl or splash potion.
+                                '''
+                                enum: ["finish", "start", "stop", "during", "instant"]
+                            }
+                            priority: {
+                                desc: Determines the execution priority of the power.
+                                type: integer
+                                default: 0
                             }
                         }
                         "string-origins:action_on_land": {
