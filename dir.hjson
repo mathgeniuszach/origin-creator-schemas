@@ -44,4 +44,8 @@
         powers
         predicates
     ]
+    15: [
+        advancements
+        dama
+    ]
 }
