@@ -719,7 +719,7 @@
                                     }
                                     "string-minecraft:kill_mob_near_sculk_catalyst": {
                                         conditions: {
-                                            typs: object
+                                            type: object
                                             props: {
                                                 player: {
                                                     desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.

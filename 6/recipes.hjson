@@ -94,7 +94,7 @@
                                     key: {
                                         desc: All keys used for this shaped crafting recipe.
                                         type: object
-                                        extra: {nopanel: true, extend: "oritem"}
+                                        extra: {nopanel: true, id: "recipes-6", extend: "oritem"}
                                     }
                                     result: {link: "result"}
                                 }

@@ -705,28 +705,7 @@
                                     }
                                     "string-minecraft:kill_mob_near_sculk_catalyst": {
                                         conditions: {
-                                            typs: object
-                                            props: {
-                                                player: {
-                                                    desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                                    id: predicates-15
-                                                    link: entity_preds
-                                                }
-                                                entity: {
-                                                    desc: The entity that was killed. May also be a list of predicates that must pass in order for the trigger to activate.
-                                                    id: predicates-15
-                                                    link: entity_preds
-                                                }
-                                                killing_blow: {
-                                                    desc: The damage that killed an entity. Missing corresponding list of predicates for the direct entity.
-                                                    link: damage
-                                                }
-                                            }
-                                        }
-                                    }
-                                    "string-minecraft:kill_mob_near_sculk_catalyst": {
-                                        conditions: {
-                                            typs: object
+                                            type: object
                                             props: {
                                                 player: {
                                                     desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
