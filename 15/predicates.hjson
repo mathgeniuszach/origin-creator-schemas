@@ -624,7 +624,7 @@
                     desc: A condition ID determining what to check for
                     ns: minecraft
                     enum: [
-                        minecraft:alternative
+                        minecraft:any_of
                         minecraft:block_state_property
                         minecraft:damage_source_properties
                         minecraft:entity_properties
@@ -645,7 +645,7 @@
                         apoli:power
                     ]
                     more: {
-                        "string-minecraft:alternative": {
+                        "string-minecraft:any_of": {
                             terms: {
                                 type: list
                                 vals: {link: "single_pred"}

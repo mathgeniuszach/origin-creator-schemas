@@ -97,6 +97,7 @@
         {
             name: normal
             type: object
+            extend: advancement_base
             props: {
                 criteria: {
                     desc: A criteria map to be used by "requirements". If "requirements" is not specified, then all of these criteria need to be met.
@@ -107,6 +108,8 @@
                             trigger: {
                                 ns: minecraft
                                 enum: [
+                                    minecraft:allay_drop_item_on_block
+                                    minecraft:avoid_vibration
                                     minecraft:bee_nest_destroyed
                                     minecraft:bred_animals
                                     minecraft:brewed_potion
@@ -129,6 +132,7 @@
                                     minecraft:item_durability_changed
                                     minecraft:item_used_on_block
                                     minecraft:killed_by_crossbow
+                                    minecraft:kill_mob_near_sculk_catalyst
                                     minecraft:levitation
                                     minecraft:lightning_strike
                                     minecraft:location
@@ -138,7 +142,6 @@
                                     minecraft:player_hurt_entity
                                     minecraft:player_interacted_with_entity
                                     minecraft:player_killed_entity
-                                    minecraft:recipe_crafted
                                     minecraft:recipe_unlocked
                                     minecraft:ride_entity_in_lava
                                     minecraft:shot_crossbow
@@ -149,6 +152,7 @@
                                     minecraft:tame_animal
                                     minecraft:target_hit
                                     minecraft:thrown_item_picked_up_by_entity
+                                    minecraft:thrown_item_picked_up_by_player
                                     minecraft:tick
                                     minecraft:used_ender_eye
                                     minecraft:used_totem
@@ -158,6 +162,33 @@
                                     origins:chose_origin
                                 ]
                                 more: {
+                                    "string-minecraft:allay_drop_item_on_block": {
+                                        conditions: {
+                                            type: object
+                                            props: {
+                                                location: {
+                                                    desc: Specifies a list of predicates that must pass in order for the criterion to be granted. The origin is the location of the block the item was dropped on, the block state belongs to that block, and the tool is the item dropped on the block. The this entity is the player that would get the advancement.
+                                                    type: list
+                                                    vals: {
+                                                        id: predicates-15
+                                                        link: entity_pred
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    "string-minecraft:avoid_vibration": {
+                                        conditions: {
+                                            type: object
+                                            props: {
+                                                player: {
+                                                    desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
+                                                    id: predicates-15
+                                                    link: entity_preds
+                                                }
+                                            }
+                                        }
+                                    }
                                     "string-minecraft:bee_nest_destroyed": {
                                         conditions: {
                                             type: object
@@ -638,6 +669,48 @@
                                             }
                                         }
                                     }
+                                    "string-minecraft:kill_mob_near_sculk_catalyst": {
+                                        conditions: {
+                                            typs: object
+                                            props: {
+                                                player: {
+                                                    desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
+                                                    id: predicates-15
+                                                    link: entity_preds
+                                                }
+                                                entity: {
+                                                    desc: The entity that was killed. May also be a list of predicates that must pass in order for the trigger to activate.
+                                                    id: predicates-15
+                                                    link: entity_preds
+                                                }
+                                                killing_blow: {
+                                                    desc: The damage that killed an entity. Missing corresponding list of predicates for the direct entity.
+                                                    link: damage
+                                                }
+                                            }
+                                        }
+                                    }
+                                    "string-minecraft:kill_mob_near_sculk_catalyst": {
+                                        conditions: {
+                                            typs: object
+                                            props: {
+                                                player: {
+                                                    desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
+                                                    id: predicates-15
+                                                    link: entity_preds
+                                                }
+                                                entity: {
+                                                    desc: The entity that was killed. May also be a list of predicates that must pass in order for the trigger to activate.
+                                                    id: predicates-15
+                                                    link: entity_preds
+                                                }
+                                                killing_blow: {
+                                                    desc: The damage that killed an entity. Missing corresponding list of predicates for the direct entity.
+                                                    link: damage
+                                                }
+                                            }
+                                        }
+                                    }
                                     "string-minecraft:levitation": {
                                         conditions: {
                                             type: object
@@ -734,7 +807,7 @@
                                                     type: list
                                                     vals: {
                                                         id: predicates-15
-                                                        link: entity_preds
+                                                        link: entity_pred
                                                     }
                                                 }
                                             }
@@ -1024,6 +1097,50 @@
                                             }
                                         }
                                     }
+                                    "string-thrown_item_picked_up_by_player": {
+                                        conditions: {
+                                            type: object
+                                            props: {
+                                                item: {
+                                                    desc: The thrown item which was picked up.
+                                                    id: predicates-15
+                                                    link: item_pred
+                                                }
+                                                entity: {
+                                                    desc: The entity which threw the item. May be a list of predicates that must pass in order for the trigger to activate.
+                                                    id: predicates-15
+                                                    link: entity_preds
+                                                }
+                                                player: {
+                                                    desc: The player picking up the item, who would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
+                                                    id: predicates-15
+                                                    link: entity_preds
+                                                }
+                                            }
+                                        }
+                                    }
+                                    "string-thrown_item_picked_up_by_player": {
+                                        conditions: {
+                                            type: object
+                                            props: {
+                                                item: {
+                                                    desc: The thrown item which was picked up.
+                                                    id: predicates-15
+                                                    link: item_pred
+                                                }
+                                                entity: {
+                                                    desc: The entity which threw the item. May be a list of predicates that must pass in order for the trigger to activate.
+                                                    id: predicates-15
+                                                    link: entity_preds
+                                                }
+                                                player: {
+                                                    desc: The player picking up the item, who would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
+                                                    id: predicates-15
+                                                    link: entity_preds
+                                                }
+                                            }
+                                        }
+                                    }
                                     "string-minecraft:tick": {
                                         conditions: {
                                             type: object
@@ -1181,6 +1298,7 @@
         {
             name: custom
             type: object
+            extend: advancement_base
             props: {
                 criteria: {
                     desc: A criteria map to be used by "requirements". If "requirements" is not specified, then all of these criteria need to be met.

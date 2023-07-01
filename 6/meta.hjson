@@ -34,7 +34,7 @@
             href: https://minecraft.fandom.com/wiki/Pack_format
             type: integer
             min: 1
-            max: 12
+            max: 15
             hooks: ["refresh"]
             gap: true
         }
