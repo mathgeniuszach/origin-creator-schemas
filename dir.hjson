@@ -1,58 +1,59 @@
 // When the origin creator cannot find a schema for the given pack_format, it will default to the latest version before it or just 6.
 {
-    $: 115 // Change this number every time a pull request is made to let end users know stuff has been updated
+    $: 116 // Change this number every time a pull request is made to let end users know stuff has been updated
     6: [
-        meta
-        tags
-        recipes
-        powers
         origin_layers
         origins
+        powers
+        recipes
+        tags
+        meta
     ]
     7: [
+        // Not alphabetized, because the order indicates load order
         // Unfortunately, I have no way of knowing if every one of these fields will work in 1.16. Sorry about that.
-        predicates
-        item_modifiers
-        loot_tables
-        advancements
-        powers
         origin_layers
         origins
+        powers
+        advancements
+        loot_tables
+        item_modifiers
+        predicates
     ]
     8: [
-        predicates
-        loot_tables
-        advancements
-        powers
-        origin_layers
         origins
+        origin_layers
+        powers
+        advancements
+        loot_tables
+        predicates
     ]
     10: [
-        predicates
-        item_modifiers
-        loot_tables
-        advancements
-        powers
-        origin_layers
-        origins
         meta
+        origins
+        origin_layers
+        powers
+        advancements
+        loot_tables
+        item_modifiers
+        predicates
     ]
     12: [
-        predicates
-        item_modifiers
-        loot_tables
-        advancements
-        damage_type
-        powers
-        origin_layers
         origins
+        origin_layers
+        powers
+        predicates
+        damage_type
+        advancements
+        loot_tables
+        item_modifiers
     ]
     15: [
-        predicates
-        loot_tables
-        advancements
-        powers
-        origin_layers
         origins
+        origin_layers
+        powers
+        advancements
+        loot_tables
+        predicates
     ]
 }
