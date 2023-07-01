@@ -8,7 +8,7 @@
         functions: {
             type: list
             vals: {
-                id: item_modifiers-15
+                id: item_modifiers-12
                 link: single_modifier
             }
         }

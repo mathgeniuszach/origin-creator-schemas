@@ -126,6 +126,7 @@
             }
         }
     }
+    type: or
     or: [
         {
             type: object
