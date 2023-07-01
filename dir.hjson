@@ -1,12 +1,12 @@
 // When the origin creator cannot find a schema for the given pack_format, it will default to the latest version before it or just 6.
 {
-    $: 118 // Change this number every time a pull request is made to let end users know stuff has been updated
+    $: 119 // Change this number every time a pull request is made to let end users know stuff has been updated
     6: [
         meta
+        recipes
         powers
         origins
         origin_layers
-        recipes
         tags
     ]
     7: [
@@ -29,9 +29,9 @@
         loot_tables
     ]
     10: [
+        meta
         predicates
         powers
-        meta
         origins
         origin_layers
         advancements
