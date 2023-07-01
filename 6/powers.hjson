@@ -3005,6 +3005,7 @@
             enum: ["<", "<=", ">", ">=", "==", "!="]
             unspec: true
         }
+        // These are here because firefox is a stupid browser
         oritem: {
             desc: A list or single item used as an ingredient for this recipe.
             type: or
