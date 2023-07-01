@@ -3,56 +3,56 @@
     $: 113 // Change this number every time a pull request is made to let end users know stuff has been updated
     6: [
         meta
+        powers
         origin_layers
         origins
-        powers
         recipes
         tags
     ]
     7: [
         // Unfortunately, I have no way of knowing if every one of these fields will work in 1.16. Sorry about that.
         advancements
+        powers
+        predicates
         item_modifiers
         loot_tables
         origin_layers
         origins
-        powers
-        predicates
     ]
     8: [
         advancements
+        powers
+        predicates
         loot_tables
         origin_layers
         origins
-        powers
-        predicates
     ]
     10: [
         meta
+        predicates
+        powers
         advancements
         item_modifiers
         loot_tables
         origin_layers
         origins
-        powers
-        predicates
     ]
     12: [
+        predicates
+        powers
         advancements
         damage_type
         item_modifiers
         loot_tables
         origin_layers
         origins
-        powers
-        predicates
     ]
     15: [
+        predicates
+        powers
         advancements
         loot_tables
         origin_layers
         origins
-        powers
-        predicates
     ]
 }
