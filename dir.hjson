@@ -1,59 +1,59 @@
 // When the origin creator cannot find a schema for the given pack_format, it will default to the latest version before it or just 6.
 {
-    $: 117 // Change this number every time a pull request is made to let end users know stuff has been updated
+    $: 118 // Change this number every time a pull request is made to let end users know stuff has been updated
     6: [
-        origin_layers
-        origins
+        meta
         powers
+        origins
+        origin_layers
         recipes
         tags
-        meta
     ]
     7: [
         // Not alphabetized, because the order indicates load order
         // Unfortunately, I have no way of knowing if every one of these fields will work in 1.16. Sorry about that.
+        predicates
+        powers
         origin_layers
         origins
         advancements
-        powers
         loot_tables
         item_modifiers
-        predicates
     ]
     8: [
+        predicates
+        powers
         origins
         origin_layers
         advancements
-        powers
         loot_tables
-        predicates
     ]
     10: [
+        predicates
+        powers
         meta
         origins
         origin_layers
         advancements
-        powers
         loot_tables
         item_modifiers
-        predicates
     ]
     12: [
+        predicates
+        powers
         origins
         origin_layers
         damage_type
         advancements
-        powers
         loot_tables
         item_modifiers
-        predicates
     ]
     15: [
+        predicates
+        powers
         origins
         origin_layers
         advancements
-        powers
         loot_tables
-        predicates
     ]
 }
