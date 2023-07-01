@@ -3005,6 +3005,28 @@
             enum: ["<", "<=", ">", ">=", "==", "!="]
             unspec: true
         }
+        oritem: {
+            desc: A list or single item used as an ingredient for this recipe.
+            type: or
+            or: [
+                {title: "item", type: "object", props: {item: {link: "item"}}}
+                {title: "tag", type: "object", props: {tag: {type: "string", allow: "*a-z0-9_:-"}}}
+                {title: "list", type: "list", vals: {
+                    or: [
+                        {title: "item", type: "object", props: {item: {link: "item"}}}
+                        {title: "tag", type: "object", props: {tag: {type: "string", allow: "*a-z0-9_:-"}}}
+                    ]
+                }}
+            ]
+        }
+        result: {
+            desc: The output item of the recipe.
+            type: object
+            props: {
+                item: {link: "item"}
+                count: {type: "integer", min: 1}
+            }
+        }
     }
     or: [
         {

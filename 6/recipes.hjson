@@ -146,6 +146,7 @@
                         }
                         ingredient: {
                             desc: The ingredient or list of acceptable incredients cooked by this recipe.
+                            id: recipe-6
                             link: oritem
                         }
                         result: {extend: "item", gap: true}
