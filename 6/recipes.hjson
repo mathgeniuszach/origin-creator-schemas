@@ -56,14 +56,14 @@
                                 type: object
                                 extra: {nopanel: true, id: "recipes-6", extend: "oritem"}
                             }
-                            result: {link: "result"}
+                            result: {id: "recipes-6", link: "result"}
                         }
                         "string-minecraft:crafting_shapeless": {
                             ingredients: {
                                 type: list
                                 vals: {link: "oritem"}
                             }
-                            result: {link: "result"}
+                            result: {id: "recipes-6", link: "result"}
                         }
                     }
                 }

@@ -913,9 +913,11 @@
                                             props: {
                                                 recipe_id: {
                                                     desc: The recipe that was crafted.
-                                                    ingrediates: An array of item predicates for the recipe ingredients. Each item can only match one predicate, and every predicate needs to pass for the criterion to be granted.
+                                                    type: string
+                                                    allow: *a-z0-9_\/:.-
                                                 }
                                                 ingredients: {
+                                                    desc: An array of item predicates for the recipe ingredients. Each item can only match one predicate, and every predicate needs to pass for the criterion to be granted.
                                                     type: list
                                                     vals: {
                                                         id: predicates-15
