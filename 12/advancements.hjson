@@ -90,6 +90,39 @@
                     desc: The optional parent advancement directory of this advancement. If this field is absent, this advancement is a root advancement. Circular references cause a loading failure.
                     type: string
                 }
+                requirements: {
+                    desc: An optional list of requirements (all the <criteriaNames>). If all criteria are required, this may be omitted. With multiple criteria: requirements contains a list of lists with criteria (all criteria need to be mentioned). If all of the lists each have any criteria met, the advancement is complete. (basically AND grouping of OR groups).
+                    type: list
+                    vals: {
+                        type: list
+                        vals: {type: "string"}
+                    }
+                }
+                rewards: {
+                    desc: An optional object representing the rewards provided when this advancement is obtained.
+                    type: object
+                    props: {
+                        recipes: {
+                            desc: A list of recipes to unlock.
+                            type: list
+                            vals: {type: "string"}
+                        }
+                        loot: {
+                            desc: A list of loot tables to give to the player.
+                            type: list
+                            vals: {type: "string"}
+                        }
+                        experience: {
+                            desc: An amount of experience.
+                            type: integer
+                        }
+                        function: {
+                            desc: A function to run. Function tags are not allowed.
+                            type: string
+                            allow: *a-z0-9_\/:.-
+                        }
+                    }
+                }
             }
         }
     }
@@ -1229,39 +1262,6 @@
                                     }
                                 }
                             }
-                        }
-                    }
-                }
-                requirements: {
-                    desc: An optional list of requirements (all the <criteriaNames>). If all criteria are required, this may be omitted. With multiple criteria: requirements contains a list of lists with criteria (all criteria need to be mentioned). If all of the lists each have any criteria met, the advancement is complete. (basically AND grouping of OR groups).
-                    type: list
-                    vals: {
-                        type: list
-                        vals: {type: "string"}
-                    }
-                }
-                rewards: {
-                    desc: An optional object representing the rewards provided when this advancement is obtained.
-                    type: object
-                    props: {
-                        recipes: {
-                            desc: A list of recipes to unlock.
-                            type: list
-                            vals: {type: "string"}
-                        }
-                        loot: {
-                            desc: A list of loot tables to give to the player.
-                            type: list
-                            vals: {type: "string"}
-                        }
-                        experience: {
-                            desc: An amount of experience.
-                            type: integer
-                        }
-                        function: {
-                            desc: A function to run. Function tags are not allowed.
-                            type: string
-                            allow: *a-z0-9_\/:.-
                         }
                     }
                 }
