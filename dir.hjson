@@ -1,6 +1,6 @@
 // When the origin creator cannot find a schema for the given pack_format, it will default to the latest version before it or just 6.
 {
-    $: 120 // Change this number every time a pull request is made to let end users know stuff has been updated
+    $: 121 // Change this number every time a pull request is made to let end users know stuff has been updated
     6: [
         meta
         recipes
@@ -10,7 +10,7 @@
         tags
     ]
     7: [
-        // Not alphabetized, because the order indicates load order
+        // DO NOT ALPHABETIZE, because the order indicates load order
         // Unfortunately, I have no way of knowing if every one of these fields will work in 1.16. Sorry about that.
         predicates
         powers
