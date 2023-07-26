@@ -11,7 +11,7 @@
             type: or
             or: [
                 {title: "item", type: "object", props: {item: {link: "item"}}}
-                {title: "tag", type: "object", props: {tag: {type: "string", allow: "*a-z0-9_:-"}}}
+                {title: "tag", type: "object", props: {tag: {type: "string", allow: "*a-z0-9_:/.-"}}}
                 {title: "list", type: "list", vals: {
                     or: [
                         {title: "item", type: "object", props: {item: {link: "item"}}}
