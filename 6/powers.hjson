@@ -2765,9 +2765,19 @@
                 {type: "number"}
                 {type: "string"}
                 {type: "list", vals: {link: "nany"}}
+                {title: "Condition (Entity)", link: "entity_cond"}
+                {title: "Condition (Item)", link: "item_cond"}
+                {title: "Condition (Block)", link: "block_cond"}
+                {title: "Condition (Fluid)", link: "fluid_cond"}
+                {title: "Condition (Biome)", link: "biome_cond"}
+                {title: "Condition (Damage)", link: "damage_cond"}
+                {title: "Action (Entity)", link: "entity_action"}
+                {title: "Action (Item)", link: "item_action"}
+                {title: "Action (Block)", link: "block_action"}
                 {type: "object", extra: {link: "nany"}}
             ]
         }
+        
         custom_action: {
             type: object
             show: true
