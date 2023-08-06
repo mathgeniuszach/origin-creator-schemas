@@ -2765,15 +2765,15 @@
                 {type: "number"}
                 {type: "string"}
                 {type: "list", vals: {link: "nany"}}
-                {title: "Condition (Entity)", link: "entity_cond", nopanel: true}
-                {title: "Condition (Item)", link: "item_cond", nopanel: true}
-                {title: "Condition (Block)", link: "block_cond", nopanel: true}
-                {title: "Condition (Fluid)", link: "fluid_cond", nopanel: true}
-                {title: "Condition (Biome)", link: "biome_cond", nopanel: true}
-                {title: "Condition (Damage)", link: "damage_cond", nopanel: true}
-                {title: "Action (Entity)", link: "entity_action", nopanel: true}
-                {title: "Action (Item)", link: "item_action", nopanel: true}
-                {title: "Action (Block)", link: "block_action", nopanel: true}
+                // {title: "Condition (Entity)", link: "entity_cond", nopanel: true}
+                // {title: "Condition (Item)", link: "item_cond", nopanel: true}
+                // {title: "Condition (Block)", link: "block_cond", nopanel: true}
+                // {title: "Condition (Fluid)", link: "fluid_cond", nopanel: true}
+                // {title: "Condition (Biome)", link: "biome_cond", nopanel: true}
+                // {title: "Condition (Damage)", link: "damage_cond", nopanel: true}
+                // {title: "Action (Entity)", link: "entity_action", nopanel: true}
+                // {title: "Action (Item)", link: "item_action", nopanel: true}
+                // {title: "Action (Block)", link: "block_action", nopanel: true}
                 {type: "object", extra: {link: "nany"}}
             ]
         }
