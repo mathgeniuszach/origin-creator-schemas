@@ -55,7 +55,7 @@
         }
         gui_title: {
             desc: If specified, the choose/view origin title for the layer (the text that shows at the top of the GUI) will be overridden by this.
-            href: https://origins.readthedocs.io/en/latest/types/data_types/gui_title/ 
+            href: https://origins.readthedocs.io/en/1.8.1/types/data_types/gui_title/ 
             type: object
             props: {
                 choose_origin: {

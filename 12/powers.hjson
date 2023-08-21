@@ -13,7 +13,7 @@
                             type: boolean
                         }
                         type: {
-                            href: https://origins.readthedocs.io/en/latest/types/bientity_condition_types/
+                            href: https://origins.readthedocs.io/en/1.8.1/types/bientity_condition_types/
                             enum: [
                                 origins:and
                                 origins:or
@@ -154,7 +154,7 @@
                             type: boolean
                         }
                         type: {
-                            href: https://origins.readthedocs.io/en/latest/types/entity_condition_types/
+                            href: https://origins.readthedocs.io/en/1.8.1/types/entity_condition_types/
                             enum: [
                                 origins:and
                                 origins:or
@@ -904,7 +904,7 @@
                             type: boolean
                         }
                         type: {
-                            href: https://origins.readthedocs.io/en/latest/types/item_condition_types/
+                            href: https://origins.readthedocs.io/en/1.8.1/types/item_condition_types/
                             enum: [
                                 origins:and
                                 origins:or
@@ -1009,7 +1009,7 @@
                                 "string-origins:ingredient": {
                                     ingredient: {
                                         desc: An ingredient, which can be a variety of things.
-                                        href: https://origins.readthedocs.io/en/latest/types/item_condition_types/ingredient/
+                                        href: https://origins.readthedocs.io/en/1.8.1/types/item_condition_types/ingredient/
                                         id: recipes-6
                                         link: oritem
                                     }
@@ -1054,7 +1054,7 @@
                             type: boolean
                         }
                         type: {
-                            href: https://origins.readthedocs.io/en/latest/types/block_condition_types/
+                            href: https://origins.readthedocs.io/en/1.8.1/types/block_condition_types/
                             enum: [
                                 origins:and
                                 origins:or
@@ -1260,7 +1260,7 @@
                                         desc: If specified, checks if the block classifies as this material. Click to see a list of valid materials.
                                         type: string
                                         allow: *a-z0-9_\/:.-
-                                        href: https://origins.readthedocs.io/en/latest/misc/extras/materials/
+                                        href: https://origins.readthedocs.io/en/1.8.1/misc/extras/materials/
                                     }
                                     materials: {
                                         desc: If specified, checks if the block classifies as one of these materials.
@@ -1328,7 +1328,7 @@
                             type: boolean
                         }
                         type: {
-                            href: https://origins.readthedocs.io/en/latest/types/fluid_condition_types/
+                            href: https://origins.readthedocs.io/en/1.8.1/types/fluid_condition_types/
                             enum: [
                                 origins:and
                                 origins:or
@@ -1395,7 +1395,7 @@
                             type: boolean
                         }
                         type: {
-                            href: https://origins.readthedocs.io/en/latest/types/biome_condition_types/
+                            href: https://origins.readthedocs.io/en/1.8.1/types/biome_condition_types/
                             enum: [
                                 origins:and
                                 origins:or
@@ -1430,7 +1430,7 @@
                                 "string-origins:category": {
                                     category: {
                                         desc: Which category the biome must be in order to succeed the check. Click to see the list of biome categories in vanilla.
-                                        href: https://origins.readthedocs.io/en/latest/misc/extras/biome_categories/#biome_category/
+                                        href: https://origins.readthedocs.io/en/1.8.1/misc/extras/biome_categories/#biome_category/
                                         type: string
                                     }
                                 }
@@ -1470,7 +1470,7 @@
                             type: boolean
                         }
                         type: {
-                            href: https://origins.readthedocs.io/en/latest/types/damage_condition_types/
+                            href: https://origins.readthedocs.io/en/1.8.1/types/damage_condition_types/
                             enum: [
                                 origins:and
                                 origins:or
@@ -1540,7 +1540,7 @@
                                 "string-origins:name": {
                                     name: {
                                         desc: Name the damage source should have to pass the check. Click to see a list of vanilla damage source names.
-                                        href: https://origins.readthedocs.io/en/latest/misc/extras/damage_source_names/#list_of_vanilla_damage_source_names
+                                        href: https://origins.readthedocs.io/en/1.8.1/misc/extras/damage_source_names/#list_of_vanilla_damage_source_names
                                         type: string
                                     }
                                 }
@@ -1573,7 +1573,7 @@
                     type: object
                     props: {
                         type: {
-                            href: https://origins.readthedocs.io/en/latest/types/bientity_action_types/
+                            href: https://origins.readthedocs.io/en/1.8.1/types/bientity_action_types/
                             enum: [
                                 origins:nothing
                                 origins:and
@@ -1768,7 +1768,7 @@
                     type: object
                     props: {
                         type: {
-                            href: https://origins.readthedocs.io/en/latest/types/entity_action_types/
+                            href: https://origins.readthedocs.io/en/1.8.1/types/entity_action_types/
                             enum: [
                                 origins:nothing
                                 origins:and
@@ -1935,7 +1935,7 @@
                                     }
                                     space: {
                                         desc: The space to perform the velocity addition in.
-                                        href: https://origins.readthedocs.io/en/latest/misc/extras/space/#space
+                                        href: https://origins.readthedocs.io/en/1.8.1/misc/extras/space/#space
                                         enum: [
                                             world
                                             local
@@ -2619,7 +2619,7 @@
                     type: object
                     props: {
                         type: {
-                            href: https://origins.readthedocs.io/en/latest/types/item_action_types/
+                            href: https://origins.readthedocs.io/en/1.8.1/types/item_action_types/
                             enum: [
                                 origins:nothing
                                 origins:and
@@ -2800,7 +2800,7 @@
                     type: object
                     props: {
                         type: {
-                            href: https://origins.readthedocs.io/en/latest/types/block_action_types/
+                            href: https://origins.readthedocs.io/en/1.8.1/types/block_action_types/
                             enum: [
                                 origins:nothing
                                 origins:and
@@ -3045,7 +3045,7 @@
             type: object
             props: {
                 type: {
-                    href: https://origins.readthedocs.io/en/latest/types/badge_types/
+                    href: https://origins.readthedocs.io/en/1.8.1/types/badge_types/
                     desc: The namespace and ID of the desired badge type.
                     enum: [
                         origins:sprite
@@ -3138,7 +3138,7 @@
                 }
                 type: {
                     desc: ID of the desired Power Type.
-                    href: https://origins.readthedocs.io/en/latest/types/power_types/
+                    href: https://origins.readthedocs.io/en/1.8.1/types/power_types/
                     hooks: ["fix_cond"]
                     enum: [
                         origins:simple
@@ -5111,7 +5111,7 @@
                         "string-origins:prevent_feature_render": {
                             feature: {
                                 desc: If specified, this feature renderer (e.g: armor layer, sheep wool layer, or the sub-classes that extends the FeatureRender super-class) will not be rendered to the entity that has the power.
-                                href: https://origins.readthedocs.io/en/latest/types/power_types/prevent_feature_render/
+                                href: https://origins.readthedocs.io/en/1.8.1/types/power_types/prevent_feature_render/
                                 type: string
                                 allow: *a-z0-9_#\/:.-
                             }
@@ -5127,7 +5127,7 @@
                         "string-origins:prevent_game_event": {
                             event: {
                                 desc: If specified, the game event with this namespace and ID will be prevent from being emitted by the entity.
-                                href: https://origins.readthedocs.io/en/latest/types/power_types/prevent_game_event/
+                                href: https://origins.readthedocs.io/en/1.8.1/types/power_types/prevent_game_event/
                                 type: string
                                 allow: *a-z0-9_#\/:.-
                             }
@@ -5288,7 +5288,7 @@
             }
         }
         aa_mod_op: {
-            href: https://origins.readthedocs.io/en/latest/types/data_types/attributed_attribute_modifier_operation/
+            href: https://origins.readthedocs.io/en/1.8.1/types/data_types/attributed_attribute_modifier_operation/
             desc:
             '''
             Can be one of
@@ -5309,7 +5309,7 @@
             ]
         }
         a_mod_op: {
-            href: https://origins.readthedocs.io/en/latest/types/data_types/attribute_modifier_operation/
+            href: https://origins.readthedocs.io/en/1.8.1/types/data_types/attribute_modifier_operation/
             desc:
             '''
             Can be one of
@@ -5350,7 +5350,7 @@
         }
         a_mod: {
             desc: An Object used to specify how a specific attribute should be modified.
-            href: https://origins.readthedocs.io/en/latest/types/data_types/attribute_modifier/
+            href: https://origins.readthedocs.io/en/1.8.1/types/data_types/attribute_modifier/
             type: object
             props: {
                 operation: {
@@ -5373,7 +5373,7 @@
         }
         aa_mod: {
             desc: An Object used to specify how a specific attribute should be modified. Basically an Attribute Modifier with an additional attribute field.
-            href: https://origins.readthedocs.io/en/latest/types/data_types/attributed_attribute_modifier/
+            href: https://origins.readthedocs.io/en/1.8.1/types/data_types/attributed_attribute_modifier/
             type: object
             props: {
                 attribute: {
@@ -5397,7 +5397,7 @@
         }
         hud_render: {
             desc: An Object used to define how a resource or cooldown bar should be rendered.
-            href: https://origins.readthedocs.io/en/latest/types/data_types/hud_render/
+            href: https://origins.readthedocs.io/en/1.8.1/types/data_types/hud_render/
             type: object
             props: {
                 should_render: {
@@ -5407,7 +5407,7 @@
                 }
                 sprite_location: {
                     desc: The path to the file in the assets which contains what the bar looks like. See the List of resource bar files for a list of files included by default in the mod. Defaults to "origins:textures/gui/resource_bar.png".
-                    href: https://origins.readthedocs.io/en/latest/misc/extras/sprites/
+                    href: https://origins.readthedocs.io/en/1.8.1/misc/extras/sprites/
                     type: string
                     allow: *a-z0-9_#\/:.-
                 }
@@ -5428,12 +5428,12 @@
         }
         damage_source: {
             desc: An Object used to specify how to deal damage to an entity.
-            href: https://origins.readthedocs.io/en/latest/types/data_types/damage_source/
+            href: https://origins.readthedocs.io/en/1.8.1/types/data_types/damage_source/
             type: object
             props: {
                 name: {
                     desc: The name of the damage source. Controls death message as well as other interactions. Consider vanilla damage sources when picking a name.
-                    href: https://origins.readthedocs.io/en/latest/misc/extras/damage_source_names/#list_of_vanilla_damage_source_names
+                    href: https://origins.readthedocs.io/en/1.8.1/misc/extras/damage_source_names/#list_of_vanilla_damage_source_names
                     type: string
                 }
                 bypasses_armor: {
@@ -5466,7 +5466,7 @@
                     props: {
                         key: {
                             desc: A string specifying the keybinding. Click for possible vanilla and origins values.
-                            href: https://origins.readthedocs.io/en/latest/misc/extras/keybindings/
+                            href: https://origins.readthedocs.io/en/1.8.1/misc/extras/keybindings/
                             type: string
                         }
                         continuous: {
@@ -5571,7 +5571,7 @@
         }
         slot: {
             desc: A slot in an inventory to apply to.
-            href: https://origins.readthedocs.io/en/latest/types/data_types/item_slot/
+            href: https://origins.readthedocs.io/en/1.8.1/types/data_types/item_slot/
             or: [
                 {
                     type: string
@@ -5584,7 +5584,7 @@
         }
         slots: {
             desc: A list of slots in an inventory to apply to.
-            href: https://origins.readthedocs.io/en/latest/types/data_types/item_slot/
+            href: https://origins.readthedocs.io/en/1.8.1/types/data_types/item_slot/
             or: [
                 {
                     name: new
