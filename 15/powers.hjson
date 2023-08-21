@@ -610,7 +610,7 @@
                                     }
                                     compare_to: {
                                         desc: The value at which the amount of items/stacks that were evaluated are compared to.
-                                        link: int
+                                        type: int
                                         default: 0
                                     }
                                 }
