@@ -7,3 +7,7 @@ This is a collection of versioned schemas for the [Origin Creator](https://xmgzx
 This work is licensed under the [CC BY-NC](https://creativecommons.org/licenses/by-nc/4.0/) license (Creative Commons Attribution-NonCommercial 4.0 International License).
 
 For reference, this license does not apply to any projects created through the Origin Creator, and is here to ensure that the Origin Creator remains free. 
+
+## Contact
+
+Contact me on [Discord](https://discord.gg/pBFqEcXvW5) and support me on [Ko-Fi](https://ko-fi.com/mathgeniuszach)!
