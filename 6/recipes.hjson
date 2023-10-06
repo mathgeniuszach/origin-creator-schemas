@@ -2,7 +2,7 @@
     links: {
         item: {
             desc: A Minecraft item (or block item), vanilla or modded.
-            href: https://minecraft.fandom.com/wiki/Java_Edition_data_values#Blocks
+            href: https://minecraft.wiki/w/Java_Edition_data_values#Blocks
             type: string
             allow: *a-z0-9_:-
         }
@@ -152,7 +152,7 @@
                         result: {extend: "item", gap: true}
                         experience: {
                             desc: The output experience of the recipe. Click the link to see default smelting experience points.
-                            href: https://minecraft.fandom.com/wiki/Smelting#Recipes
+                            href: https://minecraft.wiki/w/Smelting#Recipes
                             type: number
                             min: 0
                             default: 0

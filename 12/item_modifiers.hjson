@@ -100,7 +100,7 @@
                                         props: {
                                             id: {
                                                 desc: The namespaced item ID.
-                                                href: https://minecraft.fandom.com/wiki/Java_Edition_data_values#Blocks
+                                                href: https://minecraft.wiki/w/Java_Edition_data_values#Blocks
                                                 type: string
                                                 allow: *a-z0-9_#\/:.-
                                             }
@@ -133,7 +133,7 @@
                                             }
                                             type: {
                                                 desc: A string containing the type of the entity. Should be a namespaced entity ID. Present minecraft:pig if invalid.
-                                                href: https://minecraft.fandom.com/wiki/Java_Edition_data_values/Entities
+                                                href: https://minecraft.wiki/w/Java_Edition_data_values/Entities
                                                 type: string
                                                 allow: *a-z0-9_#\/:.-
                                             }
@@ -203,7 +203,7 @@
                 {title: "key", type: "object", extend: "jsontxtbase", props: {
                     keybind: {
                         desc: A keybind identifier, to be displayed as the name of the button that is currently bound to that action. For example, {"keybind": "key.inventory"} displays "e" if the player is using the default control scheme.
-                        href: https://minecraft.fandom.com/wiki/Controls#Configurable_controls
+                        href: https://minecraft.wiki/w/Controls#Configurable_controls
                         type: string
                     }
                 }}
@@ -284,7 +284,7 @@
                         "string-minecraft:apply_bonus": {
                             enchantment: {
                                 desc: Enchantment ID used for level calculation.
-                                href: https://minecraft.fandom.com/wiki/Java_Edition_data_value#Enchantments
+                                href: https://minecraft.wiki/w/Java_Edition_data_values#Enchantments
                                 type: string
                                 allow: *a-z0-9_#\/:.-
                             }
@@ -367,7 +367,7 @@
                         "string-minecraft:copy_state": {
                             block: {
                                 desc: A block ID. Function fails if the block doesn't match.
-                                href: https://minecraft.fandom.com/wiki/Resource_location
+                                href: https://minecraft.wiki/w/Java_Edition_data_values/Blocks
                                 type: string
                             }
                             properties: {
@@ -379,7 +379,7 @@
                         "string-minecraft:enchant_randomly": {
                             enchantments: {
                                 desc: A list of enchantment IDs to choose from to enchant the item with. Only one will be selected, just with a random level. If omitted, all enchantments applicable to the item are possible.
-                                href: https://minecraft.fandom.com/wiki/Java_Edition_data_value#Enchantments
+                                href: https://minecraft.wiki/w/Java_Edition_data_values#Enchantments
                                 type: list
                                 vals: {type: "string"}
                             }
@@ -391,13 +391,13 @@
                         "string-minecraft:exploration_map": {
                             destination: {
                                 desc: The type of generated structure to convert this empty map to lead to. Accepts any structure id used by the /locate command.
-                                href: https://minecraft.fandom.com/wiki/Commands/locate#Arguments
+                                href: https://minecraft.wiki/w/Commands/locate#Arguments
                                 type: string
                                 allow: *a-z0-9_#\/:.-
                             }
                             decoration: {
                                 desc: The icon used to mark the destination on the map. Accepts any of the map icon text IDs (case insensitive). If mansion or monument is used, the color of the lines on the item texture changes to match the corresponding explorer map.
-                                href: https://minecraft.fandom.com/wiki/Map#Map_icons
+                                href: https://minecraft.wiki/w/Map#Map_icons
                                 type: string
                                 allow: *a-z0-9_#\/:.-
                             }
@@ -492,7 +492,7 @@
                                     props: {
                                         pattern: {
                                             desc: The pattern type. For example square_bottom_left.
-                                            href: https://minecraft.fandom.com/wiki/Banner/Patterns
+                                            href: https://minecraft.wiki/w/Banner/Patterns
                                             type: string
                                             allow: *a-z0-9_#\/:.-
                                         }
@@ -607,7 +607,7 @@
                         "string-minecraft:set_potion": {
                             id: {
                                 desc: The potion ID.
-                                href: https://minecraft.fandom.com/wiki/Potion#Java_Edition
+                                href: https://minecraft.wiki/w/Potion#Java_Edition
                                 type: string
                                 allow: *a-z0-9_#\/:.-
                             }
@@ -621,7 +621,7 @@
                                     props: {
                                         type: {
                                             desc: The effect ID.
-                                            href: https://minecraft.fandom.com/wiki/Effect#Effect_list
+                                            href: https://minecraft.wiki/w/Effect#Effect_list
                                             type: string
                                             allow: *a-z0-9_#\/:.-
                                         }

@@ -15,12 +15,12 @@
             enum: ["never", "when_caused_by_living_non_player", "always"]
         }
         effects: {
-            href: https://minecraft.fandom.com/wiki/Damage_type#Effects
+            href: https://minecraft.wiki/w/Damage_type#Effects
             desc: Optional field controlling how incoming damage is shown to the player.
             enum: ["hurt", "thorns", "drowning", "burning", "poking", "freezing"]
         }
         death_message_type: {
-            href: https://minecraft.fandom.com/wiki/Damage_type#Death_messages
+            href: https://minecraft.wiki/w/Damage_type#Death_messages
             desc: Optional field that controls the kind of death messages to use.
             enum: ["default", "fall_variants", "intentional_game_design"]
         }

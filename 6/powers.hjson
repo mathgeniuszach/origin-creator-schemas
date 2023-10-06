@@ -127,13 +127,13 @@
                                 "string-origins:biome": {
                                     biome: {
                                         desc: If set, this is the ID of the biome the player needs to be in for this condition to evaluate to true, e.g. minecraft:savanna.
-                                        href: https://minecraft.fandom.com/wiki/Biome#Biome_IDs
+                                        href: https://minecraft.wiki/w/Biome#Biome_IDs
                                         type: string
                                         allow: *a-z0-9_#\/:.-
                                     }
                                     biomes: {
                                         desc: If set, these are the allowed biome IDs the player can be in for this condition to evaluate to true.
-                                        href: https://minecraft.fandom.com/wiki/Biome#Biome_IDs
+                                        href: https://minecraft.wiki/w/Biome#Biome_IDs
                                         type: list
                                         vals: {
                                             type: string
@@ -214,7 +214,7 @@
                                     }
                                     permission_level: {
                                         desc: The permission level to use for the command. 0 is a "survival player", anything higher emulates some form of operator. Click for more details.
-                                        href: https://minecraft.fandom.com/wiki/Server.properties#op-permission-level
+                                        href: https://minecraft.wiki/w/Permission_level
                                         type: integer
                                         default: 4
                                     }
@@ -249,7 +249,7 @@
                                 "string-origins:entity_group": {
                                     group: {
                                         desc: Entity group required for the entity to pass the check. One of default, undead, arthropod, illager, or aquatic. Click for more information about the entity groups.
-                                        href: https://minecraft.fandom.com/wiki/Mob#Classification
+                                        href: https://minecraft.wiki/w/Mob#Classification
                                         enum: ["default", "undead", "arthropod", "illager", "aquatic"]
                                     }
                                 }
@@ -600,7 +600,7 @@
                                 "string-origins:harvest_level": {
                                     comparison: {
                                         desc: How the item's harvest level should be compared to the specified value. Click to visit the wiki to learn more about harvest levels.
-                                        href: https://minecraft.fandom.com/wiki/Tiers
+                                        href: https://minecraft.wiki/w/Tiers
                                         link: comparison
                                     }
                                     compare_to: {
@@ -696,7 +696,7 @@
                                 "string-origins:block": {
                                     block: {
                                         desc: ID of the block that this block needs to be to pass the check.
-                                        href: https://minecraft.fandom.com/wiki/Java_Edition_data_values/Blocks
+                                        href: https://minecraft.wiki/w/Java_Edition_data_values/Blocks
                                         type: string
                                         allow: *a-z0-9_\/:.-
                                     }
@@ -1237,7 +1237,7 @@
                                     }
                                     permission_level: {
                                         desc: The permission level to use for the command. 0 is a "survival player", anything higher emulates some form of operator. Click to see the Minecraft Wiki (op-permission-level) for details.
-                                        href: https://minecraft.fandom.com/wiki/Server.properties#op-permission-level
+                                        href: https://minecraft.wiki/w/Permission_level
                                         type: integer
                                         default: 4
                                     }
@@ -1575,7 +1575,7 @@
                                     }
                                     permission_level: {
                                         desc: The permission level to use for the command. 0 is a "survival player", anything higher emulates some form of operator. Click to see tje Minecraft Wiki (op-permission-level) for details.
-                                        href: https://minecraft.fandom.com/wiki/Server.properties#op-permission-level
+                                        href: https://minecraft.wiki/w/Permission_level
                                         type: integer
                                         default: 4
                                     }
@@ -1876,7 +1876,7 @@
                         "string-origins:entity_group": {
                             group: {
                                 desc: The group to associate with the player. One of default, undead, arthropod, illager, or aquatic. Click for more information about the entity groups.
-                                href: https://minecraft.fandom.com/wiki/Mob#Classification
+                                href: https://minecraft.wiki/w/Mob#Classification
                                 enum: ["default", "undead", "arthropod", "illager", "aquatic"]
                             }
                         }
@@ -2584,13 +2584,13 @@
                             }
                             biome: {
                                 desc: If set, the player will spawn in the biome with this ID.
-                                href: https://minecraft.fandom.com/wiki/Biome#Biome_IDs
+                                href: https://minecraft.wiki/w/Biome#Biome_IDs
                                 type: string
                                 allow: *a-z0-9_#\/:.-
                             }
                             structure: {
                                 desc: ID of the structure the player should spawn in. Keep in mind that the structure needs to generate in the specified dimension!
-                                href: https://minecraft.fandom.com/wiki/Commands/locate#Arguments
+                                href: https://minecraft.wiki/w/Commands/locate#Arguments
                                 type: string
                                 allow: *a-z0-9_#\/:.-
                             }
@@ -3016,7 +3016,7 @@
         }
         item: {
             desc: A Minecraft item (or block item), vanilla or modded.
-            href: https://minecraft.fandom.com/wiki/Java_Edition_data_values#Blocks
+            href: https://minecraft.wiki/w/Java_Edition_data_values#Blocks
             type: string
             allow: *a-z0-9_#\/:.-
         }

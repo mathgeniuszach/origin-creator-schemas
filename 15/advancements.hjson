@@ -283,7 +283,7 @@
                                             props: {
                                                 potion: {
                                                     desc: A brewed potion ID.
-                                                    href: https://minecraft.fandom.com/wiki/Potion#Item_data
+                                                    href: https://minecraft.wiki/w/Potion#Item_data
                                                     type: string
                                                     allow: *a-z0-9_\/:.-
                                                 }
@@ -456,7 +456,7 @@
                                             props: {
                                                 block: {
                                                     desc: The block that the player is standing in. Accepts block IDs
-                                                    href: https://minecraft.fandom.com/wiki/Java_Edition_data_values/Blocks
+                                                    href: https://minecraft.wiki/w/Java_Edition_data_values/Blocks
                                                     type: string
                                                     allow: *a-z0-9_\/:.-
                                                 }

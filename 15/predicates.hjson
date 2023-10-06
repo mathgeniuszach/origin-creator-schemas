@@ -38,7 +38,7 @@
             props: {
                 biome: {
                     desc: The biome at the given location.
-                    href: https://minecraft.fandom.com/wiki/Biome#Biome_IDs
+                    href: https://minecraft.wiki/w/Biome#Biome_IDs
                     type: string
                     allow: *a-z0-9#\/:.-
                 }
@@ -47,7 +47,7 @@
                     props: {
                         blocks: {
                             desc: A list of block IDs.
-                            href: https://minecraft.fandom.com/wiki/Java_Edition_data_values/Blocks
+                            href: https://minecraft.wiki/w/Java_Edition_data_values/Blocks
                             type: list
                             vals: {link: "block"}
                         }
@@ -80,7 +80,7 @@
                     props: {
                         blocks: {
                             desc: The fluid ID.
-                            href: https://minecraft.fandom.com/wiki/Java_Edition_data_values#Fluids
+                            href: https://minecraft.wiki/w/Java_Edition_data_values#Fluids
                             type: string
                             allow: *a-z0-9#\/:.-
                         }
@@ -115,7 +115,7 @@
                 }
                 feature: {
                     desc: Whether or not this location is inside a naturally generating structure.
-                    href: https://minecraft.fandom.com/wiki/Commands/locate#Arguments
+                    href: https://minecraft.wiki/w/Commands/locate#Arguments
                     type: string
                 }
                 light: {
@@ -156,7 +156,7 @@
                 }
                 effects: {
                     desc: A list of status effects. The key name is the status effect id.
-                    href: https://minecraft.fandom.com/wiki/Java_Edition_data_values/Effects
+                    href: https://minecraft.wiki/w/Java_Edition_data_values/Effects
                     type: object
                     extra: {
                         type: object
@@ -303,7 +303,7 @@
                 }
                 type: {
                     desc: An entity ID.
-                    href: https://minecraft.fandom.com/wiki/Data_values/Entity_IDs
+                    href: https://minecraft.wiki/w/Java_Edition_data_values/Entities
                     type: string
                     allow: *a-z0-9_#\/:.-
                 }
@@ -314,7 +314,7 @@
             props: {
                 items: {
                     desc: A list of item IDs.
-                    href: https://minecraft.fandom.com/wiki/Java_Edition_data_values#Blocks
+                    href: https://minecraft.wiki/w/Java_Edition_data_values#Blocks
                     type: list
                     vals: {link: "item"}
                 }
@@ -338,7 +338,7 @@
                 }
                 potion: {
                     desc: A brewed potion ID.
-                    href: https://minecraft.fandom.com/wiki/Potion#Item_data
+                    href: https://minecraft.wiki/w/Potion#Item_data
                     type: string
                     allow: *a-z0-9_#\/:.-
                 }
@@ -350,7 +350,7 @@
                         props: {
                             enchantment: {
                                 desc: An enchantment ID.
-                                href: https://minecraft.fandom.com/wiki/Java_Edition_data_values#Enchantments
+                                href: https://minecraft.wiki/w/Java_Edition_data_values#Enchantments
                                 type: string
                                 allow: *a-z0-9_#\/:.-
                             }
@@ -369,7 +369,7 @@
                         props: {
                             enchantment: {
                                 desc: An enchantment ID.
-                                href: https://minecraft.fandom.com/wiki/Java_Edition_data_values#Enchantments
+                                href: https://minecraft.wiki/w/Java_Edition_data_values#Enchantments
                                 type: string
                                 allow: *a-z0-9_#\/:.-
                             }
@@ -600,13 +600,13 @@
         }
         item: {
             desc: A Minecraft item (or block item), vanilla or modded.
-            href: https://minecraft.fandom.com/wiki/Java_Edition_data_values#Blocks
+            href: https://minecraft.wiki/w/Java_Edition_data_values#Blocks
             type: string
             allow: *a-z0-9_#\/:.-
         }
         block: {
             desc: A Minecraft block, vanilla or modded.
-            href: https://minecraft.fandom.com/wiki/Java_Edition_data_values/Blocks
+            href: https://minecraft.wiki/w/Java_Edition_data_values/Blocks
             type: string
             allow: *a-z0-9_#\/:.-
         }
