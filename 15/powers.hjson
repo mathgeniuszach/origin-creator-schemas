@@ -276,7 +276,7 @@
                                 "string-origins:attribute": {
                                     attribute: {
                                         desc: ID of the attribute of which the value should be checked.
-                                        href: https://minecraft.fandom.com/wiki/Attribute
+                                        href: https://minecraft.wiki/w/Attribute
                                         type: string
                                         allow: *a-z0-9_#\/:.-
                                     }
@@ -292,13 +292,13 @@
                                 "string-origins:biome": {
                                     biome: {
                                         desc: If set, this is the ID of the biome the player needs to be in for this condition to evaluate to true, e.g. minecraft:savanna.
-                                        href: https://minecraft.fandom.com/wiki/Biome#Biome_IDs
+                                        href: https://minecraft.wiki/w/Biome#Biome_IDs
                                         type: string
                                         allow: *a-z0-9_#\/:.-
                                     }
                                     biomes: {
                                         desc: If set, these are the allowed biome IDs the player can be in for this condition to evaluate to true.
-                                        href: https://minecraft.fandom.com/wiki/Biome#Biome_IDs
+                                        href: https://minecraft.wiki/w/Biome#Biome_IDs
                                         type: list
                                         vals: {
                                             type: string
@@ -471,7 +471,7 @@
                                 "string-origins:entity_group": {
                                     group: {
                                         desc: Entity group required for the entity to pass the check. One of default, undead, arthropod, illager, or aquatic. Click for more information about the entity groups.
-                                        href: https://minecraft.fandom.com/wiki/Mob#Classification
+                                        href: https://minecraft.wiki/w/Mob#Classification
                                         enum: ["default", "undead", "arthropod", "illager", "aquatic"]
                                     }
                                 }
@@ -1036,7 +1036,7 @@
                                 "string-origins:harvest_level": {
                                     comparison: {
                                         desc: How the item's harvest level should be compared to the specified value. Click to visit the wiki to learn more about harvest levels.
-                                        href: https://minecraft.fandom.com/wiki/Tiers
+                                        href: https://minecraft.wiki/w/Tiers
                                         link: comparison
                                     }
                                     compare_to: {
@@ -1168,7 +1168,7 @@
                                 "string-origins:block": {
                                     block: {
                                         desc: ID of the block that this block needs to be to pass the check.
-                                        href: https://minecraft.fandom.com/wiki/Java_Edition_data_values/Blocks
+                                        href: https://minecraft.wiki/w/Java_Edition_data_values/Blocks
                                         type: string
                                         allow: *a-z0-9_\/:.-
                                     }
@@ -1569,7 +1569,7 @@
                                 "string-origins:from_falling": {}
                                 "string-origins:in_tag": {
                                     tag: {
-                                        href: https://minecraft.fandom.com/wiki/Tag#Damage_types
+                                        href: https://minecraft.wiki/w/Tag#Damage_types
                                         desc: The namespace and ID of the tag which the damage type should be in to pass the check.
                                         type: string
                                         allow: *a-z0-9_#\/:.-
@@ -2135,7 +2135,7 @@
                                 "string-origins:emit_game_event": {
                                     event: {
                                         desc: The ID of a game event to emit. Click to see vanilla game events.
-                                        href: https://minecraft.fandom.com/wiki/Sculk_Sensor#Vibration_amplitudes
+                                        href: https://minecraft.wiki/w/Sculk_Sensor#Vibration_amplitudes
                                         type: string
                                         allow: *a-z0-9_#\/:.-
                                     }
@@ -2342,7 +2342,7 @@
                                     stat: {
                                         desc: The statistic to modify.
                                         type: string
-                                        href: https://minecraft.fandom.com/wiki/Statistics#Resource_location
+                                        href: https://minecraft.wiki/w/Statistics#Resource_location
                                     }
                                     modifier: {
                                         desc: The modifier to apply to the given stat.
@@ -2553,7 +2553,7 @@
                                 }
                                 "string-origins:selector_action": {
                                     selector: {
-                                        href: https://minecraft.fandom.com/wiki/Target_selectors
+                                        href: https://minecraft.wiki/w/Target_selectors
                                         desc: The selector to use for selecting entities. It can be the username of a player, the UUID of the entity or a target selector.
                                         type: string
                                         ext: true
@@ -3339,7 +3339,7 @@
                         "string-origins:attribute_modify_transfer": {
                             attribute: {
                                 desc: The namespace and ID of the attribute to transfer the value from.
-                                href: https://minecraft.fandom.com/wiki/Attribute
+                                href: https://minecraft.wiki/w/Attribute
                                 type: string
                             }
                             class: {
@@ -3552,7 +3552,7 @@
                         "string-origins:entity_group": {
                             group: {
                                 desc: The group to associate with the player. One of default, undead, arthropod, illager, or aquatic. Click for more information about the entity groups.
-                                href: https://minecraft.fandom.com/wiki/Mob#Classification
+                                href: https://minecraft.wiki/w/Mob#Classification
                                 enum: ["default", "undead", "arthropod", "illager", "aquatic"]
                             }
                         }
@@ -4610,7 +4610,7 @@
                         "string-origins:modify_attribute": {
                             attribute: {
                                 desc: ID of the attribute of which the modifier should be applied.
-                                href: https://minecraft.fandom.com/wiki/Attribute
+                                href: https://minecraft.wiki/w/Attribute
                                 type: string
                                 allow: *a-z0-9_#\/:.-
                             }
@@ -4960,13 +4960,13 @@
                             }
                             biome: {
                                 desc: If set, the player will spawn in the biome with this ID.
-                                href: https://minecraft.fandom.com/wiki/Biome#Biome_IDs
+                                href: https://minecraft.wiki/w/Biome#Biome_IDs
                                 type: string
                                 allow: *a-z0-9_#\/:.-
                             }
                             structure: {
                                 desc: ID of the structure the player should spawn in. Keep in mind that the structure needs to generate in the specified dimension!
-                                href: https://minecraft.fandom.com/wiki/Commands/locate#Arguments
+                                href: https://minecraft.wiki/w/Commands/locate#Arguments
                                 type: string
                                 allow: *a-z0-9_#\/:.-
                             }
@@ -5474,7 +5474,7 @@
             props: {
                 attribute: {
                     desc: ID of the attribute which will be modified by this modifier.
-                    href: https://minecraft.fandom.com/wiki/Attribute
+                    href: https://minecraft.wiki/w/Attribute
                     type: string
                     allow: *a-z0-9_#\/:.-
                 }

@@ -31,7 +31,7 @@
                 10: 1.19.0 - 1.19.3
                 12: 1.19.4
                 '''
-            href: https://minecraft.fandom.com/wiki/Pack_format
+            href: https://minecraft.wiki/w/Pack_format
             type: integer
             min: 1
             max: 15
