@@ -4542,6 +4542,7 @@
         }
         power: {
             title: power
+            hooks: ["fix_multiple"]
             extend: [
                 power_meta
                 power_base
