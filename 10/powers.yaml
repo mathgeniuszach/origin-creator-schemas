@@ -4116,11 +4116,11 @@ links:
                 default: true
     comparison:
         desc: How the state should be compared to the specified value.
-        enum: [<, <=, '>', '>=', ==, '!=']
+        enum: ['<', '<=', '>', '>=', '==', '!=']
         default: 3
     opt_comparison:
         desc: How the state should be compared to the specified value.
-        enum: [<, <=, '>', '>=', ==, '!=']
+        enum: ['<', '<=', '>', '>=', '==', '!=']
         unspec: true
     vector:
         desc: An object that specifies the X, Y and Z coordinates of a certain point in space.

@@ -2274,11 +2274,11 @@ links:
                 default: true
     comparison:
         desc: How the state should be compared to the specified value.
-        enum: [<, <=, '>', '>=', ==, '!=']
+        enum: ['<', '<=', '>', '>=', '==', '!=']
         default: 3
     opt_comparison:
         desc: How the state should be compared to the specified value.
-        enum: [<, <=, '>', '>=', ==, '!=']
+        enum: ['<', '<=', '>', '>=', '==', '!=']
         unspec: true
     item:
         desc: A Minecraft item (or block item), vanilla or modded.
