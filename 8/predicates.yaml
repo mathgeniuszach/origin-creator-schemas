@@ -5,51 +5,35 @@ links:
         props:
             bypasses_armor:
                 desc: Checks if the damage bypassed the armor of the player (suffocation damage predominantly).
-                enum:
-                  - true
-                  - false
+                enum: [true, false]
                 unspec: true
             bypasses_invulnerability:
                 desc: Checks if the damage bypassed the invulnerability status of the player (void or /kill damage in vanilla).
-                enum:
-                  - true
-                  - false
+                enum: [true, false]
                 unspec: true
             bypasses_magic:
                 desc: Checks if the damage bypassed resistance and other status effects (in vanilla, this is only caused by starvation)
-                enum:
-                  - true
-                  - false
+                enum: [true, false]
                 unspec: true
             is_explosion:
                 desc: Checks if the damage originated from an explosion.
-                enum:
-                  - true
-                  - false
+                enum: [true, false]
                 unspec: true
             is_fire:
                 desc: Checks if the damage originated from fire.
-                enum:
-                  - true
-                  - false
+                enum: [true, false]
                 unspec: true
             is_magic:
                 desc: Checks if the damage originated from magic.
-                enum:
-                  - true
-                  - false
+                enum: [true, false]
                 unspec: true
             is_projectile:
                 desc: Checks if the damage originated from a projectile.
-                enum:
-                  - true
-                  - false
+                enum: [true, false]
                 unspec: true
             is_lightning:
                 desc: Checks if the damage originated from lightning.
-                enum:
-                  - true
-                  - false
+                enum: [true, false]
                 unspec: true
             direct_entity:
                 desc: The entity that was the direct cause of the damage.
@@ -155,9 +139,7 @@ links:
                         link: nummm
             smokey:
                 desc: True if the block is closely above a campfire or soul campfire.
-                enum:
-                  - true
-                  - false
+                enum: [true, false]
                 unspec: true
     entity_preds:
         or:
@@ -185,15 +167,11 @@ links:
                         link: intmm
                     ambient:
                         desc: Whether the effect is from a beacon.
-                        enum:
-                          - true
-                          - false
+                        enum: [true, false]
                         unspec: true
                     visible:
                         desc: Whether the effect has visible particles.
-                        enum:
-                          - true
-                          - false
+                        enum: [true, false]
                         unspec: true
                 allow: '*a-z0-9#\/:.-'
             equipment:
@@ -217,29 +195,19 @@ links:
                 type: object
                 props:
                     is_on_fire:
-                        enum:
-                          - true
-                          - false
+                        enum: [true, false]
                         unspec: true
                     is_sneaking:
-                        enum:
-                          - true
-                          - false
+                        enum: [true, false]
                         unspec: true
                     is_sprinting:
-                        enum:
-                          - true
-                          - false
+                        enum: [true, false]
                         unspec: true
                     is_swimming:
-                        enum:
-                          - true
-                          - false
+                        enum: [true, false]
                         unspec: true
                     is_baby:
-                        enum:
-                          - true
-                          - false
+                        enum: [true, false]
                         unspec: true
             nbt:
                 type: string
@@ -273,11 +241,7 @@ links:
                                     default: false
                         allow: '*a-z0-9#\/:.-'
                     gamemode:
-                        enum:
-                          - survival
-                          - adventure
-                          - creative
-                          - spectator
+                        enum: [survival, adventure, creative, spectator]
                         unspec: true
                     level:
                         desc: The experience level of the player.
@@ -511,11 +475,7 @@ links:
             props:
                 type:
                     desc: The type of this number provider. Keep in mind "score" is only available in 1.17+
-                    enum:
-                      - minecraft:constant
-                      - minecraft:uniform
-                      - minecraft:binomial
-                      - minecraft:score
+                    enum: [minecraft:constant, minecraft:uniform, minecraft:binomial, minecraft:score]
                     more:
                         string-minecraft:constant:
                             value:
@@ -541,9 +501,7 @@ links:
                                   - type: object
                                     props:
                                         type:
-                                            enum:
-                                              - fixed
-                                              - context
+                                            enum: [fixed, context]
                                             props:
                                                 string-fixed:
                                                     name:
@@ -551,11 +509,7 @@ links:
                                                         type: string
                                                 string-context:
                                                     target:
-                                                        enum:
-                                                          - this
-                                                          - killer
-                                                          - direct_killer
-                                                          - player_killer
+                                                        enum: [this, killer, direct_killer, player_killer]
                             score:
                                 desc: The scoreboard objective.
                                 type: string
@@ -570,11 +524,7 @@ links:
             props:
                 type:
                     desc: The type of this number provider. Keep in mind "score" is only available in 1.17+
-                    enum:
-                      - minecraft:constant
-                      - minecraft:uniform
-                      - minecraft:binomial
-                      - minecraft:score
+                    enum: [minecraft:constant, minecraft:uniform, minecraft:binomial, minecraft:score]
                     more:
                         string-minecraft:constant:
                             value:
@@ -603,9 +553,7 @@ links:
                                   - type: object
                                     props:
                                         type:
-                                            enum:
-                                              - fixed
-                                              - context
+                                            enum: [fixed, context]
                                             props:
                                                 string-fixed:
                                                     name:
@@ -613,11 +561,7 @@ links:
                                                         type: string
                                                 string-context:
                                                     target:
-                                                        enum:
-                                                          - this
-                                                          - killer
-                                                          - direct_killer
-                                                          - player_killer
+                                                        enum: [this, killer, direct_killer, player_killer]
                             score:
                                 desc: The scoreboard objective.
                                 type: string
@@ -691,20 +635,14 @@ links:
                     string-minecraft:entity_properties:
                         entity:
                             desc: Specifies the entity to check for the condition. Set to "this" to use the entity that died or the player that gained the advancement, opened the container or broke the block, "killer" for the killer, or "killer_player" for a killer that is a player.
-                            enum:
-                              - this
-                              - killer
-                              - killer_player
+                            enum: [this, killer, killer_player]
                         predicate:
                             desc: Predicate applied to entity, uses the same structure as advancements.
                             link: entity_pred
                     string-minecraft:entity_scores:
                         entity:
                             desc: Specifies the entity to check for the condition. Set to "this" to use the entity that died or the player that gained the advancement, opened the container or broke the block, "killer" for the killer, or "killer_player" for a killer that is a player.
-                            enum:
-                              - this
-                              - killer
-                              - killer_player
+                            enum: [this, killer, killer_player]
                         scores:
                             desc: Scores to check. All specified scores must pass for the condition to pass. Key name is the objective while the value is the exact score value or range of score values required for the condition to pass.
                             type: object

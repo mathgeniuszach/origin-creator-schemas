@@ -14,8 +14,7 @@ props:
         vals:
             type: string
             allow: '*a-z0-9_#\/:.-'
-            hooks:
-              - ns
+            hooks: [ns]
     icon:
         desc: The item stack which is displayed as the icon for the origin in the top-left corner of the choose/view origin screen.
         id: powers-6
@@ -35,8 +34,7 @@ props:
                     desc: ID of an origin the origin with this upgrade should upgrade to.
                     type: string
                     allow: '*a-z0-9_#\/:.-'
-                    hooks:
-                      - ns
+                    hooks: [ns]
                 announcement:
                     desc: A text which will show up in the local chat of the player in a pretty color. If none is specified, there won't be a message.
                     type: string

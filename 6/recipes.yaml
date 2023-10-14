@@ -56,9 +56,7 @@ links:
             type:
                 gap: true
                 ns: minecraft
-                enum:
-                  - minecraft:crafting_shaped
-                  - minecraft:crafting_shapeless
+                enum: [minecraft:crafting_shaped, minecraft:crafting_shapeless]
                 more:
                     string-minecraft:crafting_shaped:
                         pattern:
@@ -96,11 +94,7 @@ links:
                 type:
                     gap: true
                     ns: minecraft
-                    enum:
-                      - minecraft:crafting_shaped
-                      - minecraft:crafting_shapeless
-                      - minecraft:smithing
-                      - minecraft:stonecutting
+                    enum: [minecraft:crafting_shaped, minecraft:crafting_shapeless, minecraft:smithing, minecraft:stonecutting]
                     more:
                         string-minecraft:crafting_shaped:
                             pattern:
@@ -172,11 +166,7 @@ links:
                     type: string
                 type:
                     ns: minecraft
-                    enum:
-                      - minecraft:blasting
-                      - minecraft:campfire_cooking
-                      - minecraft:smelting
-                      - minecraft:smoking
+                    enum: [minecraft:blasting, minecraft:campfire_cooking, minecraft:smelting, minecraft:smoking]
                     gap: true
                 ingredient:
                     desc: The ingredient or list of acceptable incredients cooked by this recipe.

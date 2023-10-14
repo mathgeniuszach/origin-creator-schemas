@@ -11,16 +11,14 @@ props:
             vals:
                 type: string
                 allow: '*a-z0-9_#\/:.-'
-                hooks:
-                  - ns
+                hooks: [ns]
           - title: extra
             type: list
             vals:
                 or:
                   - type: string
                     allow: '*a-z0-9_#\/:.-'
-                    hooks:
-                      - ns
+                    hooks: [ns]
                   - type: object
                     props:
                         condition:
@@ -33,8 +31,7 @@ props:
                             vals:
                                 type: string
                                 allow: '*a-z0-9_#\/:.-'
-                                hooks:
-                                  - ns
+                                hooks: [ns]
     enabled:
         desc: If set to false, this layer will be unavailable.
         type: boolean

@@ -1,8 +1,7 @@
 links:
     entity_cond:
         unspec: none
-        hooks:
-          - fix_type
+        hooks: [fix_type]
         or:
           - title: original
             type: object
@@ -148,9 +147,7 @@ links:
                                 type: integer
                             shape:
                                 desc: Whether to check in a cube or star shaped form. Either "cube" or "star"
-                                enum:
-                                  - cube
-                                  - star
+                                enum: [cube, star]
                             comparison:
                                 desc: How the number of blocks in the radius which fulfill block_condition should be compared to the specified value.
                                 link: comparison
@@ -197,9 +194,7 @@ links:
                                 allow: '*a-z0-9_#\/:.-'
                             calculation:
                                 desc: Which number to compare - either the sum of levels of this enchantment on all of the player's equipment, or the max level of this enchantment on any of the player's equipment.
-                                enum:
-                                  - sum
-                                  - max
+                                enum: [sum, max]
                             comparison:
                                 desc: How the enchantment level should be compared to the specified value.
                                 link: comparison
@@ -210,12 +205,7 @@ links:
                             group:
                                 desc: Entity group required for the entity to pass the check. One of default, undead, arthropod, illager, or aquatic. Click for more information about the entity groups.
                                 href: https://minecraft.wiki/w/Mob#Classification
-                                enum:
-                                  - default
-                                  - undead
-                                  - arthropod
-                                  - illager
-                                  - aquatic
+                                enum: [default, undead, arthropod, illager, aquatic]
                         string-origins:entity_type:
                             entity_type:
                                 desc: ID of the entity type the entity needs to have to pass the check.
@@ -224,13 +214,7 @@ links:
                         string-origins:equipped_item:
                             equipment_slot:
                                 desc: Which equipped item to check.
-                                enum:
-                                  - mainhand
-                                  - offhand
-                                  - head
-                                  - chest
-                                  - legs
-                                  - feet
+                                enum: [mainhand, offhand, head, chest, legs, feet]
                             item_condition:
                                 desc: Which condition will be applied to the item in the specified slot.
                                 link: item_cond
@@ -266,11 +250,7 @@ links:
                         string-origins:gamemode:
                             gamemode:
                                 desc: Name of the gamemode the player should have in order for this condition to evaluate to true.
-                                enum:
-                                  - survival
-                                  - creative
-                                  - adventure
-                                  - spectator
+                                enum: [survival, creative, adventure, spectator]
                         string-origins:health:
                             comparison:
                                 desc: How the player's health should be compared to the specified value. Ranges from 0 - 20.
@@ -311,28 +291,24 @@ links:
                                 desc: ID of the origin the player needs to have to pass the check.
                                 type: string
                                 allow: '*a-z0-9_\/:.-'
-                                hooks:
-                                  - ns
+                                hooks: [ns]
                             layer:
                                 desc: If set, will check only the layer with the provided ID for the origin. By default it will check in any layer.
                                 type: string
                                 allow: '*a-z0-9_\/:.-'
-                                hooks:
-                                  - ns
+                                hooks: [ns]
                         string-origins:power_active:
                             power:
                                 desc: ID of the power which will be checked for being active.
                                 type: string
                                 allow: '*a-z0-9_\/:.-'
-                                hooks:
-                                  - ns
+                                hooks: [ns]
                         string-origins:power:
                             power:
                                 desc: ID of the power the player needs to have to pass the check.
                                 type: string
                                 allow: '*a-z0-9_\/:.-'
-                                hooks:
-                                  - ns
+                                hooks: [ns]
                         string-origins:predicate:
                             predicate:
                                 desc: ID of the predicate the entity needs to pass.
@@ -350,8 +326,7 @@ links:
                                 desc: ID of the power type that defines the resource. Must be a Resource (Power Type) which exists on the player.
                                 type: string
                                 allow: '*a-z0-9_#\/:.-'
-                                hooks:
-                                  - ns
+                                hooks: [ns]
                             comparison:
                                 desc: How the resource's value should be compared to the specified value.
                                 link: comparison
@@ -583,9 +558,7 @@ links:
                                 type: integer
                             value:
                                 desc: If the property contains a boolean value, this is the value the property needs to be to pass the check.
-                                enum:
-                                  - true
-                                  - false
+                                enum: [true, false]
                                 unspec: true
                             enum:
                                 desc: If the property contains different string values, this is the string value the property needs to be to pass the check.
@@ -611,9 +584,7 @@ links:
                         string-origins:light_level:
                             light_type:
                                 desc: The type of light level to compare. Either sky or block. If no type is provided, the greater value of the two types will be used, which is the "resulting" light level of that position.
-                                enum:
-                                  - sky
-                                  - block
+                                enum: [sky, block]
                                 unspec: true
                             comparison:
                                 desc: How the light level should be compared to the specified value.
@@ -650,13 +621,7 @@ links:
                     type: boolean
                 type:
                     href: https://origins.readthedocs.io/en/0.7.3/fluid_conditions/
-                    enum:
-                      - origins:and
-                      - origins:or
-                      - origins:constant
-                      - origins:empty
-                      - origins:in_tag
-                      - origins:still
+                    enum: [origins:and, origins:or, origins:constant, origins:empty, origins:in_tag, origins:still]
                     more:
                         string-origins:and:
                             conditions:
@@ -730,10 +695,7 @@ links:
                         string-origins:precipitation:
                             precipitation:
                                 desc: Which precipitation the biome has to have in order to succeed the check. One of none, rain and snow.
-                                enum:
-                                  - none
-                                  - rain
-                                  - snow
+                                enum: [none, rain, snow]
                         string-origins:temperature:
                             comparison:
                                 desc: How the temperature of the biome should be compared to the specified value.
@@ -950,8 +912,7 @@ links:
                                 desc: ID of the power type that defines the resource to change the value of. Must be a Resource (Power Type) which exists on the player.
                                 type: string
                                 allow: '*a-z0-9_#\/:.-'
-                                hooks:
-                                  - ns
+                                hooks: [ns]
                             change:
                                 desc: This value will be added to the resource (won't go below min or above max of the Resource Resource (Power Type)).
                                 type: integer
@@ -971,13 +932,7 @@ links:
                         string-origins:equipped_item_action:
                             equipment_slot:
                                 desc: Which equipped item to execute the action on.
-                                enum:
-                                  - mainhand
-                                  - offhand
-                                  - head
-                                  - chest
-                                  - legs
-                                  - feet
+                                enum: [mainhand, offhand, head, chest, legs, feet]
                             action:
                                 desc: The item action to execute.
                                 link: item_action
@@ -1079,8 +1034,7 @@ links:
                                 desc: ID of the cooldown power which should trigger, as if that power has just been used.
                                 type: string
                                 allow: '*a-z0-9_\/:.-'
-                                hooks:
-                                  - ns
+                                hooks: [ns]
           - title: custom
             link: custom_action
     item_action:
@@ -1091,13 +1045,7 @@ links:
             props:
                 type:
                     href: https://origins.readthedocs.io/en/0.7.3/item_actions/
-                    enum:
-                      - origins:and
-                      - origins:chance
-                      - origins:choice
-                      - origins:if_else
-                      - origins:if_else_list
-                      - origins:consume
+                    enum: [origins:and, origins:chance, origins:choice, origins:if_else, origins:if_else_list, origins:consume]
                     more:
                         string-origins:and:
                             actions:
@@ -1290,8 +1238,7 @@ links:
             type:
                 desc: ID of the desired Power Type.
                 href: https://origins.readthedocs.io/en/0.7.3/power_types/
-                hooks:
-                  - fix_cond
+                hooks: [fix_cond]
                 enum:
                   - origins:attribute
                   - origins:burn
@@ -1480,12 +1427,7 @@ links:
                         group:
                             desc: The group to associate with the player. One of default, undead, arthropod, illager, or aquatic. Click for more information about the entity groups.
                             href: https://minecraft.wiki/w/Mob#Classification
-                            enum:
-                              - default
-                              - undead
-                              - arthropod
-                              - illager
-                              - aquatic
+                            enum: [default, undead, arthropod, illager, aquatic]
                     string-origins:exhaust:
                         interval:
                             desc: Duration of ticks to wait between applying exhaustion.
@@ -1632,9 +1574,7 @@ links:
                             type: boolean
                         render_type:
                             desc: Either "remove_blocks" or "blindness" - defines how the phasing will look when inside a block.
-                            enum:
-                              - blindness
-                              - remove_blocks
+                            enum: [blindness, remove_blocks]
                         view_distance:
                             desc: How far the player can look through walls while phasing with the "blindness" render_type.
                             type: number
@@ -2039,9 +1979,7 @@ links:
                             allow: '*a-z0-9_#\/:.-'
                         spawn_strategy:
                             desc: Either default or center. default tries to find a spawn close to the coordinates of the overworld spawn (while considering the dimension_distance_multiplier). center tries to spawn the player close to 0, 0 of the dimension.
-                            enum:
-                              - default
-                              - center
+                            enum: [default, center]
                         dimension_distance_multiplier:
                             desc: Needs to be set when spawn_strategy is default. Defines the ratio of overworld blocks to blocks in this dimension, e.g. for the Nether this would be 0.125.
                             type: number
@@ -2136,16 +2074,13 @@ links:
             link: nany
     power:
         title: power
-        hooks:
-          - fix_multiple
+        hooks: [fix_multiple]
         extend:
           - power_meta
           - power_base
     custom_power:
         title: custom
-        extend:
-          - power_meta
-          - custom_power_base
+        extend: [power_meta, custom_power_base]
     multi_power:
         title: multiple
         extend: power_meta
@@ -2217,10 +2152,7 @@ links:
                 type: integer
     mod_op:
         desc: "Can be one of\n\"addition\", which adds (or subtracts) the modifier value to the base value.\n    (NewValue = OldValue + ModifierValue).\n\"multiply_base\", which adds (or subtracts) the base value multiplied by the modifier value to the base value.\n    (NewValue = OldValue + BaseValue * (1 + ModifierValue)).\n\"multiply_total\", which multiplies the total value by the modifier value + 1.\n    (NewValue = OldValue * (1 + ModifierValue)).\n\nThe BaseValue for that attribute for the entity in question after ONLY all \"addition\" operations have been applied.\nAll \"addition\" operations occur first, then all \"multiply_base\" operations, then on the result all \"multiply_total\" operations are applied."
-        enum:
-          - addition
-          - multiply_base
-          - multiply_total
+        enum: [addition, multiply_base, multiply_total]
     a_mod:
         desc: An Object used to specify how a specific attribute should be modified.
         href: https://origins.readthedocs.io/en/latest/data_types/attribute_modifier/
@@ -2311,9 +2243,7 @@ links:
                     desc: Whether the keybinding should only trigger the power on the first tick the key is held down, or, if set to true, continuously on each tick while the key is held.
                     type: boolean
           - title: old
-            enum:
-              - primary
-              - secondary
+            enum: [primary, secondary]
         unspec: true
     effect:
         desc: An Object used to define a status effect with duration, amplifier, etc.
@@ -2344,23 +2274,11 @@ links:
                 default: true
     comparison:
         desc: How the state should be compared to the specified value.
-        enum:
-          - <
-          - <=
-          - '>'
-          - '>='
-          - ==
-          - '!='
+        enum: [<, <=, '>', '>=', ==, '!=']
         default: 3
     opt_comparison:
         desc: How the state should be compared to the specified value.
-        enum:
-          - <
-          - <=
-          - '>'
-          - '>='
-          - ==
-          - '!='
+        enum: [<, <=, '>', '>=', ==, '!=']
         unspec: true
     item:
         desc: A Minecraft item (or block item), vanilla or modded.

@@ -79,21 +79,14 @@ links:
                                 desc: The axes to get the angle values to calculate, and compare to.
                                 type: list
                                 vals:
-                                    enum:
-                                      - x
-                                      - y
-                                      - z
+                                    enum: [x, y, z]
                             actor_rotation:
                                 desc: Determines the initial point of the rotation for the actor. Accepts "head" or "body".
-                                enum:
-                                  - head
-                                  - body
+                                enum: [head, body]
                                 default: 0
                             target_rotation:
                                 desc: Determines the initial position of the rotation for the target. Accepts "head" or "body".
-                                enum:
-                                  - head
-                                  - body
+                                enum: [head, body]
                                 default: 1
                             comparison:
                                 desc: Determines how the calculated angle value will be compared to the specified value.
@@ -116,8 +109,7 @@ links:
             link: custom_condition
     entity_cond:
         unspec: none
-        hooks:
-          - fix_type
+        hooks: [fix_type]
         or:
           - title: original
             type: object
@@ -284,10 +276,7 @@ links:
                                 type: integer
                             shape:
                                 desc: Determines the shape of the radius. Accepts "cube", "star" or "sphere".
-                                enum:
-                                  - cube
-                                  - star
-                                  - sphere
+                                enum: [cube, star, sphere]
                             comparison:
                                 desc: How the number of blocks in the radius which fulfill block_condition should be compared to the specified value.
                                 link: comparison
@@ -326,9 +315,7 @@ links:
                         string-origins:distance_from_coordinates:
                             reference:
                                 desc: The point to compare the distance to.
-                                enum:
-                                  - world_origin
-                                  - world_spawn
+                                enum: [world_origin, world_spawn]
                             offset:
                                 desc: If specified, determines how much the reference point should be offset.
                                 link: vector
@@ -343,10 +330,7 @@ links:
                                 type: boolean
                             shape:
                                 desc: Determines the shape of the check.
-                                enum:
-                                  - cube
-                                  - star
-                                  - sphere
+                                enum: [cube, star, sphere]
                             scale_reference_to_dimension:
                                 desc: Determines whether to check for the reference point whilst considering the coordinate scale of the dimension.
                                 type: boolean
@@ -378,9 +362,7 @@ links:
                                 allow: '*a-z0-9_#\/:.-'
                             calculation:
                                 desc: Which number to compare - either the sum of levels of this enchantment on all of the player's equipment, or the max level of this enchantment on any of the player's equipment.
-                                enum:
-                                  - sum
-                                  - max
+                                enum: [sum, max]
                             comparison:
                                 desc: How the enchantment level should be compared to the specified value.
                                 link: comparison
@@ -391,12 +373,7 @@ links:
                             group:
                                 desc: Entity group required for the entity to pass the check. One of default, undead, arthropod, illager, or aquatic. Click for more information about the entity groups.
                                 href: https://minecraft.wiki/w/Mob#Classification
-                                enum:
-                                  - default
-                                  - undead
-                                  - arthropod
-                                  - illager
-                                  - aquatic
+                                enum: [default, undead, arthropod, illager, aquatic]
                         string-origins:entity_type:
                             entity_type:
                                 desc: ID of the entity type the entity needs to have to pass the check.
@@ -405,13 +382,7 @@ links:
                         string-origins:equipped_item:
                             equipment_slot:
                                 desc: Which equipped item to check.
-                                enum:
-                                  - mainhand
-                                  - offhand
-                                  - head
-                                  - chest
-                                  - legs
-                                  - feet
+                                enum: [mainhand, offhand, head, chest, legs, feet]
                             item_condition:
                                 desc: Which condition will be applied to the item in the specified slot.
                                 link: item_cond
@@ -448,11 +419,7 @@ links:
                         string-origins:gamemode:
                             gamemode:
                                 desc: Name of the gamemode the player should have in order for this condition to evaluate to true.
-                                enum:
-                                  - survival
-                                  - creative
-                                  - adventure
-                                  - spectator
+                                enum: [survival, creative, adventure, spectator]
                         string-origins:health:
                             comparison:
                                 desc: How the player's health should be compared to the specified value. Ranges from 0 - 20.
@@ -499,14 +466,12 @@ links:
                                 desc: ID of the origin the player needs to have to pass the check.
                                 type: string
                                 allow: '*a-z0-9_\/:.-'
-                                hooks:
-                                  - ns
+                                hooks: [ns]
                             layer:
                                 desc: If set, will check only the layer with the provided ID for the origin. By default it will check in any layer.
                                 type: string
                                 allow: '*a-z0-9_\/:.-'
-                                hooks:
-                                  - ns
+                                hooks: [ns]
                         string-origins:passenger_recursive:
                             bientity_condition:
                                 desc: If specified, only check for the entities that fulfills the bi-entity condition.
@@ -534,22 +499,19 @@ links:
                                 desc: ID of the power which will be checked for being active.
                                 type: string
                                 allow: '*a-z0-9_\/:.-'
-                                hooks:
-                                  - ns
+                                hooks: [ns]
                         string-origins:power_type:
                             power_type:
                                 desc: The namespace and ID of a power type of some power to check that the player has.
                                 type: string
                                 allow: '*a-z0-9_\/:.-'
-                                hooks:
-                                  - ns
+                                hooks: [ns]
                         string-origins:power:
                             power:
                                 desc: ID of the power the player needs to have to pass the check.
                                 type: string
                                 allow: '*a-z0-9_\/:.-'
-                                hooks:
-                                  - ns
+                                hooks: [ns]
                             source:
                                 desc: ID of the source of the power the player needs to have to pass the check.
                                 type: string
@@ -578,10 +540,7 @@ links:
                                     If set to "outline", the raycast will take the shape of the collision box of the block into account.
                                     If set to "visual", the raycast will ignore blocks that are see-through (e.g: Glass, Tinted Glass, etc.).
                                     If set to "collider", the raycast will take physical collision of the block into account.
-                                enum:
-                                  - outline
-                                  - visual
-                                  - collider
+                                enum: [outline, visual, collider]
                             fluid_handling:
                                 desc: |
                                     Determines how the raycast handles fluids.
@@ -589,10 +548,7 @@ links:
                                     If set to "any", the raycast will ignore source and flowing fluids.
                                     If set to "source", the raycast will only go through source fluids.
                                     If set to "none", the raycast won't go through any kind of fluids.
-                                enum:
-                                  - any
-                                  - source
-                                  - none
+                                enum: [any, source, none]
                                 gap: true
                             match_bientity_condition:
                                 desc: If specified, the entity condition type will check if this bi-entity condition type is fulfilled by the entity that the raycast has gone through. If not, the entity will be ignored.
@@ -615,8 +571,7 @@ links:
                                 desc: ID of the power type that defines the resource. Must be a Resource (Power Type) which exists on the player.
                                 type: string
                                 allow: '*a-z0-9_#\/:.-'
-                                hooks:
-                                  - ns
+                                hooks: [ns]
                             comparison:
                                 desc: How the resource's value should be compared to the specified value.
                                 link: comparison
@@ -931,9 +886,7 @@ links:
                                 type: integer
                             value:
                                 desc: If the property contains a boolean value, this is the value the property needs to be to pass the check.
-                                enum:
-                                  - true
-                                  - false
+                                enum: [true, false]
                                 unspec: true
                             enum:
                                 desc: If the property contains different string values, this is the string value the property needs to be to pass the check.
@@ -941,9 +894,7 @@ links:
                         string-origins:distance_from_coordinates:
                             reference:
                                 desc: The point to compare the distance to.
-                                enum:
-                                  - world_origin
-                                  - world_spawn
+                                enum: [world_origin, world_spawn]
                             offset:
                                 desc: If specified, determines how much the reference point should be offset.
                                 link: vector
@@ -958,10 +909,7 @@ links:
                                 type: boolean
                             shape:
                                 desc: Determines the shape of the check. Accepts "cube", "star" or "sphere".
-                                enum:
-                                  - cube
-                                  - star
-                                  - sphere
+                                enum: [cube, star, sphere]
                             scale_reference_to_dimension:
                                 desc: Determines whether to check for the reference point whilst considering the coordinate scale of the dimension.
                                 type: boolean
@@ -1006,9 +954,7 @@ links:
                         string-origins:light_level:
                             light_type:
                                 desc: The type of light level to compare. Either sky or block. If no type is provided, the greater value of the two types will be used, which is the "resulting" light level of that position.
-                                enum:
-                                  - sky
-                                  - block
+                                enum: [sky, block]
                                 unspec: true
                             comparison:
                                 desc: How the light level should be compared to the specified value.
@@ -1155,10 +1101,7 @@ links:
                         string-origins:precipitation:
                             precipitation:
                                 desc: Which precipitation the biome has to have in order to succeed the check. One of none, rain and snow.
-                                enum:
-                                  - none
-                                  - rain
-                                  - snow
+                                enum: [none, rain, snow]
                         string-origins:temperature:
                             comparison:
                                 desc: How the temperature of the biome should be compared to the specified value.
@@ -1330,9 +1273,7 @@ links:
                         string-origins:side:
                             side:
                                 desc: The side, either "client" or "server", to apply this action on.
-                                enum:
-                                  - client
-                                  - server
+                                enum: [client, server]
                             action:
                                 desc: The action to apply.
                                 link: bi_entity_action
@@ -1506,9 +1447,7 @@ links:
                         string-origins:side:
                             side:
                                 desc: The side, either "client" or "server", to apply this action on.
-                                enum:
-                                  - client
-                                  - server
+                                enum: [client, server]
                             action:
                                 desc: The action to apply.
                                 link: entity_action
@@ -1585,16 +1524,13 @@ links:
                                 desc: ID of the power type that defines the resource to change the value of. Must be a Resource (Power Type) which exists on the player.
                                 type: string
                                 allow: '*a-z0-9_#\/:.-'
-                                hooks:
-                                  - ns
+                                hooks: [ns]
                             change:
                                 desc: This value will be added to the resource (won't go below min or above max of the Resource Resource (Power Type)).
                                 type: integer
                             operation:
                                 desc: Determines if the action should add or set the value of the resource. Accepts "add" or "set".
-                                enum:
-                                  - add
-                                  - set
+                                enum: [add, set]
                         string-origins:clear_effect:
                             effect:
                                 desc: If specified, the effect with this ID will be cleared. If not specified, all effects will be cleared.
@@ -1613,9 +1549,7 @@ links:
                         string-origins:drop_inventory:
                             inventory_type:
                                 desc: Either "inventory" or "power". If "inventory", drops items in the player's main inventory. If "power", Drops items to the player's bonus inventory given with a power.
-                                enum:
-                                  - inventory
-                                  - power
+                                enum: [inventory, power]
                             entity_action:
                                 desc: If set, applies this action to the entity that has their inventory being dropped.
                                 link: entity_action
@@ -1633,8 +1567,7 @@ links:
                                 desc: If "Inventory Type" is set to "power", this is the power linked to the inventory to drop.
                                 type: string
                                 allow: '*a-z0-9_#\/:.-'
-                                hooks:
-                                  - ns
+                                hooks: [ns]
                             throw_randomly:
                                 desc: Whether or not to throw the item in a random direction around the player instead of in front of them.
                                 type: boolean
@@ -1652,13 +1585,7 @@ links:
                         string-origins:equipped_item_action:
                             equipment_slot:
                                 desc: Which equipped item to execute the action on.
-                                enum:
-                                  - mainhand
-                                  - offhand
-                                  - head
-                                  - chest
-                                  - legs
-                                  - feet
+                                enum: [mainhand, offhand, head, chest, legs, feet]
                             action:
                                 desc: The item action to execute.
                                 link: item_action
@@ -1677,10 +1604,7 @@ links:
                                 type: number
                             destruction_type:
                                 desc: Determines if the explosion should destroy the terrain, destroy the terrain and drop the loot of the blocks, or none. Accepts either "destroy", "break" or "none".
-                                enum:
-                                  - break
-                                  - destroy
-                                  - none
+                                enum: [break, destroy, none]
                             damage_self:
                                 desc: Determines if the player should take damage from the explosion.
                                 type: boolean
@@ -1715,21 +1639,14 @@ links:
                                 link: item_action
                             preferred_slot:
                                 desc: If set, this will prioritize the action to put the item in the specified slot. Accepts "chest", "feet", "head", "legs", "mainhand" or "offhand".
-                                enum:
-                                  - chest
-                                  - feet
-                                  - head
-                                  - legs
-                                  - mainhand
-                                  - offhand
+                                enum: [chest, feet, head, legs, mainhand, offhand]
                                 unspec: true
                         string-origins:grant_power:
                             power:
                                 desc: The ID of the power to be granted to the entity.
                                 type: string
                                 allow: '*a-z0-9_#\/:.-'
-                                hooks:
-                                  - ns
+                                hooks: [ns]
                             source:
                                 desc: The source of the power. Can realistically be anything, but make sure to keep note of it.
                                 type: string
@@ -1744,9 +1661,7 @@ links:
                         string-origins:modify_inventory:
                             inventory_type:
                                 desc: Either "inventory" or "power". If "inventory", applies modifications to the player's main inventory. If "power", Applies modifications to the player's bonus inventory given with a power.
-                                enum:
-                                  - inventory
-                                  - power
+                                enum: [inventory, power]
                             entity_action:
                                 desc: If set, applies this action to the entity that has their inventory being modified.
                                 link: entity_action
@@ -1764,15 +1679,13 @@ links:
                                 desc: If "Inventory Type" is set to "power", this is the power linked to the inventory to modify.
                                 type: string
                                 allow: '*a-z0-9_#\/:.-'
-                                hooks:
-                                  - ns
+                                hooks: [ns]
                         string-origins:modify_resource:
                             resource:
                                 desc: The resource to modify.
                                 type: string
                                 allow: '*a-z0-9_#\/:.-'
-                                hooks:
-                                  - ns
+                                hooks: [ns]
                             modifier:
                                 desc: The modifier to apply to the given power resource.
                                 link: a_mod
@@ -1834,10 +1747,7 @@ links:
                                     If set to "outline", the raycast will take the shape of the collision box of the block into account.
                                     If set to "visual", the raycast will ignore blocks that are see-through (e.g: Glass, Tinted Glass, etc.).
                                     If set to "collider", the raycast will take physical collision of the block into account.
-                                enum:
-                                  - outline
-                                  - visual
-                                  - collider
+                                enum: [outline, visual, collider]
                             fluid_handling:
                                 desc: |
                                     Determines how the raycast handles fluids.
@@ -1845,10 +1755,7 @@ links:
                                     If set to "any", the raycast will ignore source and flowing fluids.
                                     If set to "source", the raycast will only go through source fluids.
                                     If set to "none", the raycast won't go through any kind of fluids.
-                                enum:
-                                  - any
-                                  - source
-                                  - none
+                                enum: [any, source, none]
                                 gap: true
                             bientity_condition:
                                 desc: If specified, the specified bi-entity action type will only be executed if the specified bi-entity condition type is fulfilled by either or both the 'actor' (the entity that has the power) or 'target' (the entity that was hit by the raycast).
@@ -1890,9 +1797,7 @@ links:
                         string-origins:replace_inventory:
                             inventory_type:
                                 desc: Either "inventory" or "power". If "inventory", applies replacements to the player's main inventory. If "power", Applies replacements to the player's bonus inventory given with a power.
-                                enum:
-                                  - inventory
-                                  - power
+                                enum: [inventory, power]
                             entity_action:
                                 desc: If set, applies this action to the entity that has their inventory being replaced.
                                 link: entity_action
@@ -1910,8 +1815,7 @@ links:
                                 desc: If "Inventory Type" is set to "power", this is the power linked to the inventory to replace.
                                 type: string
                                 allow: '*a-z0-9_#\/:.-'
-                                hooks:
-                                  - ns
+                                hooks: [ns]
                             stack:
                                 desc: The item stack to replace with.
                                 link: item_stack
@@ -1920,8 +1824,7 @@ links:
                                 desc: The ID of the power to be revoked from the entity.
                                 type: string
                                 allow: '*a-z0-9_#\/:.-'
-                                hooks:
-                                  - ns
+                                hooks: [ns]
                             source:
                                 desc: The source of the power.
                                 type: string
@@ -1952,8 +1855,7 @@ links:
                                 desc: ID of the power type that defines the resource to change the value of. Must be a Resource (Power Type) which exists on the player.
                                 type: string
                                 allow: '*a-z0-9_#\/:.-'
-                                hooks:
-                                  - ns
+                                hooks: [ns]
                             value:
                                 desc: The value the resource will be set to (won't go below min or above max of the Resource).
                                 type: integer
@@ -2014,24 +1916,20 @@ links:
                         string-origins:swing_hand:
                             hand:
                                 desc: Determines which hand is swung.
-                                enum:
-                                  - MAIN_HAND
-                                  - OFF_HAND
+                                enum: [MAIN_HAND, OFF_HAND]
                                 default: 0
                         string-origins:toggle:
                             power:
                                 desc: The namespace and ID of a power that uses the origins:toggle power type to toggle the state of.
                                 type: string
                                 allow: '*a-z0-9_\/:.-'
-                                hooks:
-                                  - ns
+                                hooks: [ns]
                         string-origins:trigger_cooldown:
                             power:
                                 desc: ID of the cooldown power which should trigger, as if that power has just been used.
                                 type: string
                                 allow: '*a-z0-9_\/:.-'
-                                hooks:
-                                  - ns
+                                hooks: [ns]
           - title: custom
             link: custom_action
     item_action:
@@ -2121,9 +2019,7 @@ links:
                         string-origins:side:
                             side:
                                 desc: The side, either "client" or "server", to apply this action on.
-                                enum:
-                                  - client
-                                  - server
+                                enum: [client, server]
                             action:
                                 desc: The action to apply.
                                 link: item_action
@@ -2257,9 +2153,7 @@ links:
                         string-origins:side:
                             side:
                                 desc: The side, either "client" or "server", to apply this action on.
-                                enum:
-                                  - client
-                                  - server
+                                enum: [client, server]
                             action:
                                 desc: The action to apply.
                                 link: block_action
@@ -2284,10 +2178,7 @@ links:
                                 type: number
                             destruction_type:
                                 desc: Determines if the explosion should destroy the terrain, destroy the terrain and drop the loot of the blocks, or none. Accepts either "destroy", "break" or "none".
-                                enum:
-                                  - break
-                                  - destroy
-                                  - none
+                                enum: [break, destroy, none]
                             damage_self:
                                 desc: Determines if the exploding block should be affected by the summoned explosion.
                                 type: boolean
@@ -2308,9 +2199,7 @@ links:
                                 type: string
                             operation:
                                 desc: Determines how the value specified in the change field is operated on the specified property. Accepts "add" or "set".
-                                enum:
-                                  - add
-                                  - set
+                                enum: [add, set]
                                 default: 0
                             change:
                                 desc: If specified, the value to add, remove or set to/from the specified property if the specified property is an integer.
@@ -2349,11 +2238,7 @@ links:
             type:
                 href: https://origins.readthedocs.io/en/1.7.1/types/badge_types/
                 desc: The namespace and ID of the desired badge type.
-                enum:
-                  - origins:sprite
-                  - origins:crafting_recipe
-                  - origins:keybind
-                  - origins:tooltip
+                enum: [origins:sprite, origins:crafting_recipe, origins:keybind, origins:tooltip]
                 more:
                     string-origins:sprite: {}
                     string-origins:crafting_recipe:
@@ -2419,8 +2304,7 @@ links:
             type:
                 desc: ID of the desired Power Type.
                 href: https://origins.readthedocs.io/en/1.7.1/types/power_types/
-                hooks:
-                  - fix_cond
+                hooks: [fix_cond]
                 enum:
                   - origins:simple
                   - origins:attribute_modify_transfer
@@ -2693,12 +2577,7 @@ links:
                         group:
                             desc: The group to associate with the player. One of default, undead, arthropod, illager, or aquatic. Click for more information about the entity groups.
                             href: https://minecraft.wiki/w/Mob#Classification
-                            enum:
-                              - default
-                              - undead
-                              - arthropod
-                              - illager
-                              - aquatic
+                            enum: [default, undead, arthropod, illager, aquatic]
                     string-origins:exhaust:
                         interval:
                             desc: Duration of ticks to wait between applying exhaustion.
@@ -2766,12 +2645,7 @@ links:
                             type: string
                         container_type:
                             desc: Determines the type inventory to open. Accepts "chest", "double_chest", "dropper", "dispenser" or "hopper".
-                            enum:
-                              - chest
-                              - double_chest
-                              - dropper
-                              - dispenser
-                              - hopper
+                            enum: [chest, double_chest, dropper, dispenser, hopper]
                         drop_on_death:
                             desc: When this is set to true, the player will drop the items in the inventory on death (vanishing items will vanish!).
                             type: boolean
@@ -2919,15 +2793,11 @@ links:
                             max: 1
                         draw_mode:
                             desc: Determines whether to treat black as transparent or draw the texture as is ("nausea" or "texture" respectively).
-                            enum:
-                              - nausea
-                              - texture
+                            enum: [nausea, texture]
                             default: 1
                         draw_phase:
                             desc: Determines if the overlay should render below or above the HUD ("below_hud" or "above_hud" respectively).
-                            enum:
-                              - above_hud
-                              - below_hud
+                            enum: [above_hud, below_hud]
                             default: 1
                         hide_with_hud:
                             desc: Determines if the overlay should be hidden if the HUD elements are hidden (with F1).
@@ -2956,10 +2826,7 @@ links:
                             type: boolean
                         render_type:
                             desc: Either "none", "remove_blocks", or "blindness" - defines how the phasing will look when inside a block.
-                            enum:
-                              - none
-                              - blindness
-                              - remove_blocks
+                            enum: [none, blindness, remove_blocks]
                         view_distance:
                             desc: How far the player can look through walls while phasing with the "blindness" render_type.
                             type: number
@@ -3179,12 +3046,7 @@ links:
                             link: item_action
                         action_result:
                             desc: Determines the result of the action. Accepts "consume", "consume_partial", "fail", "pass" or "success".
-                            enum:
-                              - consume
-                              - consume_partial
-                              - fail
-                              - pass
-                              - success
+                            enum: [consume, consume_partial, fail, pass, success]
                             default: 4
                         priority:
                             desc: Specifies which actions this action should override. Higher numbers mean it's higher priority, which means it will override actions with lower priorities that would have otherwise executed.
@@ -3215,13 +3077,7 @@ links:
                             desc: If specified, only execute the specified actions if you used the specified face of the block. Defaults to all directions.
                             type: list
                             vals:
-                                enum:
-                                  - north
-                                  - east
-                                  - south
-                                  - west
-                                  - up
-                                  - down
+                                enum: [north, east, south, west, up, down]
                         hands:
                             desc: Determines if the power should be activated if the player used the specified hand(s). Accepts "off_hand", "main_hand" or both. Defaults to both.
                             type: list
@@ -3244,12 +3100,7 @@ links:
                             link: item_action
                         action_result:
                             desc: Determines the result of the 'use action'. Defaults to "success".
-                            enum:
-                              - success
-                              - consume
-                              - consume_partial
-                              - fail
-                              - pass
+                            enum: [success, consume, consume_partial, fail, pass]
                     string-origins:action_on_callback:
                         entity_action_chosen:
                             desc: If set, this action will be executed on the player when the player chooses their origin on the last layer through the menu - by using the Orb of Origin or missing an origin or joining for the first time - if the power was gained from any of the layers.
@@ -3296,12 +3147,7 @@ links:
                             link: item_action
                         action_result:
                             desc: Determines the result of the action. Accepts "consume", "consume_partial", "fail", "pass" or "success".
-                            enum:
-                              - consume
-                              - consume_partial
-                              - fail
-                              - pass
-                              - success
+                            enum: [consume, consume_partial, fail, pass, success]
                             default: 4
                         priority:
                             desc: Specifies which actions this action should override. Higher numbers mean it's higher priority, which means it will override actions with lower priorities that would have otherwise executed.
@@ -3711,11 +3557,7 @@ links:
                             link: item_action
                         result_type:
                             desc: If specified, changes how the result stack is gotten. Use "specified" to use the stack specified by "Result Stack"
-                            enum:
-                              - unchanged
-                              - specified
-                              - from_top
-                              - from_bottom
+                            enum: [unchanged, specified, from_top, from_bottom]
                             unspec: true
                         result_stack:
                             desc: If specified, changes the result stack that comes from the grindstone. Make sure "Result Type" is set to "specified."
@@ -3790,9 +3632,7 @@ links:
                             allow: '*a-z0-9_#\/:.-'
                         spawn_strategy:
                             desc: Either default or center. default tries to find a spawn close to the coordinates of the overworld spawn (while considering the dimension_distance_multiplier). center tries to spawn the player close to 0, 0 of the dimension.
-                            enum:
-                              - default
-                              - center
+                            enum: [default, center]
                         dimension_distance_multiplier:
                             desc: Needs to be set when spawn_strategy is default. Defines the ratio of overworld blocks to blocks in this dimension, e.g. for the Nether this would be 0.125.
                             type: number
@@ -3880,10 +3720,7 @@ links:
                             desc: The axes to modify.
                             type: list
                             vals:
-                                enum:
-                                  - x
-                                  - y
-                                  - z
+                                enum: [x, y, z]
                     string-origins:modify_xp_gain:
                         modifier:
                             desc: If specified, this modifier will be applied to the experience gained.
@@ -3911,9 +3748,7 @@ links:
                             desc: Determines if the power should be activated if the other player used the specified hand slot(s). Accepts "off_hand", "main_hand" or both.
                             type: list
                             vals:
-                                enum:
-                                  - off_hand
-                                  - main_hand
+                                enum: [off_hand, main_hand]
                         result_stack:
                             desc: If specified, gives an item stack to the player.
                             link: item_stack
@@ -4038,16 +3873,13 @@ links:
             link: nany
     power:
         title: power
-        hooks:
-          - fix_multiple
+        hooks: [fix_multiple]
         extend:
           - power_meta
           - power_base
     custom_power:
         title: custom
-        extend:
-          - power_meta
-          - custom_power_base
+        extend: [power_meta, custom_power_base]
     multi_power:
         title: multiple
         extend: power_meta
@@ -4120,10 +3952,7 @@ links:
     aa_mod_op:
         href: https://origins.readthedocs.io/en/1.7.1/types/data_types/attributed_attribute_modifier_operation/
         desc: "Can be one of\n\"addition\", which adds (or subtracts) the modifier value to the base value.\n    (NewValue = OldValue + ModifierValue).\n\"multiply_base\", which adds (or subtracts) the base value multiplied by the modifier value to the base value.\n    (NewValue = OldValue + BaseValue * (1 + ModifierValue)).\n\"multiply_total\", which multiplies the total value by the modifier value + 1.\n    (NewValue = OldValue * (1 + ModifierValue)).\n\nThe BaseValue for that attribute for the entity in question after ONLY all \"addition\" operations have been applied.\nAll \"addition\" operations occur first, then all \"multiply_base\" operations, then on the result all \"multiply_total\" operations are applied."
-        enum:
-          - addition
-          - multiply_base
-          - multiply_total
+        enum: [addition, multiply_base, multiply_total]
     a_mod_op:
         href: https://origins.readthedocs.io/en/1.7.1/types/data_types/attribute_modifier_operation/
         desc: |
@@ -4256,9 +4085,7 @@ links:
                     desc: Whether the keybinding should only trigger the power on the first tick the key is held down, or, if set to true, continuously on each tick while the key is held.
                     type: boolean
           - title: old
-            enum:
-              - primary
-              - secondary
+            enum: [primary, secondary]
         unspec: true
     effect:
         desc: An Object used to define a status effect with duration, amplifier, etc.
@@ -4289,23 +4116,11 @@ links:
                 default: true
     comparison:
         desc: How the state should be compared to the specified value.
-        enum:
-          - <
-          - <=
-          - '>'
-          - '>='
-          - ==
-          - '!='
+        enum: [<, <=, '>', '>=', ==, '!=']
         default: 3
     opt_comparison:
         desc: How the state should be compared to the specified value.
-        enum:
-          - <
-          - <=
-          - '>'
-          - '>='
-          - ==
-          - '!='
+        enum: [<, <=, '>', '>=', ==, '!=']
         unspec: true
     vector:
         desc: An object that specifies the X, Y and Z coordinates of a certain point in space.

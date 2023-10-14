@@ -7,8 +7,7 @@ props:
     name:
         type: string
         desc: The name of your pack, visible in the top left.
-        hooks:
-          - name
+        hooks: [name]
     id:
         type: string
         desc: The pack's default namespace.
@@ -30,8 +29,7 @@ props:
         type: integer
         min: 1
         max: 15
-        hooks:
-          - refresh
+        hooks: [refresh]
         gap: true
     authors:
         type: list

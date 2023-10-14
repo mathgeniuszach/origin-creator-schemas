@@ -39,33 +39,23 @@ links:
                 allow: '*a-z0-9_#\/:.-'
             bold:
                 desc: Whether to render the content in bold.
-                enum:
-                  - true
-                  - false
+                enum: [true, false]
                 unspec: true
             italic:
                 desc: Whether to render the content in italics. Note that text that is italicized by default, such as custom item names, can be unitalicized by setting this to false.
-                enum:
-                  - true
-                  - false
+                enum: [true, false]
                 unspec: true
             underlined:
                 desc: Whether to underline the content.
-                enum:
-                  - true
-                  - false
+                enum: [true, false]
                 unspec: true
             strikethrough:
                 desc: Whether to strikethrough the content.
-                enum:
-                  - true
-                  - false
+                enum: [true, false]
                 unspec: true
             obfuscated:
                 desc: Whether to render the content obfuscated.
-                enum:
-                  - true
-                  - false
+                enum: [true, false]
                 unspec: true
             insertion:
                 desc: Optional. When the text is shift-clicked by a player, this string is inserted in their chat input. It does not overwrite any existing text the player was writing. This only works in chat messages.
@@ -76,13 +66,7 @@ links:
                 props:
                     action:
                         desc: The action to perform when clicked.
-                        enum:
-                          - open_url
-                          - open_file
-                          - run_command
-                          - suggest_command
-                          - change_page
-                          - copy_to_clipboard
+                        enum: [open_url, open_file, run_command, suggest_command, change_page, copy_to_clipboard]
                     value:
                         desc: The URL, file path, chat, command or book page used by the specified action.
                         type: string
@@ -92,10 +76,7 @@ links:
                 props:
                     action:
                         desc: The type of tooltip to show.
-                        enum:
-                          - show_text
-                          - show_item
-                          - show_entity
+                        enum: [show_text, show_item, show_entity]
                         more:
                             string-show_text:
                                 value:
@@ -291,10 +272,7 @@ links:
                             allow: '*a-z0-9_#\/:.-'
                         formula:
                             desc: Can be binomial_with_bonus_count for a binomial distribution (with "n = level + extra", "p = probability"), uniform_bonus_count for uniform distribution (from 0 to level * bonusMultiplier), or ore_drops for a special function used for ore drops in the vanilla game (Count * (max(0; random(0..Level + 2) - 1)+1)).
-                            enum:
-                              - minecraft:binomial_with_bonus_count
-                              - minecraft:uniform_bonus_count
-                              - minecraft:ore_drops
+                            enum: [minecraft:binomial_with_bonus_count, minecraft:uniform_bonus_count, minecraft:ore_drops]
                             gap: true
                         extra:
                             desc: For binomial_with_bonus_count, specifies extra in n = level + extra
@@ -322,18 +300,12 @@ links:
                               - type: object
                                 props:
                                     type:
-                                        enum:
-                                          - context
-                                          - storage
+                                        enum: [context, storage]
                                         more:
                                             string-context:
                                                 target:
                                                     desc: Specifies the source. Set to block_entity for the block entity of the destroyed block, this to use the entity that died or the player that gained the advancement, opened the container or broke the block, killer for the killer, or killer_player for a killer that is a player.
-                                                    enum:
-                                                      - block_entity
-                                                      - this
-                                                      - killer
-                                                      - killer_player
+                                                    enum: [block_entity, this, killer, killer_player]
                                             string-storage:
                                                 source:
                                                     desc: A resource location specifying the storage ID.
@@ -403,10 +375,7 @@ links:
                     string-minecraft:fill_player_head:
                         entity:
                             desc: Specifies an entity to be used for the player head. Set to this to use the entity that died or the player that gained the advancement, opened the container or broke the block, killer for the killer, or killer_player for a killer that is a player.
-                            enum:
-                              - this
-                              - killer
-                              - killer_player
+                            enum: [this, killer, killer_player]
                     string-minecraft:limit_count:
                         limit:
                             or:
@@ -443,10 +412,7 @@ links:
                                         type: string
                                         allow: '*a-z0-9_#\/:.-'
                                     operation:
-                                        enum:
-                                          - addition
-                                          - multiply_base
-                                          - multiply_total
+                                        enum: [addition, multiply_base, multiply_total]
                                     amount:
                                         desc: Specifies the amount of the modifier.
                                         id: predicates-7
@@ -559,10 +525,7 @@ links:
                                     link: jsontxt
                         entity:
                             desc: Specifies the entity to act as the source @s in the JSON text component. Set to this to use the entity that died or the player that gained the advancement, opened the container or broke the block, killer for the killer, or killer_player for a killer that is a player.
-                            enum:
-                              - this
-                              - killer
-                              - killer_player
+                            enum: [this, killer, killer_player]
                         replace:
                             desc: If true, replaces all existing lines of lore, if false appends the list.
                             type: boolean
@@ -572,10 +535,7 @@ links:
                             link: jsontxt
                         entity:
                             desc: Specifies the entity to act as the source @s in the JSON text component. Set to this to use the entity that died or the player that gained the advancement, opened the container or broke the block, killer for the killer, or killer_player for a killer that is a player.
-                            enum:
-                              - this
-                              - killer
-                              - killer_player
+                            enum: [this, killer, killer_player]
                     string-minecraft:set_nbt:
                         tag:
                             desc: Tag string to add, similar to those used by commands. Note that the first bracket is required.
@@ -606,13 +566,7 @@ links:
                     string-apoli:add_power:
                         slot:
                             desc: Slot the item should be in for the power to take effect. If a list is specified, one will be chosen randomly.
-                            enum:
-                              - mainhand
-                              - offhand
-                              - feet
-                              - legs
-                              - chest
-                              - head
+                            enum: [mainhand, offhand, feet, legs, chest, head]
                         power:
                             desc: The ID of a power to give when the item is in hand.
                             type: string

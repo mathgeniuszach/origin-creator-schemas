@@ -5,9 +5,7 @@ links:
         props:
             blocked:
                 desc: Checks if the damage was successfully blocked.
-                enum:
-                  - true
-                  - false
+                enum: [true, false]
                 unspec: true
             dealt:
                 desc: Checks the amount of incoming damage before damage reduction.
@@ -52,10 +50,7 @@ links:
                         link: jsontxt
                     frame:
                         desc: he optional type of frame for the icon. challenge for a tile with a more fancy spiked border as it is used for the kill all mobs advancement, goal for a tile with a rounded border as it is used for the full beacon advancement, task for a normal tile.
-                        enum:
-                          - task
-                          - goal
-                          - challenge
+                        enum: [task, goal, challenge]
                     background:
                         desc: The optional directory for the background to use in this advancement tab (used only for the root advancement).
                         type: string

@@ -12,16 +12,14 @@ props:
             vals:
                 type: string
                 allow: '*a-z0-9_#\/:.-'
-                hooks:
-                  - ns
+                hooks: [ns]
           - title: extra
             type: list
             vals:
                 or:
                   - type: string
                     allow: '*a-z0-9_#\/:.-'
-                    hooks:
-                      - ns
+                    hooks: [ns]
                   - type: object
                     props:
                         condition:
@@ -34,8 +32,7 @@ props:
                             vals:
                                 type: string
                                 allow: '*a-z0-9_#\/:.-'
-                                hooks:
-                                  - ns
+                                hooks: [ns]
     enabled:
         desc: If set to false, this layer will be unavailable.
         type: boolean
@@ -71,14 +68,12 @@ props:
         vals:
             type: string
             allow: '*a-z0-9_#\/:.-'
-            hooks:
-              - ns
+            hooks: [ns]
     default_origin:
         desc: If set, the origin with this ID will automatically be chosen for a new player. If an orb of origin is used later on, the player will be able to choose another origin then and the default_origin will not apply. Could for example be used to make all players start as human, and then use the orb as a progression item to select an origin.
         type: string
         allow: '*a-z0-9_#\/:.-'
-        hooks:
-          - ns
+        hooks: [ns]
     auto_choose:
         desc: If set to true, this layer will automatically pick an origin for the player if only one option is available. This also applies when an orb of origin is used.
         type: boolean

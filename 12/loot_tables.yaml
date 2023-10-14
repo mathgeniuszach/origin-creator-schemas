@@ -79,9 +79,7 @@ links:
                         name:
                             desc: |
                                 "contents" for block entity contents or "self" for banners and player skulls.
-                            enum:
-                              - contents
-                              - self
+                            enum: [contents, self]
                     string-minecraft:empty: {}
 type: object
 props:
