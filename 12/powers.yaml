@@ -3994,9 +3994,7 @@ links:
     power:
         title: power
         hooks: [fix_multiple]
-        extend:
-          - power_meta
-          - power_base
+        extend: [power_meta, power_base]
     custom_power:
         title: custom
         extend: [power_meta, custom_power_base]
@@ -4017,10 +4015,7 @@ links:
         nopanel: true
         or:
           - title: constant
-            enum:
-              - true
-              - false
-              - null
+            enum: [true, false, null]
           - type: number
           - type: string
           - type: list
