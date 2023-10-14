@@ -1,0 +1,815 @@
+links:
+    damage_pred:
+        desc: Predicate applied to the damage.
+        type: object
+        props:
+            bypasses_armor:
+                desc: Checks if the damage bypassed the armor of the player (suffocation damage predominantly).
+                enum:
+                  - true
+                  - false
+                unspec: true
+            bypasses_invulnerability:
+                desc: Checks if the damage bypassed the invulnerability status of the player (void or /kill damage in vanilla).
+                enum:
+                  - true
+                  - false
+                unspec: true
+            bypasses_magic:
+                desc: Checks if the damage bypassed resistance and other status effects (in vanilla, this is only caused by starvation)
+                enum:
+                  - true
+                  - false
+                unspec: true
+            is_explosion:
+                desc: Checks if the damage originated from an explosion.
+                enum:
+                  - true
+                  - false
+                unspec: true
+            is_fire:
+                desc: Checks if the damage originated from fire.
+                enum:
+                  - true
+                  - false
+                unspec: true
+            is_magic:
+                desc: Checks if the damage originated from magic.
+                enum:
+                  - true
+                  - false
+                unspec: true
+            is_projectile:
+                desc: Checks if the damage originated from a projectile.
+                enum:
+                  - true
+                  - false
+                unspec: true
+            is_lightning:
+                desc: Checks if the damage originated from lightning.
+                enum:
+                  - true
+                  - false
+                unspec: true
+            direct_entity:
+                desc: The entity that was the direct cause of the damage.
+                link: entity_pred
+            source_entity:
+                desc: The entity that was the source of the damage (for example, the skeleton that shot the arrow that caused the damage)
+                link: entity_pred
+    location_pred:
+        desc: Properties of a location.
+        type: object
+        props:
+            biome:
+                desc: The biome at the given location.
+                href: https://minecraft.wiki/w/Biome#Biome_IDs
+                type: string
+                allow: '*a-z0-9#\/:.-'
+            block:
+                type: object
+                props:
+                    blocks:
+                        desc: A list of block IDs.
+                        href: https://minecraft.wiki/w/Java_Edition_data_values/Blocks
+                        type: list
+                        vals:
+                            link: block
+                    tag:
+                        desc: The block tag.
+                        type: string
+                        allow: '*a-z0-9#\/:.-'
+                    nbt:
+                        desc: The block NBT.
+                        type: string
+                        ext: true
+                    state:
+                        desc: A map of block property names to values. Test will fail if the block doesn't match.
+                        type: object
+                        extra:
+                            or:
+                              - type: boolean
+                                default: false
+                              - type: integer
+                              - type: string
+                              - type: object
+                                props:
+                                    min:
+                                        type: integer
+                                    max:
+                                        type: integer
+            fluid:
+                type: object
+                props:
+                    blocks:
+                        desc: The fluid ID.
+                        href: https://minecraft.wiki/w/Java_Edition_data_values#Fluids
+                        type: string
+                        allow: '*a-z0-9#\/:.-'
+                    tag:
+                        desc: The fluid tag.
+                        type: string
+                        allow: '*a-z0-9#\/:.-'
+                    nbt:
+                        desc: The block NBT.
+                        type: string
+                        ext: true
+                    state:
+                        desc: A map of fluid property names to values. Test will fail if the fluid doesn't match.
+                        type: object
+                        extra:
+                            or:
+                              - type: boolean
+                                default: false
+                              - type: integer
+                              - type: string
+                              - type: object
+                                props:
+                                    min:
+                                        type: integer
+                                    max:
+                                        type: integer
+            dimension:
+                desc: The dimension of ths location.
+                type: string
+                allow: '*a-z0-9#\/:.-'
+            feature:
+                desc: Whether or not this location is inside a naturally generating structure.
+                href: https://minecraft.wiki/w/Commands/locate#Arguments
+                type: string
+            light:
+                desc: The light level of visible light. <7 is where mobs spawn.
+                type: object
+                props:
+                    light:
+                        link: intmm
+            position:
+                desc: The exact coordinates of the given position.
+                type: object
+                props:
+                    x:
+                        link: nummm
+                    y:
+                        link: nummm
+                    z:
+                        link: nummm
+            smokey:
+                desc: True if the block is closely above a campfire or soul campfire.
+                enum:
+                  - true
+                  - false
+                unspec: true
+    entity_preds:
+        or:
+          - link: entity_pred
+          - type: list
+            vals:
+                link: single_pred
+    entity_pred:
+        desc: Properties of a Minecraft entity.
+        type: object
+        props:
+            distance:
+                link: distance
+            effects:
+                desc: A list of status effects. The key name is the status effect id.
+                href: https://minecraft.wiki/w/Java_Edition_data_values/Effects
+                type: object
+                extra:
+                    type: object
+                    amplifier:
+                        desc: The effect amplifier.
+                        link: intmm
+                    duration:
+                        desc: The effect duration in ticks.
+                        link: intmm
+                    ambient:
+                        desc: Whether the effect is from a beacon.
+                        enum:
+                          - true
+                          - false
+                        unspec: true
+                    visible:
+                        desc: Whether the effect has visible particles.
+                        enum:
+                          - true
+                          - false
+                        unspec: true
+                allow: '*a-z0-9#\/:.-'
+            equipment:
+                desc: Items equipped by the entity.
+                type: object
+                props:
+                    mainhand:
+                        link: item_pred
+                    offhand:
+                        link: item_pred
+                    head:
+                        link: item_pred
+                    chest:
+                        link: item_pred
+                    legs:
+                        link: item_pred
+                    feet:
+                        link: item_pred
+            flags:
+                desc: Predicate Flags to be checked.
+                type: object
+                props:
+                    is_on_fire:
+                        enum:
+                          - true
+                          - false
+                        unspec: true
+                    is_sneaking:
+                        enum:
+                          - true
+                          - false
+                        unspec: true
+                    is_sprinting:
+                        enum:
+                          - true
+                          - false
+                        unspec: true
+                    is_swimming:
+                        enum:
+                          - true
+                          - false
+                        unspec: true
+                    is_baby:
+                        enum:
+                          - true
+                          - false
+                        unspec: true
+            nbt:
+                type: string
+                ext: true
+            lightning_bolt:
+                desc: Lightning bolt properties to be checked. Fails when the entity is not a lightning bolt.
+                type: object
+                props:
+                    blocks_set_on_file:
+                        desc: Number of blocks set on fire by this lightning bolt.
+                        type: integer
+                    entity_struck:
+                        link: entity_pred
+            player:
+                desc: Player properties to be checked. Fails when the entity is not a player.
+                type: object
+                props:
+                    looking_at:
+                        desc: The entity that the player is looking at, as long as it is visible and within a radius of 100 blocks. Visibility is defined through the line from the player's eyes to the entity's eyes, rather than the direction that the player is looking in.
+                        link: entity_pred
+                    advancements:
+                        desc: A map of advancements to check. The keys are advancement IDs.
+                        type: object
+                        extra:
+                            or:
+                              - type: boolean
+                                default: false
+                              - type: object
+                                extra:
+                                    type: boolean
+                                    default: false
+                        allow: '*a-z0-9#\/:.-'
+                    gamemode:
+                        enum:
+                          - survival
+                          - adventure
+                          - creative
+                          - spectator
+                        unspec: true
+                    level:
+                        desc: The experience level of the player.
+                        link: intmm
+                    recipes:
+                        desc: A map of recipes to check. The keys are recipe IDs. Each should be true if that recipe should be known to the player.
+                        type: object
+                        extra:
+                            type: boolean
+                            default: false
+                        allow: '*a-z0-9#\/:.-'
+                    stats:
+                        desc: List of statistics to match. Note that unlike when adding scoreboard objectives, the base (for example, minecraft:custom) and the statistic (for example, minecraft:sneak_time) are split and use proper namespaces instead of the dot-notation (minecraft.custom:minecraft.sneak_time).
+                        type: list
+                        vals:
+                            type: object
+                            props:
+                                type:
+                                    desc: The statistic base. Possible values in vanilla are minecraft:custom, minecraft:crafted, minecraft:used, minecraft:broken, minecraft:mined, minecraft:killed, minecraft:picked_up, minecraft:dropped and minecraft:killed_by.
+                                    type: string
+                                    allow: '*a-z0-9_#\/:.-'
+                                stat:
+                                    desc: The statistic ID. Mostly mimics the criteria used for defining scoreboard objectives.
+                                    type: string
+                                    allow: '*a-z0-9_#\/:.-'
+                                value:
+                                    desc: The value of the statistic.
+                                    link: intmm
+            passenger:
+                desc: The entity riding this entity.
+                link: entity_pred
+            vehicle:
+                desc: The entity this entity is riding on.
+                link: entity_pred
+            targeted_entity:
+                desc: The entity which this entity is targeting for attacks.
+                link: entity_pred
+            location:
+                desc: Location predicate for the entity's position.
+                link: location_pred
+            stepping_on:
+                desc: Location predicate for the block the entity is standing on.
+                link: location_pred
+            team:
+                desc: The team the entity belongs to.
+                type: string
+            type:
+                desc: An entity ID.
+                href: https://minecraft.wiki/w/Java_Edition_data_values/Entities
+                type: string
+                allow: '*a-z0-9_#\/:.-'
+    item_pred:
+        type: object
+        props:
+            items:
+                desc: A list of item IDs.
+                href: https://minecraft.wiki/w/Java_Edition_data_values#Blocks
+                type: list
+                vals:
+                    link: item
+            tag:
+                desc: An item data pack tag.
+                type: string
+                allow: '*a-z0-9_#\/:.-'
+            count:
+                desc: Amount of the item.
+                link: intmm
+            durability:
+                desc: The durability of the item.
+                link: intmm
+            nbt:
+                desc: The NBT of the item.
+                type: string
+                ext: true
+            potion:
+                desc: A brewed potion ID.
+                href: https://minecraft.wiki/w/Potion#Item_data
+                type: string
+                allow: '*a-z0-9_#\/:.-'
+            enchantments:
+                desc: List of enchantments
+                type: list
+                vals:
+                    type: object
+                    props:
+                        enchantment:
+                            desc: An enchantment ID.
+                            href: https://minecraft.wiki/w/Java_Edition_data_values#Enchantments
+                            type: string
+                            allow: '*a-z0-9_#\/:.-'
+                        levels:
+                            desc: The level of the enchantment.
+                            link: intmm
+            stored_enchantments:
+                desc: List of stored enchantments
+                type: list
+                vals:
+                    type: object
+                    props:
+                        enchantment:
+                            desc: An enchantment ID.
+                            href: https://minecraft.wiki/w/Java_Edition_data_values#Enchantments
+                            type: string
+                            allow: '*a-z0-9_#\/:.-'
+                        levels:
+                            desc: The level of the enchantment.
+                            link: intmm
+    intdistance:
+        type: object
+        props:
+            absolute:
+                type: object
+                props:
+                    min:
+                        type: integer
+                    max:
+                        type: integer
+            horizontal:
+                type: object
+                props:
+                    min:
+                        type: integer
+                    max:
+                        type: integer
+            x:
+                type: object
+                props:
+                    min:
+                        type: integer
+                    max:
+                        type: integer
+            y:
+                type: object
+                props:
+                    min:
+                        type: integer
+                    max:
+                        type: integer
+            z:
+                type: object
+                props:
+                    min:
+                        type: integer
+                    max:
+                        type: integer
+    distance:
+        type: object
+        props:
+            absolute:
+                type: object
+                props:
+                    min:
+                        type: number
+                    max:
+                        type: number
+            horizontal:
+                type: object
+                props:
+                    min:
+                        type: number
+                    max:
+                        type: number
+            x:
+                type: object
+                props:
+                    min:
+                        type: number
+                    max:
+                        type: number
+            y:
+                type: object
+                props:
+                    min:
+                        type: number
+                    max:
+                        type: number
+            z:
+                type: object
+                props:
+                    min:
+                        type: number
+                    max:
+                        type: number
+    intmm0:
+        or:
+          - type: integer
+            min: 0
+          - type: object
+            props:
+                min:
+                    type: integer
+                    min: 0
+                max:
+                    type: integer
+                    min: 0
+    intmm:
+        or:
+          - type: integer
+          - type: object
+            props:
+                min:
+                    type: integer
+                max:
+                    type: integer
+    nummm0:
+        or:
+          - type: number
+            min: 0
+          - type: object
+            props:
+                min:
+                    type: number
+                    min: 0
+                max:
+                    type: number
+                    min: 0
+    nummm:
+        or:
+          - type: number
+          - type: object
+            props:
+                min:
+                    type: number
+                max:
+                    type: number
+    intprov:
+        desc: An integer number provider.
+        or:
+          - type: integer
+          - type: object
+            props:
+                type:
+                    desc: The type of this number provider. Keep in mind "score" is only available in 1.17+
+                    enum:
+                      - minecraft:constant
+                      - minecraft:uniform
+                      - minecraft:binomial
+                      - minecraft:score
+                    more:
+                        string-minecraft:constant:
+                            value:
+                                type: integer
+                        string-minecraft:uniform:
+                            min:
+                                link: intprov
+                            max:
+                                link: intprov
+                        string-minecraft:binomial:
+                            n:
+                                link: intprov
+                            p:
+                                link: numprov
+                        string-minecraft:score:
+                            target:
+                                or:
+                                  - enum:
+                                      - this
+                                      - killer
+                                      - direct_killer
+                                      - player_killer
+                                  - type: object
+                                    props:
+                                        type:
+                                            enum:
+                                              - fixed
+                                              - context
+                                            props:
+                                                string-fixed:
+                                                    name:
+                                                        desc: A UUID or playername
+                                                        type: string
+                                                string-context:
+                                                    target:
+                                                        enum:
+                                                          - this
+                                                          - killer
+                                                          - direct_killer
+                                                          - player_killer
+                            score:
+                                desc: The scoreboard objective.
+                                type: string
+                            scale:
+                                desc: Optional. Scale to multiply the score before returning it.
+                                type: integer
+    numprov:
+        desc: A number provider.
+        or:
+          - type: number
+          - type: object
+            props:
+                type:
+                    desc: The type of this number provider. Keep in mind "score" is only available in 1.17+
+                    enum:
+                      - minecraft:constant
+                      - minecraft:uniform
+                      - minecraft:binomial
+                      - minecraft:score
+                    more:
+                        string-minecraft:constant:
+                            value:
+                                type: number
+                        string-minecraft:uniform:
+                            min:
+                                link: numprov
+                            max:
+                                link: numprov
+                        string-minecraft:binomial:
+                            n:
+                                desc: The amount of trials.
+                                link: intprov
+                            p:
+                                title: P
+                                desc: The probability of success on an individual trial.
+                                link: numprov
+                        string-minecraft:score:
+                            target:
+                                or:
+                                  - enum:
+                                      - this
+                                      - killer
+                                      - direct_killer
+                                      - player_killer
+                                  - type: object
+                                    props:
+                                        type:
+                                            enum:
+                                              - fixed
+                                              - context
+                                            props:
+                                                string-fixed:
+                                                    name:
+                                                        desc: A UUID or playername
+                                                        type: string
+                                                string-context:
+                                                    target:
+                                                        enum:
+                                                          - this
+                                                          - killer
+                                                          - direct_killer
+                                                          - player_killer
+                            score:
+                                desc: The scoreboard objective.
+                                type: string
+                            scale:
+                                desc: Optional. Scale to multiply the score before returning it.
+                                type: number
+    item:
+        desc: A Minecraft item (or block item), vanilla or modded.
+        href: https://minecraft.wiki/w/Java_Edition_data_values#Blocks
+        type: string
+        allow: '*a-z0-9_#\/:.-'
+    block:
+        desc: A Minecraft block, vanilla or modded.
+        href: https://minecraft.wiki/w/Java_Edition_data_values/Blocks
+        type: string
+        allow: '*a-z0-9_#\/:.-'
+    pred:
+        or:
+          - title: single
+            extend: single_pred
+            nopanel: true
+          - title: multiple
+            type: list
+            vals:
+                link: single_pred
+    single_pred:
+        desc: A predicate.
+        type: object
+        props:
+            condition:
+                desc: A condition ID determining what to check for
+                ns: minecraft
+                enum:
+                  - minecraft:alternative
+                  - minecraft:block_state_property
+                  - minecraft:damage_source_properties
+                  - minecraft:entity_properties
+                  - minecraft:entity_scores
+                  - minecraft:inverted
+                  - minecraft:killed_by_player
+                  - minecraft:location_check
+                  - minecraft:match_tool
+                  - minecraft:random_chance
+                  - minecraft:random_chance_with_looting
+                  - minecraft:reference
+                  - minecraft:survives_explosion
+                  - minecraft:table_bonus
+                  - minecraft:time_check
+                  - minecraft:weather_check
+                  - minecraft:value_check
+                  - apoli:origin
+                  - apoli:power
+                more:
+                    string-minecraft:alternative:
+                        terms:
+                            type: list
+                            vals:
+                                link: single_pred
+                    string-minecraft:block_state_property:
+                        block:
+                            link: block
+                        properties:
+                            type: object
+                            desc: (Optional) A map of block property names to values. All values are strings. The test fails if the block doesn't match.
+                            extra:
+                                type: string
+                            allow: '*a-z0-9#\/:.-'
+                    string-minecraft:damage_source_properties:
+                        predicate:
+                            desc: Predicate applied to the damage source.
+                            link: damage_pred
+                    string-minecraft:entity_properties:
+                        entity:
+                            desc: Specifies the entity to check for the condition. Set to "this" to use the entity that died or the player that gained the advancement, opened the container or broke the block, "killer" for the killer, or "killer_player" for a killer that is a player.
+                            enum:
+                              - this
+                              - killer
+                              - killer_player
+                        predicate:
+                            desc: Predicate applied to entity, uses the same structure as advancements.
+                            link: entity_pred
+                    string-minecraft:entity_scores:
+                        entity:
+                            desc: Specifies the entity to check for the condition. Set to "this" to use the entity that died or the player that gained the advancement, opened the container or broke the block, "killer" for the killer, or "killer_player" for a killer that is a player.
+                            enum:
+                              - this
+                              - killer
+                              - killer_player
+                        scores:
+                            desc: Scores to check. All specified scores must pass for the condition to pass. Key name is the objective while the value is the exact score value or range of score values required for the condition to pass.
+                            type: object
+                            extra:
+                                link: intmm
+                    string-minecraft:inverted:
+                        term:
+                            link: single_pred
+                    string-minecraft:killed_by_player:
+                        inverse:
+                            type: boolean
+                    string-minecraft:location_check:
+                        offsetX:
+                            type: integer
+                        offsetY:
+                            type: integer
+                        offsetZ:
+                            type: integer
+                        predicate:
+                            link: location_pred
+                    string-minecraft:match_tool:
+                        predicate:
+                            desc: Predicate applied on tool used to mine the block.
+                            link: item_pred
+                    string-minecraft:random_chance:
+                        chance:
+                            desc: Success rate as a number 0.0-1.0
+                            type: number
+                            min: 0
+                            max: 1
+                    string-minecraft:random_chance_with_looting:
+                        chance:
+                            desc: Success rate as a number 0.0-1.0
+                            type: number
+                            min: 0
+                            max: 1
+                        looting_multiplier:
+                            desc: Looting adjustment to the base success rate. Formula is chance + (looting_level * looting_multiplier)
+                            type: number
+                    string-minecraft:reference:
+                        name:
+                            desc: The ID of another predicate to test.
+                            type: string
+                            allow: '*a-z0-9_#\/:.-'
+                    string-minecraft:survives_explosion: {}
+                    string-minecraft:table_bonus:
+                        enchantment:
+                            desc: ID of enchantment to pull enchantment level from.
+                            type: integer
+                        chances:
+                            desc: List of probabilities for enchantment level, indexed from 0.
+                            type: list
+                            vals:
+                                type: number
+                                min: 0
+                                max: 1
+                    string-minecraft:time_check:
+                        value:
+                            desc: Time in ticks or range of times to compare with the current time.
+                            or:
+                              - type: integer
+                              - type: object
+                                props:
+                                    min:
+                                        link: intprov
+                                    max:
+                                        link: intprov
+                        period:
+                            desc: If present, time gets modulo-divided by this value (for example, if set to 24000, value operates on a time period of daytime ticks just like /time query daytime).
+                            type: integer
+                            min: 1
+                    string-minecraft:weather_check:
+                        raining:
+                            desc: If true, the condition evaluates to true only if it's raining or thundering.
+                            type: boolean
+                        thundering:
+                            desc: If true, the condition evaluates to true only if it's thundering.
+                            type: boolean
+                    string-minecraft:value_check:
+                        value:
+                            desc: Value to compare with
+                            link: intprov
+                        range:
+                            desc: Range or exact value to compare to.
+                            or:
+                              - type: integer
+                              - type: object
+                                props:
+                                    min:
+                                        link: intprov
+                                    max:
+                                        link: intprov
+                    string-apoli:origin:
+                        origin:
+                            desc: The ID of an origin to check for on the player.
+                            type: string
+                            allow: '*a-z0-9_#\/:.-'
+                        layer:
+                            desc: If specified, only evaluate the predicate to true if the origin is from the specified origin layer.
+                            type: string
+                            allow: '*a-z0-9_#\/:.-'
+                    string-apoli:power:
+                        power:
+                            desc: The ID of an power to check for on the player.
+                            type: string
+                            allow: '*a-z0-9_#\/:.-'
+link: pred

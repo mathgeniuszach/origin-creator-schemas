@@ -1,0 +1,60 @@
+type: object
+props:
+    icon:
+        type: image
+        desc: The icon file which will be exported with the pack.
+        gap: true
+    name:
+        type: string
+        desc: The name of your pack, visible in the top left.
+        hooks:
+          - name
+    id:
+        type: string
+        desc: The pack's default namespace.
+        default: my_pack
+        nonempty: true
+        allow: '*a-z0-9_'
+    pack_format:
+        desc: |
+            A version number used to group versions with compatable assets.
+            4: 1.13 - 1.14.4
+            5: 1.15 - 1.16.1
+            6: 1.16.2 - 1.16.5
+            7: 1.17
+            8: 1.18.0 - 1.18.1
+            9: 1.18.2+
+            10: 1.19.0 - 1.19.3
+            12: 1.19.4
+        href: https://minecraft.wiki/w/Pack_format
+        type: integer
+        min: 1
+        max: 15
+        hooks:
+          - refresh
+        gap: true
+    authors:
+        type: list
+        desc: A list of people who made this pack, one name per line.
+        vals:
+            type: string
+    description:
+        type: string
+        desc: A short description of what your pack does, about one sentence long.
+        ext: true
+        gap: true
+    filter:
+        type: object
+        desc: |
+            Section for filtering out files from data packs applied below this one.
+            Any file that matches one of the patterns inside block will be treated as if it was not present in the pack at all.
+        props:
+            block:
+                type: list
+                vals:
+                    type: object
+                    props:
+                        namespace:
+                            type: string
+                        path:
+                            type: string
