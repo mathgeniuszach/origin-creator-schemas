@@ -28,7 +28,7 @@ props:
         href: https://minecraft.wiki/w/Pack_format
         type: integer
         min: 1
-        max: 15
+        max: 18
         hooks: [refresh]
         gap: true
     authors:
