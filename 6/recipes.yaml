@@ -1,0 +1,208 @@
+links:
+    item:
+        desc: A Minecraft item (or block item), vanilla or modded.
+        href: https://minecraft.wiki/w/Java_Edition_data_values#Blocks
+        type: string
+        allow: '*a-z0-9_:-'
+    oritem:
+        desc: A list or single item used as an ingredient for this recipe.
+        type: or
+        or:
+          - title: item
+            type: object
+            props:
+                item:
+                    link: item
+          - title: tag
+            type: object
+            props:
+                tag:
+                    type: string
+                    allow: '*a-z0-9_:/.-'
+          - title: list
+            type: list
+            vals:
+                or:
+                  - title: item
+                    type: object
+                    props:
+                        item:
+                            link: item
+                  - title: tag
+                    type: object
+                    props:
+                        tag:
+                            type: string
+                            allow: '*a-z0-9_:/.-'
+    result:
+        desc: The output item of the recipe.
+        type: object
+        props:
+            item:
+                link: item
+            count:
+                type: integer
+                min: 1
+    power_recipe:
+        type: object
+        props:
+            id:
+                desc: A value to use specifying where to generate this recipe.
+                type: string
+                allow: '*a-z0-9_#\/:.-'
+            group:
+                desc: A string identifier. Used to group multiple recipes together in the recipe book.
+                type: string
+            type:
+                gap: true
+                ns: minecraft
+                enum: [minecraft:crafting_shaped, minecraft:crafting_shapeless]
+                more:
+                    string-minecraft:crafting_shaped:
+                        pattern:
+                            desc: A list of single-character keys used to describe a pattern for shaped crafting. Each row in the crafting grid is one string in this list containing 3 or less keys. All strings in this list need to have the same amount of keys. A space can be used to indicate an empty spot.
+                            type: list
+                            vals:
+                                type: string
+                        key:
+                            desc: All keys used for this shaped crafting recipe.
+                            type: object
+                            extra:
+                                nopanel: true
+                                id: recipes-6
+                                extend: oritem
+                        result:
+                            id: recipes-6
+                            link: result
+                    string-minecraft:crafting_shapeless:
+                        ingredients:
+                            type: list
+                            vals:
+                                link: oritem
+                        result:
+                            id: recipes-6
+                            link: result
+    recipe:
+        type: or
+        or:
+          - title: Crafting Recipe
+            type: object
+            props:
+                group:
+                    desc: A string identifier. Used to group multiple recipes together in the recipe book.
+                    type: string
+                type:
+                    gap: true
+                    ns: minecraft
+                    enum: [minecraft:crafting_shaped, minecraft:crafting_shapeless, minecraft:smithing, minecraft:stonecutting]
+                    more:
+                        string-minecraft:crafting_shaped:
+                            pattern:
+                                desc: A list of single-character keys used to describe a pattern for shaped crafting. Each row in the crafting grid is one string in this list containing 3 or less keys. All strings in this list need to have the same amount of keys. A space can be used to indicate an empty spot.
+                                type: list
+                                vals:
+                                    type: string
+                            key:
+                                desc: All keys used for this shaped crafting recipe.
+                                type: object
+                                extra:
+                                    nopanel: true
+                                    id: recipes-6
+                                    extend: oritem
+                            result:
+                                link: result
+                        string-minecraft:crafting_shapeless:
+                            ingredients:
+                                type: list
+                                vals:
+                                    link: oritem
+                            result:
+                                link: result
+                        string-minecraft:smithing:
+                            base:
+                                desc: Ingredient specifying an item to be upgraded.
+                                or:
+                                  - title: item
+                                    type: object
+                                    props:
+                                        item:
+                                            link: item
+                                  - title: tag
+                                    type: object
+                                    props:
+                                        tag:
+                                            type: string
+                                            allow: '*a-z0-9_:-'
+                            addition:
+                                desc: Ingredient to upgrade the item with.
+                                or:
+                                  - title: item
+                                    type: object
+                                    props:
+                                        item:
+                                            link: item
+                                  - title: tag
+                                    type: object
+                                    props:
+                                        tag:
+                                            type: string
+                                            allow: '*a-z0-9_:-'
+                            result:
+                                link: item
+                        string-minecraft:stonecutting:
+                            ingredient:
+                                link: oritem
+                            result:
+                                link: item
+                            count:
+                                type: integer
+                                min: 1
+                                default: 1
+          - title: Cooking Recipe
+            type: object
+            props:
+                group:
+                    desc: A string identifier. Used to group multiple recipes together in the recipe book.
+                    type: string
+                type:
+                    ns: minecraft
+                    enum: [minecraft:blasting, minecraft:campfire_cooking, minecraft:smelting, minecraft:smoking]
+                    gap: true
+                ingredient:
+                    desc: The ingredient or list of acceptable incredients cooked by this recipe.
+                    id: recipes-6
+                    link: oritem
+                result:
+                    extend: item
+                    gap: true
+                experience:
+                    desc: The output experience of the recipe. Click the link to see default smelting experience points.
+                    href: https://minecraft.wiki/w/Smelting#Recipes
+                    type: number
+                    min: 0
+                    default: 0
+                cookingtime:
+                    title: Cooking Time
+                    desc: The cook time of the recipe in ticks. If left blank, defaults to 100 for everything except normal smelting (which defaults to 200). Keep in mind that all vanilla campfire recipes are of length 600 ticks.
+                    type: integer
+                    min: 0
+          - title: Special Recipe
+            type: object
+            props:
+                type:
+                    ns: minecraft
+                    enum:
+                      - minecraft:crafting_special_armordye
+                      - minecraft:crafting_special_bannerduplicate
+                      - minecraft:crafting_special_bookcloning
+                      - minecraft:crafting_special_firework_rocket
+                      - minecraft:crafting_special_firework_star
+                      - minecraft:crafting_special_firework_star_fade
+                      - minecraft:crafting_special_mapcloning
+                      - minecraft:crafting_special_mapextending
+                      - minecraft:crafting_special_repairitem
+                      - minecraft:crafting_special_shielddecoration
+                      - minecraft:crafting_special_shulkerboxcoloring
+                      - minecraft:crafting_special_tippedarrow
+                      - minecraft:crafting_special_suspiciousstew
+link: recipe
