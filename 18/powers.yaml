@@ -3867,9 +3867,11 @@ links:
                     string-origins:modify_enchantment_level:
                         enchantment:
                             desc: The ID of the enchantment to apply/modify the level of to the entity.
+                            type: string
                             allow: '*a-z0-9_\/:.-'
                         item_condition:
                             desc: If specified, this modifier only applies/modifies the level of the specified enchantment to/from the entity if this condition is fulfilled by the item with the enchantment on it.
+                            link: item_cond
                         modifier:
                             desc: If specified, this modifier will be applied to the current level of the enchantment from the entity.
                             link: a_mod

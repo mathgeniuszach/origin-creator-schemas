@@ -8,7 +8,7 @@ links:
     functions:
         type: list
         vals:
-            id: item_modifiers-15
+            id: item_modifiers-18
             link: single_modifier
     entry:
         type: object
