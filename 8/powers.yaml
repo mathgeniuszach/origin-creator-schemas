@@ -3754,6 +3754,7 @@ links:
                     desc: The additional parameter(s) for the particle type.
                     type: string
                     ext: true
+hooks: [preserve_single]
 or:
   - title: simple
     link: power

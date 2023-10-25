@@ -4325,6 +4325,7 @@ links:
             type: list
             vals:
                 link: slot
+hooks: [preserve_single]
 or:
   - title: simple
     link: power

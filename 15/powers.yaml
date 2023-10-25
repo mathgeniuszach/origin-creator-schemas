@@ -4404,6 +4404,7 @@ links:
     process_mode:
         desc: Determines how the item stack(s) in the specified inventory/inventories are processed. If "items", matching item stacks are processed, counted, or deleted as individual items. If "stacks", matching item stacks are processed, counted, matched, or deleted as one.
         enum: [items, stacks]
+hooks: [preserve_single]
 or:
   - title: simple
     link: power

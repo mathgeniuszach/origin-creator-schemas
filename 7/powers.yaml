@@ -3098,6 +3098,7 @@ links:
         desc: How the state should be compared to the specified value.
         enum: ['<', '<=', '>', '>=', '==', '!=']
         unspec: true
+hooks: [preserve_single]
 or:
   - title: simple
     link: power

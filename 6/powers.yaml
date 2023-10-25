@@ -2291,6 +2291,7 @@ links:
         href: https://minecraft.wiki/w/Java_Edition_data_values#Blocks
         type: string
         allow: '*a-z0-9_#\/:.-'
+hooks: [preserve_single]
 or:
   - title: simple
     link: power
