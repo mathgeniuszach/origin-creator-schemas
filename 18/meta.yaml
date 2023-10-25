@@ -1,19 +1,4 @@
-type: object
-props:
-    icon:
-        type: image
-        desc: The icon file which will be exported with the pack.
-        gap: true
-    name:
-        type: string
-        desc: The name of your pack, visible in the top left.
-        hooks: [name]
-    id:
-        type: string
-        desc: The pack's default namespace.
-        default: my_pack
-        nonempty: true
-        allow: '*a-z0-9_'
+links:
     pack_format:
         desc: |
             A version number used to group versions with compatable assets.
@@ -33,6 +18,44 @@ props:
         max: 18
         hooks: [refresh]
         gap: true
+    pack_formats:
+        desc: Optional. A range of "Pack Format"s this pack supports. If specified, "pack_format" is still required and must be in this range. For an array, specify exactly two numbers for minimum and maximum versions (inclusive), no more, no less.
+        or:
+            title: range
+            type: object
+            props:
+                min_inclusive:
+                    link: pack_format
+                max_inclusive:
+                    link: pack_format
+          - title: number_range
+            desc: Specify exactly two numbers for minimum and maximum versions (inclusive), no more, no less.
+            type: list
+            vals:
+                link: pack_format
+          - title: single
+            link: pack_format
+
+type: object
+props:
+    icon:
+        type: image
+        desc: The icon file which will be exported with the pack.
+        gap: true
+    name:
+        type: string
+        desc: The name of your pack, visible in the top left.
+        hooks: [name]
+    id:
+        type: string
+        desc: The pack's default namespace.
+        default: my_pack
+        nonempty: true
+        allow: '*a-z0-9_'
+    pack_format:
+        link: pack_format
+    supported_formats:
+        link: pack_formats
     authors:
         type: list
         desc: A list of people who made this pack, one name per line.
@@ -43,18 +66,34 @@ props:
         desc: A short description of what your pack does, about one sentence long.
         ext: true
         gap: true
-    filter:
-        type: object
-        desc: |
-            Section for filtering out files from data packs applied below this one.
-            Any file that matches one of the patterns inside block will be treated as if it was not present in the pack at all.
-        props:
-            block:
-                type: list
-                vals:
-                    type: object
-                    props:
-                        namespace:
-                            type: string
-                        path:
-                            type: string
+    # filter:
+    #     type: object
+    #     desc: |
+    #         Section for filtering out files from data packs applied below this one.
+    #         Any file that matches one of the patterns inside block will be treated as if it was not present in the pack at all.
+    #     props:
+    #         block:
+    #             type: list
+    #             vals:
+    #                 type: object
+    #                 props:
+    #                     namespace:
+    #                         type: string
+    #                     path:
+    #                         type: string
+    # overlays:
+    #     props:
+    #         entries:
+    #             desc: List of overlays. The order is important, as the first in the list will be applied first. Overlays are sub-packs applied over the "normal" contents of a pack. Their directories have their own assets and data directories, and are placed in the pack's root directory.
+    #             type: list
+    #             vals:
+    #                 type: object
+    #                 props:
+    #                     formats:
+    #                         desc: A range of pack formats when this overlay should be active
+    #                         link: pack_formats
+    #                     directory:
+    #                         desc: Overlay directory.
+    #                         type: string
+    #                         allow: a-z0-9_-
+

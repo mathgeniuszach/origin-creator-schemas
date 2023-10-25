@@ -599,6 +599,22 @@ links:
                             block_condition:
                                 desc: If specified, the entity condition type will check if the block that was hit by the raycast fulfills this block condition type.
                                 link: block_cond
+                                gap: true
+                            block_distance:
+                                desc: An optional decimal number that determines the distance of the raycast if "block" is set to "true". If absent, it will use the entity's block reach.
+                                type: number
+                                min: 0
+                            entity_distance:
+                                desc: An optional decimal number that determines the distance of the raycast if "entity" is set to "true". If absent, it will use the entity's attack range.
+                                type: number
+                                min: 0
+                            direction:
+                                desc: Optional. If specified, determines the direction of the raycast.
+                                type: object
+                                link: vector
+                            space:
+                                desc: Optional. If specified, determines the space the direction of the raycast is evaluated in relation to.
+                                link: space
                         string-origins:relative_health:
                             comparison:
                                 desc: How the relative health of the player should be compared to the specified value.
@@ -1396,6 +1412,14 @@ links:
                                 desc: The damage type to be used. Controls e.g. the death message, invulnerabilities (e.g. towards fire), or whether armor is taken into account.
                                 type: string
                                 allow: '*a-z0-9_#\/:.-'
+                            modifier:
+                                desc: If specified, this modifier will be applied to the damage going to be dealt to the target. It uses the max health of the target as the base value.
+                                link: a_mod
+                            modifiers:
+                                desc: If specified, these modifier will be applied to the damage going to be dealt to the target. It uses the max health of the target as the base value.
+                                type: list
+                                vals:
+                                    link: a_mod
                         string-origins:mount: {}
                         string-origins:set_in_love: {}
                         string-origins:tame: {}
@@ -1549,16 +1573,7 @@ links:
                                 type: number
                             space:
                                 desc: The space to perform the velocity addition in.
-                                href: https://origins.readthedocs.io/en/latest/misc/extras/space/#space
-                                enum:
-                                  - world
-                                  - local
-                                  - local_horizontal
-                                  - local_horizontal_normalized
-                                  - velocity
-                                  - velocity_normalized
-                                  - velocity_horizontal
-                                  - velocity_horizontal_normalized
+                                link: space
                             client:
                                 desc: If this is false, the action will not execute on the client.
                                 type: boolean
@@ -1766,6 +1781,19 @@ links:
                                 desc: The namespace and ID of the advancement to be granted to the player.
                                 type: string
                                 allow: '*a-z0-9_#\/:.-'
+                            criterion:
+                                desc: If specified, grants only the criterion specified to the advancement.
+                                type: string
+                            criteria:
+                                desc: If specified, grants only the criteria specified to the advancement.
+                                type: list
+                                vals:
+                                    type: string
+                            selection:
+                                desc: Determines how to select the parent advancement(s) or child(ren) advancement(s) of the specified advancement. Works in the same way as the "/advancement" command (click for more info).
+                                href: https://minecraft.wiki/w/Commands/advancement#Syntax
+                                enum: ["everything", "only", "from", "through", "until"]
+                                default: "only"
                         string-origins:grant_power:
                             power:
                                 desc: The ID of the power to be granted to the entity.
@@ -1908,6 +1936,22 @@ links:
                                 desc: If specified, execute this entity action type if the raycast did not hit an entity/block.
                                 link: entity_action
                                 gap: true
+                            block_distance:
+                                desc: An optional decimal number that determines the distance of the raycast if "block" is set to "true". If absent, it will use the entity's block reach.
+                                type: number
+                                min: 0
+                            entity_distance:
+                                desc: An optional decimal number that determines the distance of the raycast if "entity" is set to "true". If absent, it will use the entity's attack range.
+                                type: number
+                                min: 0
+                            direction:
+                                desc: Optional. If specified, determines the direction of the raycast.
+                                type: object
+                                link: vector
+                            space:
+                                desc: Optional. If specified, determines the space the direction of the raycast is evaluated in relation to.
+                                link: space
+                                gap: true
                             command_at_hit:
                                 desc: The command to execute upon the block/entity the raycast has hit.
                                 type: string
@@ -1958,6 +2002,19 @@ links:
                                 desc: The namespace and ID of the advancement to be revoked from the player.
                                 type: string
                                 allow: '*a-z0-9_#\/:.-'
+                            criterion:
+                                desc: If specified, revokes only the criterion specified from the advancement.
+                                type: string
+                            criteria:
+                                desc: If specified, revokes only the criteria specified from the advancement.
+                                type: list
+                                vals:
+                                    type: string
+                            selection:
+                                desc: Determines how to select the parent advancement(s) or child(ren) advancement(s) of the specified advancement. Works in the same way as the "/advancement" command (click for more info).
+                                href: https://minecraft.wiki/w/Commands/advancement#Syntax
+                                enum: ["everything", "only", "from", "through", "until"]
+                                default: "only"
                         string-origins:revoke_power:
                             power:
                                 desc: The ID of the power to be revoked from the entity.
@@ -2943,6 +3000,9 @@ links:
                             desc: Determines whether the glowing outline should be shown or not.
                             type: boolean
                             default: true
+                        bientity_condition:
+                            desc: Optional. If specified, the target (the entity that has the power) will only be invisible to actors (either the player or mobs that may see the target) if the bi-entity condition is fulfilled by either or both of them.
+                            link: bi_entity_cond
                     string-origins:invulnerability:
                         damage_condition:
                             desc: Specifies which damage the player will be immune to.
@@ -2972,6 +3032,10 @@ links:
                         entity_action:
                             desc: If set, this action will be executed on the player after they used an item on an item.
                             link: entity_action
+                        click_type:
+                            desc: Determines whether to execute the actions if the player does a left-click or right-click action.
+                            enum: ["left", "right"]
+                            default: 1
                     string-origins:keep_inventory:
                         item_condition:
                             desc: If specified, only make the items that fulfill the specified item condition type persist in the entity's inventory.
@@ -3722,7 +3786,7 @@ links:
                             type: string
                     string-origins:modify_crafting:
                         recipe:
-                            desc: The ID of the recipe to be modified.
+                            desc: The ID of the recipe to be modified. Works with recipes provided by powers that use the recipe power type.
                             type: string
                             allow: '*a-z0-9_#\/:.-'
                         item_condition:
@@ -4193,13 +4257,17 @@ links:
                             desc: If set, sleep will only be prevented if this condition holds for the bed.
                             link: block_cond
                         message:
-                            desc: The message that will be shown when sleep is prevented this way. Can be a literal text or a translation key which will be localized using a language file. Defaults to "origins.cant_sleep".
+                            desc: The message that will be shown when sleep is prevented this way. Can be a literal text or a translation key which will be localized using a language file. Defaults to "text.apoli.cannot_sleep".
                             type: string
                             ext: true
                         set_spawn_point:
                             desc: If false, right-clicking the bed while sleeping is prevented with this power will prevent the player from setting their the spawn point.
                             type: boolean
                             default: true
+                        priority:
+                            desc: Used alongside the "set_spawn_point" field to determine which power will prevent the player from sleeping and setting their spawn point. In terms of which field is accounted first, "set_spawn_point" precedes "priority".
+                            type: integer
+                            default: 0
                     string-origins:prevent_sprinting: {}
                     string-extraorigins:modify_size:
                         scale:
@@ -4401,6 +4469,10 @@ links:
                 desc: The indexed position of the bar on the sprite to use. Please note that indexes start at 0.
                 type: integer
                 min: 0
+            icon_index:
+                desc: The indexed position of the icon on the sprite to use. Please note that indexes start at 0.
+                type: integer
+                min: 0
             condition:
                 desc: If set (and should_render is true), the bar will only display when the entity with the power fulfills this condition.
                 link: entity_cond
@@ -4572,6 +4644,18 @@ links:
                 type: list
                 vals:
                     link: effect_chance
+    space:
+        desc: The coordinate system used for the direction specified.
+        href: https://origins.readthedocs.io/en/latest/misc/extras/space/#space
+        enum:
+          - world
+          - local
+          - local_horizontal
+          - local_horizontal_normalized
+          - velocity
+          - velocity_normalized
+          - velocity_horizontal
+          - velocity_horizontal_normalized
 hooks: [preserve_single]
 or:
   - title: simple
