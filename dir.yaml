@@ -1,4 +1,26 @@
 $: 132
+6:
+  - meta
+  - recipes
+  - powers
+  - origins
+  - origin_layers
+  - tags
+7:
+  - predicates
+  - powers
+  - origin_layers
+  - origins
+  - advancements
+  - loot_tables
+  - item_modifiers
+8:
+  - predicates
+  - powers
+  - origins
+  - origin_layers
+  - advancements
+  - loot_tables
 10:
   - meta
   - predicates
@@ -24,25 +46,10 @@ $: 132
   - origin_layers
   - advancements
   - loot_tables
-6:
+18:
   - meta
-  - recipes
-  - powers
-  - origins
-  - origin_layers
-  - tags
-7:
-  - predicates
-  - powers
-  - origin_layers
-  - origins
-  - advancements
-  - loot_tables
   - item_modifiers
-8:
-  - predicates
   - powers
   - origins
   - origin_layers
-  - advancements
   - loot_tables
