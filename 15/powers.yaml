@@ -1,3 +1,4 @@
+# 1.10.0
 links:
     bi_entity_cond:
         unspec: none
@@ -300,11 +301,11 @@ links:
                         string-origins:collided_horizontally: {}
                         string-origins:command:
                             command:
-                                desc: Command to run.
+                                desc: Command to run as and at the entity evaluating this condition.
                                 type: string
                                 ext: true
                             comparison:
-                                desc: How to compare the command's result (all commands return 0 on failure and 1 or more on success. Some commands even return back the count of something.) to the specified value.
+                                desc: How to compare the command's result (all commands return 0 on failure and 1 or more on success. Some commands even return back the count/number of something) to the specified value.
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
@@ -481,7 +482,7 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value at which the amount of items/stacks that were evaluated are compared to.
-                                type: int
+                                type: integer
                                 default: 0
                         string-origins:invisible: {}
                         string-origins:living: {}
@@ -827,7 +828,7 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
-                                type: float
+                                type: number
                         string-origins:smeltable: {}
           - title: custom
             link: custom_condition
@@ -1300,7 +1301,7 @@ links:
                                 desc: The action which is executed when the condition evaluates to true.
                                 link: bi_entity_action
                             else_action:
-                                desc: If present, this action will be executed when the condition evaluates to false.
+                                desc: If specified, this action will be executed when the condition evaluates to false.
                                 link: bi_entity_action
                         string-origins:if_else_list:
                             actions:
@@ -1482,7 +1483,7 @@ links:
                                 desc: The action which is executed when the condition evaluates to true.
                                 link: entity_action
                             else_action:
-                                desc: If present, this action will be executed when the condition evaluates to false.
+                                desc: If specified, this action will be executed when the condition evaluates to false.
                                 link: entity_action
                         string-origins:if_else_list:
                             actions:
@@ -1776,7 +1777,7 @@ links:
                                 link: process_mode
                             limit:
                                 desc: Determines the max amount of times the action should modify item stacks in the inventory. If the specified value is <= 0, then there will be no limit.
-                                type: int
+                                type: integer
                                 default: 0
                         string-origins:modify_resource:
                             resource:
@@ -2120,7 +2121,7 @@ links:
                                 desc: The action which is executed when the condition evaluates to true.
                                 link: item_action
                             else_action:
-                                desc: If present, this action will be executed when the condition evaluates to false.
+                                desc: If specified, this action will be executed when the condition evaluates to false.
                                 link: item_action
                         string-origins:if_else_list:
                             actions:
@@ -2177,7 +2178,7 @@ links:
                                     allow: '*a-z0-9_#\/:.-'
                             levels:
                                 desc: If set, specifies the maximum number of levels to remove.
-                                type: int
+                                type: integer
                             reset_repair_cost:
                                 desc: Whether or not to reset the repair cost on the item.
                                 type: boolean
@@ -2259,7 +2260,7 @@ links:
                                 desc: The action which is executed when the condition evaluates to true.
                                 link: block_action
                             else_action:
-                                desc: If present, this action will be executed when the condition evaluates to false.
+                                desc: If specified, this action will be executed when the condition evaluates to false.
                                 link: block_action
                         string-origins:if_else_list:
                             actions:
@@ -2444,6 +2445,8 @@ links:
                 href: https://origins.readthedocs.io/en/latest/types/power_types/
                 hooks: [fix_cond]
                 enum:
+                  - $Regular Types
+
                   - origins:simple
                   - origins:attribute_modify_transfer
                   - origins:attribute
@@ -2492,6 +2495,9 @@ links:
                   - origins:toggle
                   - origins:tooltip
                   - origins:walk_on_fluid
+
+                  - $Action Types
+
                   - origins:action_on_being_used
                   - origins:action_on_block_break
                   - origins:action_on_block_use
@@ -2510,6 +2516,9 @@ links:
                   - origins:self_action_on_kill
                   - origins:self_action_when_hit
                   - origins:target_action_on_hit
+
+                  - $Modify Types
+
                   - origins:modify_air_speed
                   - origins:modify_attribute
                   - origins:modify_block_render
@@ -2536,6 +2545,9 @@ links:
                   - origins:modify_swim_speed
                   - origins:modify_velocity
                   - origins:modify_xp_gain
+
+                  - $Prevent Types
+
                   - origins:prevent_being_used
                   - origins:prevent_block_selection
                   - origins:prevent_block_use
@@ -2549,6 +2561,11 @@ links:
                   - origins:prevent_item_use
                   - origins:prevent_sleep
                   - origins:prevent_sprinting
+
+                  - $Addon Types (Require Addons!)
+
+                  - extraorigins:modify_size
+                  - apugli:mobs_ignore
                 more:
                     string-origins:attribute_modify_transfer:
                         attribute:
@@ -3030,7 +3047,7 @@ links:
                                 allow: '*a-z0-9_#\/:.-'
                         priority:
                             desc: Priority of applying this replacement, vs others.
-                            type: int
+                            type: integer
                             default: 0
                         bientity_condition:
                             desc: A bi-entity condition between the player and the entity with a loot table.
@@ -4052,6 +4069,27 @@ links:
                             type: boolean
                             default: true
                     string-origins:prevent_sprinting: {}
+
+                    string-extraorigins:modify_size:
+                        scale:
+                            desc: A multiplier modifying the scale of the player's specified attributes. You don't have to use extraorigins for this power; click here to see an example of a power that works in regular origins!
+                            href: https://www.mathgeniuszach.com/apps/origin-creator/help/#pehkui-power
+                            type: number
+                        scale_types:
+                            desc: An array of scale type identifiers to modify. A full list of pehkui modifiers can be found by clicking here (scroll down on the page). For size only, you can use "extraorigins:modify_size", which modifies width, height, drop size, and visibility.
+                            href: https://legacy.curseforge.com/minecraft/mc-mods/pehkui
+                            type: list
+                            vals:
+                                type: string
+                                allow: '*a-z0-9_\/:.-'
+                                default: extraorigins:modify_size
+                    string-apugli:mobs_ignore:
+                        mob_condition:
+                            desc: If set, mobs will ignore (and not attack) the entity with this power if they meet this condition.
+                            link: entity_cond
+                        bientity_condition:
+                            desc: If set, mobs will ignore the entity with this power if they and the entity meet this condition.
+                            link: bi_entity_cond
     custom_power_base:
         title: custom
         type: object

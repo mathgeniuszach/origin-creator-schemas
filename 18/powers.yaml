@@ -1,3 +1,4 @@
+# 1.11.0
 links:
     bi_entity_cond:
         unspec: none
@@ -9,7 +10,7 @@ links:
                     desc: Whether or not this condition is inverted (This condition passes only when the conditions are NOT met).
                     type: boolean
                 type:
-                    href: https://origins.readthedocs.io/en/1.4.1/types/bientity_condition_types/
+                    href: https://origins.readthedocs.io/en/latest/types/bientity_condition_types/
                     enum:
                       - origins:and
                       - origins:or
@@ -118,7 +119,7 @@ links:
                     desc: Whether or not this condition is inverted (This condition passes only when the conditions are NOT met).
                     type: boolean
                 type:
-                    href: https://origins.readthedocs.io/en/1.4.1/types/entity_condition_types/
+                    href: https://origins.readthedocs.io/en/latest/types/entity_condition_types/
                     enum:
                       - origins:and
                       - origins:or
@@ -151,11 +152,15 @@ links:
                       - origins:fluid_height
                       - origins:food_level
                       - origins:gamemode
+                      - origins:glowing
                       - origins:health
                       - origins:in_block_anywhere
                       - origins:in_block
                       - origins:in_rain
+                      - origins:in_snow
+                      - origins:in_thunderstorm
                       - origins:in_tag
+                      - origins:inventory
                       - origins:invisible
                       - origins:living
                       - origins:moving
@@ -226,6 +231,7 @@ links:
                         string-origins:attribute:
                             attribute:
                                 desc: ID of the attribute of which the value should be checked.
+                                href: https://minecraft.wiki/w/Attribute
                                 type: string
                                 allow: '*a-z0-9_#\/:.-'
                             comparison:
@@ -251,6 +257,9 @@ links:
                                 desc: If set, this condition needs to be fulfilled (in addition to having the right ID, if provided) by the biome in order for the condition to evaluate to true.
                                 link: biome_cond
                         string-origins:block_collision:
+                            block_condition:
+                                desc: If specified, the condition type will only evaluate to true if the bounding box of the entity is colliding with a block that fulfills this condition.
+                                link: block_cond
                             offset_x:
                                 desc: |
                                     By how much of the bounding box size should the box be offset in the X direction (e.g.: 0 = no offset, 1 = offset of exact width, 2 = offset of twice the width of the bounding box)
@@ -419,6 +428,7 @@ links:
                             gamemode:
                                 desc: Name of the gamemode the player should have in order for this condition to evaluate to true.
                                 enum: [survival, creative, adventure, spectator]
+                        string-origins:glowing: {}
                         string-origins:health:
                             comparison:
                                 desc: How the player's health should be compared to the specified value. Ranges from 0 - 20.
@@ -442,11 +452,42 @@ links:
                                 desc: The block condition which is applied to the block at the player's lower body half.
                                 link: block_cond
                         string-origins:in_rain: {}
+                        string-origins:in_snow: {}
+                        string-origins:in_thunderstorm: {}
                         string-origins:in_tag:
                             tag:
                                 desc: ID of the tag the entity type needs to be in to pass the check.
                                 type: string
                                 allow: '*a-z0-9_\/:.-'
+                        string-origins:inventory:
+                            inventory_types:
+                                desc: Determines whether to check for items in the entity's inventory, inventories of powers present in the entity, or both. Defaults to ["inventory"]. If "inventory" is included, the player's main inventory will be checked. If "power" is included the player's bonus inventories given with powers will also be checked.
+                                type: list
+                                vals:
+                                    enum: [inventory, power]
+                            process_mode:
+                                link: process_mode
+                            item_condition:
+                                desc: If specified, only account for items from the specified inventory/inventories that fulfill this condition.
+                                link: item_cond
+                            slots:
+                                desc: If specified, only items from these specified item slots are evaluated.
+                                link: slots
+                            slot:
+                                desc: If specified, only the item from this specified item slot is evaluated.
+                                link: slot
+                            power:
+                                desc: If specified and if inventory_types includes "power", the items in the inventory of only this power specifically will be evaluated.
+                                type: string
+                                allow: '*a-z0-9_\/:.-'
+                                hooks: [ns]
+                            comparison:
+                                desc: Determines how the amount of items/stacks that were evaluated are compared to the specified value.
+                                link: comparison
+                            compare_to:
+                                desc: The value at which the amount of items/stacks that were evaluated are compared to.
+                                type: integer
+                                default: 0
                         string-origins:invisible: {}
                         string-origins:living: {}
                         string-origins:moving: {}
@@ -536,17 +577,17 @@ links:
                                 desc: |
                                     Determines how the raycast handles blocks.
 
-                                    If set to "outline", the ray will take the shape of the block into account, only stopping if the ray has hit a face of the block.
-                                    If set to "visual", The ray will only stop at blocks that are not see-through. (e.g: Glass, Tinted Glass, etc.).
-                                    If set to "collider", the ray will only stop at blocks that cannot be walked through.
+                                    If set to "outline", the raycast will take the shape of the collision box of the block into account.
+                                    If set to "visual", the raycast will ignore blocks that are see-through (e.g: Glass, Tinted Glass, etc.).
+                                    If set to "collider", the raycast will take physical collision of the block into account.
                                 enum: [outline, visual, collider]
                             fluid_handling:
                                 desc: |
                                     Determines how the raycast handles fluids.
 
-                                    If set to "any", the ray will stop at both flowing and source fluids.
-                                    If set to "source", the ray will only stop at source fluids.
-                                    If set to "none", the ray will not stop at both flowing and source fluids.
+                                    If set to "any", the raycast will ignore source and flowing fluids.
+                                    If set to "source", the raycast will only go through source fluids.
+                                    If set to "none", the raycast won't go through any kind of fluids.
                                 enum: [any, source, none]
                                 gap: true
                             match_bientity_condition:
@@ -604,6 +645,10 @@ links:
                                 desc: The value to compare to.
                                 type: number
                         string-origins:scoreboard:
+                            name:
+                                desc: The name of the player to retrieve the scoreboard objective from.
+                                type: string
+                                allow: '*a-z0-9_#\/:.-'
                             objective:
                                 desc: The name of the scoreboard objective to retrieve the value from (referred to as the score) and compare.
                                 type: string
@@ -686,7 +731,7 @@ links:
                     desc: Whether or not this condition is inverted (This condition passes only when the conditions are NOT met).
                     type: boolean
                 type:
-                    href: https://origins.readthedocs.io/en/1.4.1/types/item_condition_types/
+                    href: https://origins.readthedocs.io/en/latest/types/item_condition_types/
                     enum:
                       - origins:and
                       - origins:or
@@ -694,13 +739,18 @@ links:
                       - origins:empty
                       - origins:amount
                       - origins:armor_value
+                      - origins:durability
                       - origins:enchantment
                       - origins:fireproof
                       - origins:food
+                      - origins:fuel
                       - origins:harvest_level
                       - origins:ingredient
+                      - origins:is_damageable
+                      - origins:is_equippable
                       - origins:meat
                       - origins:nbt
+                      - origins:relative_durability
                       - origins:smeltable
                     more:
                         string-origins:and:
@@ -735,9 +785,16 @@ links:
                             compare_to:
                                 desc: The value to compare to.
                                 type: integer
+                        string-origins:durability:
+                            comparison:
+                                desc: How the durability should be compared to the specified value.
+                                link: comparison
+                            compare_to:
+                                desc: The value to compare to.
+                                type: integer
                         string-origins:enchantment:
                             enchantment:
-                                desc: ID of the enchantment of interest to check the level of on the item, e.g. minecraft:protection.
+                                desc: Optional; ID of the enchantment of interest to check the level of on the item, e.g. minecraft:protection. If not provided, all enchantments are counted.
                                 type: string
                                 allow: '*a-z0-9_#\/:.-'
                             comparison:
@@ -748,6 +805,14 @@ links:
                                 type: integer
                         string-origins:fireproof: {}
                         string-origins:food: {}
+                        string-origins:fuel:
+                            comparison:
+                                desc: How the fuel time value (in ticks) of the item should be compared to the specified value. Click to visit the wiki to learn more about the burn time of various items.
+                                href: https://minecraft.wiki/w/Smelting#Fuel
+                                link: comparison
+                            compare_to:
+                                desc: The value to compare to.
+                                type: number
                         string-origins:harvest_level:
                             comparison:
                                 desc: How the item's harvest level should be compared to the specified value. Click to visit the wiki to learn more about harvest levels.
@@ -759,15 +824,24 @@ links:
                         string-origins:ingredient:
                             ingredient:
                                 desc: An ingredient, which can be a variety of things.
-                                href: https://origins.readthedocs.io/en/1.4.1/types/item_condition_types/ingredient/
+                                href: https://origins.readthedocs.io/en/latest/types/item_condition_types/ingredient/
                                 id: recipes-6
                                 link: oritem
+                        string-origins:is_damageable: {}
+                        string-origins:is_equippable: {}
                         string-origins:meat: {}
                         string-origins:nbt:
                             nbt:
                                 desc: The NBT data to check for.
                                 type: string
                                 ext: true
+                        string-origins:relative_durability:
+                            comparison:
+                                desc: How the relative durability should be compared to the specified value.
+                                link: comparison
+                            compare_to:
+                                desc: The value to compare to.
+                                type: number
                         string-origins:smeltable: {}
           - title: custom
             link: custom_condition
@@ -781,7 +855,7 @@ links:
                     desc: Whether or not this condition is inverted (This condition passes only when the conditions are NOT met).
                     type: boolean
                 type:
-                    href: https://origins.readthedocs.io/en/1.4.1/types/block_condition_types/
+                    href: https://origins.readthedocs.io/en/latest/types/block_condition_types/
                     enum:
                       - origins:and
                       - origins:or
@@ -791,6 +865,7 @@ links:
                       - origins:blast_resistance
                       - origins:block
                       - origins:block_state
+                      - origins:command
                       - origins:distance_from_coordinates
                       - origins:exposed_to_sky
                       - origins:fluid
@@ -866,6 +941,18 @@ links:
                             enum:
                                 desc: If the property contains different string values, this is the string value the property needs to be to pass the check.
                                 type: string
+                        string-origins:command:
+                            command:
+                                desc: Command to run at the block evaluating this condition.
+                                type: string
+                                ext: true
+                            comparison:
+                                desc: How to compare the command's result (all commands return 0 on failure and 1 or more on success. Some commands even return back the count/number of something) to the specified value.
+                                link: comparison
+                            compare_to:
+                                desc: The value to compare to.
+                                type: integer
+                                default: 1
                         string-origins:distance_from_coordinates:
                             reference:
                                 desc: The point to compare the distance to.
@@ -942,7 +1029,7 @@ links:
                                 desc: If specified, checks if the block classifies as this material. Click to see a list of valid materials.
                                 type: string
                                 allow: '*a-z0-9_\/:.-'
-                                href: https://origins.readthedocs.io/en/1.4.1/misc/extras/materials/
+                                href: https://origins.readthedocs.io/en/latest/misc/extras/materials/
                             materials:
                                 desc: If specified, checks if the block classifies as one of these materials.
                                 type: list
@@ -989,7 +1076,7 @@ links:
                     desc: Whether or not this condition is inverted (This condition passes only when the conditions are NOT met).
                     type: boolean
                 type:
-                    href: https://origins.readthedocs.io/en/1.4.1/types/fluid_condition_types/
+                    href: https://origins.readthedocs.io/en/latest/types/fluid_condition_types/
                     enum:
                       - origins:and
                       - origins:or
@@ -1040,7 +1127,7 @@ links:
                     desc: Whether or not this condition is inverted (This condition passes only when the conditions are NOT met).
                     type: boolean
                 type:
-                    href: https://origins.readthedocs.io/en/1.4.1/types/biome_condition_types/
+                    href: https://origins.readthedocs.io/en/latest/types/biome_condition_types/
                     enum:
                       - origins:and
                       - origins:or
@@ -1070,7 +1157,7 @@ links:
                         string-origins:category:
                             category:
                                 desc: Which category the biome must be in order to succeed the check. Click to see the list of biome categories in vanilla.
-                                href: https://origins.readthedocs.io/en/1.4.1/misc/extras/biome_categories/#biome_category/
+                                href: https://origins.readthedocs.io/en/latest/misc/extras/biome_categories/#biome_category/
                                 type: string
                         string-origins:high_humidity: {}
                         string-origins:precipitation:
@@ -1096,16 +1183,23 @@ links:
                     desc: Whether or not this condition is inverted (This condition passes only when the conditions are NOT met).
                     type: boolean
                 type:
-                    href: https://origins.readthedocs.io/en/1.4.1/types/damage_condition_types/
+                    href: https://origins.readthedocs.io/en/latest/types/damage_condition_types/
                     enum:
                       - origins:and
                       - origins:or
                       - origins:constant
                       - origins:amount
                       - origins:attacker
+                      - origins:bypasses_armor
+                      - origins:explosive
                       - origins:fire
+                      - origins:from_falling
+                      - origins:in_tag
                       - origins:name
+                      - origins:out_of_world
                       - origins:projectile
+                      - origins:type
+                      - origins:unblockable
                     more:
                         string-origins:and:
                             conditions:
@@ -1135,17 +1229,36 @@ links:
                             entity_condition:
                                 desc: If set, the attacking entity must fulfill the provided entity condition in order for this condition to evaluate to true.
                                 link: entity_cond
+                        string-origins:bypasses_armor: {}
+                        string-origins:explosive: {}
                         string-origins:fire: {}
+                        string-origins:from_falling: {}
+                        string-origins:in_tag:
+                            tag:
+                                href: https://minecraft.wiki/w/Tag#Damage_types
+                                desc: The namespace and ID of the tag which the damage type should be in to pass the check.
+                                type: string
+                                allow: '*a-z0-9_#\/:.-'
                         string-origins:name:
                             name:
                                 desc: Name the damage source should have to pass the check. Click to see a list of vanilla damage source names.
-                                href: https://origins.readthedocs.io/en/1.4.1/misc/extras/damage_source_names/#list_of_vanilla_damage_source_names
+                                href: https://origins.readthedocs.io/en/latest/misc/extras/damage_source_names/#list_of_vanilla_damage_source_names
                                 type: string
+                        string-origins:out_of_world: {}
                         string-origins:projectile:
                             projectile:
                                 desc: If set, the check will only pass if the projectile was of an entity type with this ID.
                                 type: string
                                 allow: '*a-z0-9_#\/:.-'
+                            projectile_condition:
+                                desc: If set, the check will only pass if the projectile entity fulfills this condition.
+                                link: entity_cond
+                        string-origins:type:
+                            damage_type:
+                                desc: damage type to check if the damage source matches.
+                                type: string
+                                allow: '*a-z0-9_#\/:.-'
+                        string-origins:unblockable: {}
           - title: custom
             link: custom_condition
     bi_entity_action:
@@ -1155,7 +1268,7 @@ links:
             type: object
             props:
                 type:
-                    href: https://origins.readthedocs.io/en/1.4.1/types/bientity_action_types/
+                    href: https://origins.readthedocs.io/en/latest/types/bientity_action_types/
                     enum:
                       - origins:nothing
                       - origins:and
@@ -1164,6 +1277,7 @@ links:
                       - origins:delay
                       - origins:if_else
                       - origins:if_else_list
+                      - origins:side
                       - origins:invert
                       - origins:actor_action
                       - origins:add_velocity
@@ -1234,6 +1348,13 @@ links:
                                         action:
                                             desc: An action which might be executed.
                                             link: bi_entity_action
+                        string-origins:side:
+                            side:
+                                desc: The side, either "client" or "server", to apply this action on.
+                                enum: [client, server]
+                            action:
+                                desc: The action to apply.
+                                link: bi_entity_action
                         string-origins:invert:
                             action:
                                 desc: The bi-entity action to execute which will have its 'target' and 'actor' contexts swapped.
@@ -1271,6 +1392,10 @@ links:
                             source:
                                 desc: The damage source to be used. Controls e.g. the death message, invulnerabilities (e.g. towards fire), or whether armor is taken into account.
                                 link: damage_source
+                            damage_type:
+                                desc: The damage type to be used. Controls e.g. the death message, invulnerabilities (e.g. towards fire), or whether armor is taken into account.
+                                type: string
+                                allow: '*a-z0-9_#\/:.-'
                         string-origins:mount: {}
                         string-origins:set_in_love: {}
                         string-origins:tame: {}
@@ -1287,7 +1412,7 @@ links:
             type: object
             props:
                 type:
-                    href: https://origins.readthedocs.io/en/1.4.1/types/entity_action_types/
+                    href: https://origins.readthedocs.io/en/latest/types/entity_action_types/
                     enum:
                       - origins:nothing
                       - origins:and
@@ -1296,6 +1421,7 @@ links:
                       - origins:delay
                       - origins:if_else
                       - origins:if_else_list
+                      - origins:side
                       - origins:add_velocity
                       - origins:add_xp
                       - origins:apply_effect
@@ -1306,6 +1432,7 @@ links:
                       - origins:crafting_table
                       - origins:damage
                       - origins:dismount
+                      - origins:drop_inventory
                       - origins:emit_game_event
                       - origins:ender_chest
                       - origins:equipped_item_action
@@ -1314,15 +1441,24 @@ links:
                       - origins:explode
                       - origins:extinguish
                       - origins:feed
+                      - origins:fire_projectile
                       - origins:gain_air
                       - origins:give
+                      - origins:grant_advancement
                       - origins:grant_power
                       - origins:heal
+                      - origins:modify_death_ticks
+                      - origins:modify_inventory
+                      - origins:modify_resource
+                      - origins:modify_stat
                       - origins:passenger_action
                       - origins:play_sound
                       - origins:raycast
+                      - origins:replace_inventory
+                      - origins:revoke_advancement
                       - origins:revoke_power
                       - origins:riding_action
+                      - origins:selector_action
                       - origins:set_fall_distance
                       - origins:set_on_fire
                       - origins:set_resource
@@ -1394,6 +1530,13 @@ links:
                                         action:
                                             desc: An action which might be executed.
                                             link: entity_action
+                        string-origins:side:
+                            side:
+                                desc: The side, either "client" or "server", to apply this action on.
+                                enum: [client, server]
+                            action:
+                                desc: The action to apply.
+                                link: entity_action
                         string-origins:add_velocity:
                             x:
                                 desc: The amount of velocity to add on the x-axis. Defaults to 0.
@@ -1406,7 +1549,7 @@ links:
                                 type: number
                             space:
                                 desc: The space to perform the velocity addition in.
-                                href: https://origins.readthedocs.io/en/1.4.1/misc/extras/space/#space
+                                href: https://origins.readthedocs.io/en/latest/misc/extras/space/#space
                                 enum:
                                   - world
                                   - local
@@ -1488,7 +1631,43 @@ links:
                             source:
                                 desc: The damage source to be used. Controls e.g. the death message, invulnerabilities (e.g. towards fire), or whether armor is taken into account.
                                 link: damage_source
+                            damage_type:
+                                desc: The damage type to be used. Controls e.g. the death message, invulnerabilities (e.g. towards fire), or whether armor is taken into account.
+                                type: string
+                                allow: '*a-z0-9_#\/:.-'
                         string-origins:dismount: {}
+                        string-origins:drop_inventory:
+                            inventory_type:
+                                desc: Either "inventory" or "power". If "inventory", drops items in the player's main inventory. If "power", Drops items to the player's bonus inventory given with a power.
+                                enum: [inventory, power]
+                            entity_action:
+                                desc: If set, applies this action to the entity that has their inventory being dropped.
+                                link: entity_action
+                            item_action:
+                                desc: Item action applied to the items in the given slots.
+                                link: item_action
+                            item_condition:
+                                desc: If set, this item condition must match the items in the given slots to have the action applied.
+                                link: item_cond
+                            slots:
+                                link: slots
+                            slot:
+                                link: slot
+                            amount:
+                                desc: If specified, the affected items will be split by this amount.
+                                type: integer
+                            power:
+                                desc: If "Inventory Type" is set to "power", this is the power linked to the inventory to drop.
+                                type: string
+                                allow: '*a-z0-9_#\/:.-'
+                                hooks: [ns]
+                            throw_randomly:
+                                desc: Whether or not to throw the item in a random direction around the player instead of in front of them.
+                                type: boolean
+                            retain_ownership:
+                                desc: Whether or not the item's "Owner" tag is set to the player the item came from.
+                                type: boolean
+                                default: true
                         string-origins:emit_game_event:
                             event:
                                 desc: The ID of a game event to emit. Click to see vanilla game events.
@@ -1540,6 +1719,33 @@ links:
                             saturation:
                                 desc: The saturation amount to restore.
                                 type: number
+                        string-origins:fire_projectile:
+                            entity_type:
+                                desc: The ID of the entity type that will be fired.
+                                type: string
+                                allow: '*a-z0-9_#\/:.-'
+                            count:
+                                desc: The amount of projectiles to fire each use. Defaults to 1.
+                                type: integer
+                                default: 1
+                                min: 1
+                            speed:
+                                desc: The speed applied to the fired projectile. Defaults to 1.5.
+                                type: number
+                                min: 0
+                                default: 1.5
+                            divergence:
+                                desc: How much each projectile fired is affected by random spread. Defaults to 1.
+                                type: number
+                                min: 0
+                                default: 1
+                            tag:
+                                desc: NBT data of the entity.
+                                type: string
+                                ext: true
+                            projectile_action:
+                                desc: An action which will run on the projectile.
+                                link: entity_action
                         string-origins:gain_air:
                             value:
                                 desc: The amount of breath to restore.
@@ -1555,6 +1761,11 @@ links:
                                 desc: If set, this will prioritize the action to put the item in the specified slot. Accepts "chest", "feet", "head", "legs", "mainhand" or "offhand".
                                 enum: [chest, feet, head, legs, mainhand, offhand]
                                 unspec: true
+                        string-origins:grant_advancement:
+                            advancement:
+                                desc: The namespace and ID of the advancement to be granted to the player.
+                                type: string
+                                allow: '*a-z0-9_#\/:.-'
                         string-origins:grant_power:
                             power:
                                 desc: The ID of the power to be granted to the entity.
@@ -1568,6 +1779,55 @@ links:
                             amount:
                                 desc: The amount of health to restore.
                                 type: number
+                        string-origins:modify_death_ticks:
+                            modifier:
+                                desc: If specified, this modifier will be applied to its corresponding attribute.
+                                link: a_mod
+                        string-origins:modify_inventory:
+                            inventory_type:
+                                desc: Either "inventory" or "power". If "inventory", applies modifications to the player's main inventory. If "power", Applies modifications to the player's bonus inventory given with a power.
+                                enum: [inventory, power]
+                            entity_action:
+                                desc: If set, applies this action to the entity that has their inventory being modified.
+                                link: entity_action
+                            item_action:
+                                desc: Item action applied to the items in the given slots.
+                                link: item_action
+                            item_condition:
+                                desc: If set, this item condition must match the items in the given slots to have the action applied.
+                                link: item_cond
+                            slots:
+                                link: slots
+                            slot:
+                                link: slot
+                            power:
+                                desc: If "Inventory Type" is set to "power", this is the power linked to the inventory to modify.
+                                type: string
+                                allow: '*a-z0-9_#\/:.-'
+                                hooks: [ns]
+                            process_mode:
+                                link: process_mode
+                            limit:
+                                desc: Determines the max amount of times the action should modify item stacks in the inventory. If the specified value is <= 0, then there will be no limit.
+                                type: integer
+                                default: 0
+                        string-origins:modify_resource:
+                            resource:
+                                desc: The resource to modify.
+                                type: string
+                                allow: '*a-z0-9_#\/:.-'
+                                hooks: [ns]
+                            modifier:
+                                desc: The modifier to apply to the given power resource.
+                                link: a_mod
+                        string-origins:modify_stat:
+                            stat:
+                                desc: The statistic to modify.
+                                type: string
+                                href: https://minecraft.wiki/w/Statistics#Resource_location
+                            modifier:
+                                desc: The modifier to apply to the given stat.
+                                link: a_mod
                         string-origins:passenger_action:
                             action:
                                 desc: If set, executes the specified action on the passenger entity.
@@ -1615,17 +1875,17 @@ links:
                                 desc: |
                                     Determines how the raycast handles blocks.
 
-                                    If set to "outline", the ray will take the shape of the block into account, only stopping if the ray has hit a face of the block.
-                                    If set to "visual", The ray will only stop at blocks that are not see-through. (e.g: Glass, Tinted Glass, etc.).
-                                    If set to "collider", the ray will only stop at blocks that cannot be walked through.
+                                    If set to "outline", the raycast will take the shape of the collision box of the block into account.
+                                    If set to "visual", the raycast will ignore blocks that are see-through (e.g: Glass, Tinted Glass, etc.).
+                                    If set to "collider", the raycast will take physical collision of the block into account.
                                 enum: [outline, visual, collider]
                             fluid_handling:
                                 desc: |
                                     Determines how the raycast handles fluids.
 
-                                    If set to "any", the ray will stop at both flowing and source fluids.
-                                    If set to "source", the ray will only stop at source fluids.
-                                    If set to "none", the ray will not stop at both flowing and source fluids.
+                                    If set to "any", the raycast will ignore source and flowing fluids.
+                                    If set to "source", the raycast will only go through source fluids.
+                                    If set to "none", the raycast won't go through any kind of fluids.
                                 enum: [any, source, none]
                                 gap: true
                             bientity_condition:
@@ -1665,6 +1925,39 @@ links:
                             command_along_ray_only_on_hit:
                                 desc: Determines if the command specified in the command_along_ray field should be executed only if the raycast has hit a block/entity.
                                 type: boolean
+                        string-origins:replace_inventory:
+                            inventory_type:
+                                desc: Either "inventory" or "power". If "inventory", applies replacements to the player's main inventory. If "power", Applies replacements to the player's bonus inventory given with a power.
+                                enum: [inventory, power]
+                            entity_action:
+                                desc: If set, applies this action to the entity that has their inventory being replaced.
+                                link: entity_action
+                            item_action:
+                                desc: Item action applied to the items in the given slots.
+                                link: item_action
+                            item_condition:
+                                desc: If set, this item condition must match the items in the given slots to have the action applied.
+                                link: item_cond
+                            slots:
+                                link: slots
+                            slot:
+                                link: slot
+                            power:
+                                desc: If "Inventory Type" is set to "power", this is the power linked to the inventory to replace.
+                                type: string
+                                allow: '*a-z0-9_#\/:.-'
+                                hooks: [ns]
+                            stack:
+                                desc: The item stack to replace with.
+                                link: item_stack
+                            merge_nbt:
+                                desc: Determines whether to merge the NBTs of the item that will be replaced and the NBTs of the item that will be used as a replacement.
+                                type: boolean
+                        string-origins:revoke_advancement:
+                            advancement:
+                                desc: The namespace and ID of the advancement to be revoked from the player.
+                                type: string
+                                allow: '*a-z0-9_#\/:.-'
                         string-origins:revoke_power:
                             power:
                                 desc: The ID of the power to be revoked from the entity.
@@ -1687,6 +1980,18 @@ links:
                             recursive:
                                 desc: If set to true, executes the specified actions on all entities that are being ridden, if there are more than one.
                                 type: boolean
+                        string-origins:selector_action:
+                            selector:
+                                href: https://minecraft.wiki/w/Target_selectors
+                                desc: The selector to use for selecting entities. It can be the username of a player, the UUID of the entity or a target selector.
+                                type: string
+                                ext: true
+                            bientity_action:
+                                desc: If specified, this action will be executed on either or both the actor and target entities.
+                                link: bi_entity_action
+                            bientity_condition:
+                                desc: If specified, the specified action will only be executed if this condition is fulfilled by either or both the actor and target entities.
+                                link: bi_entity_cond
                         string-origins:set_fall_distance:
                             fall_distance:
                                 desc: The desired fall distance value.
@@ -1785,7 +2090,7 @@ links:
             type: object
             props:
                 type:
-                    href: https://origins.readthedocs.io/en/1.4.1/types/item_action_types/
+                    href: https://origins.readthedocs.io/en/latest/types/item_action_types/
                     enum:
                       - origins:nothing
                       - origins:and
@@ -1794,9 +2099,13 @@ links:
                       - origins:delay
                       - origins:if_else
                       - origins:if_else_list
+                      - origins:side
                       - origins:consume
                       - origins:damage
+                      - origins:merge_nbt
                       - origins:modify
+                      - origins:remove_enchantment
+                      - origins:holder_action
                     more:
                         string-origins:nothing: {}
                         string-origins:and:
@@ -1859,6 +2168,13 @@ links:
                                         action:
                                             desc: An action which might be executed.
                                             link: item_action
+                        string-origins:side:
+                            side:
+                                desc: The side, either "client" or "server", to apply this action on.
+                                enum: [client, server]
+                            action:
+                                desc: The action to apply.
+                                link: item_action
                         string-origins:consume:
                             amount:
                                 desc: The amount of items to remove. Defaults to 1.
@@ -1871,11 +2187,37 @@ links:
                             ignore_unbreaking:
                                 desc: Determines if this action should ignore the Unbreaking enchantment.
                                 type: boolean
+                        string-origins:merge_nbt:
+                            nbt:
+                                desc: The NBT to merge into the item.
+                                type: string
+                                ext: true
                         string-origins:modify:
                             modifier:
                                 desc: The ID of an item modifier to apply to the item stack.
                                 type: string
                                 allow: '*a-z0-9_#\/:.-'
+                        string-origins:remove_enchantment:
+                            enchantment:
+                                desc: If set, specifies a single enchantment to remove,
+                                type: string
+                                allow: '*a-z0-9_#\/:.-'
+                            enchantments:
+                                desc: If set, specifies a single enchantment to remove,
+                                type: list
+                                vals:
+                                    type: string
+                                    allow: '*a-z0-9_#\/:.-'
+                            levels:
+                                desc: If set, specifies the maximum number of levels to remove.
+                                type: integer
+                            reset_repair_cost:
+                                desc: Whether or not to reset the repair cost on the item.
+                                type: boolean
+                        string-origins:holder_action:
+                            action:
+                                desc: The action to execute on the holder of the item.
+                                link: item_action
           - title: custom
             link: custom_action
     block_action:
@@ -1885,7 +2227,7 @@ links:
             type: object
             props:
                 type:
-                    href: https://origins.readthedocs.io/en/1.4.1/types/block_action_types/
+                    href: https://origins.readthedocs.io/en/latest/types/block_action_types/
                     enum:
                       - origins:nothing
                       - origins:and
@@ -1894,12 +2236,14 @@ links:
                       - origins:delay
                       - origins:if_else
                       - origins:if_else_list
+                      - origins:offset
+                      - origins:side
+                      - origins:area_of_effect
                       - origins:add_block
                       - origins:bonemeal
                       - origins:execute_command
                       - origins:explode
                       - origins:modify_block_state
-                      - origins:offset
                       - origins:set_block
                     more:
                         string-origins:nothing: {}
@@ -1963,6 +2307,40 @@ links:
                                         action:
                                             desc: An action which might be executed.
                                             link: block_action
+                        string-origins:offset:
+                            action:
+                                desc: The action to apply with the given offset.
+                                link: block_action
+                            x:
+                                desc: How much to offset the position on the x-axis. Defaults to 0.
+                                type: integer
+                            y:
+                                desc: How much to offset the position on the y-axis. Defaults to 0.
+                                type: integer
+                            z:
+                                desc: How much to offset the position on the z-axis. Defaults to 0.
+                                type: integer
+                        string-origins:side:
+                            side:
+                                desc: The side, either "client" or "server", to apply this action on.
+                                enum: [client, server]
+                            action:
+                                desc: The action to apply.
+                                link: block_action
+                        string-origins:area_of_effect:
+                            radius:
+                                desc: Determines the radius of the area to execute the action on.
+                                type: integer
+                                default: 10
+                            shape:
+                                desc: The shape in which to affect blocks.
+                                enum: [cube, star, sphere]
+                            block_condition:
+                                desc: If specified, the specified action will only apply to blocks that fulfill this condition.
+                                link: block_cond
+                            block_action:
+                                desc: The action to apply to the blocks.
+                                link: block_action
                         string-origins:add_block:
                             block:
                                 desc: The ID of the block to place at the specified action position. Adding means setting the block at the position, offset by the direction of the action.
@@ -2019,25 +2397,48 @@ links:
                             cycle:
                                 desc: If specified, cycles through all the states of the specified property, regardless if it's a string, integer, or boolean.
                                 type: boolean
-                        string-origins:offset:
-                            action:
-                                desc: The action to apply with the given offset.
-                                link: block_action
-                            x:
-                                desc: How much to offset the position on the x-axis. Defaults to 0.
-                                type: integer
-                            y:
-                                desc: How much to offset the position on the y-axis. Defaults to 0.
-                                type: integer
-                            z:
-                                desc: How much to offset the position on the z-axis. Defaults to 0.
-                                type: integer
                         string-origins:set_block:
                             block:
                                 desc: The ID of the block to place at the targeted position, overwriting the block already there.
                                 type: string
           - title: custom
             link: custom_action
+    badge:
+        type: object
+        props:
+            type:
+                href: https://origins.readthedocs.io/en/latest/types/badge_types/
+                desc: The namespace and ID of the desired badge type.
+                enum: [origins:sprite, origins:crafting_recipe, origins:keybind, origins:tooltip]
+                more:
+                    string-origins:sprite: {}
+                    string-origins:crafting_recipe:
+                        recipe:
+                            desc: The recipe to display, including an id field which can be any arbitrary identifier.
+                            id: recipes-6
+                            link: power_recipe
+                        prefix:
+                            desc: If specified, this text will be used as the prefix for the tooltip.
+                            id: item_modifiers-12
+                            link: jsontxt
+                        suffix:
+                            desc: If specified, this text will be used as the suffix for the tooltip.
+                            id: item_modifiers-12
+                            link: jsontxt
+                    string-origins:keybind:
+                        text:
+                            desc: The text to use in the tooltip when hovering over the badge. "%s" will be translated to the keybind specified in the power.
+                            id: item_modifiers-12
+                            link: jsontxt
+                    string-origins:tooltip:
+                        text:
+                            desc: The text to use in the tooltip when hovering over the badge.
+                            id: item_modifiers-12
+                            link: jsontxt
+            sprite:
+                desc: The namespace, path and ID of the texture to use as the icon of the badge.
+                type: string
+                allow: '*a-z0-9_#\/:.-'
     power_meta:
         type: object
         show: true
@@ -2053,15 +2454,7 @@ links:
                 desc: If set, it will display icon(s) after the name of the power.
                 type: list
                 vals:
-                    type: object
-                    props:
-                        sprite:
-                            desc: ID of the texture to be displayed as an icon.
-                            type: string
-                            allow: '*a-z0-9_#\/:.-'
-                        text:
-                            desc: The string to display when you hover over the icon.
-                            type: string
+                    link: badge
                 gap: true
             hidden:
                 desc: If set to true, this power will not be displayed in the power list of the origin.
@@ -2081,7 +2474,7 @@ links:
                 gap: true
             type:
                 desc: ID of the desired Power Type.
-                href: https://origins.readthedocs.io/en/1.4.1/types/power_types/
+                href: https://origins.readthedocs.io/en/latest/types/power_types/
                 hooks: [fix_cond]
                 enum:
                   - $Regular Types
@@ -2097,6 +2490,7 @@ links:
                   - origins:creative_flight
                   - origins:damage_over_time
                   - origins:disable_regen
+                  - origins:edible_item
                   - origins:effect_immunity
                   - origins:elytra_flight
                   - origins:entity_glow
@@ -2105,6 +2499,8 @@ links:
                   - origins:fire_immunity
                   - origins:fire_projectile
                   - origins:freeze
+                  - origins:game_event_listener
+                  - origins:grounded
                   - origins:ignore_water
                   - origins:inventory
                   - origins:invisibility
@@ -2119,6 +2515,7 @@ links:
                   - origins:particle
                   - origins:phasing
                   - origins:recipe
+                  - origins:replace_loot_table
                   - origins:resource
                   - origins:restrict_armor
                   - origins:self_glow
@@ -2139,6 +2536,7 @@ links:
                   - origins:action_on_block_break
                   - origins:action_on_block_use
                   - origins:action_on_callback
+                  - origins:action_on_death
                   - origins:action_on_entity_use
                   - origins:action_on_hit
                   - origins:action_on_item_use
@@ -2157,17 +2555,22 @@ links:
                   - $Modify Types
 
                   - origins:modify_air_speed
+                  - origins:modify_attribute
                   - origins:modify_block_render
                   - origins:modify_break_speed
                   - origins:modify_camera_submersion
                   - origins:modify_crafting
                   - origins:modify_damage_dealt
                   - origins:modify_damage_taken
+                  - origins:modify_enchantment_level
                   - origins:modify_exhaustion
                   - origins:modify_falling
                   - origins:modify_fluid_render
                   - origins:modify_food
+                  - origins:modify_grindstone
                   - origins:modify_harvest
+                  - origins:modify_healing
+                  - origins:modify_insomnia_ticks
                   - origins:modify_jump
                   - origins:modify_lava_speed
                   - origins:modify_player_spawn
@@ -2176,10 +2579,11 @@ links:
                   - origins:modify_status_effect_amplifier
                   - origins:modify_status_effect_duration
                   - origins:modify_swim_speed
+                  - origins:modify_velocity
                   - origins:modify_xp_gain
 
                   - $Prevent Types
-
+                  
                   - origins:prevent_being_used
                   - origins:prevent_block_selection
                   - origins:prevent_block_use
@@ -2192,6 +2596,7 @@ links:
                   - origins:prevent_game_event
                   - origins:prevent_item_use
                   - origins:prevent_sleep
+                  - origins:prevent_sprinting
 
                   - $Addon Types (Require Addons!)
 
@@ -2201,6 +2606,7 @@ links:
                     string-origins:attribute_modify_transfer:
                         attribute:
                             desc: The namespace and ID of the attribute to transfer the value from.
+                            href: https://minecraft.wiki/w/Attribute
                             type: string
                         class:
                             desc: The path and ID of the class to transfer the value of an attribute to.
@@ -2220,7 +2626,7 @@ links:
                         update_health:
                             desc: When true, the player's health percentage will update to match their new maximum health.
                             type: boolean
-                            default: false
+                            default: true
                     string-origins:burn:
                         interval:
                             desc: Interval between being set on fire, in ticks.
@@ -2236,7 +2642,7 @@ links:
                             type: boolean
                             default: true
                         hold_condition:
-                            desc: If set and allow_holding is true, players with the power who are sneaking and meet this condition are "holding onto the block", meaning they won't be affected by gravity.
+                            desc: If set and allow_holding is true, players with the power who are sneaking and meet this condition are "holding onto the block", meaning they won't be affected by gravity. If not set, this defaults to working when sneaking.
                             link: entity_cond
                     string-origins:conditioned_attribute:
                         modifier:
@@ -2255,7 +2661,7 @@ links:
                         update_health:
                             desc: When true, the player's health percentage will update to match their new maximum health.
                             type: boolean
-                            default: false
+                            default: true
                     string-origins:conditioned_restrict_armor:
                         head:
                             desc: If set, items which satisfy this condition can not be equipped in the head slot.
@@ -2279,6 +2685,7 @@ links:
                             desc: Cooldown duration in ticks.
                             type: integer
                             min: 0
+                            default: 1
                         hud_render:
                             desc: Specifies how and if a cooldown bar is rendered.
                             link: hud_render
@@ -2303,6 +2710,10 @@ links:
                         damage_source:
                             desc: If set, this is the damage source that will be used to deal the damage.
                             link: damage_source
+                        damage_type:
+                            desc: The damage type this power uses.
+                            type: string
+                            allow: '*a-z0-9_#\/:.-'
                         protection_enchantment:
                             desc: If set, the total amount of levels of this enchantment will be counted on the player's armor to increase the onset_delay.
                             type: string
@@ -2312,7 +2723,40 @@ links:
                             type: number
                             default: 1
                     string-origins:disable_regen: {}
+                    string-origins:edible_item:
+                        item_condition:
+                            desc: Optional. If specified, only the items fulfilling this condition will be edible and execute the actions specified.
+                            link: item_cond
+                        food_component:
+                            desc: The food component (the item's hunger, saturation, etc. values) given to the entity upon consuming an item.
+                            link: food_component
+                        consume_animation:
+                            desc: Determines whether the action of consuming the item is considered "eating" ("eat") or "drinking" ("drink").
+                            enum: ["eat", "drink"]
+                        consume_sound:
+                            desc: Optional. The sound event to play when consuming the item.
+                            type: string
+                            allow: '*a-z0-9_#\/:.-'
+                        return_stack:
+                            desc: Optional. If specified, this stack will be given to the entity upon consuming an item.
+                            link: item_stack
+                        entity_action:
+                            desc: Optional. If specified, executes the specified entity action on the entity upon consuming an item.
+                            link: entity_action
+                        item_action:
+                            desc: Optional. If specified, executes the specified item action on the item consumed by the entity.
+                            link: item_action
+                        result_item_action:
+                            desc: Optional. If specified, executes the specified item action on the item given to the entity as a result of consuming an item.
+                            link: item_action
+                        priority:
+                            desc: Determines the priority of which the power will apply its modification to the item. If the item is already considered a food item, the priority value must be higher than 0 to override its already defined food component, consume action and the like.
+                            type: integer
+                            default: 0
                     string-origins:effect_immunity:
+                        inverted:
+                            desc: If set to true, only the effect(s) specified can be applied to the player.
+                            type: boolean
                         effect:
                             desc: If specified, the effect with this ID can not be applied to the player.
                             type: string
@@ -2365,6 +2809,7 @@ links:
                             desc: Duration of ticks to wait between applying exhaustion.
                             type: integer
                             min: 0
+                            default: 20
                         exhaustion:
                             desc: How much exhaustion will be applied each interval.
                             type: number
@@ -2378,6 +2823,7 @@ links:
                             desc: The number of ticks the player has to wait between uses of this power.
                             type: integer
                             min: 0
+                            default: 1
                         hud_render:
                             desc: Specifies how and if a cooldown bar is rendered.
                             link: hud_render
@@ -2390,18 +2836,22 @@ links:
                             desc: Determines the interval for firing multiple projectiles consecutively (in ticks). If set to 0 (default), it will fire all the projectiles at the same tick.
                             type: integer
                             min: 0
+                            default: 0
                         start_delay:
                             desc: Determines how long the start of the firing process is delayed (in ticks). Defaults to 0.
                             type: integer
                             min: 0
+                            default: 0
                         speed:
                             desc: The speed applied to the fired projectile. Defaults to 1.5.
                             type: number
                             min: 0
+                            default: 1.5
                         divergence:
                             desc: How much each projectile fired is affected by random spread. Defaults to 1.
                             type: number
                             min: 0
+                            default: 1
                         sound:
                             desc: If set, the sound with this ID will be played when the power is used.
                             type: string
@@ -2413,12 +2863,64 @@ links:
                         key:
                             desc: Which active key this power should respond to. If none is specified, this power will use the primary active power key (by default G).
                             link: key
+                        projectile_action:
+                            desc: An action which will run on the projectile.
+                            link: entity_action
+                        shooter_action:
+                            desc: An action which will run on the shooter of the projectile, i.e. the entity with the power.
+                            link: entity_action
                     string-origins:freeze: {}
+                    string-origins:game_event_listener:
+                        event:
+                            desc: Optional. If specified, will make the power only listen for the specified game event.
+                            type: string
+                            allow: '*a-z0-9_\/:.-'
+                        events:
+                            desc: Optional. If specified, will make the power only listen for the specified game events.
+                            type: list
+                            vals:
+                                type: string
+                                allow: '*a-z0-9_\/:.-'
+                        event_tag:
+                            desc: Optional. If specified, will make the power only listen for game events included in the specified game event tag.
+                            type: string
+                            allow: '*a-z0-9_\/:.-'
+                        range:
+                            desc: Determines how far the power can listen for game events or vibrations in blocks.
+                            type: integer
+                            default: 16
+                        block_condition:
+                            desc: Optional. If specified, only executes the actions if the game event or vibration is emitted by a block that fulfills the block condition.
+                            link: block_cond
+                        bientity_condition:
+                            desc: Optional. If specified, only executes the actions if either or both the actor (the entity that emitted the game event or vibration) and the target (the entity that has the power) fulfills the bi-entity condition.
+                            link: bi_entity_cond
+                        block_action:
+                            desc: Optional. If specified, executes the block action at the position where the game event or vibration is emitted.
+                            link: block_action
+                        bientity_action:
+                            desc: Optional. If specified, executes the bi-entity action on either or both the actor (the entity that emitted the the game event or vibration) and the target (the entity that has the power).
+                            link: bi_entity_action
+                        cooldown:
+                            desc: Determines the interval of ticks the power needs to recharge before being able to listen to game events or vibrations again.
+                            type: integer
+                            default: 1
+                        hud_render:
+                            desc: Determines how the cooldown of the power will be visualized in the HUD.
+                            link: hud_render
+                        show_particle:
+                            desc: Determines whether the vibration should emit a particle effect. It has a default value of `true`.
+                            type: boolean
+                            default: true
+                    string-origins:grounded: {}
                     string-origins:ignore_water: {}
                     string-origins:inventory:
                         title:
                             desc: The translation key or literal text to use as the display name for the inventory. Defaults to "container.inventory".
                             type: string
+                        container_type:
+                            desc: Determines the type inventory to open. Accepts "chest", "double_chest", "dropper", "dispenser" or "hopper".
+                            enum: [chest, double_chest, dropper, dispenser, hopper]
                         drop_on_death:
                             desc: When this is set to true, the player will drop the items in the inventory on death (vanishing items will vanish!).
                             type: boolean
@@ -2428,11 +2930,19 @@ links:
                         key:
                             desc: Which active key this power should respond to. If none is specified, this power will use the primary active power key (by default G).
                             link: key
+                        recoverable:
+                            desc: Whether or not the player will be given back the contents of the inventory when the power is lost.
+                            type: boolean
+                            default: true
                     string-origins:invisibility:
                         render_armor:
                             desc: Whether or not the player's armor should be shown.
                             type: boolean
                             default: false
+                        render_outline:
+                            desc: Determines whether the glowing outline should be shown or not.
+                            type: boolean
+                            default: true
                     string-origins:invulnerability:
                         damage_condition:
                             desc: Specifies which damage the player will be immune to.
@@ -2476,6 +2986,7 @@ links:
                             desc: The number of ticks the player has to wait between uses of this power.
                             type: integer
                             min: 0
+                            default: 1
                         speed:
                             desc: The speed applied to the player in the upwards direction.
                             type: number
@@ -2582,8 +3093,36 @@ links:
                         frequency:
                             desc: Determines how often the particles should spawn (interval in ticks).
                             type: integer
+                        count:
+                            desc: Determines the amount of particles to spawn.
+                            type: integer
+                            default: 1
+                        speed:
+                            desc: Determines the speed of the specified particle type.
+                            type: number
+                            default: 0
+                        spread:
+                            desc: Determines the size of the three-dimensional cuboid volume to spawn the specified particle type in.
+                            type: object
+                            props:
+                                x:
+                                    type: number
+                                    default: 0.25
+                                y:
+                                    type: number
+                                    default: 0.5
+                                z:
+                                    type: number
+                                    default: 0.25
+                        offset_y:
+                            desc: The offset of where the particle will be centered in the Y axis.
+                            type: number
+                            default: 1
                         visible_in_first_person:
                             desc: Determines whether the particle should be visible in first person.
+                            type: boolean
+                        visible_while_invisible:
+                            desc: Determines whether the particle type should be visible if the entity is invisible.
                             type: boolean
                     string-origins:phasing:
                         block_condition:
@@ -2607,6 +3146,26 @@ links:
                             id: recipes-6
                             extend: power_recipe
                             desc: The recipe to craft, including an id field which can be any arbitrary (but unique) identifier.
+                    string-origins:replace_loot_table:
+                        replace:
+                            desc: A map that maps the ids of loot tables to replace with the ids of other loot tables to replace them with.
+                            type: object
+                            extra:
+                                type: string
+                                allow: '*a-z0-9_#\/:.-'
+                        priority:
+                            desc: Priority of applying this replacement, vs others.
+                            type: integer
+                            default: 0
+                        bientity_condition:
+                            desc: A bi-entity condition between the player and the entity with a loot table.
+                            link: bi_entity_cond
+                        item_condition:
+                            desc: An item condition of the item to change the loot table of.
+                            link: item_cond
+                        block_condition:
+                            desc: A block condition of the block to change the loot table of.
+                            link: block_cond
                     string-origins:resource:
                         min:
                             desc: The minimum value of the resource.
@@ -2758,6 +3317,10 @@ links:
                             type: list
                             vals:
                                 type: string
+                        order:
+                            desc: Specifies the position of this tooltip among the other lines of information about the specified item(s).
+                            type: integer
+                            default: 0
                     string-origins:walk_on_fluid:
                         fluid:
                             desc: |
@@ -2792,6 +3355,10 @@ links:
                             desc: Determines the result of the action. Accepts "consume", "consume_partial", "fail", "pass" or "success".
                             enum: [consume, consume_partial, fail, pass, success]
                             default: 4
+                        priority:
+                            desc: Specifies which actions this action should override. Higher numbers mean it's higher priority, which means it will override actions with lower priorities that would have otherwise executed.
+                            type: integer
+                            default: 0
                     string-origins:action_on_block_break:
                         entity_action:
                             desc: If set, this action will be executed on the player when a block is broken.
@@ -2861,6 +3428,16 @@ links:
                         entity_action_respawned:
                             desc: If set, this action will be executed on the player right after the player respawns, after the entity_action_removed.
                             link: entity_action
+                    string-origins:action_on_death:
+                        bientity_action:
+                            desc: The action to execute on either or both the target (the entity that died) and the actor (the killer).
+                            link: bi_entity_action
+                        damage_condition:
+                            desc: If specified, will make the action only execute if the damage dealt to the target (the entity that died) fulfills the specified damage condition.
+                            link: damage_cond
+                        bientity_condition:
+                            desc: If specified, will make the action only execute if the actor (the killer) and the target (the entity that died) fulfill the specified bi-entity condition.
+                            link: bi_entity_cond
                     string-origins:action_on_entity_use:
                         bientity_action:
                             desc: If set, executes a bi-entity action that can execute on both the 'actor' (player) and 'target' entity.
@@ -2889,6 +3466,10 @@ links:
                             desc: Determines the result of the action. Accepts "consume", "consume_partial", "fail", "pass" or "success".
                             enum: [consume, consume_partial, fail, pass, success]
                             default: 4
+                        priority:
+                            desc: Specifies which actions this action should override. Higher numbers mean it's higher priority, which means it will override actions with lower priorities that would have otherwise executed.
+                            type: integer
+                            default: 0
                     string-origins:action_on_hit:
                         bientity_action:
                             desc: The action to execute upon hit.
@@ -2903,6 +3484,7 @@ links:
                             desc: Interval of ticks this power needs to recharge before the action can be executed again.
                             type: integer
                             min: 0
+                            default: 1
                         hud_render:
                             desc: Determines how the cooldown of this power is visualized on the HUD.
                             link: hud_render
@@ -2916,6 +3498,19 @@ links:
                         item_condition:
                             desc: If set, the actions will only trigger when this item condition is met by the item stack before use.
                             link: item_cond
+                        trigger:
+                            desc: |
+                                Defines when the action is executed.
+                                "finish" - The action will execute when the entity finishes (as in, completes) using an item which has a use duration, such as eating food.
+                                "start" - The action will execute when the entity starts using an item which has a use duration.
+                                "stop" - The action will execute when the entity stops using an item which has a use duration, before the maximum use duration has been reached. Compared to finish, this can be used to detect shooting a bow, for example.
+                                "during" - The action will be called every tick while the entity is using an item which has a use duration.
+                                "instant" - The action will not fire for items with a use duration, but will instead fire when an item is used which triggers its effect instantly, such as an ender pearl or splash potion.
+                            enum: [finish, start, stop, during, instant]
+                        priority:
+                            desc: Determines the execution priority of the power.
+                            type: integer
+                            default: 0
                     string-origins:action_on_land:
                         entity_action:
                             desc: The action to execute on the player.
@@ -2935,6 +3530,7 @@ links:
                             desc: Interval of ticks between subsequent executions of the action. Must be a value of at least 1.
                             type: integer
                             min: 1
+                            default: 20
                         entity_action:
                             desc: The action to execute on the player each interval.
                             link: entity_action
@@ -2955,6 +3551,7 @@ links:
                             desc: Interval of ticks this power needs to recharge before the power can be triggered again.
                             type: integer
                             min: 0
+                            default: 1
                         hud_render:
                             desc: Determines how the cooldown of this power is visualized on the HUD.
                             link: hud_render
@@ -2972,6 +3569,7 @@ links:
                             desc: Interval of ticks this power needs to recharge before the action can be executed again.
                             type: integer
                             min: 0
+                            default: 1
                         hud_render:
                             desc: Determines how the cooldown of this power is visualized on the HUD.
                             link: hud_render
@@ -3000,6 +3598,7 @@ links:
                             desc: Interval of ticks this power needs to recharge before the action can be executed again.
                             type: integer
                             min: 0
+                            default: 1
                         hud_render:
                             desc: Determines how the cooldown of this power is visualized on the HUD.
                             link: hud_render
@@ -3034,6 +3633,7 @@ links:
                             desc: Interval of ticks this power needs to recharge before the action can be executed again.
                             type: integer
                             min: 0
+                            default: 1
                         hud_render:
                             desc: Determines how the cooldown of this power is visualized on the HUD.
                             link: hud_render
@@ -3048,6 +3648,7 @@ links:
                             desc: Interval of ticks this power needs to recharge before the action can be executed again.
                             type: integer
                             min: 0
+                            default: 1
                         hud_render:
                             desc: Determines how the cooldown of this power is visualized on the HUD.
                             link: hud_render
@@ -3065,6 +3666,7 @@ links:
                             desc: Interval of ticks this power needs to recharge before the action can be executed again.
                             type: integer
                             min: 0
+                            default: 1
                         hud_render:
                             desc: Determines how the cooldown of this power is visualized on the HUD.
                             link: hud_render
@@ -3074,6 +3676,20 @@ links:
                             link: a_mod
                         modifiers:
                             desc: If specified, these modifiers will be applied to the entity's air speed.
+                            type: list
+                            vals:
+                                link: a_mod
+                    string-origins:modify_attribute:
+                        attribute:
+                            desc: ID of the attribute of which the modifier should be applied.
+                            href: https://minecraft.wiki/w/Attribute
+                            type: string
+                            allow: '*a-z0-9_#\/:.-'
+                        modifier:
+                            desc: If specified, this modifier will be applied to the entity's attribute.
+                            link: a_mod
+                        modifiers:
+                            desc: If specified, these modifiers will be applied to the entity's attribute.
                             type: list
                             vals:
                                 link: a_mod
@@ -3116,6 +3732,9 @@ links:
                             desc: If set, replaces the result item stack of the recipe.
                             link: item_stack
                         item_action:
+                            desc: If set, execute this item action on the result item stack.
+                            link: item_action
+                        item_action_after_crafting:
                             desc: If set, execute this item action on the result item stack.
                             link: item_action
                         entity_action:
@@ -3175,6 +3794,26 @@ links:
                         attacker_action:
                             desc: If set, this action will be executed on the attacker whenever this power applies a modification.
                             link: entity_action
+                        apply_armor_condition:
+                            desc: If set, the damage will only be reduced by armor if the player satisfies this condition.
+                            link: entity_cond
+                        damage_armor_condition:
+                            desc: If set, the player's armor will only be damaged if said player satisfies this condition.
+                            link: entity_cond
+                    string-origins:modify_enchantment_level:
+                        enchantment:
+                            desc: The ID of the enchantment to apply/modify the level of to the entity.
+                            allow: '*a-z0-9_\/:.-'
+                        item_condition:
+                            desc: If specified, this modifier only applies/modifies the level of the specified enchantment to/from the entity if this condition is fulfilled by the item with the enchantment on it.
+                        modifier:
+                            desc: If specified, this modifier will be applied to the current level of the enchantment from the entity.
+                            link: a_mod
+                        modifiers:
+                            desc: If specified, these modifiers will be applied to the current level of the enchantment from the entity.
+                            type: list
+                            vals:
+                                link: a_mod
                     string-origins:modify_exhaustion:
                         modifier:
                             desc: If specified, this modifier will be applied to the exhaustion amount.
@@ -3238,6 +3877,41 @@ links:
                         prevent_effects:
                             desc: If set to true, prevent status effects from being applied.
                             type: boolean
+                    string-origins:modify_grindstone:
+                        block_condition:
+                            desc: Optional, a block condition that must match the grindstone for the power to be applied.
+                            link: block_cond
+                        block_action:
+                            desc: Optional. a block action applied to the grindstone after grinding is complete.
+                            link: block_action
+                        top_condition:
+                            desc: Optional, an item condition that must match the top slot of the grindstone for the power to be applied.
+                            link: item_cond
+                        bottom_condition:
+                            desc: Optional, an item condition that must match the bottom slot of the grindstone for the power to be applied.
+                            link: item_cond
+                        output_condition:
+                            desc: Optional, an item condition that must match the output of the grindstone for the power to be applied.
+                            link: item_cond
+                        item_action:
+                            desc: Optional, an item action applied to the item before grinding.
+                            link: item_action
+                        item_action_after_grinding:
+                            desc: Optional, an item action applied to the item after grinding.
+                            link: item_action
+                        result_type:
+                            desc: If specified, changes how the result stack is gotten. Use "specified" to use the stack specified by "Result Stack"
+                            enum: [unchanged, specified, from_top, from_bottom]
+                            unspec: true
+                        result_stack:
+                            desc: If specified, changes the result stack that comes from the grindstone. Make sure "Result Type" is set to "specified."
+                            link: item_stack
+                        entity_action:
+                            desc: Optional, an entity action applied on the player after grinding is complete.
+                            link: entity_action
+                        xp_modifier:
+                            desc: If set, this modifier will apply to the xp gained by grinding the item.
+                            link: a_mod
                     string-origins:modify_harvest:
                         block_condition:
                             desc: If set, the modification will only apply to blocks which satisfy this condition.
@@ -3246,6 +3920,24 @@ links:
                             desc: When true, the player will be able to harvest the blocks. When false, the player will not be able to harvest the blocks.
                             type: boolean
                             default: false
+                    string-origins:modify_healing:
+                        modifier:
+                            desc: If specified, this modifier will be applied to the entity's healing.
+                            link: a_mod
+                        modifiers:
+                            desc: If specified, these modifiers will be applied to the entity's healing.
+                            type: list
+                            vals:
+                                link: a_mod
+                    string-origins:modify_insomnia_ticks:
+                        modifier:
+                            desc: If specified, this modifier will be applied to the insomnia ticks.
+                            link: a_mod
+                        modifiers:
+                            desc: If specified, these modifiers will be applied to the insomnia ticks.
+                            type: list
+                            vals:
+                                link: a_mod
                     string-origins:modify_jump:
                         modifier:
                             desc: If specified, this modifier will be applied to the upwards jump velocity.
@@ -3324,17 +4016,29 @@ links:
                                 link: a_mod
                     string-origins:modify_status_effect_amplifier:
                         status_effect:
-                            desc: The namespace and ID of the status effect that will have its amplifier modified.
+                            desc: If specified, the namespace and ID of the status effect that will have its amplifier modified.
                             type: string
                             allow: '*a-z0-9_#\/:.-'
+                        status_effects:
+                            desc: If specified, the namespace and ID of the status effects that will have their amplifiers modified.
+                            type: list
+                            vals:
+                                type: string
+                                allow: '*a-z0-9_#\/:.-'
                         modifier:
                             desc: The modifier to apply to the amplifier of the specified status effect.
                             link: a_mod
                     string-origins:modify_status_effect_duration:
                         status_effect:
-                            desc: The namespace and ID of the status effect that will have its duration modified.
+                            desc: If specified, the namespace and ID of the status effect that will have its duration modified.
                             type: string
                             allow: '*a-z0-9_#\/:.-'
+                        status_effects:
+                            desc: If specified, the namespace and ID of the status effects that will have their durations modified.
+                            type: list
+                            vals:
+                                type: string
+                                allow: '*a-z0-9_#\/:.-'
                         modifier:
                             desc: The modifier to apply to the duration of the specified status effect.
                             link: a_mod
@@ -3347,6 +4051,20 @@ links:
                             type: list
                             vals:
                                 link: a_mod
+                    string-origins:modify_velocity:
+                        modifier:
+                            desc: If specified, this modifier will be applied to the player's velocity in the given axes.
+                            link: a_mod
+                        modifiers:
+                            desc: If specified, these modifiers will be applied to the player's velocity in the given axes.
+                            type: list
+                            vals:
+                                link: a_mod
+                        axes:
+                            desc: The axes to modify.
+                            type: list
+                            vals:
+                                enum: [x, y, z]
                     string-origins:modify_xp_gain:
                         modifier:
                             desc: If specified, this modifier will be applied to the experience gained.
@@ -3374,7 +4092,7 @@ links:
                             desc: Determines if the power should be activated if the other player used the specified hand slot(s). Accepts "off_hand", "main_hand" or both.
                             type: list
                             vals:
-                                type: string
+                                enum: [off_hand, main_hand]
                         result_stack:
                             desc: If specified, gives an item stack to the player.
                             link: item_stack
@@ -3438,7 +4156,7 @@ links:
                         feature:
                             desc: |
                                 If specified, this feature renderer (e.g: armor layer, sheep wool layer, or the sub-classes that extends the FeatureRender super-class) will not be rendered to the entity that has the power.
-                            href: https://origins.readthedocs.io/en/1.4.1/types/power_types/prevent_feature_render/
+                            href: https://origins.readthedocs.io/en/latest/types/power_types/prevent_feature_render/
                             type: string
                             allow: '*a-z0-9_#\/:.-'
                         features:
@@ -3450,7 +4168,7 @@ links:
                     string-origins:prevent_game_event:
                         event:
                             desc: If specified, the game event with this namespace and ID will be prevent from being emitted by the entity.
-                            href: https://origins.readthedocs.io/en/1.4.1/types/power_types/prevent_game_event/
+                            href: https://origins.readthedocs.io/en/latest/types/power_types/prevent_game_event/
                             type: string
                             allow: '*a-z0-9_#\/:.-'
                         events:
@@ -3482,6 +4200,7 @@ links:
                             desc: If false, right-clicking the bed while sleeping is prevented with this power will prevent the player from setting their the spawn point.
                             type: boolean
                             default: true
+                    string-origins:prevent_sprinting: {}
                     string-extraorigins:modify_size:
                         scale:
                             desc: A multiplier modifying the scale of the player's specified attributes. You don't have to use extraorigins for this power; click here to see an example of a power that works in regular origins!
@@ -3532,6 +4251,7 @@ links:
                 const: origins:multiple
         extra:
             nopanel: true
+            allow: '*a-z0-9_#\/:.-'
             or:
               - link: power_base
               - link: custom_power_base
@@ -3573,7 +4293,7 @@ links:
         type: object
         props:
             item:
-                id: predicates-8
+                id: predicates-15
                 link: item
             amount:
                 desc: Size of the stack. Defaults to 1.
@@ -3587,38 +4307,76 @@ links:
         extend: item_stack
         props:
             slot:
-                desc: Inventory slot position of the stack. If not specified, will be the first free slot in the inventory. Click to see for possible values.
-                href: https://origins.readthedocs.io/en/1.4.1/misc/extras/positioned_item_stack_slots/#positioned_item_stack_slots
-                type: integer
-    mod_op:
+                link: slot
+    aa_mod_op:
+        href: https://origins.readthedocs.io/en/latest/types/data_types/attributed_attribute_modifier_operation/
         desc: "Can be one of\n\"addition\", which adds (or subtracts) the modifier value to the base value.\n    (NewValue = OldValue + ModifierValue).\n\"multiply_base\", which adds (or subtracts) the base value multiplied by the modifier value to the base value.\n    (NewValue = OldValue + BaseValue * (1 + ModifierValue)).\n\"multiply_total\", which multiplies the total value by the modifier value + 1.\n    (NewValue = OldValue * (1 + ModifierValue)).\n\nThe BaseValue for that attribute for the entity in question after ONLY all \"addition\" operations have been applied.\nAll \"addition\" operations occur first, then all \"multiply_base\" operations, then on the result all \"multiply_total\" operations are applied."
         enum: [addition, multiply_base, multiply_total]
+    a_mod_op:
+        href: https://origins.readthedocs.io/en/latest/types/data_types/attribute_modifier_operation/
+        desc: |
+            Can be one of
+            "add_base_early", which adds (or subtracts) the modifier value to the base value. (NewBaseValue = BaseValue + ModifierValue).
+            "multiply_base_additive", which adds (or subtracts) the base value multiplied by the modifier value to the current base value. (NewBaseValue = BaseValue + (BaseValue * ModifierValue)).
+            "multiply_base_multiplicative", which multiplies the current base value by the modifier value. (NewBaseValue = BaseValue * (1 + ModifierValue)).
+            "add_base_late", which adds (or subtracts) the modifier value to the base value. (NewBaseValue = BaseValue + ModifierValue).
+            "min_base", which uses the modifier value as the minimum value for the base value using Java's built-in Math#max method. (NewBaseValue = Math.max(BaseValue, ModifierValue)).
+            "max_base", which uses the modifier value as the maximum value for the base value using Java's built-in Math#min method. (NewBaseValue = Math.min(BaseValue, ModifierValue)).
+            "set_base", which sets the modifier value as the base value. (NewBaseValue = ModifierValue).
+            "multiply_total_additive", which multiplies the total value by the current total value multiplied by the modifier value. (NewTotalValue = TotalValue * (TotalValue * ModifierValue)).
+            "multiply_total_multiplicative", which multiplies the total value by the modifier value + 1. (NewTotalValue = TotalValue * (1 + ModifierValue)).
+            "min_total", which uses the modifier value as the minimum value for the total value using Java's built-in Math#max method. (NewTotalValue = Math.max(TotalValue, ModifierValue)).
+            "max_total", which uses the modifier value as the maximum value for the total value using Java's built-in Math#min method. (NewTotalValue = Math.min(TotalValue, ModifierValue)).
+            "set_total", which sets the modifier value as the total value. (NewTotalValue = ModifierValue).
+
+            The listed values are ordered based on the order of priority; with add_base_early being applied before the other modifiers and set_total being applied last.
+
+            The other three options are only here for legacy support.
+        enum:
+          - add_base_early
+          - multiply_base_additive
+          - multiply_base_multiplicative
+          - add_base_late
+          - min_base
+          - max_base
+          - set_base
+          - multiply_total_additive
+          - multiply_total_multiplicative
+          - min_total
+          - max_total
+          - set_total
+          - addition
+          - multiply_base
+          - multiply_total
     a_mod:
         desc: An Object used to specify how a specific attribute should be modified.
-        href: https://origins.readthedocs.io/en/1.4.1/types/data_types/attribute_modifier/
+        href: https://origins.readthedocs.io/en/latest/types/data_types/attribute_modifier/
         type: object
         props:
             operation:
-                desc: The operation which will be performed by this modifier.
-                link: mod_op
+                link: a_mod_op
             value:
                 desc: The value with which to apply the operation to the value.
                 type: number
+            resource:
+                desc: If specified, the value of this power will be used instead of the value specified in the value field.
+                type: string
+                allow: '*a-z0-9_#\/:.-'
             name:
                 desc: (Optional) A descriptive name for the modifier, describing where it comes from.
                 type: string
     aa_mod:
         desc: An Object used to specify how a specific attribute should be modified. Basically an Attribute Modifier with an additional attribute field.
-        href: https://origins.readthedocs.io/en/1.4.1/types/data_types/attributed_attribute_modifier/
+        href: https://origins.readthedocs.io/en/latest/types/data_types/attributed_attribute_modifier/
         type: object
         props:
             attribute:
                 desc: ID of the attribute which will be modified by this modifier.
+                href: https://minecraft.wiki/w/Attribute
                 type: string
                 allow: '*a-z0-9_#\/:.-'
             operation:
-                desc: The operation which will be performed by this modifier.
-                link: mod_op
+                link: aa_mod_op
             value:
                 desc: The value with which to apply the operation to the value.
                 type: number
@@ -3627,7 +4385,7 @@ links:
                 type: string
     hud_render:
         desc: An Object used to define how a resource or cooldown bar should be rendered.
-        href: https://origins.readthedocs.io/en/1.4.1/types/data_types/hud_render/
+        href: https://origins.readthedocs.io/en/latest/types/data_types/hud_render/
         type: object
         props:
             should_render:
@@ -3636,7 +4394,7 @@ links:
                 default: true
             sprite_location:
                 desc: The path to the file in the assets which contains what the bar looks like. See the List of resource bar files for a list of files included by default in the mod. Defaults to "origins:textures/gui/resource_bar.png".
-                href: https://origins.readthedocs.io/en/1.4.1/misc/extras/sprites/
+                href: https://origins.readthedocs.io/en/latest/misc/extras/sprites/
                 type: string
                 allow: '*a-z0-9_#\/:.-'
             bar_index:
@@ -3651,12 +4409,12 @@ links:
                 type: boolean
     damage_source:
         desc: An Object used to specify how to deal damage to an entity.
-        href: https://origins.readthedocs.io/en/1.4.1/types/data_types/damage_source/
+        href: https://origins.readthedocs.io/en/latest/types/data_types/damage_source/
         type: object
         props:
             name:
                 desc: The name of the damage source. Controls death message as well as other interactions. Consider vanilla damage sources when picking a name.
-                href: https://origins.readthedocs.io/en/1.4.1/misc/extras/damage_source_names/#list_of_vanilla_damage_source_names
+                href: https://origins.readthedocs.io/en/latest/misc/extras/damage_source_names/#list_of_vanilla_damage_source_names
                 type: string
             bypasses_armor:
                 desc: When true, armor values are not taken into account when calculating the actual damage amount taken.
@@ -3680,7 +4438,7 @@ links:
             props:
                 key:
                     desc: A string specifying the keybinding. Click for possible vanilla and origins values.
-                    href: https://origins.readthedocs.io/en/1.4.1/misc/extras/keybindings/
+                    href: https://origins.readthedocs.io/en/latest/misc/extras/keybindings/
                     type: string
                 continuous:
                     desc: Whether the keybinding should only trigger the power on the first tick the key is held down, or, if set to true, continuously on each tick while the key is held.
@@ -3689,7 +4447,7 @@ links:
             enum: [primary, secondary]
         unspec: true
     effect:
-        desc: An Object used to define a status effect with duration, amplifier, etc.
+        desc: An object used to define a status effect with duration, amplifier, etc.
         type: object
         props:
             effect:
@@ -3715,6 +4473,15 @@ links:
                 desc: Whether the status effect will show an icon on the HUD.
                 type: boolean
                 default: true
+    effect_chance:
+        type: object
+        props:
+            effect:
+                link: effect
+            chance:
+                desc: The probability of the effect being granted, from 0-1. 0 means 0% and 1 means 100%
+                type: number
+                default: 1
     comparison:
         desc: How the state should be compared to the specified value.
         enum: ['<', '<=', '>', '>=', '==', '!=']
@@ -3754,6 +4521,57 @@ links:
                     desc: The additional parameter(s) for the particle type.
                     type: string
                     ext: true
+    slot:
+        desc: A slot in an inventory to apply to.
+        href: https://origins.readthedocs.io/en/latest/types/data_types/item_slot/
+        or:
+          - type: string
+            allow: '*a-z0-9_#\/:.-'
+          - type: integer
+    slots:
+        desc: A list of slots in an inventory to apply to.
+        href: https://origins.readthedocs.io/en/latest/types/data_types/item_slot/
+        or:
+          - name: new
+            type: list
+            vals:
+                type: string
+                allow: '*a-z0-9_#\/:.-'
+          - name: old
+            type: list
+            vals:
+                link: slot
+    process_mode:
+        desc: Determines how the item stack(s) in the specified inventory/inventories are processed. If "items", matching item stacks are processed, counted, or deleted as individual items. If "stacks", matching item stacks are processed, counted, matched, or deleted as one.
+        enum: [items, stacks]
+    food_component:
+        desc: The item's hunger, saturation, etc. values.
+        type: object
+        props:
+            hunger:
+                desc: The amount of hunger (in half drumsticks) the item fulfills.
+                type: integer
+            saturation:
+                desc: How fulfilling the item is. For vanilla item values, click here
+                href: https://minecraft.wiki/w/Hunger#Food_level_and_saturation_level_restoration
+                type: number
+            meat:
+                desc: Whether the item is considered as meat or not.
+                type: boolean
+            always_edible:
+                desc: Whether the item is always edible (like golden apples) or not.
+                type: boolean
+            snack:
+                desc: Whether the item is considered a snack or not.
+                type: boolean
+            effect:
+                desc: If specified, an effect that this item could grant to the consuming entity.
+                link: effect_chance
+            effects:
+                desc: If specified, effects that this item could grant to the consuming entity.
+                type: list
+                vals:
+                    link: effect_chance
 or:
   - title: simple
     link: power

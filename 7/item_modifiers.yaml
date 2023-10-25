@@ -171,7 +171,7 @@ links:
                             desc: The internal name of the objective to display the player's score in.
                             type: string
                         value:
-                            desc: Optional. If present, this value is displayed regardless of what the score would have been.
+                            desc: Optional. If specified, this value is displayed regardless of what the score would have been.
                             type: string
           - title: selector
             type: object

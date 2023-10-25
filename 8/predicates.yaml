@@ -711,7 +711,7 @@ links:
                                     max:
                                         link: intprov
                         period:
-                            desc: If present, time gets modulo-divided by this value (for example, if set to 24000, value operates on a time period of daytime ticks just like /time query daytime).
+                            desc: If specified, time gets modulo-divided by this value (for example, if set to 24000, value operates on a time period of daytime ticks just like /time query daytime).
                             type: integer
                             min: 1
                     string-minecraft:weather_check:
