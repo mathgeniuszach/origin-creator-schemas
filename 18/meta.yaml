@@ -18,10 +18,11 @@ links:
         max: 18
         hooks: [refresh]
         gap: true
+    
     pack_formats:
         desc: Optional. A range of "Pack Format"s this pack supports. If specified, "pack_format" is still required and must be in this range. For an array, specify exactly two numbers for minimum and maximum versions (inclusive), no more, no less.
         or:
-            title: range
+          - title: range
             type: object
             props:
                 min_inclusive:

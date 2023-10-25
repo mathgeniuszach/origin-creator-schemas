@@ -308,12 +308,12 @@ links:
                 source:
                     desc: Specifies the source. Set to block_entity for the block entity of the destroyed block, this to use the entity that died or the player that gained the advancement, opened the container or broke the block, killer for the killer, or killer_player for a killer that is a player.
                     or:
-                        - enum:
-                            - block_entity
-                            - this
-                            - killer
-                            - killer_player
-                        - type: object
+                      - enum:
+                          - block_entity
+                          - this
+                          - killer
+                          - killer_player
+                      - type: object
                         props:
                             type:
                                 enum: [context, storage]
@@ -395,9 +395,9 @@ links:
             string-minecraft:limit_count:
                 limit:
                     or:
-                        - id: predicates-12
+                      - id: predicates-12
                         link: intprov
-                        - type: object
+                      - type: object
                         props:
                             min:
                                 id: predicates-12
@@ -439,14 +439,14 @@ links:
                             slot:
                                 desc: Slot the item could be in for the modifier to take effect. If a list is specified, one will be chosen randomly.
                                 or:
-                                    - enum:
-                                        - mainhand
-                                        - offhand
-                                        - feet
-                                        - legs
-                                        - chest
-                                        - head
-                                    - type: list
+                                  - enum:
+                                      - mainhand
+                                      - offhand
+                                      - feet
+                                      - legs
+                                      - chest
+                                      - head
+                                  - type: list
                                     vals:
                                         type: string
             string-minecraft:set_banner_pattern:
@@ -533,10 +533,10 @@ links:
                 lore:
                     desc: List of JSON text components. Each list entry represents one line of the lore. Advanced components are resolved only if entity successfully targets an entity.
                     or:
-                        - type: list
+                      - type: list
                         vals:
                             type: string
-                        - type: list
+                      - type: list
                         vals:
                             link: jsontxt
                 entity:
