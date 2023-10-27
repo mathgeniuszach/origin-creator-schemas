@@ -47,6 +47,7 @@ links:
                 tag:
                     type: string
                     allow: '*a-z0-9_:-'
+
     result:
         desc: The output item of the recipe.
         type: object
@@ -82,10 +83,10 @@ links:
                             type: object
                             extra:
                                 nopanel: true
-                                id: recipes-6
+                                id: recipes-15
                                 extend: oritem
                         result:
-                            id: recipes-6
+                            id: recipes-15
                             link: result
                     string-minecraft:crafting_shapeless:
                         ingredients:
@@ -93,7 +94,7 @@ links:
                             vals:
                                 link: oritem
                         result:
-                            id: recipes-6
+                            id: recipes-15
                             link: result
     recipe:
         type: or
@@ -120,7 +121,7 @@ links:
                                 type: object
                                 extra:
                                     nopanel: true
-                                    id: recipes-6
+                                    id: recipes-15
                                     extend: oritem
                             result:
                                 link: result
@@ -144,6 +145,9 @@ links:
                                 props:
                                     item:
                                         link: item
+                            template:
+                                desc: Ingredient specifying an item to act as the template.
+                                link: itemtag
                         string-minecraft:stonecutting:
                             ingredient:
                                 link: oritem
@@ -165,7 +169,7 @@ links:
                     gap: true
                 ingredient:
                     desc: The ingredient or list of acceptable incredients cooked by this recipe.
-                    id: recipes-6
+                    id: recipes-15
                     link: oritem
                 result:
                     extend: item
