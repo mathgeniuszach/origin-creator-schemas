@@ -209,9 +209,8 @@ links:
             type: object
             props:
                 type:
-                    desc: The type of the recipe
+                    desc: The type of the recipe.
                     type: string
-                    gap: true
             extra:
                 id: powers-15
                 link: nany
