@@ -17,10 +17,10 @@ links:
         min: 1
         max: 18
         hooks: [refresh]
-        gap: true
     
     pack_formats:
         desc: Optional. A range of "Pack Format"s this pack supports. If specified, "pack_format" is still required and must be in this range. For an array, specify exactly two numbers for minimum and maximum versions (inclusive), no more, no less.
+        unspec: none
         or:
           - title: range
             type: object
@@ -57,6 +57,7 @@ props:
         link: pack_format
     supported_formats:
         link: pack_formats
+        gap: true
     authors:
         type: list
         desc: A list of people who made this pack, one name per line.
