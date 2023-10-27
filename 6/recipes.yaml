@@ -141,6 +141,7 @@ links:
                             result:
                                 type: object
                                 show: true
+                                showpanel: true
                                 props:
                                     item:
                                         link: item
