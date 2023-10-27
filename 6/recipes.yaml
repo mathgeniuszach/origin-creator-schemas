@@ -208,5 +208,6 @@ links:
                     type: string
                     gap: true
             extra:
+                id: powers-6
                 link: nany
 link: recipe
