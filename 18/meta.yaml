@@ -77,7 +77,7 @@ props:
         desc: |
             The license your pack falls under. If left blank, defaults to "Unknown", which typically means "All Rights Reserved".
             I recommend setting this to CC BY 4.0, which means anyone can use your pack for any purpose and make changes as they desire, as long as they give you credit.
-    license-text:
+    license_text:
         type: string
         ext: true
         desc: |
