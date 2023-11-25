@@ -101,6 +101,12 @@ props:
                         path:
                             type: string
     overlays:
+        type: object
+        desc: |
+            List of overlays. The order is important, as the first in the list will be applied first.
+            Overlays are sub-packs applied over the "normal" contents of a pack.
+            Their directories have their own assets and data directories, and are placed in the pack's root directory.
+            NOTE: THIS FIELD IS IGNORED IN FABRIC MOD EXPORTS
         props:
             entries:
                 desc: |
