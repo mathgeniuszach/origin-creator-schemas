@@ -83,34 +83,39 @@ props:
         desc: |
             If you want to include a LICENSE file inside your mod, datapack, and resource pack, you can put it's content in this box.
             Leaving this blank will not include a LICENSE file in the pack.
-    # filter:
-    #     type: object
-    #     desc: |
-    #         Section for filtering out files from data packs applied below this one.
-    #         Any file that matches one of the patterns inside block will be treated as if it was not present in the pack at all.
-    #     props:
-    #         block:
-    #             type: list
-    #             vals:
-    #                 type: object
-    #                 props:
-    #                     namespace:
-    #                         type: string
-    #                     path:
-    #                         type: string
-    # overlays:
-    #     props:
-    #         entries:
-    #             desc: List of overlays. The order is important, as the first in the list will be applied first. Overlays are sub-packs applied over the "normal" contents of a pack. Their directories have their own assets and data directories, and are placed in the pack's root directory.
-    #             type: list
-    #             vals:
-    #                 type: object
-    #                 props:
-    #                     formats:
-    #                         desc: A range of pack formats when this overlay should be active
-    #                         link: pack_formats
-    #                     directory:
-    #                         desc: Overlay directory.
-    #                         type: string
-    #                         allow: a-z0-9_-
+    filter:
+        type: object
+        desc: |
+            Section for filtering out files from data packs applied below this one.
+            Any file that matches one of the patterns inside block will be treated as if it was not present in the pack at all.
+            NOTE: THIS FIELD IS IGNORED IN FABRIC MOD EXPORTS
+        props:
+            block:
+                type: list
+                vals:
+                    type: object
+                    props:
+                        namespace:
+                            type: string
+                        path:
+                            type: string
+    overlays:
+        props:
+            entries:
+                desc: |
+                    List of overlays. The order is important, as the first in the list will be applied first.
+                    Overlays are sub-packs applied over the "normal" contents of a pack.
+                    Their directories have their own assets and data directories, and are placed in the pack's root directory.
+                    NOTE: THIS FIELD IS IGNORED IN FABRIC MOD EXPORTS
+                type: list
+                vals:
+                    type: object
+                    props:
+                        formats:
+                            desc: A range of pack formats when this overlay should be active
+                            link: pack_formats
+                        directory:
+                            desc: Overlay directory.
+                            type: string
+                            allow: a-z0-9_-
 

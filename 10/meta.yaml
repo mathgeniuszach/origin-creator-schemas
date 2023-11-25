@@ -58,18 +58,19 @@ props:
         desc: |
             If you want to include a LICENSE file inside your mod, datapack, and resource pack, you can put it's content in this box.
             Leaving this blank will not include a LICENSE file in the pack.
-    # filter:
-    #     type: object
-    #     desc: |
-    #         Section for filtering out files from data packs applied below this one.
-    #         Any file that matches one of the patterns inside block will be treated as if it was not present in the pack at all.
-    #     props:
-    #         block:
-    #             type: list
-    #             vals:
-    #                 type: object
-    #                 props:
-    #                     namespace:
-    #                         type: string
-    #                     path:
-    #                         type: string
+    filter:
+        type: object
+        desc: |
+            Section for filtering out files from data packs applied below this one.
+            Any file that matches one of the patterns inside block will be treated as if it was not present in the pack at all.
+            NOTE: THIS FIELD IS IGNORED IN FABRIC MOD EXPORTS
+        props:
+            block:
+                type: list
+                vals:
+                    type: object
+                    props:
+                        namespace:
+                            type: string
+                        path:
+                            type: string
