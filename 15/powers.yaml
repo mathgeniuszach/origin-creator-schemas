@@ -642,9 +642,8 @@ links:
                                 type: number
                         string-origins:scoreboard:
                             name:
-                                desc: The name of the player to retrieve the scoreboard objective from.
+                                desc: A selector to retrieve the scoreboard objective from. Leave blank for the entity with the power.
                                 type: string
-                                allow: '*a-z0-9_#\/:.-'
                             objective:
                                 desc: The name of the scoreboard objective to retrieve the value from (referred to as the score) and compare.
                                 type: string
