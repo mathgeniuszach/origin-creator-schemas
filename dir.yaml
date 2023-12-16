@@ -1,4 +1,4 @@
-$: 142
+$: 143
 6:
   - meta
   - recipes
@@ -48,8 +48,8 @@ $: 142
   - loot_tables
 18:
   - meta
-  - item_modifiers
   - powers
   - origins
   - origin_layers
   - loot_tables
+  - item_modifiers
