@@ -235,12 +235,14 @@ links:
                     link: single_pred
             function:
                 desc: A function or list of functions to apply.
-                or:
-                  - title: single
-                    link: function
-                  - type: list
-                    vals:
-                        link: function
+                title: single
+                link: function
+                # or:
+                #   - title: single
+                #     link: function
+                #   - type: list
+                #     vals:
+                #         link: function
     function:
         desc: Namespaced ID of the function to apply.
         ns: minecraft
