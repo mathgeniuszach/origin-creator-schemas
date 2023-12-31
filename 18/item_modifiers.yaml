@@ -235,6 +235,11 @@ links:
                     link: single_pred
             function:
                 extend: function
+    function_modifier:
+        type: object
+        props:
+            function:
+                extend: function
     function:
         desc: Namespaced ID of the function to apply.
         ns: minecraft
@@ -273,7 +278,7 @@ links:
                     desc: An array of sub-functions to run in sequence.
                     type: list
                     vals:
-                        link: function
+                        link: function_modifier
             string-minecraft:apply_bonus:
                 enchantment:
                     desc: Enchantment ID used for level calculation.
