@@ -234,7 +234,7 @@ links:
                     id: predicates-12
                     link: single_pred
             function:
-                link: function
+                extend: function
     function:
         desc: Namespaced ID of the function to apply.
         ns: minecraft
