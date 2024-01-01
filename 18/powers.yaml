@@ -4532,14 +4532,14 @@ links:
                 type: integer
                 default: 100
             amplifier:
-                desc: Amplifier of the status effect.
+                desc: The strength of the status effect (0 being level 1).
                 type: integer
                 default: 0
             is_ambient:
-                desc: Whether the effect counts as an ambient effect.
+                desc: Makes the particle effects of the status effect is less noticeable.
                 type: boolean
             show_particles:
-                desc: Whether the status effect will spawn particles on the player.
+                desc: Whether the status effect will spawn particles on the entity.
                 type: boolean
                 default: true
             show_icon:
