@@ -1300,7 +1300,6 @@ links:
                                 type: number
                                 default: 1
                                 min: 0
-                                max: 1
                             pitch:
                                 desc: The pitch of the sound.
                                 type: number
