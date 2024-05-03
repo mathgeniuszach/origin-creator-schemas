@@ -1649,6 +1649,14 @@ links:
                                 desc: The damage type to be used. Controls e.g. the death message, invulnerabilities (e.g. towards fire), or whether armor is taken into account.
                                 type: string
                                 allow: '*a-z0-9_#\/:.-'
+                            modifier:
+                                desc: If specified, this modifier will be applied to the damage going to be dealt to the target. It uses the max health of the target as the base value.
+                                link: a_mod
+                            modifiers:
+                                desc: If specified, these modifier will be applied to the damage going to be dealt to the target. It uses the max health of the target as the base value.
+                                type: list
+                                vals:
+                                    link: a_mod
                         string-origins:dismount: {}
                         string-origins:drop_inventory:
                             inventory_type:
@@ -2111,14 +2119,36 @@ links:
                                 desc: Determines the speed of the specified particle type. Defaults to 0.
                                 type: number
                             force:
-                                desc: If set to true, the specified particle type that will be spawned can be seen from a far distance.
+                                desc: Determines whether to display the emitted particles within 512 blocks (true) or 32 blocks (false).
                                 type: boolean
                             spread:
-                                desc: Determines the size of the three-dimensional cuboid volume to spawn the specified particle type in. Defaults to (0.5, 0.25, 0.5).
-                                link: vector
-                            offset_y:
-                                desc: The offset of where the particle will be centered in the Y axis. Defaults to 0.5.
+                                desc: Determines the size of the three-dimensional cuboid volume to spawn the specified particle type in.
+                                type: object
+                                props:
+                                    x:
+                                        type: number
+                                        default: 0.5
+                                    y:
+                                        type: number
+                                        default: 0.5
+                                    z:
+                                        type: number
+                                        default: 0.5
+                            offset_x:
+                                desc: The offset of where the particle will be centered in the X axis.
                                 type: number
+                                default: 0
+                            offset_y:
+                                desc: The offset of where the particle will be centered in the Y axis.
+                                type: number
+                                default: 0.5
+                            offset_z:
+                                desc: The offset of where the particle will be centered in the Z axis.
+                                type: number
+                                default: 0
+                            bientity_condition:
+                                desc: If specified, the particle will only be visible if this bi-entity condition is fulfilled by either or both the entity that has the power and the entity looking at the entity that has the power.
+                                link: bi_entity_cond
                         string-origins:swing_hand:
                             hand:
                                 desc: Determines which hand is swung.
@@ -2638,7 +2668,7 @@ links:
                   - origins:modify_xp_gain
 
                   - $Prevent Types
-                  
+
                   - origins:prevent_being_used
                   - origins:prevent_block_selection
                   - origins:prevent_block_use
@@ -2788,13 +2818,24 @@ links:
                         consume_animation:
                             desc: Determines whether the action of consuming the item is considered "eating" ("eat") or "drinking" ("drink").
                             enum: ["eat", "drink"]
+                            alias: ["use_action"]
                         consume_sound:
                             desc: Optional. The sound event to play when consuming the item.
                             type: string
                             allow: '*a-z0-9_#\/:.-'
+                            alias: ["sound"]
+                        consuming_time_modifier:
+                            desc: Optional. If specified, this modifier will be applied on the maximum time the item is being consumed (in ticks).
+                            link: a_mod
+                        consuming_time_modifiers:
+                            desc: Optional. If specified, these modifiers will be applied on the the maximum time the item is being consumed (in ticks).
+                            type: list
+                            vals:
+                                link: a_mod
                         return_stack:
                             desc: Optional. If specified, this stack will be given to the entity upon consuming an item.
                             link: item_stack
+                            alias: ["result_stack"]
                         entity_action:
                             desc: Optional. If specified, executes the specified entity action on the entity upon consuming an item.
                             link: entity_action
@@ -2926,6 +2967,9 @@ links:
                             link: entity_action
                     string-origins:freeze: {}
                     string-origins:game_event_listener:
+                        trigger_order:
+                            desc: Determines whether the power type should prioritize game events by distance ("by_distance") or arbitrarily ("unspecified").
+                            enum: ["unspecified", "by_distance"]
                         event:
                             desc: Optional. If specified, will make the power only listen for the specified game event.
                             type: string
@@ -2944,6 +2988,14 @@ links:
                             desc: Determines how far the power can listen for game events or vibrations in blocks.
                             type: integer
                             default: 16
+                        entity:
+                            desc: Determines whether the power type should listen to game events emitted by entities.
+                            type: boolean
+                            default: true
+                        block:
+                            desc: Determines whether the power type should listen to game events emitted by blocks.
+                            type: boolean
+                            default: true
                         block_condition:
                             desc: Optional. If specified, only executes the actions if the game event or vibration is emitted by a block that fulfills the block condition.
                             link: block_cond
@@ -3169,23 +3221,37 @@ links:
                             props:
                                 x:
                                     type: number
-                                    default: 0.25
+                                    default: 0.5
                                 y:
                                     type: number
                                     default: 0.5
                                 z:
                                     type: number
-                                    default: 0.25
+                                    default: 0.5
+                        force:
+                            desc: Determines whether to display the emitted particles within 512 blocks (true) or 32 blocks (false).
+                            type: boolean
+                        offset_x:
+                            desc: The offset of where the particle will be centered in the X axis.
+                            type: number
+                            default: 0
                         offset_y:
                             desc: The offset of where the particle will be centered in the Y axis.
                             type: number
-                            default: 1
+                            default: 0.5
+                        offset_z:
+                            desc: The offset of where the particle will be centered in the Z axis.
+                            type: number
+                            default: 0
                         visible_in_first_person:
                             desc: Determines whether the particle should be visible in first person.
                             type: boolean
                         visible_while_invisible:
                             desc: Determines whether the particle type should be visible if the entity is invisible.
                             type: boolean
+                        bientity_condition:
+                            desc: If specified, the particle will only be visible if this bi-entity condition is fulfilled by either or both the entity that has the power and the entity looking at the entity that has the power.
+                            link: bi_entity_cond
                     string-origins:phasing:
                         block_condition:
                             desc: If set, the player will only be able to move through these blocks (or not be able to move through these, depending on what blacklist is set to).
@@ -4452,6 +4518,17 @@ links:
                 desc: (Optional) A descriptive name for the modifier, describing where it comes from.
                 type: string
     hud_render:
+        desc: An Object used to define how a resource or cooldown bar should be rendered.
+        href: https://origins.readthedocs.io/en/latest/types/data_types/hud_render/
+        or:
+          - name: single
+            link: hud_render_item
+          - name: multiple
+            type: list
+            vals:
+                link: hud_render_item
+
+    hud_render_item:
         desc: An Object used to define how a resource or cooldown bar should be rendered.
         href: https://origins.readthedocs.io/en/latest/types/data_types/hud_render/
         type: object
