@@ -2580,6 +2580,7 @@ links:
                   - origins:elytra_flight
                   - origins:entity_glow
                   - origins:entity_group
+                  - origins:entity_set
                   - origins:exhaust
                   - origins:fire_immunity
                   - origins:fire_projectile
@@ -2619,11 +2620,13 @@ links:
 
                   - origins:action_on_being_used
                   - origins:action_on_block_break
+                  - origins:action_on_block_place
                   - origins:action_on_block_use
                   - origins:action_on_callback
                   - origins:action_on_death
                   - origins:action_on_entity_use
                   - origins:action_on_hit
+                  - origins:action_on_item_pickup
                   - origins:action_on_item_use
                   - origins:action_on_land
                   - origins:action_on_wake_up
@@ -2670,6 +2673,7 @@ links:
                   - $Prevent Types
 
                   - origins:prevent_being_used
+                  - origins:prevent_block_place
                   - origins:prevent_block_selection
                   - origins:prevent_block_use
                   - origins:prevent_death
@@ -2679,6 +2683,7 @@ links:
                   - origins:prevent_entity_use
                   - origins:prevent_feature_render
                   - origins:prevent_game_event
+                  - origins:prevent_item_pickup
                   - origins:prevent_item_use
                   - origins:prevent_sleep
                   - origins:prevent_sprinting
@@ -2900,6 +2905,13 @@ links:
                             desc: The group to associate with the player. One of default, undead, arthropod, illager, or aquatic. Click for more information about the entity groups.
                             href: https://minecraft.wiki/w/Mob#Classification
                             enum: [default, undead, arthropod, illager, aquatic]
+                    string-origins:entity_set:
+                        action_on_add:
+                            desc: Optional. If specified, this bi-entity action will be executed on either or both the 'actor' and the 'target' upon the 'target' being added to the set.
+                            link: bi_entity_action
+                        action_on_remove:
+                            desc: Optional. If specified, this bi-entity action will be executed on either or both the 'actor' and the 'target' upon the 'target' being removed from the set.
+                            link: bi_entity_action
                     string-origins:exhaust:
                         interval:
                             desc: Duration of ticks to wait between applying exhaustion.
@@ -3501,6 +3513,44 @@ links:
                             desc: If this is true, the actions will only execute when the player succeeds in harvesting the block (e.g. they will not trigger when stone is broken by hand).
                             type: boolean
                             default: true
+                    string-origins:action_on_block_place:
+                        item_condition:
+                            desc: Optional. If specified, the specified actions will only be executed if the item the player has used to place a block fulfills this item condition.
+                            link: item_cond
+                        place_on_condition:
+                            desc: Optional. If specified, the specified actions will only be executed if the block at the position of the block the player is about to place fulfills this block condition.
+                            link: block_cond
+                        place_to_condition:
+                            desc: Optional. If specified, the specified actions will only be executed if the block the player is about to place a block on fulfills this block condition.
+                            link: block_cond
+                        directions:
+                            desc: Optional. Determines whether the specified actions should be executed if the player is about to place a block at the specified side(s) of a block. Defaults to all faces of a block.
+                            type: list
+                            vals:
+                                enum: [north, east, south, west, up, down]
+                        hands:
+                            desc: Determines if the power should be activated if the player used the specified hand(s). Accepts "off_hand", "main_hand" or both. Defaults to both.
+                            type: list
+                            vals:
+                                type: string
+                        entity_action:
+                            desc: Optional. If specified, this entity action will be executed on the player upon placing a block.
+                            link: entity_action
+                        place_to_action:
+                            desc: Optional. If specified, this block action will be executed at the position of the block the player has placed.
+                            link: block_action
+                        place_on_action:
+                            desc: Optional. If specified, this block action will be executed on the block the player placed a block on.
+                            link: block_action
+                        result_stack:
+                            desc: Optional. If specified, this item stack will be given to the player upon placing a block.
+                            link: item_stack
+                        held_item_action:
+                            desc: Optional. If specified, this item action will be executed on the item the player has used to place a block.
+                            link: item_action
+                        result_item_action:
+                            desc: Optional. If specified, this item action will be executed on the item that will be given to the player upon placing a block.
+                            link: item_action
                     string-origins:action_on_block_use:
                         block_condition:
                             desc: If specified, only execute the specified actions if this condition is fulfilled by the used block.
@@ -3616,6 +3666,23 @@ links:
                         hud_render:
                             desc: Determines how the cooldown of this power is visualized on the HUD.
                             link: hud_render
+                    string-origins:action_on_item_pickup:
+                        item_action:
+                            desc: If specified, this item action will be executed on the item that was picked up.
+                            link: item_action
+                        item_condition:
+                            desc: If specified, the actions will only be executed if this item condition is fulfilled by the item about to be picked up.
+                            link: item_cond
+                        bientity_action:
+                            desc: If specified, this bi-entity action will be executed on either or both the 'actor' (the thrower) and 'target' (the obtainer) entities.
+                            link: bi_entity_action
+                        bientity_condition:
+                            desc: If specified, the actions will only be executed if this bi-entity condition is fulfilled by either or both the 'actor' (the thrower) and 'target' (the obtainer) entities.
+                            link: bi_entity_cond
+                        priority:
+                            desc: Determines the execution priority of the powers that use this power type (in a low-to-high priority order.)
+                            type: integer
+                            default: 0
                     string-origins:action_on_item_use:
                         entity_action:
                             desc: If set, this action will be executed on the player after they use the item.
@@ -4232,6 +4299,44 @@ links:
                         result_item_action:
                             desc: If specified, executes an item action on the given item stack.
                             link: item_action
+                    string-origins:prevent_block_place:
+                        item_condition:
+                            desc: Optional. If specified, the specified actions will only be executed if the item the player has used to try to place a block fulfills this item condition.
+                            link: item_cond
+                        place_on_condition:
+                            desc: Optional. If specified, the specified actions will only be executed if the block the player tried to place a block on fulfills this block condition.
+                            link: block_cond
+                        place_to_condition:
+                            desc: Optional. If specified, the specified actions will only be executed if the block at the position of the block the player tried to place fulfills this block condition.
+                            link: block_cond
+                        directions:
+                            desc: Optional. Determines whether the specified actions should be executed if the player tried to place a block at the specified side(s) of a block. Defaults to all faces of a block.
+                            type: list
+                            vals:
+                                enum: [north, east, south, west, up, down]
+                        hands:
+                            desc: Determines if the power should be activated if the player used the specified hand(s). Accepts "off_hand", "main_hand" or both. Defaults to both.
+                            type: list
+                            vals:
+                                type: string
+                        entity_action:
+                            desc: Optional. If specified, this entity action will be executed on the player upon being prevented from placing a block.
+                            link: entity_action
+                        place_to_action:
+                            desc: If specified, this block action will be executed at the position of the block the player tried to place.
+                            link: block_action
+                        place_on_action:
+                            desc: Optional. If specified, this block action will be executed on the block the player tried to place a block on.
+                            link: block_action
+                        result_stack:
+                            desc: Optional. If specified, this item stack will be given to the player upon trying to place a block.
+                            link: item_stack
+                        held_item_action:
+                            desc: Optional. If specified, this item action will be executed on the item the player has used to try to place a block.
+                            link: item_action
+                        result_item_action:
+                            desc: Optional. If specified, this item action will be executed on the item that will be given to the player upon trying to place a block.
+                            link: item_action
                     string-origins:prevent_block_use:
                         block_condition:
                             desc: When set, only blocks which meet this condition will be unable to be used.
@@ -4314,6 +4419,26 @@ links:
                         entity_action:
                             desc: If specified, this action will be executed on the entity upon preventing game events.
                             link: entity_action
+                    string-origins:prevent_item_pickup:
+                        item_action:
+                            desc: If specified,this item action will be executed on the item that was attempted to be picked up.
+                            link: item_action
+                        item_condition:
+                            desc: If specified, the restriction will only happen if this item condition is fulfilled by the item about to be picked up.
+                            link: item_cond
+                        bientity_action_item:
+                            desc: If specified, this bi-entity action will be executed on either or both the actor (the pickuper) and target (the item) entities.
+                            link: bi_entity_action
+                        bientity_action_thrower:
+                            desc: If specified, this bi-entity action will be executed on either or both the actor (thrower) and target (pickuper) entities.
+                            link: bi_entity_action
+                        bientity_condition:
+                            desc: If specified, the restriction will only happen if this bi-entity condition is fulfilled by either or both the actor (the thrower) and target (the pickuper) entities.
+                            link: bi_entity_cond
+                        priority:
+                            desc: Determines the execution priority of the powers that use this power type (in a low-to-high priority order.)
+                            type: integer
+                            default: 0
                     string-origins:prevent_item_use:
                         item_condition:
                             desc: If set, only items which satisfy this condition will be blocked from being used.
