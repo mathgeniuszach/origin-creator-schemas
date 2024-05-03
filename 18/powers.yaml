@@ -2818,12 +2818,12 @@ links:
                         consume_animation:
                             desc: Determines whether the action of consuming the item is considered "eating" ("eat") or "drinking" ("drink").
                             enum: ["eat", "drink"]
-                            alias: ["use_action"]
+                            aliases: ["use_action"]
                         consume_sound:
                             desc: Optional. The sound event to play when consuming the item.
                             type: string
                             allow: '*a-z0-9_#\/:.-'
-                            alias: ["sound"]
+                            aliases: ["sound"]
                         consuming_time_modifier:
                             desc: Optional. If specified, this modifier will be applied on the maximum time the item is being consumed (in ticks).
                             link: a_mod
@@ -2832,10 +2832,10 @@ links:
                             type: list
                             vals:
                                 link: a_mod
-                        return_stack:
+                        result_stack:
                             desc: Optional. If specified, this stack will be given to the entity upon consuming an item.
                             link: item_stack
-                            alias: ["result_stack"]
+                            aliases: ["return_stack"]
                         entity_action:
                             desc: Optional. If specified, executes the specified entity action on the entity upon consuming an item.
                             link: entity_action
