@@ -22,6 +22,7 @@ links:
                       - origins:both
                       - origins:can_see
                       - origins:distance
+                      - origins:in_set
                       - origins:either
                       - origins:owner
                       - origins:relative_rotation
@@ -70,6 +71,11 @@ links:
                             compare_to:
                                 desc: The distance (in blocks) to compare the distance between the actor and target to.
                                 type: number
+                        string-origins:in_set:
+                            set:
+                                desc: The ID of the power to check whether the target entity is in.
+                                type: string
+                                allow: '*a-z0-9_#\/:.-'
                         string-origins:either:
                             condition:
                                 desc: The condition to check on the actor and target entity. It must pass for at least one of them.
@@ -1295,9 +1301,11 @@ links:
                       - origins:side
                       - origins:invert
                       - origins:actor_action
+                      - origins:add_to_set
                       - origins:add_velocity
                       - origins:damage
                       - origins:mount
+                      - origins:remove_from_set
                       - origins:set_in_love
                       - origins:tame
                       - origins:target_action
@@ -1378,6 +1386,14 @@ links:
                             action:
                                 desc: The action to execute on the actor entity.
                                 link: entity_action
+                        string-origins:add_to_set:
+                            set:
+                                desc: The ID of the power to add the target entity into.
+                                type: string
+                                allow: '*a-z0-9_#\/:.-'
+                            time_limit:
+                                desc: Optional. If specified, this will determine how long the target entity will be stored in the specified power in ticks.
+                                type: integer
                         string-origins:add_velocity:
                             x:
                                 desc: The amount of velocity to add on the x-axis. Defaults to 0.
@@ -1420,6 +1436,11 @@ links:
                                 vals:
                                     link: a_mod
                         string-origins:mount: {}
+                        string-origins:remove_from_set:
+                            set:
+                                desc: The ID of the power to remove the target entity from.
+                                type: string
+                                allow: '*a-z0-9_#\/:.-'
                         string-origins:set_in_love: {}
                         string-origins:tame: {}
                         string-origins:target_action:
@@ -1476,9 +1497,12 @@ links:
                       - origins:modify_stat
                       - origins:passenger_action
                       - origins:play_sound
+                      - origins:random_teleport
                       - origins:raycast
+                      - origins:remove_power
                       - origins:replace_inventory
                       - origins:revoke_advancement
+                      - origins:revoke_all_powers
                       - origins:revoke_power
                       - origins:riding_action
                       - origins:selector_action
@@ -1892,6 +1916,40 @@ links:
                                 default: 1
                                 min: 0
                                 max: 2
+                        string-origins:random_teleport:
+                            area_width:
+                                desc: Determines the width of the area.
+                                type: number
+                                default: 8.0
+                            area_height:
+                                desc: Determines the height of the area.
+                                type: number
+                                default: 8.0
+                            heightmap:
+                                desc: Optional. If specified, the location will be anchored to the of the specified surface of the world.
+                                type: string
+                            attempts:
+                                desc: Optional. Determines how many attempts the entity should be teleported to a random location. Defaults to area_width * 2 + area_height * 2.
+                                type: integer
+                            landing_block_condition:
+                                desc: Optional. If specified, the entity will only be teleported on top of a block that fulfills this block condition. Otherwise, the entity will only be teleported on blocks that blocks movement/have solid collision.
+                                link: block_cond
+                            landing_condition:
+                                desc: "Optional. If specified, the entity will only be teleported to a location if the entity fulfills this entity condition. Otherwise, the entity will only be teleported to a location that is empty (e.g: no blocks and fluids.)"
+                                link: entity_cond
+                            landing_offset:
+                                desc: Optional. Determines the offset of the location of where the entity will be teleported. If the X and Z offsets are specified, the X and Z coordinates of the location will be divided (floored) before applying the offset. Defaults to [0,0,0].
+                                link: vector
+                            loaded_chunks_only:
+                                desc: Determines whether the entity should only be teleported in loaded chunks. It is recommended to keep this set to true for performance reasons.
+                                type: boolean
+                                default: true
+                            success_action:
+                                desc: Optional. If specified, this entity action will be executed on the entity after it's been successfully teleported to a random location.
+                                link: entity_action
+                            fail_action:
+                                desc: Optional. If specified, this entity action will be executed on the entity upon failing to be teleported on a random location.
+                                link: entity_action
                         string-origins:raycast:
                             distance:
                                 desc: Determines the maximum distance the raycast will travel.
@@ -1975,6 +2033,12 @@ links:
                             command_along_ray_only_on_hit:
                                 desc: Determines if the command specified in the command_along_ray field should be executed only if the raycast has hit a block/entity.
                                 type: boolean
+                        string-origins:remove_power:
+                            power:
+                                desc: The ID of the power to remove from the entity, regardless of source.
+                                type: string
+                                allow: '*a-z0-9_#\/:.-'
+                                hooks: [ns]
                         string-origins:replace_inventory:
                             inventory_type:
                                 desc: Either "inventory" or "power". If "inventory", applies replacements to the player's main inventory. If "power", Applies replacements to the player's bonus inventory given with a power.
@@ -2021,6 +2085,10 @@ links:
                                 href: https://minecraft.wiki/w/Commands/advancement#Syntax
                                 enum: ["everything", "only", "from", "through", "until"]
                                 default: "only"
+                        string-origins:revoke_all_powers:
+                            source:
+                                desc: The source to revoke powers from.
+                                type: string
                         string-origins:revoke_power:
                             power:
                                 desc: The ID of the power to be revoked from the entity.
@@ -2330,6 +2398,7 @@ links:
                       - origins:explode
                       - origins:modify_block_state
                       - origins:set_block
+                      - origins:spawn_entity
                     more:
                         string-origins:nothing: {}
                         string-origins:and:
@@ -2486,6 +2555,19 @@ links:
                             block:
                                 desc: The ID of the block to place at the targeted position, overwriting the block already there.
                                 type: string
+                        string-origins:spawn_entity:
+                            entity_type:
+                                desc: The ID of the type of entity that will be spawned.
+                                type: string
+                                allow: '*a-z0-9_#\/:.-'
+                            tag:
+                                desc: Optional. If specified, this NBT data will be applied to the entity that will be spawned.
+                                type: string
+                                ext: true
+                            entity_action:
+                                desc: Optional. If specified, this entity action will be executed on the spawned entity.
+                                link: entity_action
+
           - title: custom
             link: custom_action
     badge:
