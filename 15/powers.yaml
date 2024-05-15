@@ -735,6 +735,7 @@ links:
                       - origins:amount
                       - origins:armor_value
                       - origins:durability
+                      - origins:enchantable
                       - origins:enchantment
                       - origins:fireproof
                       - origins:food
@@ -786,6 +787,7 @@ links:
                             compare_to:
                                 desc: The value to compare to.
                                 type: integer
+                        string-origins:enchantable: {}
                         string-origins:enchantment:
                             enchantment:
                                 desc: Optional; ID of the enchantment of interest to check the level of on the item, e.g. minecraft:protection. If not provided, all enchantments are counted.
