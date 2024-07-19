@@ -497,7 +497,6 @@ links:
                             desc: Key name is the enchantment ID. Value is a number provider specifying the enchantment level. Levels are clamped at a maximum of 255. Levels below 1 cause the enchantment to be removed, unless add is set to true, in which case only negative values will remove the enchantment if they cause the enchantment level to fall below 1.
                             type: object
                             extra:
-                                title: Enchantment ID
                                 id: predicates-7
                                 link: intprov
                         add:

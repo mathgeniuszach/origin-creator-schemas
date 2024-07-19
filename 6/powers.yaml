@@ -2097,9 +2097,7 @@ links:
                 desc: ID of the desired Power Type.
                 const: origins:multiple
         extra:
-            title: Subpower ID
             nopanel: true
-            allow: '*a-z0-9_#\/:.-'
             or:
               - link: power_base
               - link: custom_power_base

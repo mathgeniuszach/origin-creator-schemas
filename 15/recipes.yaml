@@ -79,10 +79,9 @@ links:
                             vals:
                                 type: string
                         key:
-                            desc: All single-character keys used for this shaped crafting recipe.
+                            desc: All keys used for this shaped crafting recipe.
                             type: object
                             extra:
-                                title: Character
                                 nopanel: true
                                 id: recipes-15
                                 extend: oritem
@@ -121,7 +120,6 @@ links:
                                 desc: All keys used for this shaped crafting recipe.
                                 type: object
                                 extra:
-                                    title: Character
                                     nopanel: true
                                     id: recipes-15
                                     extend: oritem

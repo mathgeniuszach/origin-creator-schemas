@@ -71,7 +71,6 @@ links:
                         desc: A map of block property names to values. Test will fail if the block doesn't match.
                         type: object
                         extra:
-                            title: Property
                             or:
                               - type: boolean
                                 default: false
@@ -103,7 +102,6 @@ links:
                         desc: A map of fluid property names to values. Test will fail if the fluid doesn't match.
                         type: object
                         extra:
-                            title: Property
                             or:
                               - type: boolean
                                 default: false
@@ -160,7 +158,6 @@ links:
                 href: https://minecraft.wiki/w/Java_Edition_data_values/Effects
                 type: object
                 extra:
-                    title: Effect ID
                     type: object
                     amplifier:
                         desc: The effect amplifier.
@@ -235,13 +232,11 @@ links:
                         desc: A map of advancements to check. The keys are advancement IDs.
                         type: object
                         extra:
-                            title: Advancement ID
                             or:
                               - type: boolean
                                 default: false
                               - type: object
                                 extra:
-                                    title: Criteria ID
                                     type: boolean
                                     default: false
                         allow: '*a-z0-9#\/:.-'
@@ -255,7 +250,6 @@ links:
                         desc: A map of recipes to check. The keys are recipe IDs. Each should be true if that recipe should be known to the player.
                         type: object
                         extra:
-                            title: Recipe ID
                             type: boolean
                             default: false
                         allow: '*a-z0-9#\/:.-'
@@ -633,7 +627,6 @@ links:
                             type: object
                             desc: (Optional) A map of block property names to values. All values are strings. The test fails if the block doesn't match.
                             extra:
-                                title: Property
                                 type: string
                             allow: '*a-z0-9#\/:.-'
                     string-minecraft:damage_source_properties:
@@ -655,7 +648,6 @@ links:
                             desc: Scores to check. All specified scores must pass for the condition to pass. Key name is the objective while the value is the exact score value or range of score values required for the condition to pass.
                             type: object
                             extra:
-                                title: Objective
                                 link: intmm
                     string-minecraft:inverted:
                         term:
