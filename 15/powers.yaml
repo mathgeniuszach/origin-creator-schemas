@@ -3043,6 +3043,7 @@ links:
                             desc: A map that maps the ids of loot tables to replace with the ids of other loot tables to replace them with.
                             type: object
                             extra:
+                                title: Loot Table ID
                                 type: string
                                 allow: '*a-z0-9_#\/:.-'
                         priority:
@@ -4119,6 +4120,7 @@ links:
                 desc: ID of the desired Power Type.
                 const: origins:multiple
         extra:
+            title: Subpower ID
             nopanel: true
             allow: '*a-z0-9_#\/:.-'
             or:

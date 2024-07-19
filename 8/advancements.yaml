@@ -71,6 +71,7 @@ props:
         desc: A criteria map to be used by "requirements". If "requirements" is not specified, then all of these criteria need to be met.
         type: object
         extra:
+            title: Criteria ID
             type: object
             props:
                 trigger:
@@ -255,6 +256,7 @@ props:
                                     effects:
                                         type: object
                                         extra:
+                                            title: Effect ID
                                             type: object
                                             props:
                                                 amplifier:
@@ -299,9 +301,10 @@ props:
                                         type: string
                                         allow: '*a-z0-9_\/:.-'
                                     state:
-                                        desc: The block states of the block, with the key names being the state names and the values being the required values for those states.
+                                        desc: The block state of the block, with the key names being the property names and the values being the required values for those properties.
                                         type: object
                                         extra:
+                                            title: Property
                                             type: string
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
@@ -562,9 +565,10 @@ props:
                                         id: predicates-8
                                         link: location_pred
                                     state:
-                                        desc: The block states of the block, with the key names being the state names and the values being the required values for those states.
+                                        desc: The block state of the block, with the key names being the property names and the values being the required values for those properties.
                                         type: object
                                         extra:
+                                            title: Property
                                             type: string
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.

@@ -3530,6 +3530,7 @@ links:
                 desc: ID of the desired Power Type.
                 const: origins:multiple
         extra:
+            title: Subpower ID
             nopanel: true
             or:
               - link: power_base
