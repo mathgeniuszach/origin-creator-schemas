@@ -4258,7 +4258,7 @@ links:
                 type: object
                 props:
                     condition:
-                        desc: What condition to check for:
+                        desc: What condition to check for
                         enum: ['fabric:any_mod_loaded','fabric:all_mods_loaded','fabric:any_namespace_loaded','fabric:all_namespaces_loaded']
                     values:
                         desc: List of namespaces
