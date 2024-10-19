@@ -4617,53 +4617,58 @@ links:
                 link: apugli_status_effect_chance
     apugli_status_effect_chance:
         desc: An Object which defines a status effect with a chance.
-        href: https://apugli.readthedocs.io/en/latest/types/data_types/status_effect_chance/
-        effect:
-            desc: The status effect instance which is used when the chance is successful.
-            link: status_effect
-        chance:
-            desc: The chance for the status effect to trigger.
-            type: number
+        href: https://apugli.readthedocs.io/en/latest/types/data_types/status_effect_chance
+        type: object
+        props:
+            effect:
+                desc: The status effect instance which is used when the chance is successful.
+                link: status_effect
+            chance:
+                desc: The chance for the status effect to trigger.
+                type: number
     apugli_weighted_sound_event:
         desc: Either a Identifier that defines the sound event or an Object which defines a sound event with volume and pitch alongside weight.
-        href: https://apugli.readthedocs.io/en/latest/types/data_types/weighted_sound_event/
-        sound:
-            desc: The namespace and ID of the sound to play along with pitch and volume.
-            link: apugli_sound_event_vol_pitch
-        sounds:
-            desc: The namespace and ID of the sounds to play along with pitch and volume.
-            type: list
-            vals:
+        href: https://apugli.readthedocs.io/en/latest/types/data_types/weighted_sound_event
+        type: object
+        props:
+            sound:
+                desc: The namespace and ID of the sound to play along with pitch and volume.
                 link: apugli_sound_event_vol_pitch
-        weight:
-            desc: The weight for the sound effect to play in a randomiser. The higher this is, the more likely it'll be selected.
-            type: integer
-            default: 1
-    apugli_sound_event_vol_pitch:
-        desc: Either a Identifier that defines the sound event or an Object which defines a sound event with pitch and volume.
-        href: https://apugli.readthedocs.io/en/latest/types/data_types/sound_event_with_volume_and_pitch/
-        sound:
-            or:
-              - name: string
-                desc: The namespace and ID of the sound to play.
-                type: string
-                allow: '*a-z0-9_#\/:.-'
-              - name: list
+            sounds:
+                desc: The namespace and ID of the sounds to play along with pitch and volume.
                 type: list
                 vals:
-                    sound:
-                        desc: The namespace and ID of the sound to play.
-                        type: string
-                        allow: '*a-z0-9_#\/:.-'
-                    volume:
-                        desc: The volume at which the sound will play.
-                        type: number
-                        default: 1
-                    pitch:
-                        desc: The pitch at which the sound will play.
-                        type: number
-                        default: 1
-        
+                    link: apugli_sound_event_vol_pitch
+            weight:
+                desc: The weight for the sound effect to play in a randomiser. The higher this is, the more likely it'll be selected.
+                type: integer
+                default: 1
+    apugli_sound_event_vol_pitch:
+        desc: Either a Identifier that defines the sound event or an Object which defines a sound event with pitch and volume.
+        href: https://apugli.readthedocs.io/en/latest/types/data_types/sound_event_with_volume_and_pitch
+        type: object
+        props:
+            sound:
+                or:
+                  - name: string
+                    desc: The namespace and ID of the sound to play.
+                    type: string
+                    allow: '*a-z0-9_#\/:.-'
+                  - name: list
+                    type: list
+                    vals:
+                        sound:
+                            desc: The namespace and ID of the sound to play.
+                            type: string
+                            allow: '*a-z0-9_#\/:.-'
+                        volume:
+                            desc: The volume at which the sound will play.
+                            type: number
+                            default: 1
+                        pitch:
+                            desc: The pitch at which the sound will play.
+                            type: number
+                            default: 1
 hooks: [preserve_single]
 or:
   - title: simple
