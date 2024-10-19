@@ -4588,33 +4588,35 @@ links:
         enum: [items, stacks]
     apugli_food_component:
         desc: An Object which defines a new food component.
-        href: https://apugli.readthedocs.io/en/latest/types/data_types/food_component/
-        hunger:
-            desc: The amount of hunger shanks the food component recovers upon consumption.
-            type: integer
-        saturation:
-            desc: The amount of saturation to give the player upon consumption.
-            type: number
-        meat:
-            desc: Whether this food component counts as meat or not.
-            type: boolean
-            default: false
-        always_edible:
-            desc: Whether this food component is edible at full hunger or not.
-            type: boolean
-            default: false
-        snack:
-            desc: Whether this food component takes as long as dried kelp to eat (16 ticks) or not (32 ticks).
-            type: boolean
-            default: false
-        effect:
-            desc: A status effect and the chance of it triggering upon consuming something with this food component.
-            link: apugli_status_effect_chance
-        effects:
-            desc: A status effect and the chance of it triggering upon consuming something with this food component.
-            type: list
-            vals:
+        href: https://apugli.readthedocs.io/en/latest/types/data_types/food_component
+        type: object
+        props:
+            hunger:
+                desc: The amount of hunger shanks the food component recovers upon consumption.
+                type: integer
+            saturation:
+                desc: The amount of saturation to give the player upon consumption.
+                type: number
+            meat:
+                desc: Whether this food component counts as meat or not.
+                type: boolean
+                default: false
+            always_edible:
+                desc: Whether this food component is edible at full hunger or not.
+                type: boolean
+                default: false
+            snack:
+                desc: Whether this food component takes as long as dried kelp to eat (16 ticks) or not (32 ticks).
+                type: boolean
+                default: false
+            effect:
+                desc: A status effect and the chance of it triggering upon consuming something with this food component.
                 link: apugli_status_effect_chance
+            effects:
+                desc: A status effect and the chance of it triggering upon consuming something with this food component.
+                type: list
+                vals:
+                    link: apugli_status_effect_chance
     apugli_status_effect_chance:
         desc: An Object which defines a status effect with a chance.
         href: https://apugli.readthedocs.io/en/latest/types/data_types/status_effect_chance
