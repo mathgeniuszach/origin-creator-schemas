@@ -2635,8 +2635,8 @@ links:
 
                   - $Regular Types
 
-                  - apugli:custom_death_sound
-                  - apugli:custom_hurt_sound
+                  - _death_sound
+                  - _hurt_sound
                   - apugli:edible_item
                   - apugli:energy_swirl
                   - apugli:mobs_ignore
@@ -4165,7 +4165,6 @@ links:
                             desc: Determines whether the death sound should be muted.
                             href: https://apugli.readthedocs.io/en/latest/types/power_types/custom_death_sound
                             type: boolean
-                            default: false
                         sound:
                             desc: If specified, this sound event will play instead of the original death sound of the entity that has the power.
                             link: apugli_weighted_sound_event
@@ -4177,17 +4176,14 @@ links:
                         volume:
                             desc: Determines the volume of the sound event(s) being played.
                             type: number
-                            default: 1.0
                         pitch:
                             desc: Determines the pitch of the sound event(s) being played.
                             type: number
-                            default: 1.0
                     string-apugli:custom_hurt_sound:
                         muted:
                             desc: Determines whether the hurt sound should be muted.
                             href: https://apugli.readthedocs.io/en/latest/types/power_types/custom_hurt_sound
                             type: boolean
-                            default: false
                         sound:
                             desc: If specified, this sound event will play instead of the original hurt sound of the entity that has the power.
                             link: apugli_weighted_sound_event
@@ -4199,11 +4195,9 @@ links:
                         volume:
                             desc: Determines the volume of the sound event(s) being played.
                             type: number
-                            default: 1.0
                         pitch:
                             desc: Determines the pitch of the sound event(s) being played.
                             type: number
-                            default: 1.0
                     string-apugli:edible-item:
                         item_condition:
                             desc: The item condition that items must satisfy to be affected by this power.
@@ -4617,6 +4611,9 @@ links:
     apugli_weighted_sound_event:
         desc: Either a Identifier that defines the sound event or an Object which defines a sound event with volume and pitch alongside weight.
         href: https://apugli.readthedocs.io/en/latest/types/data_types/weighted_sound_event
+        weight:
+            desc: The weight for the sound effect to play in a randomiser. The higher this is, the more likely it'll be selected.
+            type: integer
         or:
           - title: string
             type: string
@@ -4633,9 +4630,6 @@ links:
                     type: list
                     vals:
                         link: apugli_sound_event_vol_pitch
-        weight:
-            desc: The weight for the sound effect to play in a randomiser. The higher this is, the more likely it'll be selected.
-            type: integer
     apugli_sound_event_vol_pitch:
         desc: Either a Identifier that defines the sound event or an Object which defines a sound event with pitch and volume.
         href: https://apugli.readthedocs.io/en/latest/types/data_types/sound_event_with_volume_and_pitch
