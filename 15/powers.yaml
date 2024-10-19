@@ -2500,7 +2500,6 @@ links:
         title: simple
         type: object
         show: true
-        gap: true
         props:
             condition:
                 desc: If set, this power will only be active when the player with this power fulfills the condition.
