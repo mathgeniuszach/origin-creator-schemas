@@ -4624,7 +4624,7 @@ links:
         props:
             effect:
                 desc: The status effect instance which is used when the chance is successful.
-                link: status_effect
+                link: effect
             chance:
                 desc: The chance for the status effect to trigger.
                 type: number
