@@ -2158,7 +2158,7 @@ links:
                                 vals:
                                     type: object
                                     props:
-                                        
+                                        weight:
                                             desc: The chance of this action being executed is weight/total_weight_of_actions
                                             type: integer
                                             default: 1
@@ -2316,7 +2316,7 @@ links:
                                 vals:
                                     type: object
                                     props:
-                                        
+                                        weight:
                                             desc: The chance of this action being executed is weight/total_weight_of_actions
                                             type: integer
                                             default: 1
