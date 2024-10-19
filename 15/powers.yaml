@@ -4253,8 +4253,10 @@ links:
                             desc: If set, mobs will ignore the entity with this power if they and the entity meet this condition.
                             link: bi_entity_cond
             fabric:load_conditions:
-                desc: Checks for the following namespaces or mods to be loaded and loads the power of true
-                link: fabric_load_conditions
+                desc: Checks for the following namespaces or mods to be loaded and loads the power if true.
+                type: list
+                vals:
+                    link: fabric_load_conditions
     custom_power_base:
         title: custom
         type: object
