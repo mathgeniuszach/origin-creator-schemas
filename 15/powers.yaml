@@ -4654,8 +4654,8 @@ links:
                     desc: The namespace and ID of the sound to play.
                     type: string
                     allow: '*a-z0-9_#\/:.-'
-                  - name: list
-                    type: list
+                  - name: object
+                    type: object
                     vals:
                         sound:
                             desc: The namespace and ID of the sound to play.
