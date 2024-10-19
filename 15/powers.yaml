@@ -2635,8 +2635,8 @@ links:
 
                   - $Regular Types
 
-                  - _death_sound
-                  - _hurt_sound
+                  - apugli:custom_death_sound
+                  - apugli:custom_hurt_sound
                   - apugli:edible_item
                   - apugli:energy_swirl
                   - apugli:mobs_ignore
@@ -4198,7 +4198,7 @@ links:
                         pitch:
                             desc: Determines the pitch of the sound event(s) being played.
                             type: number
-                    string-apugli:edible-item:
+                    string-apugli:edible_item:
                         item_condition:
                             desc: The item condition that items must satisfy to be affected by this power.
                             href: https://apugli.readthedocs.io/en/latest/types/power_types/edible_item
