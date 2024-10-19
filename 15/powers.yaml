@@ -4648,29 +4648,25 @@ links:
     apugli_sound_event_vol_pitch:
         desc: Either a Identifier that defines the sound event or an Object which defines a sound event with pitch and volume.
         href: https://apugli.readthedocs.io/en/latest/types/data_types/sound_event_with_volume_and_pitch
-        type: object
-        props:
-            sound:
-                or:
-                  - name: string
-                    desc: The namespace and ID of the sound to play.
-                    type: string
-                    allow: '*a-z0-9_#\/:.-'
-                  - name: object
-                    type: object
-                    vals:
-                        sound:
-                            desc: The namespace and ID of the sound to play.
-                            type: string
-                            allow: '*a-z0-9_#\/:.-'
-                        volume:
-                            desc: The volume at which the sound will play.
-                            type: number
-                            default: 1
-                        pitch:
-                            desc: The pitch at which the sound will play.
-                            type: number
-                            default: 1
+        sound:
+            or:
+              - type: string
+                desc: The namespace and ID of the sound to play.
+                allow: '*a-z0-9_#\/:.-'
+              - type: object
+                props:
+                    sound:
+                        desc: The namespace and ID of the sound to play.
+                        type: string
+                        allow: '*a-z0-9_#\/:.-'
+                    volume:
+                        desc: The volume at which the sound will play.
+                        type: number
+                        default: 1
+                    pitch:
+                        desc: The pitch at which the sound will play.
+                        type: number
+                        default: 1
 hooks: [preserve_single]
 or:
   - title: simple
