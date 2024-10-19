@@ -4629,22 +4629,9 @@ links:
     apugli_weighted_sound_event:
         desc: Either a Identifier that defines the sound event or an Object which defines a sound event with volume and pitch alongside weight.
         href: https://apugli.readthedocs.io/en/latest/types/data_types/weighted_sound_event
-        or:
-          - name: string
-            type: string
+        sound:
             desc: The namespace and ID of the sound to play.
-            allow: '*a-z0-9_#\/:.-'
-          - name: object
-            type: object
-            props:
-                sound:
-                    desc: The namespace and ID of the sound to play along with pitch and volume.
-                    link: apugli_sound_event_vol_pitch
-                sounds:
-                    desc: The namespace and ID of the sounds to play along with pitch and volume.
-                    type: list
-                    vals:
-                        link: apugli_sound_event_vol_pitch
+            link: apugli_sound_event_vol_pitch
         weight:
             desc: The weight for the sound effect to play in a randomiser. The higher this is, the more likely it'll be selected.
             type: integer
