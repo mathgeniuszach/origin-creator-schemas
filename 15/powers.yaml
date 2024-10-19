@@ -2130,6 +2130,9 @@ links:
                       - origins:modify
                       - origins:remove_enchantment
                       - origins:holder_action
+                      - $Apugli
+                      - apugli:cooldown
+                      - apugli:damage
                     more:
                         string-origins:nothing: {}
                         string-origins:and:
@@ -2242,6 +2245,21 @@ links:
                             action:
                                 desc: The action to execute on the holder of the item.
                                 link: item_action
+                        string-apugli:cooldown:
+                            ticks:
+                                desc: The amount of ticks that the cooldown should be active for.
+                                href: https://apugli.readthedocs.io/en/latest/types/item_action_types/cooldown
+                                type: integer
+                                default: 20
+                        string-apugli:damage:
+                            amount:
+                                desc: The amount of damage it should do to the item stack.
+                                href: https://apugli.readthedocs.io/en/latest/types/item_action_types/damage
+                                type: integer
+                            ignore_unbreaking:
+                                desc: Determines if this action should ignore the Unbreaking enchantment.
+                                type: boolean
+                                default: false
           - title: custom
             link: custom_action
     block_action:
@@ -4221,7 +4239,7 @@ links:
                             link: entity_action
                         item_action:
                             desc: If set, these action(s) will be executed on the item that the entity ate.
-                            type: item_action
+                            link: item_action
                     string-apugli:energy_swirl:
                         texture_location:
                             desc: If specified, the texture used for the energy swirl overlay.
