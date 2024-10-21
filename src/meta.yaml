@@ -191,6 +191,7 @@ patches:
     
     # As another example, on datapack version 10 and above, another field called "filter" is available.
     # Individual patches can be their own patchsets - this allows for using any root-level fields again.
+    # However, they may not use the "priority" field.
   - version: 10..
     patches:
         # Append new property to the end of the meta-file editor
