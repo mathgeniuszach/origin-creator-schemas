@@ -1,7 +1,6 @@
 import qfile
 import glob
 import yaml
-import hjson
 import re
 
 LIST = re.compile(r"(?<=\n)((\s*)[^:\s]+:)\n((?:\2 +- .*?\n)+)")
@@ -14,7 +13,7 @@ def replm(m: re.Match):
 
     return s
 
-for f in glob.glob("*/*.yaml"):
+for f in glob.glob("**/*.yaml", recursive=True):
     text = qfile.read(f)
     text = LIST.sub(replm, text)
     qfile.write(f, text)

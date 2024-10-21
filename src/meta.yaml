@@ -1,0 +1,274 @@
+# This is a well-documented example schema file for the origin creator.
+# It's also used to generate the "meta" file editor!
+
+# Datapack version to apply this file in. Can be a single number or a string.
+# The string has a list of version ranges separated by commas or spaces.
+# Version ranges have the format {min}..{max}, and if either is missing, it is unbounded.
+# This field is optional. If unset, the patch is always applied (same as "..")
+# version: ..
+
+# Tests. If any "path" does not equal the given value, this patch set is not applied.
+# This field is optional. If unset, the patch is always applied in the version range.
+# tests:
+    # "path": value
+
+# The priority this file is applied in. Higher priorities are applied first.
+# This field is optional. If unset, it defaults to 0. You may use float values.
+# It's good practice to not set this unless you need it.
+priority: 1000
+
+# For convenience, use the "data" key to merge in any data you want to the global object.
+# Only the root level dictionaries are merged together (editors with editors, links with links)
+# An error is thrown if any deeper keys conflict with each other.
+data:
+    # The editors object is a global object matching regex filepaths to links.
+    # The regex matches the full filepath.
+    editors:
+        meta: meta-file
+    
+    # Links are object editors. Each one maps to a unique editor with properties and such.
+    links:
+        # Each link is identifiable by it's id. Two links may not share the same id.
+        meta-file:
+            # Each link has a name. This is used by "object" types to set the label text.
+            # This field is optional. If unset, it will auto-generate one using the key name.
+            # name: Meta File
+
+            # Each link has a description. This is the tooltip that shows when you hover over labels.
+            # This field is optional. If unset, no tooltip is shown.
+            # desc: The Origin Creator metadata file.
+
+            # Each link has a http link. This makes the label light blue and clickable.
+            # This field is optional.
+            # href: https://www.mathgeniuszach.com/apps/origin-creator/
+
+            # Each link has a type. The "object" type is the most common, it's an object with properties.
+            # This field is required unless "link" is used. More object types are visible below.
+            type: object
+
+            # If you want to link a different link, use link: "link".
+            # Any metadata fields ("name", "desc", etc.) will take priority over the link's default metadata.
+            # link: link-here
+
+            # To set a default value, use "default". This does not work on the "object" type.
+            # default: 21
+
+            # To add a nice little horizontal line after this link, use this:
+            # gap: true
+
+            # Hooks enable specific origin-creator functionality.
+            # The most common one you'll want to use is "ns", which automatically adds the "0:" namespace.
+            # In general, you don't need to worry about these otherwise.
+            # hooks: [...]
+
+            # On an object, a list of sublinks are provided. Each one uses the same properties above.
+            props:
+                # The "image" type is used only for the datapack icon.
+                # It's not recommended that you use this anywhere else.
+                icon:
+                    type: image
+                    desc: The icon file which will be exported with the pack.
+                    gap: true
+                # The "string" type enables inputting raw text.
+                name:
+                    type: string
+                    desc: The name of your pack, visible in the top left.
+                    hooks: [name]
+
+                    # To make the string a text box instead of a single line, use this:
+                    # ext: true
+
+                    # To enforce that the string must not be empty, use this:
+                    # nonempty: true
+                    
+                    # To restrict the allowed characters in a string, use this:
+                    # allow: '*a-z0-9_'
+                id:
+                    type: string
+                    desc: The pack's default namespace.
+                    default: my_pack
+                    nonempty: true
+                    allow: '*a-z0-9_'
+                # Pack format is type "integer". Use type "number" for float values.
+                pack_format:
+                    link: pack_format
+                    # type: integer
+
+                    # For any number, you can use the "min" and "max" fields to restrict the value.
+                    # These fields are optional of course, and the value is unbounded without them.
+                    # min: 4
+                    # max: 32
+                version:
+                    type: string
+                    desc: The version number of your pack.
+                    default: "1.0.0"
+                # The "list" type is a list of values.
+                # A list of type "string" may be shortened to a text box.
+                authors:
+                    type: list
+                    desc: A list of people who made this pack, one name per line.
+                    vals:
+                        type: string
+                description:
+                    type: string
+                    desc: A short description of what your pack does, about one sentence long.
+                    ext: true
+                    gap: true
+                # For multi-line descriptions and such, use "|".
+                license:
+                    type: string
+                    desc: |
+                        The license your pack falls under. If left blank, defaults to "Unknown", which typically means "All Rights Reserved".
+                        I recommend setting this to CC BY 4.0, which means anyone can use your pack for any purpose and make changes as they desire, as long as they give you credit.
+                license_text:
+                    type: string
+                    ext: true
+                    desc: |
+                        If you want to include a LICENSE file inside your mod, datapack, and resource pack, you can put it's content in this box.
+                        Leaving this blank will not include a LICENSE file in the pack.
+                # There are other types too - feel free to ask me about them on discord or look around for them here in the schemas.
+
+# Patches, for dynamically updating/editing things on the fly.
+# The format is similar (though not the same as) json patches.
+# Patches are applied from top to bottom.
+# This field is optional - no patches are applied without it.
+patches:
+  - # The operation to perform. "merge" merges to the end of a list or dictionary.
+    # This field is optional. If unset, it defaults to the "merge" operation.
+    #
+    # Here's a full list of operations:
+    # set     - Sets the given value to the specified path, replacing it if it exists.
+    # delete  - Deletes the given value at the specified path if it exists.
+    #           Throws an error if the path does not exist.
+    # merge   - Merges the given value into the dictionary or list at the path if it exists.
+    #           Throws an error if the path does not exist or the value is not a list or dictionary.
+    # copy    - Copies the value at path "from" to the path "path", replacing it if it exists.
+    #           Throws an error if the path "from" does not exist.
+    # move    - Moves the value at path "from" to the path "path", replacing it if it exists.
+    #           This deletes the value at path "from". Throws an error if the path "from" does not exist.
+    # 
+    # op: merge
+
+    # The path to perform the given operation in.
+    # This field is optional. If unset, it defaults to the global object or "/"
+    #
+    # The path is not a simple JSON path.
+    # Here's some examples:
+    # /links/path       - the key "path" in the global "links" object.
+    # /links/path/props - the key "props" in the value at key "path" in the global "links" object.
+    # /path+prop  - the key "prop" immediately after the key "path".
+    # /path-prop  - the key "prop" immediately before the key "path".
+    # /links/list/0     - the first index of the list at key "list".
+    # /list/-1    - the last index of the list at key "list".
+    # /list/0+    - the spot between the first and second index of the list at key "list".
+    #
+    path: /links
+
+    # For operations "move" and "copy", a "from" path must also be present.
+    # The format is the same as in "path".
+    # from:
+
+    # The value to perform the operation with. Not used in "move" and "copy".
+    value:
+        pack_format:
+            desc: |
+                A version number used to group versions with compatable assets.
+                4: 1.13 - 1.14.4
+                5: 1.15 - 1.16.1
+                6: 1.16.2 - 1.16.5
+                7: 1.17
+                8: 1.18.0 - 1.18.1
+                9: 1.18.2
+                10: 1.19.0 - 1.19.3
+                12: 1.19.4
+                15: 1.20.0 - 1.20.1
+                18: 1.20.2
+                26: 1.20.3 - 1.20.4
+            href: https://minecraft.wiki/w/Pack_format
+            type: integer
+            min: 4
+            hooks: [refresh]
+    
+    # As another example, on datapack version 10 and above, another field called "filter" is available.
+    # Individual patches can be their own patchsets - this allows for using any root-level fields again.
+  - version: 10..
+    patches:
+        # Append new property to the end of the meta-file editor
+      - path: /links/meta-file/props
+        value:
+            filter:
+                type: object
+                desc: |
+                    Section for filtering out files from data packs applied below this one.
+                    Any file that matches one of the patterns inside block will be treated as if it was not present in the pack at all.
+                    NOTE: THIS FIELD IS IGNORED IN FABRIC MOD EXPORTS
+                props:
+                    block:
+                        type: list
+                        vals:
+                            type: object
+                            props:
+                                namespace:
+                                    type: string
+                                path:
+                                    type: string
+    
+    # And on datapack version 18 and above, changes were made to format numbers, and overlays were added.
+  - version: 18..
+    patches:
+        # Add new link for multiple pack formats
+      - path: /links
+        value:
+            pack_formats:
+                desc: Optional. A range of "Pack Format"s this pack supports. If specified, "pack_format" is still required and must be in this range. For an array, specify exactly two numbers for minimum and maximum versions (inclusive), no more, no less.
+                unspec: none
+                or:
+                  - title: range
+                    type: object
+                    props:
+                        min_inclusive:
+                            link: pack_format
+                        max_inclusive:
+                            link: pack_format
+                  - title: number_range
+                    desc: Specify exactly two numbers for minimum and maximum versions (inclusive), no more, no less.
+                    type: list
+                    vals:
+                        link: pack_format
+                  - title: single
+                    link: pack_format
+        # Add new property "supported_formats" immediately after "pack_format".
+      - path: /links/meta-file/props/pack_format+
+        value:
+            supported_formats:
+                link: pack_formats
+                gap: true
+        # Append new property "overlays" to the end of the meta-file editor.
+      - path: /links/meta-file/props
+        value:
+            overlays:
+                type: object
+                desc: |
+                    List of overlays. The order is important, as the first in the list will be applied first.
+                    Overlays are sub-packs applied over the "normal" contents of a pack.
+                    Their directories have their own assets and data directories, and are placed in the pack's root directory.
+                    NOTE: THIS FIELD IS IGNORED IN FABRIC MOD EXPORTS
+                props:
+                    entries:
+                        desc: |
+                            List of overlays. The order is important, as the first in the list will be applied first.
+                            Overlays are sub-packs applied over the "normal" contents of a pack.
+                            Their directories have their own assets and data directories, and are placed in the pack's root directory.
+                            NOTE: THIS FIELD IS IGNORED IN FABRIC MOD EXPORTS
+                        type: list
+                        vals:
+                            type: object
+                            props:
+                                formats:
+                                    desc: A range of pack formats when this overlay should be active
+                                    link: pack_formats
+                                directory:
+                                    desc: Overlay directory.
+                                    type: string
+                                    allow: a-z0-9_-
+
