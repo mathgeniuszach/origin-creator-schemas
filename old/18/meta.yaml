@@ -125,4 +125,3 @@ props:
                             desc: Overlay directory.
                             type: string
                             allow: a-z0-9_-
-
