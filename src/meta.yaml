@@ -215,10 +215,9 @@ patches:
     
     # And on datapack version 18 and above, changes were made to format numbers, and overlays were added.
   - version: 18..
-    patches:
-        # Add new link for multiple pack formats
-      - path: /links
-        value:
+    # Add new link for multiple pack formats
+    data:
+        links:
             pack_formats:
                 desc: Optional. A range of "Pack Format"s this pack supports. If specified, "pack_format" is still required and must be in this range. For an array, specify exactly two numbers for minimum and maximum versions (inclusive), no more, no less.
                 unspec: none
@@ -237,7 +236,7 @@ patches:
                         link: pack_format
                   - title: single
                     link: pack_format
-        # Add new property "supported_formats" immediately after "pack_format".
+    patches:
       - path: /links/meta-file/props/pack_format+
         value:
             supported_formats:
