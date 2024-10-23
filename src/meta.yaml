@@ -173,7 +173,7 @@ patches:
     # /list/0+    - the spot between the first and second index of the list at key "list".
     #
     # Note that you'll have to double escape if the path is in quotes: "/path\\+"
-    path: /links\/
+    path: /links
 
     # For operations "move" and "copy", a "from" path must also be present.
     # The format is the same as in "path".
