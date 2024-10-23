@@ -2,13 +2,14 @@
 # It's also used to generate the "meta" file editor!
 
 # Datapack version to apply this file in. Can be a single number or a string.
-# The string has a list of version ranges separated by commas or spaces.
+# The string has a list of version ranges separated by spaces.
 # Version ranges have the format {min}..{max}, and if either is missing, it is unbounded.
 # This field is optional. If unset, the patch is always applied (same as "..")
 # version: ..
 
 # Tests. If any "path" does not equal the given value, this patch set is not applied.
 # This field is optional. If unset, the patch is always applied in the version range.
+# Keep in mind that the test depends on insertion order, so {a: 1, b: 2} != {b: 2, a: 1}
 # tests:
     # "path": value
 
@@ -16,6 +17,11 @@
 # This field is optional. If unset, it defaults to 0. You may use float values.
 # It's good practice to not set this unless you need it.
 priority: 1000
+
+# A name for this file. For two files of the same priority, the one which alphabetically
+# comes first is applied first. This field is optional. If unset, it defaults to
+# the name of this file, without the ".yaml" part.
+# name: meta
 
 # For convenience, use the "data" key to merge in any data you want to the global object.
 # Only the root level dictionaries are merged together (editors with editors, links with links)
@@ -53,8 +59,9 @@ data:
             # To set a default value, use "default". This does not work on the "object" type.
             # default: 21
 
-            # To add a nice little horizontal line after this link, use this:
-            # gap: true
+            # To add a nice little horizontal line before or after this link, use "gap"!
+            # it can have the value "before", "after", or "both".
+            # gap: after
 
             # Hooks enable specific origin-creator functionality.
             # The most common one you'll want to use is "ns", which automatically adds the "0:" namespace.
@@ -68,7 +75,7 @@ data:
                 icon:
                     type: image
                     desc: The icon file which will be exported with the pack.
-                    gap: true
+                    gap: after
                 # The "string" type enables inputting raw text.
                 name:
                     type: string
@@ -113,7 +120,7 @@ data:
                     type: string
                     desc: A short description of what your pack does, about one sentence long.
                     ext: true
-                    gap: true
+                    gap: after
                 # For multi-line descriptions and such, use "|".
                 license:
                     type: string
@@ -132,6 +139,8 @@ data:
 # The format is similar (though not the same as) json patches.
 # Patches are applied from top to bottom.
 # This field is optional - no patches are applied without it.
+# You can also use patches at the root level without this field
+# simply use the "path:", "op:", and "value:" fields as is.
 patches:
   - # The operation to perform. "merge" merges to the end of a list or dictionary.
     # This field is optional. If unset, it defaults to the "merge" operation.
@@ -156,17 +165,24 @@ patches:
     # Here's some examples:
     # /links/path       - the key "path" in the global "links" object.
     # /links/path/props - the key "props" in the value at key "path" in the global "links" object.
-    # /path+prop  - the key "prop" immediately after the key "path".
-    # /path-prop  - the key "prop" immediately before the key "path".
-    # /links/list/0     - the first index of the list at key "list".
+    # /path+  - the spot immediately after the key "path".
+    # /path-  - the spot immediately before the key "path".
+    # /pa\/th - the spot at key "pa\/th". Escape characters with backslashes.
+    # /links/list/0     - the first index of the list at key "list" in the global "links" object.
     # /list/-1    - the last index of the list at key "list".
     # /list/0+    - the spot between the first and second index of the list at key "list".
     #
-    path: /links
+    # Note that you'll have to double escape if the path is in quotes: "/path\\+"
+    path: /links\/
 
     # For operations "move" and "copy", a "from" path must also be present.
     # The format is the same as in "path".
     # from:
+    
+    # For some paths and operations, this key is used to determine what key
+    # to put the given value under. E.g., with path "/path+" and operation "set",
+    # this field is required to know what key to use for the operation.
+    # key: 
 
     # The value to perform the operation with. Not used in "move" and "copy".
     value:
@@ -191,28 +207,26 @@ patches:
     
     # As another example, on datapack version 10 and above, another field called "filter" is available.
     # Individual patches can be their own patchsets - this allows for using any root-level fields again.
-    # However, they may not use the "priority" field.
+    # However, they may not use the "priority" or "name" fields.
   - version: 10..
-    patches:
-        # Append new property to the end of the meta-file editor
-      - path: /links/meta-file/props
-        value:
-            filter:
-                type: object
-                desc: |
-                    Section for filtering out files from data packs applied below this one.
-                    Any file that matches one of the patterns inside block will be treated as if it was not present in the pack at all.
-                    NOTE: THIS FIELD IS IGNORED IN FABRIC MOD EXPORTS
-                props:
-                    block:
-                        type: list
-                        vals:
-                            type: object
-                            props:
-                                namespace:
-                                    type: string
-                                path:
-                                    type: string
+    path: /links/meta-file/props
+    value:
+        filter:
+            type: object
+            desc: |
+                Section for filtering out files from data packs applied below this one.
+                Any file that matches one of the patterns inside block will be treated as if it was not present in the pack at all.
+                NOTE: THIS FIELD IS IGNORED IN FABRIC MOD EXPORTS
+            props:
+                block:
+                    type: list
+                    vals:
+                        type: object
+                        props:
+                            namespace:
+                                type: string
+                            path:
+                                type: string
     
     # And on datapack version 18 and above, changes were made to format numbers, and overlays were added.
   - version: 18..
@@ -242,7 +256,7 @@ patches:
         value:
             supported_formats:
                 link: pack_formats
-                gap: true
+                gap: after
         # Append new property "overlays" to the end of the meta-file editor.
       - path: /links/meta-file/props
         value:
