@@ -1,0 +1,20 @@
+# This file is used for additional editors not matched by any other regexes.
+# If no editors match a file, it defaults to the no-editor, type: none.
+priority: -1000
+data:
+    editors:
+        # Files ending in ".json" are obviously json files
+      - regex: \.json$
+        type: json
+
+        # Every remaining file in the "functions" directory is a function file.
+      - regex: ^functions/
+        type: mcfunction
+
+        # Files with any extension are text
+      - regex: ^(.*\/)?.*\.[^\/]*$
+        type: text
+
+        # Leftover files with no extension are json files
+      - # regex: .* # If no regex is provided, the editor matches everything.
+        type: json

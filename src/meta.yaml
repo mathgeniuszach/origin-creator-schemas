@@ -27,15 +27,28 @@ priority: 1000
 # Only the root level dictionaries are merged together (editors with editors, links with links)
 # An error is thrown if any deeper keys conflict with each other.
 data:
-    # The editors object is a global object matching regex filepaths to links.
-    # The regex matches the full filepath.
+    # The editors object is a list of regexes and editor types.
+    # Filepaths are matched against regexes from top to bottom, and the first that matches is used.
     editors:
-        meta: meta-file
+        # The image viewer takes priority over everything for certain file extensions.
+      - regex: \.(png|jpg|jpeg|gif|webp)$
+        type: image
+
+        # The audio viewer is the same way.
+      - regex: \.(ogg|mp3|wav)$
+        type: audio
+
+        # Meta file at the root level.
+      - regex: ^meta$
+        # type: link # Optional with "link: ..."
+        link: meta_file
+
+        # There are more editors in the nearby files.
     
     # Links are object editors. Each one maps to a unique editor with properties and such.
     links:
         # Each link is identifiable by it's id. Two links may not share the same id.
-        meta-file:
+        meta_file:
             # Each link has a name. This is used by "object" types to set the label text.
             # This field is optional. If unset, it will auto-generate one using the key name.
             # name: Meta File
@@ -209,7 +222,7 @@ patches:
     # Individual patches can be their own patchsets - this allows for using any root-level fields again.
     # However, they may not use the "priority" or "name" fields.
   - version: 10..
-    path: /links/meta-file/props
+    path: /links/meta_file/props
     value:
         filter:
             type: object
@@ -252,13 +265,13 @@ patches:
                   - title: single
                     link: pack_format
     patches:
-      - path: /links/meta-file/props/pack_format+
+      - path: /links/meta_file/props/pack_format+
         value:
             supported_formats:
                 link: pack_formats
                 gap: after
-        # Append new property "overlays" to the end of the meta-file editor.
-      - path: /links/meta-file/props
+        # Append new property "overlays" to the end of the meta_file editor.
+      - path: /links/meta_file/props
         value:
             overlays:
                 type: object
