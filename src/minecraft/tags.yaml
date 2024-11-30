@@ -1,0 +1,38 @@
+tests:
+    /options/minecraft-vanilla: true
+
+priority: 100
+data:
+    editors:
+        # Files in the tags directory are tag files
+      - regex: ^tags/
+        link: tag_file
+    links:
+        tag_file:
+            type: object
+            props:
+                replace:
+                    type: boolean
+                values:
+                    or:
+                        # List of strings text box
+                      - title: simple
+                        large: true
+                        type: list
+                        vals:
+                            link: id_or_tag
+                        # List of strings or objects with id & required
+                      - title: extra
+                        type: list
+                        vals:
+                            nopanel: true
+                            or:
+                              - link: id_or_tag
+                              - type: object
+                                props:
+                                    id:
+                                        link: id_or_tag
+                                    required:
+                                        type: boolean
+                                        default: true
+

@@ -1,30 +1,53 @@
 # This is a well-documented example schema file for the origin creator.
 # It's also used to generate the "meta" file editor!
 
+
 # Datapack version to apply this file in. Can be a single number or a string.
 # The string has a list of version ranges separated by spaces.
 # Version ranges have the format {min}..{max}, and if either is missing, it is unbounded.
 # This field is optional. If unset, the patch is always applied (same as "..")
+#
 # version: ..
+
 
 # Tests. If any "path" does not equal the given value, this patch set is not applied.
 # This field is optional. If unset, the patch is always applied in the version range.
 # Keep in mind that the test depends on insertion order, so {a: 1, b: 2} != {b: 2, a: 1}
+#
 # tests:
-    # "path": value
+#     "path": value
+
 
 # The priority this file is applied in. Higher priorities are applied first.
 # This field is optional. If unset, it defaults to 0. You may use float values.
 # It's good practice to not set this unless you need it.
 priority: 1000
 
+
+# The options field is a way to add checkboxes to enable/disable certain functionality.
+# Options are sorted alphabetically, and end up as true/false values in the global data
+# object under "/options". You can then use them in any tests.
+#
+# options:
+#     # Options can be true or false by default:
+#     minecraft-vanilla: true
+#     # And they can also depend on other options:
+#     minecraft-origins:
+#         depends: [minecraft-vanilla]
+#         default: true
+#
+# Example output data: {..., options: {"minecraft-vanilla": true, "minecraft-origins: false"}}
+
+
 # A name for this file. For two files of the same priority, the one which alphabetically
 # comes first is applied first. This field is optional. If unset, it defaults to
 # the name of this file, without the ".yaml" part.
+#
 # name: meta
 
+
 # For convenience, use the "data" key to merge in any data you want to the global object.
-# Only the root level dictionaries are merged together (editors with editors, links with links)
+# Only the root level items are merged together (editors with editors, links with links)
 # An error is thrown if any deeper keys conflict with each other.
 data:
     # The editors object is a list of regexes and editor types.
@@ -44,6 +67,7 @@ data:
         link: meta_file
 
         # There are more editors in the nearby files.
+        # If no editor regexes match a file, it defaults to the no-editor, type: none.
     
     # Links are object editors. Each one maps to a unique editor with properties and such.
     links:
@@ -63,6 +87,7 @@ data:
 
             # Each link has a type. The "object" type is the most common, it's an object with properties.
             # This field is required unless "link" is used. More object types are visible below.
+            # Feel free to also ask me about them on discord or look around for them here in the schemas.
             type: object
 
             # If you want to link a different link, use link: "link".
@@ -146,7 +171,16 @@ data:
                     desc: |
                         If you want to include a LICENSE file inside your mod, datapack, and resource pack, you can put it's content in this box.
                         Leaving this blank will not include a LICENSE file in the pack.
-                # There are other types too - feel free to ask me about them on discord or look around for them here in the schemas.
+        
+        # The generic "Anything" json editor.
+        nany:
+            panel: false
+            or:
+              - {title: constant, enum: [true, false, null]}
+              - type: number
+              - type: string
+              - {type: list, vals: {link: nany}}
+              - {type: object, extra: {link: nany}}
 
 # Patches, for dynamically updating/editing things on the fly.
 # The format is similar (though not the same as) json patches.
@@ -220,11 +254,12 @@ patches:
     
     # As another example, on datapack version 10 and above, another field called "filter" is available.
     # Individual patches can be their own patchsets - this allows for using any root-level fields again.
-    # However, they may not use the "priority" or "name" fields.
+    # However, they may not use the "priority", "name", or "options" fields.
   - version: 10..
     path: /links/meta_file/props
     value:
         filter:
+            gap: before
             type: object
             desc: |
                 Section for filtering out files from data packs applied below this one.

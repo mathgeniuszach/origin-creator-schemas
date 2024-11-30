@@ -1,0 +1,25 @@
+# Common items shared by minecraft editors.
+
+# Adds the "minecraft-vanilla" checkbox.
+options:
+    minecraft-vanilla: true
+
+# Only if the "minecraft-vanilla" checkbox is checked, is this file applied.
+tests:
+    /options/minecraft-vanilla: true
+
+data:
+    links:
+        local_id:
+            desc: ID of a specific file either in base minecraft or this pack.
+            type: string
+            allow: '*a-z0-9_\/:.-'
+            hooks: [ns]
+        id_or_tag:
+            desc: ID or tag of a specific file either in base minecraft or this pack.
+            type: string
+            allow: '*a-z0-9_\/#:.-'
+        id:
+            desc: ID or tag of a specific file either in base minecraft or this pack.
+            type: string
+            allow: '*a-z0-9_\/:.-'

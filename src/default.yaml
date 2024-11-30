@@ -1,0 +1,16 @@
+# This file is used for additional editors not matched by any other regexes.
+# If no editors match a file, it normally defaults to the no-editor, type: none.
+priority: -1000
+data:
+    editors:
+        # Unmatched files ending in .json are json files
+      - regex: \.json$
+        type: json
+
+        # Unmatched files with no extension are json files
+      - regex: ^(.*/)?[^\.]*$
+        type: json
+
+        # Any other files are raw text
+      - # regex: .* # If no regex is provided, the editor matches everything.
+        type: text

@@ -1,0 +1,15 @@
+# MCFunction editors.
+
+tests:
+    /options/minecraft-vanilla: true
+
+priority: 105
+data:
+    editors:
+        # Extensionless files in the functions directory are mcfunction files
+      - regex: ^functions/(.*/)?[^\.]*$
+        type: mcfunction
+
+        # files ending in .mcfunction are mcfunction files
+      - regex: \.mcfunction$
+        type: mcfunction
