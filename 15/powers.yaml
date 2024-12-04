@@ -2130,6 +2130,9 @@ links:
                       - origins:modify
                       - origins:remove_enchantment
                       - origins:holder_action
+                      - $Apugli
+                      - apugli:cooldown
+                      - apugli:damage
                     more:
                         string-origins:nothing: {}
                         string-origins:and:
@@ -2242,6 +2245,21 @@ links:
                             action:
                                 desc: The action to execute on the holder of the item.
                                 link: item_action
+                        string-apugli:cooldown:
+                            ticks:
+                                desc: The amount of ticks that the cooldown should be active for.
+                                href: https://apugli.readthedocs.io/en/latest/types/item_action_types/cooldown
+                                type: integer
+                                default: 20
+                        string-apugli:damage:
+                            amount:
+                                desc: The amount of damage it should do to the item stack.
+                                href: https://apugli.readthedocs.io/en/latest/types/item_action_types/damage
+                                type: integer
+                            ignore_unbreaking:
+                                desc: Determines if this action should ignore the Unbreaking enchantment.
+                                type: boolean
+                                default: false
           - title: custom
             link: custom_action
     block_action:
@@ -4163,9 +4181,8 @@ links:
                     string-apugli:custom_death_sound:
                         muted:
                             desc: Determines whether the death sound should be muted.
-                            href: https://apugli.readthedocs.io/en/latest/types/power_types/custom_death_sound/
+                            href: https://apugli.readthedocs.io/en/latest/types/power_types/custom_death_sound
                             type: boolean
-                            default: false
                         sound:
                             desc: If specified, this sound event will play instead of the original death sound of the entity that has the power.
                             link: apugli_weighted_sound_event
@@ -4177,17 +4194,14 @@ links:
                         volume:
                             desc: Determines the volume of the sound event(s) being played.
                             type: number
-                            default: 1.0
                         pitch:
                             desc: Determines the pitch of the sound event(s) being played.
                             type: number
-                            default: 1.0
                     string-apugli:custom_hurt_sound:
                         muted:
                             desc: Determines whether the hurt sound should be muted.
-                            href: https://apugli.readthedocs.io/en/latest/types/power_types/custom_hurt_sound/
+                            href: https://apugli.readthedocs.io/en/latest/types/power_types/custom_hurt_sound
                             type: boolean
-                            default: false
                         sound:
                             desc: If specified, this sound event will play instead of the original hurt sound of the entity that has the power.
                             link: apugli_weighted_sound_event
@@ -4199,12 +4213,10 @@ links:
                         volume:
                             desc: Determines the volume of the sound event(s) being played.
                             type: number
-                            default: 1.0
                         pitch:
                             desc: Determines the pitch of the sound event(s) being played.
                             type: number
-                            default: 1.0
-                    string-apugli:edible-item:
+                    string-apugli:edible_item:
                         item_condition:
                             desc: The item condition that items must satisfy to be affected by this power.
                             href: https://apugli.readthedocs.io/en/latest/types/power_types/edible_item
@@ -4227,7 +4239,7 @@ links:
                             link: entity_action
                         item_action:
                             desc: If set, these action(s) will be executed on the item that the entity ate.
-                            type: item_action
+                            link: item_action
                     string-apugli:energy_swirl:
                         texture_location:
                             desc: If specified, the texture used for the energy swirl overlay.
@@ -4253,19 +4265,12 @@ links:
                             desc: If set, mobs will ignore the entity with this power if they and the entity meet this condition.
                             link: bi_entity_cond
             fabric:load_conditions:
-                desc: Checks if namespaces or mods are loaded, and loads this power if true.
+                desc: Checks for the following namespaces or mods to be loaded and loads the power if true.
+                gap: before
                 unspec: none
-                type: object
-                props:
-                    condition:
-                        desc: What condition to check for
-                        enum: ['fabric:any_mod_loaded','fabric:all_mods_loaded','fabric:any_namespace_loaded','fabric:all_namespaces_loaded']
-                    values:
-                        desc: List of namespaces
-                        type: list
-                        vals:
-                            type: string
-                            allow: '*a-z0-9_#\/:.-'
+                type: list
+                vals:
+                    link: fabric_load_conditions
     custom_power_base:
         title: custom
         type: object
@@ -4588,33 +4593,35 @@ links:
         enum: [items, stacks]
     apugli_food_component:
         desc: An Object which defines a new food component.
-        href: https://apugli.readthedocs.io/en/latest/types/data_types/food_component/
-        hunger:
-            desc: The amount of hunger shanks the food component recovers upon consumption.
-            type: integer
-        saturation:
-            desc: The amount of saturation to give the player upon consumption.
-            type: number
-        meat:
-            desc: Whether this food component counts as meat or not.
-            type: boolean
-            default: false
-        always_edible:
-            desc: Whether this food component is edible at full hunger or not.
-            type: boolean
-            default: false
-        snack:
-            desc: Whether this food component takes as long as dried kelp to eat (16 ticks) or not (32 ticks).
-            type: boolean
-            default: false
-        effect:
-            desc: A status effect and the chance of it triggering upon consuming something with this food component.
-            link: apugli_status_effect_chance
-        effects:
-            desc: A status effect and the chance of it triggering upon consuming something with this food component.
-            type: list
-            vals:
+        href: https://apugli.readthedocs.io/en/latest/types/data_types/food_component
+        type: object
+        props:
+            hunger:
+                desc: The amount of hunger shanks the food component recovers upon consumption.
+                type: integer
+            saturation:
+                desc: The amount of saturation to give the player upon consumption.
+                type: number
+            meat:
+                desc: Whether this food component counts as meat or not.
+                type: boolean
+                default: false
+            always_edible:
+                desc: Whether this food component is edible at full hunger or not.
+                type: boolean
+                default: false
+            snack:
+                desc: Whether this food component takes as long as dried kelp to eat (16 ticks) or not (32 ticks).
+                type: boolean
+                default: false
+            effect:
+                desc: A status effect and the chance of it triggering upon consuming something with this food component.
                 link: apugli_status_effect_chance
+            effects:
+                desc: A status effect and the chance of it triggering upon consuming something with this food component.
+                type: list
+                vals:
+                    link: apugli_status_effect_chance
     apugli_status_effect_chance:
         desc: An Object which defines a status effect with a chance.
         href: https://apugli.readthedocs.io/en/latest/types/data_types/status_effect_chance
@@ -4622,53 +4629,62 @@ links:
         props:
             effect:
                 desc: The status effect instance which is used when the chance is successful.
-                link: status_effect
+                link: effect
             chance:
                 desc: The chance for the status effect to trigger.
                 type: number
     apugli_weighted_sound_event:
         desc: Either a Identifier that defines the sound event or an Object which defines a sound event with volume and pitch alongside weight.
         href: https://apugli.readthedocs.io/en/latest/types/data_types/weighted_sound_event
-        type: object
-        props:
-            sound:
-                desc: The namespace and ID of the sound to play along with pitch and volume.
-                link: apugli_sound_event_vol_pitch
-            sounds:
-                desc: The namespace and ID of the sounds to play along with pitch and volume.
-                type: list
-                vals:
+        or:
+          - type: string
+            desc: the namespace and ID of the sound to play
+            allow: '*a-z0-9_#\/:.-'
+          - type: object
+            props:
+                sound:
+                    desc: The namespace and ID of the sound to play.
                     link: apugli_sound_event_vol_pitch
-            weight:
-                desc: The weight for the sound effect to play in a randomiser. The higher this is, the more likely it'll be selected.
-                type: integer
-                default: 1
+                sounds:
+                    desc: The namespace and ID of the sounds to play.
+                    type: list
+                    vals:
+                        link: apugli_sound_event_vol_pitch
+                weight:
+                    desc: The weight for the sound effect to play in a randomiser. The higher this is, the more likely it'll be selected.
+                    type: integer
     apugli_sound_event_vol_pitch:
         desc: Either a Identifier that defines the sound event or an Object which defines a sound event with pitch and volume.
         href: https://apugli.readthedocs.io/en/latest/types/data_types/sound_event_with_volume_and_pitch
-        type: object
-        props:
-            sound:
-                or:
-                  - name: string
+        or:
+          - type: string
+            desc: The namespace and ID of the sound to play.
+            allow: '*a-z0-9_#\/:.-'
+          - type: object
+            props:
+                sound:
                     desc: The namespace and ID of the sound to play.
                     type: string
                     allow: '*a-z0-9_#\/:.-'
-                  - name: object
-                    type: object
-                    props:
-                        sound:
-                            desc: The namespace and ID of the sound to play.
-                            type: string
-                            allow: '*a-z0-9_#\/:.-'
-                        volume:
-                            desc: The volume at which the sound will play.
-                            type: number
-                            default: 1
-                        pitch:
-                            desc: The pitch at which the sound will play.
-                            type: number
-                            default: 1
+                volume:
+                    desc: The volume at which the sound will play.
+                    type: number
+                pitch:
+                    desc: The pitch at which the sound will play.
+                    type: number
+    fabric_load_conditions:
+        desc: Checks if namespaces or mods are loaded, and loads this power if true.
+        type: object
+        props:
+            condition:
+                desc: What condition to check for
+                enum: ['fabric:any_mod_loaded','fabric:all_mods_loaded','fabric:any_namespace_loaded','fabric:all_namespaces_loaded']
+            values:
+                desc: List of namespaces
+                type: list
+                vals:
+                    type: string
+                    allow: '*a-z0-9_#\/:.-'
 hooks: [preserve_single]
 or:
   - title: simple
