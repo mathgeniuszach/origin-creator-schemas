@@ -1,7 +1,7 @@
-# MCFunction editors.
+# MCFunction editor.
 
 tests:
-    /options/minecraft-vanilla: true
+    /options/minecraft: true
 
 priority: 105
 data:

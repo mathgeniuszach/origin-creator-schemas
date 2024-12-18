@@ -1,5 +1,7 @@
+# Tag file editor
+
 tests:
-    /options/minecraft-vanilla: true
+    /options/minecraft: true
 
 priority: 100
 data:

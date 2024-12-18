@@ -1,0 +1,7 @@
+options:
+    minecraft.origins:
+        depends: minecraft
+        default: true
+
+tests:
+    /options/minecraft.origins: true

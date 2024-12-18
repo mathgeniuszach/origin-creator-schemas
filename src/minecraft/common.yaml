@@ -1,12 +1,12 @@
 # Common items shared by minecraft editors.
 
-# Adds the "minecraft-vanilla" checkbox.
+# Adds the "minecraft" checkbox.
 options:
-    minecraft-vanilla: true
+    minecraft: true
 
-# Only if the "minecraft-vanilla" checkbox is checked, is this file applied.
+# Only if the "minecraft" checkbox is checked, is this file applied.
 tests:
-    /options/minecraft-vanilla: true
+    /options/minecraft: true
 
 data:
     links:
