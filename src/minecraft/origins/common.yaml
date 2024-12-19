@@ -1,6 +1,6 @@
 options:
     minecraft.origins:
-        depends: minecraft
+        depends: [minecraft]
         default: true
 
 tests:
