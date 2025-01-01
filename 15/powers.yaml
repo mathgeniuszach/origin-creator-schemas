@@ -1462,6 +1462,11 @@ links:
                       - $Apugli
 
                       - apugli:fire_projectile
+
+                      - $Eggolib
+
+                      - eggolib:calculate_resource
+                      
                     more:
                         string-origins:nothing: {}
                         string-origins:and:
@@ -2104,6 +2109,19 @@ links:
                             bientity_action:
                                 desc: An action which will run on the projectile.
                                 link: bi_entity_action
+                        string-eggolib:calculate_resource:
+                            target:
+                                desc: The namespace, path and ID of the power to calculate the value of.
+                                type: string
+                                allow: 'a-z0-9_\/:.-'
+                            operation:
+                                desc: Determines how the value of the source power will be calculated to the value of the target power.
+                                link: math_operation
+                            source:
+                                desc: The namespace, path and ID of the power to use the value of.
+                                type: string
+                                allow: 'a-z0-9_\/:.-'
+                                
           - title: custom
             link: custom_action
     item_action:
@@ -2657,6 +2675,11 @@ links:
                   - apugli:edible_item
                   - apugli:energy_swirl
                   - apugli:mobs_ignore
+
+                  - $Eggolib
+
+                  - eggolib:crawling
+                  
                 more:
                     string-origins:attribute_modify_transfer:
                         attribute:
@@ -4263,6 +4286,7 @@ links:
                         bientity_condition:
                             desc: If set, mobs will ignore the entity with this power if they and the entity meet this condition.
                             link: bi_entity_cond
+                    string-eggolib:crawling: {}
             fabric:load_conditions:
                 desc: Checks for the following namespaces or mods to be loaded and loads the power if true.
                 gap: before
@@ -4694,6 +4718,9 @@ links:
             id:
                 type: string
                 allow: 'a-z0-9_:.-'
+    math_operation:
+        enum: ['add','divide','max','min','modulo','multiply','set','subtract']
+        default: 0
 hooks: [preserve_single]
 or:
   - title: simple
