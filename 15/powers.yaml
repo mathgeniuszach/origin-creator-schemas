@@ -2113,14 +2113,14 @@ links:
                             target:
                                 desc: The namespace, path and ID of the power to calculate the value of.
                                 type: string
-                                allow: 'a-z0-9_\/:.-'
+                                allow: '*a-z0-9_\/:.-'
                             operation:
                                 desc: Determines how the value of the source power will be calculated to the value of the target power.
                                 link: math_operation
                             source:
                                 desc: The namespace, path and ID of the power to use the value of.
                                 type: string
-                                allow: 'a-z0-9_\/:.-'
+                                allow: '*a-z0-9_\/:.-'
                                 
           - title: custom
             link: custom_action
