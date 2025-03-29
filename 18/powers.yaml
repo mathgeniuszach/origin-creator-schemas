@@ -699,7 +699,7 @@ links:
                             min_duration:
                                 desc: The minimum duration the status effect should have in order to pass the check. Defaults to 0.
                                 type: integer
-                                min: 0
+                                min: -1
                                 max: 2147483647
                             max_duration:
                                 desc: The maximum duration the status effect should have in order to pass the check. Defaults to 2147483647.
