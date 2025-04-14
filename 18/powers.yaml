@@ -1517,6 +1517,7 @@ links:
                       - origins:swing_hand
                       - origins:toggle
                       - origins:trigger_cooldown
+                      - apugli:custom_projectile
                     more:
                         string-origins:nothing: {}
                         string-origins:and:
@@ -2236,6 +2237,72 @@ links:
                                 type: string
                                 allow: '*a-z0-9_\/:.-'
                                 hooks: [ns]
+                        string-apugli:custom_projectile:
+                            entity_id: 
+                                decs: An identifier for use with projectiles spawned through this entity action. For use with Custom Entity Id (Entity Condition Type).
+                                type: string
+                                allow: '*a-z0-9_\/:.-'
+                            texture_location:
+                                decs: If specified, the texture used for the custom projectile.
+                                type: string
+                                allow: '*a-z0-9_\/:.-'
+                            texture_url:
+                                decs: If specified, the url to a .png file imported into the game as a texture for this powers use. This will be used as a fallback if texture_location is not specified or if a texture is not present.
+                                type: string
+                            count:
+                                decs: The amount of projectiles to fire each use.
+                                type: integer
+                                min: 1
+                                default: 1
+                            speed:
+                                decs: The speed applied to the fired projectile.
+                                type: number
+                                default: 1.5
+                            divergence:
+                                decs: How much each projectile fired is affected by random spread.
+                                type: number
+                                default: 1.0
+                            sound: 
+                                decs: If set, the sound with this ID will be played when the power is used.
+                                type: string
+                                allow: '*a-z0-9_\/:.-'
+                            tag:
+                                decs: NBT data of the entity.
+                                type: string
+                                ext: true
+                            entity_action_before_firing:
+                                decs: If specified, the entity action to execute on the entity firing the projectile just prior to the projectile being created.
+                                link: entity_action
+                            bientity_action_after_firing:
+                                decs: If specified, the bi-entity action to execute with the projectile owner the actor, and the projectile as the target as soon as the projectile is created.
+                                link: bi_entity_action
+                            block_action_on_hit:
+                                decs: If specified, the block action to execute on the block the projectile lands on upon having it land on it.
+                                link: block_action
+                            bientity_action_on_miss:
+                                decs: If specified, the bi-entity action to execute with the projectile owner as the actor, and the projectile as the target upon missing.
+                                link: bi_entity_action
+                            bientity_action_on_hit:
+                                decs: If specified, the bi-entity action to execute with the projectile as the actor, and the hit entity as the target upon hitting an entity.
+                                link: bi_entity_action
+                            owner_target_bientity_action_on_hit:
+                                decs: If specified, the bi-entity action to execute with the projectile owner as the actor, and the hit entity as the target upon hitting an entity.
+                                link: bi_entity_action
+                            block_action_cancels_miss_action:
+                                decs: Determines if the block_action_on_hit action will cancel the bientity_action_on_miss action.
+                                type: boolean
+                            block_condition:
+                                decs: If specified, the block condition that the block targeted by the block_action_on_hit field must meet in order for that to run.
+                                link: block_cond
+                            bientity_condition:
+                                decs: If specified, the bi-entity condition with the projectile as the actor and the target as the target for the projectile to actually hit the target instead of pass through.
+                                link: bi_entity_cond
+                            owner_bientity_condition:
+                                decs: If specified, the bi-entity condition with the projectile owner as the actor and the target as the target for the projectile to actually hit the target instead of pass through.
+                                link: bi_entity_cond
+                            tick_bientity_action:
+                                decs: If specified, the bi-entity action with the projectile owner as the actor, and the projectile as the target that is run each tick of the projectile's lifespan.
+                                link: bi_entity_action
           - title: custom
             link: custom_action
     item_action:
