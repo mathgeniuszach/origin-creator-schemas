@@ -189,6 +189,10 @@ links:
                       - origins:using_item
                       - origins:xp_levels
                       - origins:xp_points
+
+                      - $Apugli
+
+                      - apugli:entity_in_radius
                     more:
                         string-origins:and:
                             conditions:
@@ -679,6 +683,23 @@ links:
                             compare_to:
                                 desc: The value to compare to.
                                 type: integer
+                        string-apugli:entity_in_radius:
+                            condition:
+                                desc: The entity condition type to check for.
+                                link: entity_cond
+                            bientity_condition:
+                                desc: The bi-entity condition type to check for with the entity with this condition as the actor and the entities in the radius as the targets.
+                                link: bi_entity_cond
+                            radius:
+                                desc: The radius to check the entities that fulfill the specified entity condition type within.
+                                type: float
+                            comparison:
+                                desc: How the amount of entities within the specified radius which fulfills the specified entity/bi-entity condition type(s) should be compared to the specified value.
+                                link: comparison
+                            compare_to:
+                                desc: The value to compare the amount to.
+                                type: integer
+                                default: 1
           - title: custom
             link: custom_condition
     item_cond:
@@ -1382,6 +1403,10 @@ links:
                       - origins:swing_hand
                       - origins:toggle
                       - origins:trigger_cooldown
+
+                      - $Apugli
+
+                      - apugli:fire_projectile
                     more:
                         string-origins:nothing: {}
                         string-origins:and:
@@ -1929,6 +1954,37 @@ links:
                                 type: string
                                 allow: '*a-z0-9_\/:.-'
                                 hooks: [ns]
+                        string-apugli:fire_projectile:
+                            entity_type:
+                                desc: The ID of the entity type that will be fired.
+                                type: string
+                                allow: '*a-z0-9_#\/:.-'
+                            count:
+                                desc: The amount of projectiles to fire each use. Defaults to 1.
+                                type: integer
+                                default: 1
+                                min: 1
+                            speed:
+                                desc: The speed applied to the fired projectile. Defaults to 1.5.
+                                type: number
+                                min: 0
+                                default: 1.5
+                            divergence:
+                                desc: How much each projectile fired is affected by random spread. Defaults to 1.
+                                type: number
+                                min: 0
+                                default: 1
+                            sound:
+                                desc: If set, the sound with this ID will be played when the power is used.
+                                type: string
+                                allow: '*a-z0-9_#\/:.-'
+                            tag:
+                                desc: NBT data of the entity.
+                                type: string
+                                ext: true
+                            bientity_action:
+                                desc: An action which will run on the projectile.
+                                link: bi_entity_action
           - title: custom
             link: custom_action
     item_action:
