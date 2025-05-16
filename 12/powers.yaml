@@ -1726,8 +1726,7 @@ links:
                         string-origins:modify_stat:
                             stat:
                                 desc: The statistic to modify.
-                                type: string
-                                href: https://minecraft.wiki/w/Statistics#Resource_location
+                                link: stat
                             modifier:
                                 desc: The modifier to apply to the given stat.
                                 link: a_mod
@@ -4330,6 +4329,16 @@ links:
             type: list
             vals:
                 link: slot
+    stat:
+        type: object
+        href: https://minecraft.wiki/w/Statistics#Resource_location
+        props:
+            type:
+                type: string
+                allow: 'a-z0-9_:.-'
+            id:
+                type: string
+                allow: 'a-z0-9_:.-'
 hooks: [preserve_single]
 or:
   - title: simple

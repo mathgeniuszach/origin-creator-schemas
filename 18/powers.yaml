@@ -1884,8 +1884,7 @@ links:
                         string-origins:modify_stat:
                             stat:
                                 desc: The statistic to modify.
-                                type: string
-                                href: https://minecraft.wiki/w/Statistics#Resource_location
+                                link: stat
                             modifier:
                                 desc: The modifier to apply to the given stat.
                                 link: a_mod
@@ -2372,7 +2371,7 @@ links:
                         string-origins:holder_action:
                             action:
                                 desc: The action to execute on the holder of the item.
-                                link: item_action
+                                link: entity_action
           - title: custom
             link: custom_action
     block_action:
@@ -4949,6 +4948,16 @@ links:
           - velocity_normalized
           - velocity_horizontal
           - velocity_horizontal_normalized
+    stat:
+        type: object
+        href: https://minecraft.wiki/w/Statistics#Resource_location
+        props:
+            type:
+                type: string
+                allow: 'a-z0-9_:.-'
+            id:
+                type: string
+                allow: 'a-z0-9_:.-'
 hooks: [preserve_single]
 or:
   - title: simple
