@@ -1726,8 +1726,7 @@ links:
                         string-origins:modify_stat:
                             stat:
                                 desc: The statistic to modify.
-                                type: string
-                                href: https://minecraft.wiki/w/Statistics#Resource_location
+                                link: stat
                             modifier:
                                 desc: The modifier to apply to the given stat.
                                 link: a_mod
@@ -4159,6 +4158,8 @@ links:
             name:
                 desc: (Optional) A descriptive name for the modifier, describing where it comes from.
                 type: string
+            modifier:
+                link: a_mod
     aa_mod:
         desc: An Object used to specify how a specific attribute should be modified. Basically an Attribute Modifier with an additional attribute field.
         href: https://origins.readthedocs.io/en/1.8.1/types/data_types/attributed_attribute_modifier/
@@ -4177,6 +4178,8 @@ links:
             name:
                 desc: (Optional) A descriptive name for the modifier, describing where it comes from.
                 type: string
+            modifier:
+                link: aa_mod
     hud_render:
         desc: An Object used to define how a resource or cooldown bar should be rendered.
         href: https://origins.readthedocs.io/en/1.8.1/types/data_types/hud_render/
@@ -4326,6 +4329,16 @@ links:
             type: list
             vals:
                 link: slot
+    stat:
+        type: object
+        href: https://minecraft.wiki/w/Statistics#Resource_location
+        props:
+            type:
+                type: string
+                allow: 'a-z0-9_:.-'
+            id:
+                type: string
+                allow: 'a-z0-9_:.-'
 hooks: [preserve_single]
 or:
   - title: simple
