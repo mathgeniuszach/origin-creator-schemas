@@ -9,19 +9,19 @@ links:
                 unspec: true
             dealt:
                 desc: Checks the amount of incoming damage before damage reduction.
-                id: predicates-7
+                id: predicates
                 link: nummm0
             taken:
                 desc: Checks the amount of incoming damage after damage reduction.
-                id: predicates-7
+                id: predicates
                 link: nummm0
             source_entity:
                 desc: Checks the entity that was the source of the damage (for example, the skeleton that shot the arrow).
-                id: predicates-7
+                id: predicates
                 link: entity_pred
             type:
                 desc: Checks the type of damage done.
-                id: predicates-7
+                id: predicates
                 link: damage_pred
 type: object
 props:
@@ -33,7 +33,7 @@ props:
                 props:
                     item:
                         desc: The item ID to use for the icon.
-                        id: predicates-7
+                        id: predicates
                         link: item
                     nbt:
                         desc: The nbt data of the item to use for the icon.
@@ -41,11 +41,11 @@ props:
                         ext: true
             title:
                 desc: The title for this advancement.
-                id: item_modifiers-7
+                id: item_modifiers
                 link: jsontxt
             description:
                 desc: The description of the advancement.
-                id: item_modifiers-7
+                id: item_modifiers
                 link: jsontxt
             frame:
                 desc: he optional type of frame for the icon. challenge for a tile with a more fancy spiked border as it is used for the kill all mobs advancement, goal for a tile with a rounded border as it is used for the full beacon advancement, task for a normal tile.
@@ -128,11 +128,11 @@ props:
                                 props:
                                     block:
                                         desc: The block that was destroyed. Accepts block IDs.
-                                        id: predicates-7
+                                        id: predicates
                                         link: block
                                     item:
                                         desc: The item used to break the block
-                                        id: predicates-7
+                                        id: predicates
                                         link: item_pred
                                     num_bees_inside:
                                         desc: The number of bees that were inside the bee nest/beehive before it was broken.
@@ -140,7 +140,7 @@ props:
                                         min: 0
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:bred_animals:
                             conditions:
@@ -148,19 +148,19 @@ props:
                                 props:
                                     child:
                                         desc: The child that results from the breeding. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                                     parent:
                                         desc: The parent. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                                     partner:
                                         desc: The partner. (The entity the parent was bred with) May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:brewed_potion:
                             conditions:
@@ -173,7 +173,7 @@ props:
                                         allow: '*a-z0-9_\/:.-'
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:changed_dimension:
                             conditions:
@@ -189,7 +189,7 @@ props:
                                         allow: '*a-z0-9_\/:.-'
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:channeled_lightning:
                             conditions:
@@ -199,11 +199,11 @@ props:
                                         desc: The victims hit by the lightning summoned by the Channeling enchantment. All entities in this list must be hit. Each entry may also be a list of predicates that must pass in order for the trigger to activate. The checks are applied to the victim hit by the enchanted trident.
                                         type: list
                                         vals:
-                                            id: predicates-7
+                                            id: predicates
                                             link: entity_preds
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:construct_beacon:
                             conditions:
@@ -211,11 +211,11 @@ props:
                                 props:
                                     level:
                                         desc: The tier of the updated beacon structure.
-                                        id: predicates-7
+                                        id: predicates
                                         link: intmm0
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:consume_item:
                             conditions:
@@ -223,11 +223,11 @@ props:
                                 props:
                                     item:
                                         desc: The item that was consumed.
-                                        id: predicates-7
+                                        id: predicates
                                         link: item_pred
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:cured_zombie_villager:
                             conditions:
@@ -235,15 +235,15 @@ props:
                                 props:
                                     villager:
                                         desc: The villager that is the result of the conversion. The 'type' tag is redundant since it will always be "villager". May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                                     zombie:
                                         desc: The zombie villager right before the conversion is complete (not when it is initiated). The 'type' tag is redundant since it will always be "zombie_villager". May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:effects_changed:
                             conditions:
@@ -256,19 +256,19 @@ props:
                                             props:
                                                 amplifier:
                                                     desc: The effect amplifier.
-                                                    id: predicates-7
+                                                    id: predicates
                                                     link: intmm0
                                                 duration:
                                                     desc: The effect duration in ticks.
-                                                    id: predicates-7
+                                                    id: predicates
                                                     link: intmm0
                                     source:
                                         desc: The entity that was the source of the status effect. Empty when there is no entity or when the effect was self-applied or removed. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:enchanted_item:
                             conditions:
@@ -276,15 +276,15 @@ props:
                                 props:
                                     item:
                                         desc: The item after it has been enchanted.
-                                        id: predicates-7
+                                        id: predicates
                                         link: item_pred
                                     levels:
                                         desc: The levels spent by the player on the enchantment.
-                                        id: predicates-7
+                                        id: predicates
                                         link: intmm0
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:enter_block:
                             conditions:
@@ -302,7 +302,7 @@ props:
                                             type: string
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:entity_hurt_player:
                             conditions:
@@ -313,7 +313,7 @@ props:
                                         link: damage
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:entity_killed_player:
                             conditions:
@@ -321,16 +321,16 @@ props:
                                 props:
                                     killing_blow:
                                         desc: Checks the type of damage that killed the player.
-                                        id: predicates-7
+                                        id: predicates
                                         link: damage_pred
                                     entity:
                                         desc: |
                                             Checks the entity that was the source of the damage that killed the player (for example: The skeleton that shot the arrow). May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:filled_bucket:
                             conditions:
@@ -338,11 +338,11 @@ props:
                                 props:
                                     item:
                                         desc: The item resulting from filling the bucket.
-                                        id: predicates-7
+                                        id: predicates
                                         link: item_pred
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:fishing_rod_hooked:
                             conditions:
@@ -350,19 +350,19 @@ props:
                                 props:
                                     item:
                                         desc: The item that was caught.
-                                        id: predicates-7
+                                        id: predicates
                                         link: item_pred
                                     rod:
                                         desc: The fishing rod used.
-                                        id: predicates-7
+                                        id: predicates
                                         link: item_pred
                                     entity:
                                         desc: The entity that was pulled. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:hero_of_the_village:
                             conditions:
@@ -370,11 +370,11 @@ props:
                                 props:
                                     location:
                                         desc: The location of the player.
-                                        id: predicates-7
+                                        id: predicates
                                         link: location_pred
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:impossible: {}
                         string-minecraft:inventory_changed:
@@ -385,26 +385,26 @@ props:
                                         desc: A list of items in the player's inventory. All items in the list must be in the player's inventory, but not all items in the player's inventory have to be in this list.
                                         type: list
                                         vals:
-                                            id: predicates-7
+                                            id: predicates
                                             link: item_pred
                                     slots:
                                         type: object
                                         props:
                                             empty:
                                                 desc: The amount of slots empty in the inventory.
-                                                id: predicates-7
+                                                id: predicates
                                                 link: intmm0
                                             full:
                                                 desc: The amount of slots filled (stacksize) in the inventory.
-                                                id: predicates-7
+                                                id: predicates
                                                 link: intmm0
                                             occupied:
                                                 desc: The amount of slots occupied in the inventory.
-                                                id: predicates-7
+                                                id: predicates
                                                 link: intmm0
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:item_durability_changed:
                             conditions:
@@ -412,19 +412,19 @@ props:
                                 props:
                                     delta:
                                         desc: The change in durability (negative numbers are used to indicate a decrease in durability).
-                                        id: predicates-7
+                                        id: predicates
                                         link: intmm0
                                     durability:
                                         desc: The remaining durability of the item.
-                                        id: predicates-7
+                                        id: predicates
                                         link: intmm0
                                     item:
                                         desc: The item before it was damaged, allows you to check the durability before the item was damaged.
-                                        id: predicates-7
+                                        id: predicates
                                         link: item_pred
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:item_used_on_block:
                             conditions:
@@ -432,15 +432,15 @@ props:
                                 props:
                                     location:
                                         desc: The location at the center of the block the item was used on.
-                                        id: predicates-7
+                                        id: predicates
                                         link: location_pred
                                     item:
                                         desc: The item used on the block.
-                                        id: predicates-7
+                                        id: predicates
                                         link: item_pred
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:killed_by_crossbow:
                             conditions:
@@ -448,35 +448,35 @@ props:
                                 props:
                                     unique_entity_types:
                                         desc: The number of types of entities killed.
-                                        id: predicates-7
+                                        id: predicates
                                         link: intmm0
                                     victims:
                                         desc: Either a single predicate that must match any of the killed entities, or a list of predicates that must match any of the killed entities. All of the predicates must be matched, and one killed entity may match only one predicate.
                                         or:
-                                          - id: predicates-7
+                                          - id: predicates
                                             link: entity_pred
                                           - type: list
                                             vals:
-                                                id: predicates-7
+                                                id: predicates
                                                 link: entity_preds
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:levitation:
                             conditions:
                                 type: object
                                 props:
                                     distance:
-                                        id: predicates-7
+                                        id: predicates
                                         link: intdistance
                                     duration:
                                         desc: The duration of the levitation in ticks.
-                                        id: predicates-7
+                                        id: predicates
                                         link: intmm0
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:lightning_strike:
                             conditions:
@@ -484,15 +484,15 @@ props:
                                 props:
                                     lightning:
                                         desc: The lightning bolt that disappeared. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                                     bystander:
                                         desc: An entity not hurt by the lightning strike but in a certain area around it. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:location:
                             conditions:
@@ -500,11 +500,11 @@ props:
                                 props:
                                     location:
                                         desc: The location of the player.
-                                        id: predicates-7
+                                        id: predicates
                                         link: location_pred
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:nether_travel:
                             conditions:
@@ -512,19 +512,19 @@ props:
                                 props:
                                     entered:
                                         desc: The location where the player entered the Nether.
-                                        id: predicates-7
+                                        id: predicates
                                         link: location_pred
                                     exited:
                                         desc: The location where the player exited the Nether.
-                                        id: predicates-7
+                                        id: predicates
                                         link: location_pred
                                     distance:
                                         desc: The overworld distance between where the player entered the Nether and where the player exited the Nether.
-                                        id: predicates-7
+                                        id: predicates
                                         link: distance
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:placed_block:
                             conditions:
@@ -532,15 +532,15 @@ props:
                                 props:
                                     block:
                                         desc: The block that was placed.
-                                        id: predicates-7
+                                        id: predicates
                                         link: block
                                     item:
                                         desc: The item that was used to place the block before the item was consumed.
-                                        id: predicates-7
+                                        id: predicates
                                         link: item_pred
                                     location:
                                         desc: The location of the block that was placed.
-                                        id: predicates-7
+                                        id: predicates
                                         link: location_pred
                                     state:
                                         desc: The block states of the block, with the key names being the state names and the values being the required values for those states.
@@ -549,7 +549,7 @@ props:
                                             type: string
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:player_generates_container_loot:
                             conditions:
@@ -561,7 +561,7 @@ props:
                                         allow: '*a-z0-9_#\/:.-'
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:player_hurt_entity:
                             conditions:
@@ -572,11 +572,11 @@ props:
                                         link: damage
                                     entity:
                                         desc: The entity that was damaged. May be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:player_interacted_with_entity:
                             conditions:
@@ -584,15 +584,15 @@ props:
                                 props:
                                     item:
                                         desc: The item which was in the player's hand during interaction.
-                                        id: predicates-7
+                                        id: predicates
                                         link: item_pred
                                     entity:
                                         desc: The entity that was interacted with. May be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:player_killed_entity:
                             conditions:
@@ -603,11 +603,11 @@ props:
                                         link: damage
                                     entity:
                                         desc: The entity that was killed. May be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:recipe_unlocked:
                             conditions:
@@ -619,7 +619,7 @@ props:
                                         allow: '*a-z0-9_\/:.-'
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:shot_crossbow:
                             conditions:
@@ -627,11 +627,11 @@ props:
                                 props:
                                     item:
                                         desc: The crossbow that was used.
-                                        id: predicates-7
+                                        id: predicates
                                         link: item_pred
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:slept_in_bed:
                             conditions:
@@ -639,11 +639,11 @@ props:
                                 props:
                                     location:
                                         desc: The location of the player when entering the bed.
-                                        id: predicates-7
+                                        id: predicates
                                         link: location_pred
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:slide_down_block:
                             conditions:
@@ -651,11 +651,11 @@ props:
                                 props:
                                     block:
                                         desc: The block that the player slid on.
-                                        id: predicates-7
+                                        id: predicates
                                         link: block
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:started_riding:
                             conditions:
@@ -663,7 +663,7 @@ props:
                                 props:
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:summoned_entity:
                             conditions:
@@ -671,11 +671,11 @@ props:
                                 props:
                                     entity:
                                         desc: The summoned entity. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:tame_animal:
                             conditions:
@@ -683,11 +683,11 @@ props:
                                 props:
                                     entity:
                                         desc: The entity that was tamed. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:target_hit:
                             conditions:
@@ -703,11 +703,11 @@ props:
                                         allow: '*a-z0-9_\/:.-'
                                     shooter:
                                         desc: The player who shot or threw the projectile. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:thrown_item_picked_up_by_entity:
                             conditions:
@@ -715,15 +715,15 @@ props:
                                 props:
                                     item:
                                         desc: The thrown item which was picked up.
-                                        id: predicates-7
+                                        id: predicates
                                         link: item_pred
                                     entity:
                                         desc: The entity which picked up the item. May be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:tick:
                             conditions:
@@ -731,7 +731,7 @@ props:
                                 props:
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:used_ender_eye:
                             conditions:
@@ -739,11 +739,11 @@ props:
                                 props:
                                     distance:
                                         desc: The horizontal distance between the player and the stronghold.
-                                        id: predicates-7
+                                        id: predicates
                                         link: nummm0
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:used_totem:
                             conditions:
@@ -751,11 +751,11 @@ props:
                                 props:
                                     item:
                                         desc: The totem that was used.
-                                        id: predicates-7
+                                        id: predicates
                                         link: item_pred
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:using_item:
                             conditions:
@@ -763,11 +763,11 @@ props:
                                 props:
                                     item:
                                         desc: The item being currently used, only works for certain items like bows, crossbows, honey bottles, milk buckets, potions, shields, spyglasses, tridents, food items, and eyes of enders. Most items that activate from a single click do not affect this trigger.
-                                        id: predicates-7
+                                        id: predicates
                                         link: item_pred
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:villager_trade:
                             conditions:
@@ -775,15 +775,15 @@ props:
                                 props:
                                     item:
                                         desc: The item that was purchased. The "count" tag checks the count from one trade, not multiple.
-                                        id: predicates-7
+                                        id: predicates
                                         link: item_pred
                                     villager:
                                         desc: The villager the item was purchased from. May be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
                         string-minecraft:voluntary_exile:
                             conditions:
@@ -791,11 +791,11 @@ props:
                                 props:
                                     location:
                                         desc: The location of the player.
-                                        id: predicates-7
+                                        id: predicates
                                         link: location_pred
                                     player:
                                         desc: The player that would get the advancement. May also be a list of predicates that must pass in order for the trigger to activate.
-                                        id: predicates-7
+                                        id: predicates
                                         link: entity_preds
     requirements:
         desc: |

@@ -231,7 +231,7 @@ links:
                 desc: Determines conditions for this function to be applied. If multiple conditions are specified, all must pass.
                 type: list
                 vals:
-                    id: predicates-7
+                    id: predicates
                     link: single_pred
             function:
                 desc: Namespaced ID of the function to apply.
@@ -347,7 +347,7 @@ links:
                             type: boolean
                         levels:
                             desc: The enchantment level to use.
-                            id: predicates-7
+                            id: predicates
                             link: intprov
                     string-minecraft:exploration_map:
                         destination:
@@ -379,20 +379,20 @@ links:
                     string-minecraft:limit_count:
                         limit:
                             or:
-                              - id: predicates-7
+                              - id: predicates
                                 link: intprov
                               - type: object
                                 props:
                                     min:
-                                        id: predicates-7
+                                        id: predicates
                                         link: intprov
                                     max:
-                                        id: predicates-7
+                                        id: predicates
                                         link: intprov
                     string-minecraft:looting_enchant:
                         count:
                             desc: Specifies the number of additional items per level of looting. Note the number may be fractional, rounded after multiplying by the looting level.
-                            id: predicates-7
+                            id: predicates
                             link: intprov
                         limit:
                             desc: Specifies the maximum amount of items in the stack after the looting calculation. If the value is 0, no limit is applied.
@@ -415,7 +415,7 @@ links:
                                         enum: [addition, multiply_base, multiply_total]
                                     amount:
                                         desc: Specifies the amount of the modifier.
-                                        id: predicates-7
+                                        id: predicates
                                         link: numprov
                                     id:
                                         desc: Optional; UUID of the modifier following. If none specified, a new UUID is generated.
@@ -471,7 +471,7 @@ links:
                             desc: The entries to use as contents for the item container.
                             type: list
                             vals:
-                                id: loot_tables-7
+                                id: loot_tables
                                 link: entry
                         type:
                             desc: The type to be written in "BlockEntityTag.id". 1.18+ only.
@@ -479,7 +479,7 @@ links:
                     string-minecraft:set_count:
                         count:
                             desc: Specifies the stack size to set.
-                            id: predicates-7
+                            id: predicates
                             link: intprov
                         add:
                             desc: If true, changes will be relative to current count.
@@ -487,7 +487,7 @@ links:
                     string-minecraft:set_damage:
                         damage:
                             desc: Specifies the damage fraction to set (1.0 is undamaged, 0.0 is zero durability left).
-                            id: predicates-7
+                            id: predicates
                             link: numprov
                         add:
                             desc: If true, change will be relative to current damage.
@@ -497,7 +497,7 @@ links:
                             desc: Key name is the enchantment ID. Value is a number provider specifying the enchantment level. Levels are clamped at a maximum of 255. Levels below 1 cause the enchantment to be removed, unless add is set to true, in which case only negative values will remove the enchantment if they cause the enchantment level to fall below 1.
                             type: object
                             extra:
-                                id: predicates-7
+                                id: predicates
                                 link: intprov
                         add:
                             desc: Optional. If true, change will be relative to current level. A nonexistent enchantment will be presumed to start at 0.
@@ -561,7 +561,7 @@ links:
                                         allow: '*a-z0-9_#\/:.-'
                                     duration:
                                         desc: The duration of the effect.
-                                        id: predicates-7
+                                        id: predicates
                                         link: intprov
                     string-apoli:add_power:
                         slot:

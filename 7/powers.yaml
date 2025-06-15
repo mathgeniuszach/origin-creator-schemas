@@ -629,7 +629,7 @@ links:
                             ingredient:
                                 desc: An ingredient, which can be a variety of things.
                                 href: https://origins.readthedocs.io/en/1.1.4/types/data_types/ingredient/
-                                id: recipes-6
+                                id: recipes
                                 link: oritem
                         string-origins:meat: {}
                         string-origins:nbt:
@@ -2117,7 +2117,7 @@ links:
                             link: entity_cond
                     string-origins:recipe:
                         recipe:
-                            id: recipes-6
+                            id: recipes
                             extend: power_recipe
                             desc: The recipe to craft, including an id field which can be any arbitrary (but unique) identifier.
                     string-origins:resource:
@@ -2950,7 +2950,7 @@ links:
         type: object
         props:
             item:
-                id: predicates-7
+                id: predicates
                 link: item
             amount:
                 desc: Size of the stack. Defaults to 1.

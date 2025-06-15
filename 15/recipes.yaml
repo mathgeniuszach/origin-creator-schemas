@@ -83,10 +83,10 @@ links:
                             type: object
                             extra:
                                 nopanel: true
-                                id: recipes-15
+                                id: recipes
                                 extend: oritem
                         result:
-                            id: recipes-15
+                            id: recipes
                             link: result
                     string-minecraft:crafting_shapeless:
                         ingredients:
@@ -94,7 +94,7 @@ links:
                             vals:
                                 link: oritem
                         result:
-                            id: recipes-15
+                            id: recipes
                             link: result
     recipe:
         type: or
@@ -121,7 +121,7 @@ links:
                                 type: object
                                 extra:
                                     nopanel: true
-                                    id: recipes-15
+                                    id: recipes
                                     extend: oritem
                             result:
                                 link: result
@@ -170,7 +170,7 @@ links:
                     gap: true
                 ingredient:
                     desc: The ingredient or list of acceptable incredients cooked by this recipe.
-                    id: recipes-15
+                    id: recipes
                     link: oritem
                 result:
                     extend: item
@@ -212,6 +212,6 @@ links:
                     desc: The type of the recipe.
                     type: string
             extra:
-                id: powers-15
+                id: powers
                 link: nany
 link: recipe
