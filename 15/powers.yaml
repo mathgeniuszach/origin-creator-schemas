@@ -4439,12 +4439,16 @@ links:
         desc: |
             Can be one of
             "add_base_early", which adds (or subtracts) the modifier value to the base value. (NewBaseValue = BaseValue + ModifierValue).
+            "origins-math:standard_multiply_base", which multiplies the current base value by the modifier value. (NewBaseValue = BaseValue * ModifierValue).
+            "origins-math:standard_divide_base", which divides the current base value by the modifier value. (NewBaseValue = BaseValue / ModifierValue).
             "multiply_base_additive", which adds (or subtracts) the base value multiplied by the modifier value to the current base value. (NewBaseValue = BaseValue + (BaseValue * ModifierValue)).
             "multiply_base_multiplicative", which multiplies the current base value by the modifier value. (NewBaseValue = BaseValue * (1 + ModifierValue)).
             "add_base_late", which adds (or subtracts) the modifier value to the base value. (NewBaseValue = BaseValue + ModifierValue).
             "min_base", which uses the modifier value as the minimum value for the base value using Java's built-in Math#max method. (NewBaseValue = Math.max(BaseValue, ModifierValue)).
             "max_base", which uses the modifier value as the maximum value for the base value using Java's built-in Math#min method. (NewBaseValue = Math.min(BaseValue, ModifierValue)).
             "set_base", which sets the modifier value as the base value. (NewBaseValue = ModifierValue).
+            "origins-math:standard_multiply_total", which multiplies the current total value by the modifier value. (NewTotalValue = TotalValue * ModifierValue).
+            "origins-math:standard_divide_total", which divides the current total value by the modifier value. (NewTotalValue = TotalValue / ModifierValue).
             "multiply_total_additive", which multiplies the total value by the current total value multiplied by the modifier value. (NewTotalValue = TotalValue * (TotalValue * ModifierValue)).
             "multiply_total_multiplicative", which multiplies the total value by the modifier value + 1. (NewTotalValue = TotalValue * (1 + ModifierValue)).
             "min_total", which uses the modifier value as the minimum value for the total value using Java's built-in Math#max method. (NewTotalValue = Math.max(TotalValue, ModifierValue)).
@@ -4456,12 +4460,16 @@ links:
             The other three options are only here for legacy support.
         enum:
           - add_base_early
+          - origins-math:standard_multiply_base
+          - origins-math:standard_divide_base
           - multiply_base_additive
           - multiply_base_multiplicative
           - add_base_late
           - min_base
           - max_base
           - set_base
+          - origins-math:standard_multiply_total
+          - origins-math:standard_divide_total
           - multiply_total_additive
           - multiply_total_multiplicative
           - min_total
@@ -4770,6 +4778,31 @@ links:
     math_operation:
         enum: ['add','divide','max','min','modulo','multiply','set','subtract']
         default: 0
+    expression:
+        type: string
+        href: https://origins-math.readthedocs.io/en/latest/types/data_types/expression/
+        allow: '*a-z0-9_#^%!\/:.,+-'
+    variables:
+        type: object
+        href: https://origins-math.readthedocs.io/en/latest/types/data_types/variable_declaration/
+        props:
+            id:
+                title: custom
+                type: string
+                allow: '*a-z0-9_#\/:.-'
+    math_number:
+        desc: A Float or Identifier that links to a Resource (Power Type) or it's extensions, or a power type that has a built-in cooldown (using remaining ticks as the value).
+        or:
+          - type: number
+          - type: string
+            allow: '*a-z0-9_#\/:.-'
+    math_integer:
+        desc: An Integer or Identifier that links to a Modifiable Resource (Power Type), Resource (Power Type) or a power type that has a built-in cooldown (using remaining ticks as the value).
+        or:
+          - type: integer
+          - type: string
+            allow: '*a-z0-9_#\/:.-'
+        
 hooks: [preserve_single]
 or:
   - title: simple
