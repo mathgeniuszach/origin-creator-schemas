@@ -2668,8 +2668,6 @@ links:
 
                   - $Apugli
 
-                  - $Regular Types
-
                   - apugli:custom_death_sound
                   - apugli:custom_hurt_sound
                   - apugli:edible_item
@@ -2679,6 +2677,12 @@ links:
                   - $Eggolib
 
                   - eggolib:crawling
+
+                  - $Origins Math
+
+                  - origins-math:attribute_like_resource
+                  - origins-math:math_resource
+                  - origins-math:modifiable_resource
                   
                 more:
                     string-origins:attribute_modify_transfer:
@@ -4287,6 +4291,51 @@ links:
                             desc: If set, mobs will ignore the entity with this power if they and the entity meet this condition.
                             link: bi_entity_cond
                     string-eggolib:crawling: {}
+                    string-origins-math:attribute_like_resource:
+                        min:
+                            desc: The minimum value of the resource.
+                            type: number
+                        max:
+                            desc: The maximum value of the resource.
+                            type: number
+                        start_value:
+                            desc: The value of the resource when the entity first receives the power. If not set, this will be set to the value of the min float field.
+                            type: number
+                    string-origins-math:math_resource:
+                        expression:
+                            desc: The mathematical expression that gives the value of this resource.
+                            link: expression
+                        variables:
+                            desc: A variable declaration declaring variables used in the expression.
+                            link: variable_declaration
+                    string-origins-math:modifiable_resource:
+                        min:
+                            desc: The minimum value of the resource.
+                            type: integer
+                        max:
+                            desc: The maximum value of the resource.
+                            type: integer
+                        hud_render:
+                            desc: Determines how the resource is visualized on the HUD.
+                            link: hud_render
+                        start_value:
+                            desc: The value of the resource when the entity first receives the power. If not set, this will be set to the value of the min float field.
+                            type: integer
+                        enforce_limits:
+                            desc: Whether or not the value of the resource should be bounded by the value of min and max.
+                            type: boolean
+                            default: true
+                        retain_value:
+                            desc: Whether or not the previous value of the resource is retained.
+                            type: boolean
+                            default: false
+                        min_action:
+                            desc: (EXPERIMENTAL) If specified, this action will be executed on the entity whenever the minimum value is reached.
+                            link: entity_action
+                        max_action:
+                            desc: (EXPERIMENTAL) If specified, this action will be executed on the entity whenever the maximum value is reached.
+                            link: entity_action
+                        
             fabric:load_conditions:
                 desc: Checks for the following namespaces or mods to be loaded and loads the power if true.
                 gap: before
