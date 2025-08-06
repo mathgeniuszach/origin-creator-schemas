@@ -1276,6 +1276,11 @@ links:
                       - origins:set_in_love
                       - origins:tame
                       - origins:target_action
+
+                      - $Origins Math
+
+                      - origins-math:copy_resource_value
+                      - origins-math:variable_execute_command
                     more:
                         string-origins:nothing: {}
                         string-origins:and:
@@ -1393,6 +1398,34 @@ links:
                             action:
                                 desc: The action to execute on the target entity.
                                 link: entity_action
+                        string-origins-math:copy_resource_value:
+                            target_resource:
+                                desc: The target's resource power with the value to be copied.
+                                type: string
+                                allow: '*a-z0-9_\/:.-'
+                            actor_resource:
+                                desc: The actor's resource power the target's resource value is copied over to.
+                                type: string
+                                allow: '*a-z0-9_\/:.-'
+                            operation:
+                                desc: Determines if the action should add or set the value of the resource.
+                                enum: [add,set]
+                                default: add
+                        string-origins-math:variable_execute_command:
+                            command:
+                                desc: The command to execute on the entity.
+                                type: string
+                            actor_selector:
+                                desc: The substring that refers to the actor entity. All instances of this string will be replaced with the actor entity's UUID.
+                                type: string
+                                default: %a
+                            target_selector:
+                                desc: The substring that refers to the target entity. All instances of this string will be replaced with the target entity's UUID.
+                                type: string
+                                default: %t
+                            variables:
+                                desc: A variable declaration declaring variables used inside the command.
+                                link: variables
           - title: custom
             link: custom_action
     entity_action:
@@ -4781,7 +4814,7 @@ links:
     expression:
         type: string
         href: https://origins-math.readthedocs.io/en/latest/types/data_types/expression/
-        allow: '*a-z0-9_#^%!\/:.,+-'
+        allow: '*a-z0-9_#^%!\/:.,+-()[]'
     variables:
         type: object
         href: https://origins-math.readthedocs.io/en/latest/types/data_types/variable_declaration/
