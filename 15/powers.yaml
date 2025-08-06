@@ -4786,8 +4786,9 @@ links:
         type: object
         href: https://origins-math.readthedocs.io/en/latest/types/data_types/variable_declaration/
         props:
-            id:
-                title: custom
+            type: object
+            title: custom
+            props: 
                 type: string
                 allow: '*a-z0-9_#\/:.-'
     math_number:
@@ -4802,7 +4803,42 @@ links:
           - type: integer
           - type: string
             allow: '*a-z0-9_#\/:.-'
+    a_val:
+        enum: [BASE,TOTAL]
+    biome_property:
+        enum: [TEMPERATURE,HUMIDITY]
+    player_property:
+        enum: 
+          - FOOD_LEVEL
+          - SATURATION
+          - HEALTH
+          - RELATIVE_HEALTH
+          - ABSORPTION
+          - BREATHING
+          - FIRE_TICKS
+          - FROZEN_TICKS
+          - FREEZING_SCALE
+          - EXP_LEVEL
+          - EXP_POINTS
+          - EXP_SCORE
+          - SLEEP_TIMER
+          - STUCK_ARROWS
+          - FALL_DISTANCE
+          - TIME_OF_DAY
+          - AGE
+          - X
+          - Y
+          - Z
+          - VELOCITY_X
+          - VELOCITY_Y
+          - VELOCITY_Z
+          - PITCH
+          - YAW
+          - ROLL
+    effect_property:
+        enum: [AMPLIFIER,DURATION]
         
+                    
 hooks: [preserve_single]
 or:
   - title: simple
