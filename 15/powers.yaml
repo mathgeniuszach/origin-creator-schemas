@@ -195,6 +195,14 @@ links:
                       - $Apugli
 
                       - apugli:entity_in_radius
+
+                      - $Origins Math
+
+                      - origins-math:compare_resources
+                      - origins-math:empty_resource
+                      - origins-math:full_resource
+                      - origins-math:relative_resource
+                      
                     more:
                         string-origins:and:
                             conditions:
@@ -735,6 +743,40 @@ links:
                                 desc: The value to compare the amount to.
                                 type: integer
                                 default: 1
+                        string-origins-math:compare_resources:
+                            left_resource:
+                                desc: The namespace and ID of the power that uses the Resource (Power Type) or has a built-in cooldown.
+                                type: string
+                                allow: '*a-z0-9_\/:.-'
+                            comparison:
+                                desc: Determines how the value of left_resource should be compared to right_resource.
+                                link: comparison
+                            right_resource:
+                                desc: The namespace and ID of the power that uses the Resource (Power Type) or has a built-in cooldown.
+                                type: string
+                                allow: '*a-z0-9_\/:.-'
+                        string-origins-math:empty_resource:
+                            resource:
+                                desc: The namespace and ID of the power that uses the Modifiable Resource (Power Type), Resource (Power Type) or has a built-in cooldown.
+                                type: string
+                                allow: '*a-z0-9_\/:.-'
+                        string-origins-math:full_resource:
+                            resource:
+                                desc: The namespace and ID of the power that uses the Modifiable Resource (Power Type), Resource (Power Type) or has a built-in cooldown.
+                                type: string
+                                allow: '*a-z0-9_\/:.-'
+                        string-origins-math:relative_resource:
+                            resource:
+                                desc: The namespace and ID of the power that uses the Modifiable Resource (Power Type), Resource (Power Type) or has a built-in cooldown.
+                                type: string
+                                allow: '*a-z0-9_\/:.-'
+                            comparison:
+                                desc: Determines how the relativity value of resource should be compared to relativity.
+                                link: comparison
+                            relativity:
+                                desc: The relativity value at which the relativity of the resource will be compared to.
+                                type: number
+                                
           - title: custom
             link: custom_condition
     item_cond:
