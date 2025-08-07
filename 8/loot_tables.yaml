@@ -3,12 +3,12 @@ links:
         desc: Determines conditions for this function to be applied. If multiple conditions are specified, all must pass.
         type: list
         vals:
-            id: predicates-8
+            id: predicates
             link: single_pred
     functions:
         type: list
         vals:
-            id: item_modifiers-7
+            id: item_modifiers
             link: single_modifier
     entry:
         type: object
@@ -129,11 +129,11 @@ props:
                     link: functions
                 rolls:
                     desc: Specifies the number of rolls on the pool.
-                    id: predicates-8
+                    id: predicates
                     link: intprov
                 bonus_rolls:
                     desc: Specifies the number of bonus rolls on the pool per point of luck. Rounded down after multiplying.
-                    id: predicates-8
+                    id: predicates
                     link: numprov
                 entries:
                     desc: A list of all things that can be produced by this pool. One entry is chosen per roll as a weighted random selection from all entries without failing conditions.

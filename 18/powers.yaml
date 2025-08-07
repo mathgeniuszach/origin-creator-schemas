@@ -848,7 +848,7 @@ links:
                             ingredient:
                                 desc: An ingredient, which can be a variety of things.
                                 href: https://origins.readthedocs.io/en/latest/types/item_condition_types/ingredient/
-                                id: recipes-6
+                                id: recipes
                                 link: oritem
                         string-origins:is_damageable: {}
                         string-origins:is_equippable: {}
@@ -2583,25 +2583,25 @@ links:
                     string-origins:crafting_recipe:
                         recipe:
                             desc: The recipe to display, including an id field which can be any arbitrary identifier.
-                            id: recipes-6
+                            id: recipes
                             link: power_recipe
                         prefix:
                             desc: If specified, this text will be used as the prefix for the tooltip.
-                            id: item_modifiers-12
+                            id: item_modifiers
                             link: jsontxt
                         suffix:
                             desc: If specified, this text will be used as the suffix for the tooltip.
-                            id: item_modifiers-12
+                            id: item_modifiers
                             link: jsontxt
                     string-origins:keybind:
                         text:
                             desc: The text to use in the tooltip when hovering over the badge. "%s" will be translated to the keybind specified in the power.
-                            id: item_modifiers-12
+                            id: item_modifiers
                             link: jsontxt
                     string-origins:tooltip:
                         text:
                             desc: The text to use in the tooltip when hovering over the badge.
-                            id: item_modifiers-12
+                            id: item_modifiers
                             link: jsontxt
             sprite:
                 desc: The namespace, path and ID of the texture to use as the icon of the badge.
@@ -3366,7 +3366,7 @@ links:
                             link: entity_cond
                     string-origins:recipe:
                         recipe:
-                            id: recipes-6
+                            id: recipes
                             extend: power_recipe
                             desc: The recipe to craft, including an id field which can be any arbitrary (but unique) identifier.
                     string-origins:replace_loot_table:
@@ -4638,7 +4638,7 @@ links:
         type: object
         props:
             item:
-                id: predicates-15
+                id: predicates
                 link: item
             amount:
                 desc: Size of the stack. Defaults to 1.
