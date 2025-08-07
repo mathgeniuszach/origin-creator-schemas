@@ -195,6 +195,14 @@ links:
                       - $Apugli
 
                       - apugli:entity_in_radius
+
+                      - $Origins Math
+
+                      - origins-math:compare_resources
+                      - origins-math:empty_resource
+                      - origins-math:full_resource
+                      - origins-math:relative_resource
+                      
                     more:
                         string-origins:and:
                             conditions:
@@ -735,6 +743,40 @@ links:
                                 desc: The value to compare the amount to.
                                 type: integer
                                 default: 1
+                        string-origins-math:compare_resources:
+                            left_resource:
+                                desc: The namespace and ID of the power that uses the Resource (Power Type) or has a built-in cooldown.
+                                type: string
+                                allow: '*a-z0-9_\/:.-'
+                            comparison:
+                                desc: Determines how the value of left_resource should be compared to right_resource.
+                                link: comparison
+                            right_resource:
+                                desc: The namespace and ID of the power that uses the Resource (Power Type) or has a built-in cooldown.
+                                type: string
+                                allow: '*a-z0-9_\/:.-'
+                        string-origins-math:empty_resource:
+                            resource:
+                                desc: The namespace and ID of the power that uses the Modifiable Resource (Power Type), Resource (Power Type) or has a built-in cooldown.
+                                type: string
+                                allow: '*a-z0-9_\/:.-'
+                        string-origins-math:full_resource:
+                            resource:
+                                desc: The namespace and ID of the power that uses the Modifiable Resource (Power Type), Resource (Power Type) or has a built-in cooldown.
+                                type: string
+                                allow: '*a-z0-9_\/:.-'
+                        string-origins-math:relative_resource:
+                            resource:
+                                desc: The namespace and ID of the power that uses the Modifiable Resource (Power Type), Resource (Power Type) or has a built-in cooldown.
+                                type: string
+                                allow: '*a-z0-9_\/:.-'
+                            comparison:
+                                desc: Determines how the relativity value of resource should be compared to relativity.
+                                link: comparison
+                            relativity:
+                                desc: The relativity value at which the relativity of the resource will be compared to.
+                                type: number
+                                
           - title: custom
             link: custom_condition
     item_cond:
@@ -1276,6 +1318,11 @@ links:
                       - origins:set_in_love
                       - origins:tame
                       - origins:target_action
+
+                      - $Origins Math
+
+                      - origins-math:copy_resource_value
+                      - origins-math:variable_execute_command
                     more:
                         string-origins:nothing: {}
                         string-origins:and:
@@ -1393,6 +1440,34 @@ links:
                             action:
                                 desc: The action to execute on the target entity.
                                 link: entity_action
+                        string-origins-math:copy_resource_value:
+                            target_resource:
+                                desc: The target's resource power with the value to be copied.
+                                type: string
+                                allow: '*a-z0-9_\/:.-'
+                            actor_resource:
+                                desc: The actor's resource power the target's resource value is copied over to.
+                                type: string
+                                allow: '*a-z0-9_\/:.-'
+                            operation:
+                                desc: Determines if the action should add or set the value of the resource.
+                                enum: [add,set]
+                                default: add
+                        string-origins-math:variable_execute_command:
+                            command:
+                                desc: The command to execute on the entity.
+                                type: string
+                            actor_selector:
+                                desc: The substring that refers to the actor entity. All instances of this string will be replaced with the actor entity's UUID.
+                                type: string
+                                default: %a
+                            target_selector:
+                                desc: The substring that refers to the target entity. All instances of this string will be replaced with the target entity's UUID.
+                                type: string
+                                default: %t
+                            variables:
+                                desc: A variable declaration declaring variables used inside the command.
+                                link: variables
           - title: custom
             link: custom_action
     entity_action:
@@ -1466,6 +1541,12 @@ links:
                       - $Eggolib
 
                       - eggolib:calculate_resource
+
+                      - $Origins Math
+                      
+                      - origins-math:change_resource
+                      - origins-math:variable_change_resource
+                      - origins-math:variable_execute_command
                       
                     more:
                         string-origins:nothing: {}
@@ -2121,7 +2202,40 @@ links:
                                 desc: The namespace, path and ID of the power to use the value of.
                                 type: string
                                 allow: '*a-z0-9_\/:.-'
-                                
+                        string-origins-math:change_resource:
+                            resource:
+                                desc: The namespace and ID of the power that uses the Resource (Power Type) or it's extensions, or has a built-in cooldown.
+                                type: string
+                                allow: '*a-z0-9_\/:.-'
+                            change:
+                                desc: This value will be added to the resource (won't go below min or above max of the Resource (Power Type)).
+                                link: math_number
+                            operation:
+                                desc: Determines if the action should add or set the value of the resource.
+                                enum: [add,set]
+                                default: add
+                        string-origins-math:variable_change_resource:
+                            resource:
+                                desc: The namespace and ID of the power that uses the Resource (Power Type) or has a built-in cooldown.
+                                type: string
+                                allow: '*a-z0-9_\/:.-'
+                            expression:
+                                desc: The mathematical expression that gives the value that will be added to/set as the value (won't go below min or above max of the Resource (Power Type)).
+                                link: expression
+                            variables:
+                                desc: A variable declaration declaring variables used inside the command.
+                                link: variable_declaration
+                            operation:
+                                desc: Determines if the action should add or set the value of the resource.
+                                enum: [add,set]
+                                default: add
+                        string-origins-math:variable_execute_command:
+                            command:
+                                desc: The command to execute on the entity.
+                                type: string
+                            variables:
+                                desc: A variable declaration declaring variables used inside the command.
+                                link: variable_declaration
           - title: custom
             link: custom_action
     item_action:
@@ -2668,8 +2782,6 @@ links:
 
                   - $Apugli
 
-                  - $Regular Types
-
                   - apugli:custom_death_sound
                   - apugli:custom_hurt_sound
                   - apugli:edible_item
@@ -2679,7 +2791,31 @@ links:
                   - $Eggolib
 
                   - eggolib:crawling
+
+                  - $Origins Math
                   
+                  - $Additional Resource Types
+                  - origins-math:attribute_like_resource
+                  - origins-math:math_resource
+                  - origins-math:modifiable_resource
+
+                  - $Linked Resource Types
+                  - origins-math:attribute_linked_resource
+                  - origins-math:current_biome_linked_resource
+                  - origins-math:damage_dealt_linked_resource
+                  - origins-math:damage_taken_linked_resource
+                  - origins-math:living_entity_linked_reesource
+                  - origins-math:healing_linked_resource
+                  - origins-math:nbt_linked_resource
+                  - origins-math:player_linked_resource
+                  - origins-math:scoreboard_linked_resource
+                  - origins-math:status_effect_linked_resource
+
+                  - $Modifying Types
+                  - origins-math:modify_attribute_linked_resource
+                  - origins-math:modify_resource_maximum
+                  - origins-math:modify_resource_minimum
+                  - origins-math:modify_simple
                 more:
                     string-origins:attribute_modify_transfer:
                         attribute:
@@ -4288,6 +4424,163 @@ links:
                             desc: If set, mobs will ignore the entity with this power if they and the entity meet this condition.
                             link: bi_entity_cond
                     string-eggolib:crawling: {}
+                    string-origins-math:attribute_like_resource:
+                        min:
+                            desc: The minimum value of the resource.
+                            type: number
+                        max:
+                            desc: The maximum value of the resource.
+                            type: number
+                        start_value:
+                            desc: The value of the resource when the entity first receives the power. If not set, this will be set to the value of the min float field.
+                            type: number
+                    string-origins-math:math_resource:
+                        expression:
+                            desc: The mathematical expression that gives the value of this resource.
+                            link: expression
+                        variables:
+                            desc: A variable declaration declaring variables used in the expression.
+                            link: variable_declaration
+                    string-origins-math:modifiable_resource:
+                        min:
+                            desc: The minimum value of the resource.
+                            type: integer
+                        max:
+                            desc: The maximum value of the resource.
+                            type: integer
+                        hud_render:
+                            desc: Determines how the resource is visualized on the HUD.
+                            link: hud_render
+                        start_value:
+                            desc: The value of the resource when the entity first receives the power. If not set, this will be set to the value of the min float field.
+                            type: integer
+                        enforce_limits:
+                            desc: Whether or not the value of the resource should be bounded by the value of min and max.
+                            type: boolean
+                            default: true
+                        retain_value:
+                            desc: Whether or not the previous value of the resource is retained.
+                            type: boolean
+                            default: false
+                        min_action:
+                            desc: (EXPERIMENTAL) If specified, this action will be executed on the entity whenever the minimum value is reached.
+                            link: entity_action
+                        max_action:
+                            desc: (EXPERIMENTAL) If specified, this action will be executed on the entity whenever the maximum value is reached.
+                            link: entity_action
+                    string-origins-math:attribute_linked_resource:
+                        attribute:
+                            desc: The ID of the attribute that this power will base it's value from.
+                            type: string
+                            allow: '*a-z0-9_\/:.-'
+                        value:
+                            desc: The specific value of "attribute" this power will take.
+                            link: a_val
+                    string-origins-math:current_biome_linked_resource:
+                        property:
+                            desc: The specific property of the current biome that this power will take as it's value.
+                            link: biome_property
+                    string-origins-math:damage_dealt_linked_resource:
+                        duration:
+                            desc: The amount of ticks the damage amount is stored for.
+                            type: integer
+                        damage_condition:
+                            desc: If specified, the amount of damage dealt is only set if the damage being dealt fulfills the condition.
+                            link: damage_cond
+                        bientity_action:
+                            desc: If specified, the specified actions will be executed once the amount of damage dealt has been set, with the 'actor' being the entity dealing the damage and the 'target' being the entity that receives the damage.
+                            link: bi_entity_action
+                    string-origins-math:damage_taken_linked_resource:
+                        duration:
+                            desc: The amount of ticks the damage amount is stored for.
+                            type: integer
+                        damage_condition:
+                            desc: If specified, the amount of damage taken is only set if the damage being taken fulfills the condition.
+                            link: damage_cond
+                        bientity_action:
+                            desc: If specified, the specified actions will be executed once the amount of damage taken has been set, with the 'actor' being the entity taking the damage and the 'target' being the entity that deals the damage.
+                            link: bi_entity_action
+                    string-origins-math:living_entity_linked_resource:
+                        property:
+                            desc: The specific property of the entity that this power will take as it's value.
+                            link: entity_property
+                    string-origins-math:healing_linked_resource:
+                        duration:
+                            desc: The amount of ticks the healing amount is stored.
+                        entity_action:
+                            desc: If specified, the specified actions will be executed once the amount of healing received has been set.
+                            link: entity_action
+                    string-origins-math:nbt_linked_resource:
+                        path:
+                            desc: The specific NBT path that this power will take as it's value.
+                            type: string
+                            allow: 'a-z0-9_\/:.-'
+                    string-origins-math:player_linked_resource:
+                        property:
+                            desc: The specific property of the player that this power will take as it's value.
+                            link: player_property
+                    string-origins-math:scoreboard_linked_resource:
+                        objective:
+                            desc: The name of the scoreobard objective to retrieve the score of this entity from.
+                            type: string
+                            allow: 'a-z0-9_\/:.-'
+                    string-origins-math:status_effect_linked_resource:
+                        effect:
+                            desc: The ID of the Status Effect that this power will base it's value from.
+                            type: string
+                            allow: 'a-z0-9_\/:.-'
+                        property:
+                            desc: The specific property of the Status Effect that this power will take as it's value.
+                            link: effect_property
+                    string-origins-math:modify_attribute_like_resource:
+                        resource:
+                            desc: The namespace and ID of the power that uses the Attribute-like Resource (Power Type)
+                            type: string
+                            allow: '*a-z0-9_\/:.-'
+                        modifier:
+                            desc: If specified, this modifier will be applied to the resource' added values.
+                            link: a_mod
+                        modifiers:
+                            desc: If specified, these modifiers will be applied to the resource's added values.
+                            type: list
+                            vals:
+                                link: a_mod
+                    string-origins-math:modify_resource_maximum:
+                        resource:
+                            desc: The namespace and ID of the power that uses the Modifiable Resource (Power Type)
+                            type: string
+                            allow: '*a-z0-9_\/:.-'
+                        modifier:
+                            desc: If specified, this modifier will be applied to the resource's maximum value.
+                            link: a_mod
+                        modifiers:
+                            desc: If specified, these modifiers will be applied to the resource's maximum value.
+                            type: list
+                            vals:
+                                link: a_mod
+                    string-origins-math:modify_resource_minimum:
+                        resource:
+                            desc: The namespace and ID of the power that uses the Modifiable Resource (Power Type)
+                            type: string
+                            allow: '*a-z0-9_\/:.-'
+                        modifier:
+                            desc: If specified, this modifier will be applied to the resource's minimum value.
+                            link: a_mod
+                        modifiers:
+                            desc: If specified, these modifiers will be applied to the resource's minimum value.
+                            type: list
+                            vals:
+                                link: a_mod
+                    string-origins-math:modify_simple:
+                        modifier:
+                            desc: If specified, this modifier will be applied to the resource's minimum value.
+                            link: a_mod
+                        modifiers:
+                            desc: If specified, these modifiers will be applied to the resource's minimum value.
+                            type: list
+                            vals:
+                                link: a_mod
+                        
             fabric:load_conditions:
                 desc: Checks for the following namespaces or mods to be loaded and loads the power if true.
                 gap: before
@@ -4391,12 +4684,16 @@ links:
         desc: |
             Can be one of
             "add_base_early", which adds (or subtracts) the modifier value to the base value. (NewBaseValue = BaseValue + ModifierValue).
+            "origins-math:standard_multiply_base", which multiplies the current base value by the modifier value. (NewBaseValue = BaseValue * ModifierValue).
+            "origins-math:standard_divide_base", which divides the current base value by the modifier value. (NewBaseValue = BaseValue / ModifierValue).
             "multiply_base_additive", which adds (or subtracts) the base value multiplied by the modifier value to the current base value. (NewBaseValue = BaseValue + (BaseValue * ModifierValue)).
             "multiply_base_multiplicative", which multiplies the current base value by the modifier value. (NewBaseValue = BaseValue * (1 + ModifierValue)).
             "add_base_late", which adds (or subtracts) the modifier value to the base value. (NewBaseValue = BaseValue + ModifierValue).
             "min_base", which uses the modifier value as the minimum value for the base value using Java's built-in Math#max method. (NewBaseValue = Math.max(BaseValue, ModifierValue)).
             "max_base", which uses the modifier value as the maximum value for the base value using Java's built-in Math#min method. (NewBaseValue = Math.min(BaseValue, ModifierValue)).
             "set_base", which sets the modifier value as the base value. (NewBaseValue = ModifierValue).
+            "origins-math:standard_multiply_total", which multiplies the current total value by the modifier value. (NewTotalValue = TotalValue * ModifierValue).
+            "origins-math:standard_divide_total", which divides the current total value by the modifier value. (NewTotalValue = TotalValue / ModifierValue).
             "multiply_total_additive", which multiplies the total value by the current total value multiplied by the modifier value. (NewTotalValue = TotalValue * (TotalValue * ModifierValue)).
             "multiply_total_multiplicative", which multiplies the total value by the modifier value + 1. (NewTotalValue = TotalValue * (1 + ModifierValue)).
             "min_total", which uses the modifier value as the minimum value for the total value using Java's built-in Math#max method. (NewTotalValue = Math.max(TotalValue, ModifierValue)).
@@ -4408,12 +4705,16 @@ links:
             The other three options are only here for legacy support.
         enum:
           - add_base_early
+          - origins-math:standard_multiply_base
+          - origins-math:standard_divide_base
           - multiply_base_additive
           - multiply_base_multiplicative
           - add_base_late
           - min_base
           - max_base
           - set_base
+          - origins-math:standard_multiply_total
+          - origins-math:standard_divide_total
           - multiply_total_additive
           - multiply_total_multiplicative
           - min_total
@@ -4722,6 +5023,87 @@ links:
     math_operation:
         enum: ['add','divide','max','min','modulo','multiply','set','subtract']
         default: 0
+    expression:
+        type: string
+        href: https://origins-math.readthedocs.io/en/latest/types/data_types/expression/
+        allow: '*a-z0-9_#^%!\/:.,+-()[]'
+    variables:
+        type: object
+        href: https://origins-math.readthedocs.io/en/latest/types/data_types/variable_declaration/
+        extra:
+            allowkey: 'a-z0-9_\/:.-'
+            type: string
+            allow: '*a-z0-9_\/:.-'
+    math_number:
+        desc: A Float or Identifier that links to a Resource (Power Type) or it's extensions, or a power type that has a built-in cooldown (using remaining ticks as the value).
+        or:
+          - type: number
+          - type: string
+            allow: '*a-z0-9_\/:.-'
+    math_integer:
+        desc: An Integer or Identifier that links to a Modifiable Resource (Power Type), Resource (Power Type) or a power type that has a built-in cooldown (using remaining ticks as the value).
+        or:
+          - type: integer
+          - type: string
+            allow: '*a-z0-9_\/:.-'
+    a_val:
+        enum: [BASE,TOTAL]
+    biome_property:
+        enum: [TEMPERATURE,HUMIDITY]
+    player_property:
+        enum: 
+          - FOOD_LEVEL
+          - SATURATION
+          - HEALTH
+          - RELATIVE_HEALTH
+          - ABSORPTION
+          - BREATHING
+          - FIRE_TICKS
+          - FROZEN_TICKS
+          - FREEZING_SCALE
+          - EXP_LEVEL
+          - EXP_POINTS
+          - EXP_SCORE
+          - SLEEP_TIMER
+          - STUCK_ARROWS
+          - FALL_DISTANCE
+          - TIME_OF_DAY
+          - AGE
+          - X
+          - Y
+          - Z
+          - VELOCITY_X
+          - VELOCITY_Y
+          - VELOCITY_Z
+          - PITCH
+          - YAW
+          - ROLL
+    entity_property:
+        enum: 
+          - HEALTH
+          - RELATIVE_HEALTH
+          - ABSORPTION
+          - BREATHING
+          - FIRE_TICKS
+          - FROZEN_TICKS
+          - FREEZING_SCALE
+          - STUCK_ARROWS
+          - FALL_DISTANCE
+          - TIME_OF_DAY
+          - AGE
+          - X
+          - Y
+          - Z
+          - VELOCITY_X
+          - VELOCITY_Y
+          - VELOCITY_Z
+          - PITCH
+          - YAW
+          - ROLL
+    effect_property:
+        enum: [AMPLIFIER,DURATION]
+        
+                    
 hooks: [preserve_single]
 or:
   - title: simple
