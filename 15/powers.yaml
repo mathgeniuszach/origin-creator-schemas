@@ -1499,6 +1499,12 @@ links:
                       - $Eggolib
 
                       - eggolib:calculate_resource
+
+                      - $Origins Math
+                      
+                      - origins-math:change_resource
+                      - origins-math:variable_change_resource
+                      - origins-math:variable_execute_command
                       
                     more:
                         string-origins:nothing: {}
@@ -2154,7 +2160,40 @@ links:
                                 desc: The namespace, path and ID of the power to use the value of.
                                 type: string
                                 allow: '*a-z0-9_\/:.-'
-                                
+                        string-origins-math:change_resource:
+                            resource:
+                                desc: The namespace and ID of the power that uses the Resource (Power Type) or it's extensions, or has a built-in cooldown.
+                                type: string
+                                allow: '*a-z0-9_\/:.-'
+                            change:
+                                desc: This value will be added to the resource (won't go below min or above max of the Resource (Power Type)).
+                                link: math_number
+                            operation:
+                                desc: Determines if the action should add or set the value of the resource.
+                                enum: [add,set]
+                                default: add
+                        string-origins-math:variable_change_resource:
+                            resource:
+                                desc: The namespace and ID of the power that uses the Resource (Power Type) or has a built-in cooldown.
+                                type: string
+                                allow: '*a-z0-9_\/:.-'
+                            expression:
+                                desc: The mathematical expression that gives the value that will be added to/set as the value (won't go below min or above max of the Resource (Power Type)).
+                                link: expression
+                            variables:
+                                desc: A variable declaration declaring variables used inside the command.
+                                link: variable_declaration
+                            operation:
+                                desc: Determines if the action should add or set the value of the resource.
+                                enum: [add,set]
+                                default: add
+                        string-origins-math:variable_execute_command:
+                            command:
+                                desc: The command to execute on the entity.
+                                type: string
+                            variables:
+                                desc: A variable declaration declaring variables used inside the command.
+                                link: variable_declaration
           - title: custom
             link: custom_action
     item_action:
