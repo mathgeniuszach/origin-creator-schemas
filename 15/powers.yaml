@@ -5027,19 +5027,12 @@ links:
         href: https://origins-math.readthedocs.io/en/latest/types/data_types/expression/
         allow: '*a-z0-9_#^%!\/:.,+-()[]'
     variables:
-        type: list
+        type: object
         href: https://origins-math.readthedocs.io/en/latest/types/data_types/variable_declaration/
-        vals:
-            type: object
-            show: true
-            props:
-                type:
-                    type: string
-                    allow: 'a-z0-9_\/:.-'
-            extra:
-                nopanel: true
-                type: string
-                allow: '*a-z0-9_\/:.-'
+        extra:
+            allowkey: 'a-z0-9_\/:.-'
+            type: string
+            allow: '*a-z0-9_\/:.-'
     math_number:
         desc: A Float or Identifier that links to a Resource (Power Type) or it's extensions, or a power type that has a built-in cooldown (using remaining ticks as the value).
         or:
