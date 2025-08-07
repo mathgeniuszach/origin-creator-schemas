@@ -140,6 +140,7 @@ links:
                 type: object
                 extra:
                     type: object
+                    allowkey: '*a-z0-9#\/:.-'
                     amplifier:
                         desc: The effect amplifier.
                         link: intmm
@@ -154,7 +155,6 @@ links:
                         desc: Whether the effect has visible particles.
                         enum: [true, false]
                         unspec: true
-                allow: '*a-z0-9#\/:.-'
             equipment:
                 desc: Items equipped by the entity.
                 type: object
@@ -213,6 +213,7 @@ links:
                         desc: A map of advancements to check. The keys are advancement IDs.
                         type: object
                         extra:
+                            allowkey: '*a-z0-9#\/:.-'
                             or:
                               - type: boolean
                                 default: false
@@ -220,7 +221,6 @@ links:
                                 extra:
                                     type: boolean
                                     default: false
-                        allow: '*a-z0-9#\/:.-'
                     gamemode:
                         enum: [survival, adventure, creative, spectator]
                         unspec: true
@@ -232,8 +232,8 @@ links:
                         type: object
                         extra:
                             type: boolean
+                            allowkey: '*a-z0-9#\/:.-'
                             default: false
-                        allow: '*a-z0-9#\/:.-'
                     stats:
                         desc: List of statistics to match. Note that unlike when adding scoreboard objectives, the base (for example, minecraft:custom) and the statistic (for example, minecraft:sneak_time) are split and use proper namespaces instead of the dot-notation (minecraft.custom:minecraft.sneak_time).
                         type: list
@@ -609,7 +609,7 @@ links:
                             desc: (Optional) A map of block property names to values. All values are strings. The test fails if the block doesn't match.
                             extra:
                                 type: string
-                            allow: '*a-z0-9#\/:.-'
+                                allowkey: '*a-z0-9#\/:.-'
                     string-minecraft:damage_source_properties:
                         predicate:
                             desc: Predicate applied to the damage source.

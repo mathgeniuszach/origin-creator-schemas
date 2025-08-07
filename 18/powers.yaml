@@ -3375,6 +3375,7 @@ links:
                             type: object
                             extra:
                                 type: string
+                                allowkey: '*a-z0-9_#\/:.-'
                                 allow: '*a-z0-9_#\/:.-'
                         priority:
                             desc: Priority of applying this replacement, vs others.
@@ -4596,7 +4597,7 @@ links:
                 const: origins:multiple
         extra:
             nopanel: true
-            allow: '*a-z0-9_#\/:.-'
+            allowkey: '*a-z0-9_#\/:.-'
             or:
               - link: power_base
               - link: custom_power_base
