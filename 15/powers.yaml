@@ -2224,7 +2224,7 @@ links:
                                 link: expression
                             variables:
                                 desc: A variable declaration declaring variables used inside the command.
-                                link: variable_declaration
+                                link: variables
                             operation:
                                 desc: Determines if the action should add or set the value of the resource.
                                 enum: [add,set]
@@ -2235,7 +2235,7 @@ links:
                                 type: string
                             variables:
                                 desc: A variable declaration declaring variables used inside the command.
-                                link: variable_declaration
+                                link: variables
           - title: custom
             link: custom_action
     item_action:
@@ -4440,7 +4440,7 @@ links:
                             link: expression
                         variables:
                             desc: A variable declaration declaring variables used in the expression.
-                            link: variable_declaration
+                            link: variables
                     string-origins-math:modifiable_resource:
                         min:
                             desc: The minimum value of the resource.
