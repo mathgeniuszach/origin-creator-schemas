@@ -2751,11 +2751,29 @@ links:
                   - eggolib:crawling
 
                   - $Origins Math
-
+                  
+                  - $Additional Resource Types
                   - origins-math:attribute_like_resource
                   - origins-math:math_resource
                   - origins-math:modifiable_resource
-                  
+
+                  - $Linked Resource Types
+                  - origins-math:attribute_linked_resource
+                  - origins-math:current_biome_linked_resource
+                  - origins-math:damage_dealt_linked_resource
+                  - origins-math:damage_taken_linked_resource
+                  - origins-math:living_entity_linked_reesource
+                  - origins-math:healing_linked_resource
+                  - origins-math:nbt_linked_resource
+                  - origins-math:player_linked_resource
+                  - origins-math:scoreboard_linked_resource
+                  - origins-math:status_effect_linked_resource
+
+                  - $Modifying Types
+                  - origins-math:modify_attribute_linked_resource
+                  - origins-math:modify_resource_maximum
+                  - origins-math:modify_resource_minimum
+                  - origins-math:modify_simple
                 more:
                     string-origins:attribute_modify_transfer:
                         attribute:
@@ -4407,6 +4425,118 @@ links:
                         max_action:
                             desc: (EXPERIMENTAL) If specified, this action will be executed on the entity whenever the maximum value is reached.
                             link: entity_action
+                    string-origins-math:attribute_linked_resource:
+                        attribute:
+                            desc: The ID of the attribute that this power will base it's value from.
+                            type: string
+                            allow: '*a-z0-9_\/:.-'
+                        value:
+                            desc: The specific value of "attribute" this power will take.
+                            link: a_val
+                    string-origins-math:current_biome_linked_resource:
+                        property:
+                            desc: The specific property of the current biome that this power will take as it's value.
+                            link: biome_property
+                    string-origins-math:damage_dealt_linked_resource:
+                        duration:
+                            desc: The amount of ticks the damage amount is stored for.
+                            type: integer
+                        damage_condition:
+                            desc: If specified, the amount of damage dealt is only set if the damage being dealt fulfills the condition.
+                            link: damage_cond
+                        bientity_action:
+                            desc: If specified, the specified actions will be executed once the amount of damage dealt has been set, with the 'actor' being the entity dealing the damage and the 'target' being the entity that receives the damage.
+                            link: bi_entity_action
+                    string-origins-math:damage_taken_linked_resource:
+                        duration:
+                            desc: The amount of ticks the damage amount is stored for.
+                            type: integer
+                        damage_condition:
+                            desc: If specified, the amount of damage taken is only set if the damage being taken fulfills the condition.
+                            link: damage_cond
+                        bientity_action:
+                            desc: If specified, the specified actions will be executed once the amount of damage taken has been set, with the 'actor' being the entity taking the damage and the 'target' being the entity that deals the damage.
+                            link: bi_entity_action
+                    string-origins-math:living_entity_linked_resource:
+                        property:
+                            desc: The specific property of the entity that this power will take as it's value.
+                            link: entity_property
+                    string-origins-math:healing_linked_resource:
+                        duration:
+                            desc: The amount of ticks the healing amount is stored.
+                        entity_action:
+                            desc: If specified, the specified actions will be executed once the amount of healing received has been set.
+                            link: entity_action
+                    string-origins-math:nbt_linked_resource:
+                        path:
+                            desc: The specific NBT path that this power will take as it's value.
+                            type: string
+                            allow: 'a-z0-9_\/:.-'
+                    string-origins-math:player_linked_resource:
+                        property:
+                            desc: The specific property of the player that this power will take as it's value.
+                            link: player_property
+                    string-origins-math:scoreboard_linked_resource:
+                        objective:
+                            desc: The name of the scoreobard objective to retrieve the score of this entity from.
+                            type: string
+                            allow: 'a-z0-9_\/:.-'
+                    string-origins-math:status_effect_linked_resource:
+                        effect:
+                            desc: The ID of the Status Effect that this power will base it's value from.
+                            type: string
+                            allow: 'a-z0-9_\/:.-'
+                        property:
+                            desc: The specific property of the Status Effect that this power will take as it's value.
+                            link: effect_property
+                    string-origins-math:modify_attribute_like_resource:
+                        resource:
+                            desc: The namespace and ID of the power that uses the Attribute-like Resource (Power Type)
+                            type: string
+                            allow: '*a-z0-9_\/:.-'
+                        modifier:
+                            desc: If specified, this modifier will be applied to the resource' added values.
+                            link: a_mod
+                        modifiers:
+                            desc: If specified, these modifiers will be applied to the resource's added values.
+                            type: list
+                            vals:
+                                link: a_mod
+                    string-origins-math:modify_resource_maximum:
+                        resource:
+                            desc: The namespace and ID of the power that uses the Modifiable Resource (Power Type)
+                            type: string
+                            allow: '*a-z0-9_\/:.-'
+                        modifier:
+                            desc: If specified, this modifier will be applied to the resource's maximum value.
+                            link: a_mod
+                        modifiers:
+                            desc: If specified, these modifiers will be applied to the resource's maximum value.
+                            type: list
+                            vals:
+                                link: a_mod
+                    string-origins-math:modify_resource_minimum:
+                        resource:
+                            desc: The namespace and ID of the power that uses the Modifiable Resource (Power Type)
+                            type: string
+                            allow: '*a-z0-9_\/:.-'
+                        modifier:
+                            desc: If specified, this modifier will be applied to the resource's minimum value.
+                            link: a_mod
+                        modifiers:
+                            desc: If specified, these modifiers will be applied to the resource's minimum value.
+                            type: list
+                            vals:
+                                link: a_mod
+                    string-origins-math:modify_simple:
+                        modifier:
+                            desc: If specified, this modifier will be applied to the resource's minimum value.
+                            link: a_mod
+                        modifiers:
+                            desc: If specified, these modifiers will be applied to the resource's minimum value.
+                            type: list
+                            vals:
+                                link: a_mod
                         
             fabric:load_conditions:
                 desc: Checks for the following namespaces or mods to be loaded and loads the power if true.
@@ -4855,26 +4985,31 @@ links:
         href: https://origins-math.readthedocs.io/en/latest/types/data_types/expression/
         allow: '*a-z0-9_#^%!\/:.,+-()[]'
     variables:
-        type: object
+        type: list
         href: https://origins-math.readthedocs.io/en/latest/types/data_types/variable_declaration/
-        props:
+        vals:
             type: object
-            title: custom
-            props: 
+            show: true
+            props:
+                type:
+                    type: string
+                    allow: 'a-z0-9_\/:.-'
+            extra:
+                nopanel: true
                 type: string
-                allow: '*a-z0-9_#\/:.-'
+                allow: '*a-z0-9_\/:.-'
     math_number:
         desc: A Float or Identifier that links to a Resource (Power Type) or it's extensions, or a power type that has a built-in cooldown (using remaining ticks as the value).
         or:
           - type: number
           - type: string
-            allow: '*a-z0-9_#\/:.-'
+            allow: '*a-z0-9_\/:.-'
     math_integer:
         desc: An Integer or Identifier that links to a Modifiable Resource (Power Type), Resource (Power Type) or a power type that has a built-in cooldown (using remaining ticks as the value).
         or:
           - type: integer
           - type: string
-            allow: '*a-z0-9_#\/:.-'
+            allow: '*a-z0-9_\/:.-'
     a_val:
         enum: [BASE,TOTAL]
     biome_property:
@@ -4894,6 +5029,28 @@ links:
           - EXP_POINTS
           - EXP_SCORE
           - SLEEP_TIMER
+          - STUCK_ARROWS
+          - FALL_DISTANCE
+          - TIME_OF_DAY
+          - AGE
+          - X
+          - Y
+          - Z
+          - VELOCITY_X
+          - VELOCITY_Y
+          - VELOCITY_Z
+          - PITCH
+          - YAW
+          - ROLL
+    entity_property:
+        enum: 
+          - HEALTH
+          - RELATIVE_HEALTH
+          - ABSORPTION
+          - BREATHING
+          - FIRE_TICKS
+          - FROZEN_TICKS
+          - FREEZING_SCALE
           - STUCK_ARROWS
           - FALL_DISTANCE
           - TIME_OF_DAY
