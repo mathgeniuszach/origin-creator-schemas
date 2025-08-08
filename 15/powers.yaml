@@ -1850,7 +1850,7 @@ links:
                         string-origins:modify_death_ticks:
                             modifier:
                                 desc: If specified, this modifier will be applied to its corresponding attribute.
-                                link: a_mod
+                                link: math_a_mod
                         string-origins:modify_inventory:
                             inventory_type:
                                 desc: Either "inventory" or "power". If "inventory", applies modifications to the player's main inventory. If "power", Applies modifications to the player's bonus inventory given with a power.
@@ -1886,14 +1886,14 @@ links:
                                 hooks: [ns]
                             modifier:
                                 desc: The modifier to apply to the given power resource.
-                                link: a_mod
+                                link: math_a_mod
                         string-origins:modify_stat:
                             stat:
                                 desc: The statistic to modify.
                                 link: stat
                             modifier:
                                 desc: The modifier to apply to the given stat.
-                                link: a_mod
+                                link: math_a_mod
                         string-origins:passenger_action:
                             action:
                                 desc: If set, executes the specified action on the passenger entity.
