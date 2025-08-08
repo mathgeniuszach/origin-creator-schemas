@@ -1436,6 +1436,7 @@ links:
                             command:
                                 desc: The command to execute on the entity.
                                 type: string
+                                ext: true
                             actor_selector:
                                 desc: The substring that refers to the actor entity. All instances of this string will be replaced with the actor entity's UUID.
                                 type: string
@@ -2237,6 +2238,7 @@ links:
                             command:
                                 desc: The command to execute on the entity.
                                 type: string
+                                ext: true
                             variables:
                                 desc: A variable declaration declaring variables used inside the command.
                                 link: variables
@@ -5109,6 +5111,7 @@ links:
     expression:
         type: string
         href: https://origins-math.readthedocs.io/en/latest/types/data_types/expression/
+        ext: true
         allow: '*a-z0-9_#^%!\/:.,+-()[]'
     variables:
         type: object
