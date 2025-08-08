@@ -4909,7 +4909,7 @@ links:
                   - type: integer
                     default: 100
                   - type: string
-                  allow: '*a-z0-9_\/:.-'
+                    allow: '*a-z0-9_\/:.-'
             amplifier:
                 desc: The strength of the status effect (0 being level 1).
                 link: math_integer_0
