@@ -69,7 +69,7 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The distance (in blocks) to compare the distance between the actor and target to.
-                                type: number
+                                link: math_number
                         string-origins:either:
                             condition:
                                 desc: The condition to check on the actor and target entity. It must pass for at least one of them.
@@ -94,7 +94,7 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare the calculated angle value to.
-                                type: number
+                                link: math_number
                         string-origins:riding_recursive: {}
                         string-origins:riding_root: {}
                         string-origins:riding: {}
@@ -237,7 +237,7 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
-                                type: integer
+                                link: math_integer
                         string-origins:attribute:
                             attribute:
                                 desc: ID of the attribute of which the value should be checked.
@@ -249,7 +249,7 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
-                                type: number
+                                link: math_number
                         string-origins:biome:
                             biome:
                                 desc: If set, this is the ID of the biome the player needs to be in for this condition to evaluate to true, e.g. minecraft:savanna.
@@ -273,25 +273,22 @@ links:
                             offset_x:
                                 desc: |
                                     By how much of the bounding box size should the box be offset in the X direction (e.g.: 0 = no offset, 1 = offset of exact width, 2 = offset of twice the width of the bounding box)
-                                type: number
-                                default: 0
+                                link: math_number_0
                             offset_y:
                                 desc: |
                                     By how much of the bounding box size should the box be offset in the Y direction (e.g.: 0 = no offset, 1 = offset of exact width, 2 = offset of twice the width of the bounding box)
-                                type: number
-                                default: 0
+                                link: math_number_0
                             offset_z:
                                 desc: |
                                     By how much of the bounding box size should the box be offset in the Z direction (e.g.: 0 = no offset, 1 = offset of exact width, 2 = offset of twice the width of the bounding box)
-                                type: number
-                                default: 0
+                                link: math_number_0
                         string-origins:block_in_radius:
                             block_condition:
                                 desc: The block condition which is applied to the block at the player's feet.
                                 link: block_cond
                             radius:
                                 desc: The radius to check blocks in.
-                                type: integer
+                                link: math_integer
                             shape:
                                 desc: Determines the shape of the radius. Accepts "cube", "star" or "sphere".
                                 enum: [cube, star, sphere]
@@ -300,15 +297,14 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
-                                type: integer
-                                default: 1
+                                link: math_integer_1
                         string-origins:brightness:
                             comparison:
                                 desc: How to compare the brightness at the player's eyes against the specified value.
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
-                                type: number
+                                link: math_number
                         string-origins:climbing: {}
                         string-origins:collided_horizontally: {}
                         string-origins:command:
@@ -321,8 +317,7 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
-                                type: integer
-                                default: 1
+                                link: math_integer_1
                         string-origins:creative_flying: {}
                         string-origins:daytime: {}
                         string-origins:dimension:
@@ -358,13 +353,13 @@ links:
                                 type: boolean
                             round_to_digit:
                                 desc: If specified, rounds the result to the closest number with the specified amount of digits after the comma. Negative numbers also work.
-                                type: integer
+                                link: math_integer
                             comparison:
                                 desc: Determines how the calculated distance is compared to the specified value.
                                 link: comparison
                             compare_to:
                                 desc: The value to compare the calculated distance to.
-                                type: number
+                                link: math_number
                         string-origins:elytra_flight_possible:
                             check_state:
                                 desc: Determines if the condition should check if the entity is currently flying with an elytra.
@@ -386,7 +381,7 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
-                                type: integer
+                                link: math_integer
                         string-origins:entity_group:
                             group:
                                 desc: Entity group required for the entity to pass the check. One of default, undead, arthropod, illager, or aquatic. Click for more information about the entity groups.
@@ -413,7 +408,7 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
-                                type: number
+                                link: math_number
                         string-origins:fall_flying: {}
                         string-origins:fluid_height:
                             fluid:
@@ -426,14 +421,14 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
-                                type: number
+                                link: math_number
                         string-origins:food_level:
                             comparison:
                                 desc: How the player's current food level should be compared to the specified value. In a range from 0 to 20.
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
-                                type: number
+                                link: math_number
                         string-origins:gamemode:
                             gamemode:
                                 desc: Name of the gamemode the player should have in order for this condition to evaluate to true.
@@ -445,7 +440,7 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
-                                type: number
+                                link: math_number
                         string-origins:in_block_anywhere:
                             block_condition:
                                 desc: The block condition which blocks need to fulfill in order to count for this condition.
@@ -455,8 +450,7 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
-                                type: integer
-                                default: 1
+                                link: math_integer_1
                         string-origins:in_block:
                             block_condition:
                                 desc: The block condition which is applied to the block at the player's lower body half.
@@ -494,8 +488,7 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value at which the amount of items/stacks that were evaluated are compared to.
-                                type: integer
-                                default: 0
+                                link: math_integer_0
                         string-origins:invisible: {}
                         string-origins:living: {}
                         string-origins:moving: {}
@@ -529,8 +522,7 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: Which value the amount of entities currently riding the entity should be compared to.
-                                type: integer
-                                default: 1
+                                link: math_integer_1
                         string-origins:passenger:
                             bientity_condition:
                                 desc: If specified, only check for the entities that fulfills the bi-entity condition.
@@ -540,8 +532,7 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: Which value the amount of entities currently riding the entity should be compared to.
-                                type: integer
-                                default: 1
+                                link: math_integer_1
                         string-origins:power_active:
                             power:
                                 desc: ID of the power which will be checked for being active.
@@ -571,8 +562,7 @@ links:
                         string-origins:raycast:
                             distance:
                                 desc: Determines the maximum distance the raycast will travel.
-                                type: number
-                                default: 20
+                                link: math_number_20
                             block:
                                 desc: If set to false, the raycast will ignore blocks.
                                 type: boolean
@@ -613,7 +603,7 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
-                                type: number
+                                link: math_number
                         string-origins:resource:
                             resource:
                                 desc: ID of the power type that defines the resource. Must be a Resource (Power Type) which exists on the player.
@@ -625,7 +615,7 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
-                                type: integer
+                                link: math_integer
                         string-origins:riding_recursive:
                             bientity_condition:
                                 desc: If specified, only check for the entities that fulfills the bi-entity condition.
@@ -635,8 +625,7 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: Which value the amount of entities currently being ridden should be compared to.
-                                type: integer
-                                default: 1
+                                link: math_integer_1
                         string-origins:riding_root:
                             bientity_condition:
                                 desc: If specified, only check for the entities that fulfills the bi-entity condition.
@@ -651,7 +640,7 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
-                                type: number
+                                link: math_number
                         string-origins:scoreboard:
                             name:
                                 desc: A selector to retrieve the scoreboard objective from. Leave blank for the entity with the power.
@@ -664,7 +653,7 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
-                                type: integer
+                                link: math_integer
                         string-origins:sneaking: {}
                         string-origins:sprinting: {}
                         string-origins:status_effect:
@@ -674,24 +663,16 @@ links:
                                 allow: '*a-z0-9_#\/:.-'
                             min_amplifier:
                                 desc: The minimum amplifier the status effect should have in order to pass the check. Defaults to 0.
-                                type: integer
-                                min: 0
-                                max: 2147483647
+                                link: math_integer_amp
                             max_amplifier:
                                 desc: The maximum amplifier the status effect should have in order to pass the check. Defaults to 2147483647.
-                                type: integer
-                                min: 0
-                                max: 2147483647
+                                link: math_integer_amp
                             min_duration:
                                 desc: The minimum duration the status effect should have in order to pass the check. Defaults to 0.
-                                type: integer
-                                min: -1
-                                max: 2147483647
+                                link: math_integer_dur
                             max_duration:
                                 desc: The maximum duration the status effect should have in order to pass the check. Defaults to 2147483647.
-                                type: integer
-                                min: 0
-                                max: 2147483647
+                                link: math_integer_dur
                         string-origins:submerged_in:
                             fluid:
                                 desc: |
@@ -706,7 +687,7 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
-                                type: integer
+                                link: math_integer
                         string-origins:using_effective_tool: {}
                         string-origins:using_item:
                             item_condition:
@@ -718,14 +699,14 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
-                                type: integer
+                                link: math_integer
                         string-origins:xp_points:
                             comparison:
                                 desc: How the experience points of the player should be compared to the specified value.
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
-                                type: integer
+                                link: math_integer
                         string-apugli:entity_in_radius:
                             condition:
                                 desc: The entity condition type to check for.
@@ -735,14 +716,13 @@ links:
                                 link: bi_entity_cond
                             radius:
                                 desc: The radius to check the entities that fulfill the specified entity condition type within.
-                                type: float
+                                link: math_number
                             comparison:
                                 desc: How the amount of entities within the specified radius which fulfills the specified entity/bi-entity condition type(s) should be compared to the specified value.
                                 link: comparison
                             compare_to:
                                 desc: The value to compare the amount to.
-                                type: integer
-                                default: 1
+                                link: math_integer_1
                         string-origins-math:compare_resources:
                             left_resource:
                                 desc: The namespace and ID of the power that uses the Resource (Power Type) or has a built-in cooldown.
@@ -775,7 +755,7 @@ links:
                                 link: comparison
                             relativity:
                                 desc: The relativity value at which the relativity of the resource will be compared to.
-                                type: number
+                                link: math_number
                                 
           - title: custom
             link: custom_condition
@@ -835,21 +815,21 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
-                                type: integer
+                                link: math_integer
                         string-origins:armor_value:
                             comparison:
                                 desc: How the item's armor value should be compared to the specified value.
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
-                                type: integer
+                                link: math_integer
                         string-origins:durability:
                             comparison:
                                 desc: How the durability should be compared to the specified value.
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
-                                type: integer
+                                link: math_integer
                         string-origins:enchantable: {}
                         string-origins:enchantment:
                             enchantment:
@@ -861,7 +841,7 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
-                                type: integer
+                                link: math_integer
                         string-origins:fireproof: {}
                         string-origins:food: {}
                         string-origins:harvest_level:
@@ -871,7 +851,7 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
-                                type: number
+                                link: math_number
                         string-origins:ingredient:
                             ingredient:
                                 desc: An ingredient, which can be a variety of things.
@@ -892,7 +872,7 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
-                                type: number
+                                link: math_number
                         string-origins:smeltable: {}
           - title: custom
             link: custom_condition
@@ -958,7 +938,7 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
-                                type: integer
+                                link: math_integer
                         string-origins:attachable: {}
                         string-origins:blast_resistance:
                             comparison:
@@ -966,7 +946,7 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare the blast resistance of the block to.
-                                type: integer
+                                link: math_integer
                         string-origins:block:
                             block:
                                 desc: ID of the block that this block needs to be to pass the check.
@@ -983,7 +963,7 @@ links:
                                 link: opt_comparison
                             compare_to:
                                 desc: The value to compare to if the property is an integer.
-                                type: integer
+                                link: math_integer
                             value:
                                 desc: If the property contains a boolean value, this is the value the property needs to be to pass the check.
                                 enum: [true, false]
@@ -1019,13 +999,13 @@ links:
                                 type: boolean
                             round_to_digit:
                                 desc: If specified, rounds the result to the closest number with the specified amount of digits after the comma. Negative numbers also work.
-                                type: integer
+                                link: math_integer
                             comparison:
                                 desc: Determines how the calculated distance is compared to the specified value.
                                 link: comparison
                             compare_to:
                                 desc: The value to compare the calculated distance to.
-                                type: number
+                                link: math_number
                         string-origins:exposed_to_sky: {}
                         string-origins:fluid:
                             fluid_condition:
@@ -1037,14 +1017,14 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare the hardness value of the block to.
-                                type: integer
+                                link: math_integer
                         string-origins:height:
                             comparison:
                                 desc: How the Y position of the block should be compared to the specified value.
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
-                                type: number
+                                link: math_number
                         string-origins:in_tag:
                             tag:
                                 desc: ID of the tag which the block should be in to pass the check.
@@ -1061,7 +1041,7 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
-                                type: integer
+                                link: math_integer
                         string-origins:material:
                             material:
                                 desc: If specified, checks if the block classifies as this material. Click to see a list of valid materials.
@@ -1086,13 +1066,13 @@ links:
                                 link: block_cond
                             x:
                                 desc: How much to offset the position on the x-axis. Defaults to 0.
-                                type: integer
+                                link: math_integer
                             y:
                                 desc: How much to offset the position on the y-axis. Defaults to 0.
-                                type: integer
+                                link: math_integer
                             z:
                                 desc: How much to offset the position on the z-axis. Defaults to 0.
-                                type: integer
+                                link: math_integer
                         string-origins:replacable: {}
                         string-origins:slipperiness:
                             comparison:
@@ -1100,7 +1080,7 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare the slipperiness value of the block to.
-                                type: number
+                                link: math_number
                         string-origins:water_loggable: {}
           - title: custom
             link: custom_condition
@@ -1334,7 +1314,7 @@ links:
                         string-origins:chance:
                             chance:
                                 desc: The chance that the action will execute, from 0 to 1. (E.g. 0.1 means 10% chance, 0.95 means 95% chance)
-                                type: number
+                                link: math_number
                             action:
                                 desc: The action which might be executed.
                                 link: bi_entity_action
@@ -1361,7 +1341,7 @@ links:
                                 link: bi_entity_action
                             ticks:
                                 desc: The amount of ticks until the action is executed.
-                                type: integer
+                                link: math_integer
                         string-origins:if_else:
                             condition:
                                 desc: If this condition holds then if_action is executed, otherwise else_action or no action is executed.
@@ -1403,13 +1383,13 @@ links:
                         string-origins:add_velocity:
                             x:
                                 desc: The amount of velocity to add on the x-axis. Defaults to 0.
-                                type: number
+                                link: math_number
                             y:
                                 desc: The amount of velocity to add on the y-axis. Defaults to 0.
-                                type: number
+                                link: math_number
                             z:
                                 desc: The amount of velocity to add on the z-axis. Defaults to 0.
-                                type: number
+                                link: math_number
                             client:
                                 desc: If this is false, the action will not execute on the client.
                                 type: boolean
@@ -1424,8 +1404,7 @@ links:
                         string-origins:damage:
                             amount:
                                 desc: The amount of damage to deal.
-                                type: number
-                                min: 0
+                                link: math_number_min_0
                             source:
                                 desc: The damage source to be used. Controls e.g. the death message, invulnerabilities (e.g. towards fire), or whether armor is taken into account.
                                 link: damage_source
@@ -1559,7 +1538,7 @@ links:
                         string-origins:chance:
                             chance:
                                 desc: The chance that the action will execute, from 0 to 1. (E.g. 0.1 means 10% chance, 0.95 means 95% chance)
-                                type: number
+                                link: math_number
                             action:
                                 desc: The action which might be executed.
                                 link: entity_action
@@ -1575,8 +1554,7 @@ links:
                                     props:
                                         weight:
                                             desc: The chance of this action being executed is weight/total_weight_of_actions
-                                            type: integer
-                                            default: 1
+                                            link: math_integer_1
                                         element:
                                             desc: The action which might be executed.
                                             link: entity_action
@@ -1586,7 +1564,7 @@ links:
                                 link: entity_action
                             ticks:
                                 desc: The amount of ticks until the action is executed.
-                                type: integer
+                                link: math_integer
                         string-origins:if_else:
                             condition:
                                 desc: If this condition holds then if_action is executed, otherwise else_action or no action is executed.
@@ -1620,13 +1598,13 @@ links:
                         string-origins:add_velocity:
                             x:
                                 desc: The amount of velocity to add on the x-axis. Defaults to 0.
-                                type: number
+                                link: math_number
                             y:
                                 desc: The amount of velocity to add on the y-axis. Defaults to 0.
-                                type: number
+                                link: math_number
                             z:
                                 desc: The amount of velocity to add on the z-axis. Defaults to 0.
-                                type: number
+                                link: math_number
                             space:
                                 desc: The space to perform the velocity addition in.
                                 href: https://origins.readthedocs.io/en/latest/misc/extras/space/#space
@@ -1653,11 +1631,10 @@ links:
                         string-origins:add_xp:
                             points:
                                 desc: If set, this is the amount experience points that will be given to the player. Can not be negative.
-                                type: integer
-                                min: 0
+                                link: math_integer_min_0
                             levels:
                                 desc: If set, this is the amount experience levels that will be given to the player. Can be negative and thus used to subtract levels.
-                                type: integer
+                                link: math_integer
                         string-origins:apply_effect:
                             effect:
                                 desc: If set, this status effect will be applied by this action.
@@ -1670,8 +1647,11 @@ links:
                         string-origins:area_of_effect:
                             radius:
                                 desc: Determines the radius of the area. Defaults to 16.
-                                type: number
-                                default: 16
+                                or:
+                                  - type: number
+                                    default: 16
+                                  - type: string
+                                    allow: '*a-z0-9_\/:.-'
                             include_target:
                                 desc: Determines whether the entity this action was executed on is included in the radius check.
                                 type: boolean
@@ -1693,7 +1673,7 @@ links:
                                 hooks: [ns]
                             change:
                                 desc: This value will be added to the resource (won't go below min or above max of the Resource Resource (Power Type)).
-                                type: integer
+                                link: math_integer
                             operation:
                                 desc: Determines if the action should add or set the value of the resource. Accepts "add" or "set".
                                 enum: [add, set]
@@ -1706,8 +1686,7 @@ links:
                         string-origins:damage:
                             amount:
                                 desc: The amount of damage to deal.
-                                type: number
-                                min: 0
+                                link: math_number_min_0
                             source:
                                 desc: The damage source to be used. Controls e.g. the death message, invulnerabilities (e.g. towards fire), or whether armor is taken into account.
                                 link: damage_source
@@ -1735,7 +1714,7 @@ links:
                                 link: slot
                             amount:
                                 desc: If specified, the affected items will be split by this amount.
-                                type: integer
+                                link: math_integer
                             power:
                                 desc: If "Inventory Type" is set to "power", this is the power linked to the inventory to drop.
                                 type: string
@@ -1770,11 +1749,11 @@ links:
                         string-origins:exhaust:
                             amount:
                                 desc: The amount of exhaustion to apply to the player.
-                                type: number
+                                link: math_number
                         string-origins:explode:
                             power:
                                 desc: Determines the power of the explosion.
-                                type: number
+                                link: math_number
                             destruction_type:
                                 desc: Determines if the explosion should destroy the terrain, destroy the terrain and drop the loot of the blocks, or none. Accepts either "destroy", "break" or "none".
                                 enum: [break, destroy, none]
@@ -1795,10 +1774,10 @@ links:
                         string-origins:feed:
                             food:
                                 desc: The food amount to restore.
-                                type: integer
+                                link: math_integer
                             saturation:
                                 desc: The saturation amount to restore.
-                                type: number
+                                link: math_number
                         string-origins:fire_projectile:
                             entity_type:
                                 desc: The ID of the entity type that will be fired.
@@ -1806,19 +1785,28 @@ links:
                                 allow: '*a-z0-9_#\/:.-'
                             count:
                                 desc: The amount of projectiles to fire each use. Defaults to 1.
-                                type: integer
-                                default: 1
-                                min: 1
+                                or:
+                                  - type: integer
+                                    default: 1
+                                    min: 1
+                                  - type: string
+                                    allow: '*a-z0-9_\/:.-'
                             speed:
                                 desc: The speed applied to the fired projectile. Defaults to 1.5.
-                                type: number
-                                min: 0
-                                default: 1.5
+                                or: 
+                                  - type: number
+                                    min: 0
+                                    default: 1.5
+                                  - type: string
+                                    allow: '*a-z0-9_\/:.-'
                             divergence:
                                 desc: How much each projectile fired is affected by random spread. Defaults to 1.
-                                type: number
-                                min: 0
-                                default: 1
+                                or:
+                                  - type: number
+                                    min: 0
+                                    default: 1
+                                  - type: string
+                                    allow: '*a-z0-9_\/:.-'
                             tag:
                                 desc: NBT data of the entity.
                                 type: string
@@ -1829,7 +1817,7 @@ links:
                         string-origins:gain_air:
                             value:
                                 desc: The amount of breath to restore.
-                                type: integer
+                                link: math_integer
                         string-origins:give:
                             stack:
                                 desc: The item stack to give to the entity.
@@ -1858,7 +1846,7 @@ links:
                         string-origins:heal:
                             amount:
                                 desc: The amount of health to restore.
-                                type: number
+                                link: math_number
                         string-origins:modify_death_ticks:
                             modifier:
                                 desc: If specified, this modifier will be applied to its corresponding attribute.
@@ -1889,8 +1877,7 @@ links:
                                 link: process_mode
                             limit:
                                 desc: Determines the max amount of times the action should modify item stacks in the inventory. If the specified value is <= 0, then there will be no limit.
-                                type: integer
-                                default: 0
+                                link: math_integer_0
                         string-origins:modify_resource:
                             resource:
                                 desc: The resource to modify.
@@ -1927,20 +1914,25 @@ links:
                                 allow: '*a-z0-9_#\/:.-'
                             volume:
                                 desc: The volume of the sound.
-                                type: number
-                                default: 1
-                                min: 0
+                                or: 
+                                  - type: number
+                                    default: 1
+                                    min: 0
+                                  - type: string
+                                    allow: '*a-z0-9_\/:.-'
                             pitch:
                                 desc: The pitch of the sound.
-                                type: number
-                                default: 1
-                                min: 0
-                                max: 2
+                                or:
+                                  - type: number
+                                    default: 1
+                                    min: 0
+                                    max: 2
+                                  - type: string
+                                    allow: '*a-z0-9_\/:.-'
                         string-origins:raycast:
                             distance:
                                 desc: Determines the maximum distance the raycast will travel.
-                                type: number
-                                default: 20
+                                link: math_number_20
                             block:
                                 desc: If set to false, the raycast will ignore blocks.
                                 type: boolean
@@ -1992,14 +1984,14 @@ links:
                                 ext: true
                             command_hit_offset:
                                 desc: Determines the offset of the command specified in the command_at_hit field.
-                                type: number
+                                link: math_number
                             command_along_ray:
                                 desc: The command to execute for each step of the raycast.
                                 type: string
                                 ext: true
                             command_step:
                                 desc: Determines the size of the step of the raycast. Defaults to 1.
-                                type: number
+                                link: math_number
                             command_along_ray_only_on_hit:
                                 desc: Determines if the command specified in the command_along_ray field should be executed only if the raycast has hit a block/entity.
                                 type: boolean
@@ -2073,11 +2065,11 @@ links:
                         string-origins:set_fall_distance:
                             fall_distance:
                                 desc: The desired fall distance value.
-                                type: number
+                                link: math_number
                         string-origins:set_on_fire:
                             duration:
                                 desc: The amount of seconds the entity should burn.
-                                type: integer
+                                link: math_integer
                                 default: 4
                         string-origins:set_resource:
                             resource:
@@ -2087,19 +2079,19 @@ links:
                                 hooks: [ns]
                             value:
                                 desc: The value the resource will be set to (won't go below min or above max of the Resource).
-                                type: integer
+                                link: math_integer
                         string-origins:spawn_effect_cloud:
                             radius:
                                 desc: The radius of the cloud.
-                                type: number
+                                link: math_number
                                 default: 3
                             radius_on_use:
                                 desc: How much the radius should change when an effect is applied.
-                                type: number
+                                link: math_number
                                 default: -0.5
                             wait_time:
                                 desc: How many ticks to wait until the cloud takes effect.
-                                type: integer
+                                link: math_integer
                                 default: 10
                             effect:
                                 desc: If set, this status effect will be applied by the cloud to the entities inside it.
@@ -2127,12 +2119,15 @@ links:
                                 link: particle
                             count:
                                 desc: How much of the specified particle type will be spawned.
-                                type: integer
-                                min: 1
-                                default: 1
+                                or:
+                                  - type: integer
+                                    min: 1
+                                    default: 1
+                                  - type: string
+                                    allow: '*a-z0-9_\/:.-'
                             speed:
                                 desc: Determines the speed of the specified particle type. Defaults to 0.
-                                type: number
+                                link: math_number_0
                             force:
                                 desc: If set to true, the specified particle type that will be spawned can be seen from a far distance.
                                 type: boolean
@@ -2141,7 +2136,7 @@ links:
                                 link: vector
                             offset_y:
                                 desc: The offset of where the particle will be centered in the Y axis. Defaults to 0.5.
-                                type: number
+                                link: math_number
                         string-origins:swing_hand:
                             hand:
                                 desc: Determines which hand is swung.
@@ -2166,19 +2161,28 @@ links:
                                 allow: '*a-z0-9_#\/:.-'
                             count:
                                 desc: The amount of projectiles to fire each use. Defaults to 1.
-                                type: integer
-                                default: 1
-                                min: 1
+                                or:
+                                  - type: integer
+                                    default: 1
+                                    min: 1
+                                  - type: string
+                                    allow: '*a-z0-9_\/:.-'
                             speed:
                                 desc: The speed applied to the fired projectile. Defaults to 1.5.
-                                type: number
-                                min: 0
-                                default: 1.5
+                                or: 
+                                  - type: number
+                                    min: 0
+                                    default: 1.5
+                                  - type: string
+                                    allow: '*a-z0-9_\/:.-'
                             divergence:
                                 desc: How much each projectile fired is affected by random spread. Defaults to 1.
-                                type: number
-                                min: 0
-                                default: 1
+                                or:
+                                  - type: number
+                                    min: 0
+                                    default: 1
+                                  - type: string
+                                    allow: '*a-z0-9_\/:.-'
                             sound:
                                 desc: If set, the sound with this ID will be played when the power is used.
                                 type: string
@@ -2275,7 +2279,7 @@ links:
                         string-origins:chance:
                             chance:
                                 desc: The chance that the action will execute, from 0 to 1. (E.g. 0.1 means 10% chance, 0.95 means 95% chance)
-                                type: number
+                                link: math_number
                             action:
                                 desc: The action which might be executed.
                                 link: item_action
@@ -2291,8 +2295,7 @@ links:
                                     props:
                                         weight:
                                             desc: The chance of this action being executed is weight/total_weight_of_actions
-                                            type: integer
-                                            default: 1
+                                            link: math_integer_1
                                         element:
                                             desc: The action which might be executed.
                                             link: item_action
@@ -2302,7 +2305,7 @@ links:
                                 link: item_action
                             ticks:
                                 desc: The amount of ticks until the action is executed.
-                                type: integer
+                                link: math_integer
                         string-origins:if_else:
                             condition:
                                 desc: If this condition holds then if_action is executed, otherwise else_action or no action is executed.
@@ -2336,12 +2339,11 @@ links:
                         string-origins:consume:
                             amount:
                                 desc: The amount of items to remove. Defaults to 1.
-                                type: integer
+                                link: math_integer
                         string-origins:damage:
                             amount:
                                 desc: The amount of damage it should do to the item stack.
-                                type: integer
-                                default: 1
+                                link: math_integer_1
                             ignore_unbreaking:
                                 desc: Determines if this action should ignore the Unbreaking enchantment.
                                 type: boolean
@@ -2368,7 +2370,7 @@ links:
                                     allow: '*a-z0-9_#\/:.-'
                             levels:
                                 desc: If set, specifies the maximum number of levels to remove.
-                                type: integer
+                                link: math_integer
                             reset_repair_cost:
                                 desc: Whether or not to reset the repair cost on the item.
                                 type: boolean
@@ -2380,13 +2382,12 @@ links:
                             ticks:
                                 desc: The amount of ticks that the cooldown should be active for.
                                 href: https://apugli.readthedocs.io/en/latest/types/item_action_types/cooldown
-                                type: integer
-                                default: 20
+                                link: math_integer_20
                         string-apugli:damage:
                             amount:
                                 desc: The amount of damage it should do to the item stack.
                                 href: https://apugli.readthedocs.io/en/latest/types/item_action_types/damage
-                                type: integer
+                                link: math_integer
                             ignore_unbreaking:
                                 desc: Determines if this action should ignore the Unbreaking enchantment.
                                 type: boolean
@@ -4744,6 +4745,25 @@ links:
                 type: string
             modifier:
                 link: a_mod
+    math_a_mod:
+        desc: An Object used to specify how a specific attribute should be modified.
+        href: https://origins.readthedocs.io/en/latest/types/data_types/attribute_modifier/
+        type: object
+        props:
+            operation:
+                link: a_mod_op
+            value:
+                desc: The value with which to apply the operation to the value.
+                link: math_number_0
+            resource:
+                desc: If specified, the value of this power will be used instead of the value specified in the value field.
+                type: string
+                allow: '*a-z0-9_#\/:.-'
+            name:
+                desc: (Optional) A descriptive name for the modifier, describing where it comes from.
+                type: string
+            modifier:
+                link: math_a_mod
     aa_mod:
         desc: An Object used to specify how a specific attribute should be modified. Basically an Attribute Modifier with an additional attribute field.
         href: https://origins.readthedocs.io/en/latest/types/data_types/attributed_attribute_modifier/
@@ -4765,6 +4785,26 @@ links:
                 type: string
             modifier:
                 link: aa_mod
+    math_aa_mod:
+        desc: An Object used to specify how a specific attribute should be modified. Basically an Attribute Modifier with an additional attribute field.
+        href: https://origins.readthedocs.io/en/latest/types/data_types/attributed_attribute_modifier/
+        type: object
+        props:
+            attribute:
+                desc: ID of the attribute which will be modified by this modifier.
+                href: https://minecraft.wiki/w/Attribute
+                type: string
+                allow: '*a-z0-9_#\/:.-'
+            operation:
+                link: aa_mod_op
+            value:
+                desc: The value with which to apply the operation to the value.
+                link: math_number_0
+            name:
+                desc: (Optional) A descriptive name for the modifier, describing where it comes from.
+                type: string
+            modifier:
+                link: math_aa_mod
     hud_render:
         desc: An Object used to define how a resource or cooldown bar should be rendered.
         href: https://origins.readthedocs.io/en/latest/types/data_types/hud_render/
@@ -4855,6 +4895,35 @@ links:
                 desc: Whether the status effect will show an icon on the HUD.
                 type: boolean
                 default: true
+    math_effect:
+        desc: An Object used to define a status effect with duration, amplifier, etc.
+        type: object
+        props:
+            effect:
+                desc: ID of the status effect
+                type: string
+                allow: '*a-z0-9_#\/:.-'
+            duration:
+                desc: Duration of the status effect in ticks.
+                or:
+                  - type: integer
+                    default: 100
+                  - type: string
+                  allow: '*a-z0-9_\/:.-'
+            amplifier:
+                desc: The strength of the status effect (0 being level 1).
+                link: math_integer_0
+            is_ambient:
+                desc: Makes the particle effects of the status effect is less noticeable.
+                type: boolean
+            show_particles:
+                desc: Whether the status effect will spawn particles on the entity.
+                type: boolean
+                default: true
+            show_icon:
+                desc: Whether the status effect will show an icon on the HUD.
+                type: boolean
+                default: true
     comparison:
         desc: How the state should be compared to the specified value.
         enum: ['<', '<=', '>', '>=', '==', '!=']
@@ -4879,6 +4948,19 @@ links:
                 desc: The X coordinate of the point.
                 type: number
                 default: 0
+    math_vector:
+        desc: An object that specifies the X, Y and Z coordinates of a certain point in space.
+        type: object
+        props:
+            x:
+                desc: The X coordinate of the point.
+                link: math_number_0
+            y:
+                desc: The Y coordinate of the point.
+                link: math_number_0
+            z:
+                desc: The X coordinate of the point.
+                link: math_number_0
     particle:
         desc: Either a String which defines the particle type or an Object which defines the particle type and its additional parameters.
         or:
@@ -4958,7 +5040,7 @@ links:
                 link: effect
             chance:
                 desc: The chance for the status effect to trigger.
-                type: number
+                link: math_number
     apugli_weighted_sound_event:
         desc: Either a Identifier that defines the sound event or an Object which defines a sound event with volume and pitch alongside weight.
         href: https://apugli.readthedocs.io/en/latest/types/data_types/weighted_sound_event
@@ -4978,7 +5060,7 @@ links:
                         link: apugli_sound_event_vol_pitch
                 weight:
                     desc: The weight for the sound effect to play in a randomiser. The higher this is, the more likely it'll be selected.
-                    type: integer
+                    link: math_integer
     apugli_sound_event_vol_pitch:
         desc: Either a Identifier that defines the sound event or an Object which defines a sound event with pitch and volume.
         href: https://apugli.readthedocs.io/en/latest/types/data_types/sound_event_with_volume_and_pitch
@@ -4994,10 +5076,10 @@ links:
                     allow: '*a-z0-9_#\/:.-'
                 volume:
                     desc: The volume at which the sound will play.
-                    type: number
+                    link: math_number
                 pitch:
                     desc: The pitch at which the sound will play.
-                    type: number
+                    link: math_number
     fabric_load_conditions:
         desc: Checks if namespaces or mods are loaded, and loads this power if true.
         type: object
@@ -5041,10 +5123,75 @@ links:
           - type: number
           - type: string
             allow: '*a-z0-9_\/:.-'
+    math_number_0:
+        desc: A Float or Identifier that links to a Resource (Power Type) or it's extensions, or a power type that has a built-in cooldown (using remaining ticks as the value).
+        or:
+          - type: number
+            default: 0
+          - type: string
+            allow: '*a-z0-9_\/:.-'
+    math_number_min_0:
+        desc: A positive Float or Identifier that links to a Resource (Power Type) or it's extensions, or a power type that has a built-in cooldown (using remaining ticks as the value).
+        or:
+          - type: number
+            min: 0
+          - type: string
+            allow: '*a-z0-9_\/:.-'
+    math_number_20:
+        desc: A Float or Identifier that links to a Resource (Power Type) or it's extensions, or a power type that has a built-in cooldown (using remaining ticks as the value).
+        or:
+          - type: number
+            default: 20
+          - type: string
+            allow: '*a-z0-9_\/:.-'
     math_integer:
         desc: An Integer or Identifier that links to a Modifiable Resource (Power Type), Resource (Power Type) or a power type that has a built-in cooldown (using remaining ticks as the value).
         or:
           - type: integer
+          - type: string
+            allow: '*a-z0-9_\/:.-'
+    math_integer_0:
+        desc: An Integer or Identifier that links to a Modifiable Resource (Power Type), Resource (Power Type) or a power type that has a built-in cooldown (using remaining ticks as the value).
+        or:
+          - type: integer
+            default: 0
+          - type: string
+            allow: '*a-z0-9_\/:.-'
+    math_integer_min_0:
+        desc: A positive Integer or Identifier that links to a Modifiable Resource (Power Type), Resource (Power Type) or a power type that has a built-in cooldown (using remaining ticks as the value).
+        or:
+          - type: integer
+            min: 0
+          - type: string
+            allow: '*a-z0-9_\/:.-'
+    math_integer_1:
+        desc: An Integer or Identifier that links to a Modifiable Resource (Power Type), Resource (Power Type) or a power type that has a built-in cooldown (using remaining ticks as the value).
+        or:
+          - type: integer
+            default: 1
+          - type: string
+            allow: '*a-z0-9_\/:.-'
+    math_integer_20:
+        desc: An Integer or Identifier that links to a Modifiable Resource (Power Type), Resource (Power Type) or a power type that has a built-in cooldown (using remaining ticks as the value).
+        or:
+          - type: integer
+            default: 20
+          - type: string
+            allow: '*a-z0-9_\/:.-'
+    math_integer_amp:
+        desc: A positive Integer or Identifier that links to a Modifiable Resource (Power Type), Resource (Power Type) or a power type that has a built-in cooldown (using remaining ticks as the value).
+        or:
+          - type: integer
+            min: 0
+            max: 2147483647
+          - type: string
+            allow: '*a-z0-9_\/:.-'
+    math_integer_dur:
+        desc: An Integer or Identifier that links to a Modifiable Resource (Power Type), Resource (Power Type) or a power type that has a built-in cooldown (using remaining ticks as the value).
+        or:
+          - type: integer
+            min: -1
+            max: 2147483647
           - type: string
             allow: '*a-z0-9_\/:.-'
     a_val:
