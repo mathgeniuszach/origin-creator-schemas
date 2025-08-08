@@ -938,7 +938,7 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
-                                link: math_integer
+                                type: integer
                         string-origins:attachable: {}
                         string-origins:blast_resistance:
                             comparison:
@@ -946,7 +946,7 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare the blast resistance of the block to.
-                                link: math_integer
+                                type: integer
                         string-origins:block:
                             block:
                                 desc: ID of the block that this block needs to be to pass the check.
@@ -963,7 +963,7 @@ links:
                                 link: opt_comparison
                             compare_to:
                                 desc: The value to compare to if the property is an integer.
-                                link: math_integer
+                                type: integer
                             value:
                                 desc: If the property contains a boolean value, this is the value the property needs to be to pass the check.
                                 enum: [true, false]
@@ -999,13 +999,13 @@ links:
                                 type: boolean
                             round_to_digit:
                                 desc: If specified, rounds the result to the closest number with the specified amount of digits after the comma. Negative numbers also work.
-                                link: math_integer
+                                type: integer
                             comparison:
                                 desc: Determines how the calculated distance is compared to the specified value.
                                 link: comparison
                             compare_to:
                                 desc: The value to compare the calculated distance to.
-                                link: math_number
+                                type: number
                         string-origins:exposed_to_sky: {}
                         string-origins:fluid:
                             fluid_condition:
@@ -1017,14 +1017,14 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare the hardness value of the block to.
-                                link: math_integer
+                                type: integer
                         string-origins:height:
                             comparison:
                                 desc: How the Y position of the block should be compared to the specified value.
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
-                                link: math_number
+                                type: number
                         string-origins:in_tag:
                             tag:
                                 desc: ID of the tag which the block should be in to pass the check.
@@ -1041,7 +1041,7 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
-                                link: math_integer
+                                type: integer
                         string-origins:material:
                             material:
                                 desc: If specified, checks if the block classifies as this material. Click to see a list of valid materials.
@@ -1066,13 +1066,13 @@ links:
                                 link: block_cond
                             x:
                                 desc: How much to offset the position on the x-axis. Defaults to 0.
-                                link: math_integer
+                                type: integer
                             y:
                                 desc: How much to offset the position on the y-axis. Defaults to 0.
-                                link: math_integer
+                                type: integer
                             z:
                                 desc: How much to offset the position on the z-axis. Defaults to 0.
-                                link: math_integer
+                                type: integer
                         string-origins:replacable: {}
                         string-origins:slipperiness:
                             comparison:
@@ -1080,7 +1080,7 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare the slipperiness value of the block to.
-                                link: math_number
+                                type: number
                         string-origins:water_loggable: {}
           - title: custom
             link: custom_condition
