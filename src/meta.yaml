@@ -69,6 +69,84 @@ data:
         # There are more editors in the nearby files.
         # If no editor regexes match a file, it defaults to the no-editor, type: none.
     
+    # The items object identifies all important folders/files for the pack.
+    items:
+        # Determines the default root folder for the pack.
+        # The default root displays normally.
+        # Leave blank for none.
+        root: data
+        # Determines all possible root folders for the pack.
+        # In minecraft, can be "data" or "assets".
+        roots: ["data", "assets"]
+
+        # The presets object handles which folders/files should be generated automatically.
+        # Note that the "meta" file is always generated.
+        presets:
+            vanilla:
+                name: Vanilla Datapack
+                items:
+                  - tags/blocks/
+                  - tags/entity_types/
+                  - tags/fluids/
+                  - tags/functions/
+                  - tags/game_events/
+                  - tags/items/
+                  - functions/
+                  - predicates/
+                  - recipes/
+                  - loot_tables/
+                  - advancements/
+                  - item_modifiers/
+
+        # The icons object identifies which folders should be given icons.
+        # Currently, the icons that can be used are hard coded.
+        # Iconed folders cannot be moved around the tree.
+        icons:
+            tags: tags
+            functions: functions
+            predicates: predicates
+            recipes: recipes
+            loot_tables: loot_tables
+            advancements: advancements
+            item_modifiers: item_modifiers
+            assets: assets
+        
+        # The sort object identifies the sort order of icons and folders, by giving them numeric values.
+        # "meta" always shows up at the top, and folders always show up before files.
+        # The default value is 0. Higher values get sorted towards the bottom. These values can be floats.
+        # If two values are the same, the items are sorted alphabetically.
+        sort:
+            tags/: 10
+            functions/: 11
+            predicates/: 12
+            recipes/: 13
+            loot_tables/: 14
+            advancements/: 15
+            item_modifiers/: 16
+            assets/: 17
+
+        # The aliases object handles any folder or file conversions.
+        # In recent versions of Minecraft, Mojang made a silly decision to rename a bunch of
+        # folder names to their singular registry names, instead of changing the registry names to
+        # match the plural folder names. This broke compat with old datapacks. To make porting
+        # easier, the origin creator can automatically update folder names based on this versioned list.
+        # These conversions occur automatically when renaming, importing, and exporting folders.
+        # It also occurs whenever the pack format number changes.
+        aliases:
+            data/tags/block/: data/tags/blocks/
+            data/tags/entity_type/: data/tags/entity_type/
+            data/tags/fluid/: data/tags/fluids/
+            data/tags/function/: data/tags/functions/
+            data/tags/game_event/: data/tags/game_events/
+            data/tags/item/: data/tags/items/
+            data/structure/: data/structures/
+            data/advancement/: data/advancements/
+            data/recipe/: data/recipes/
+            data/loot_table/: data/loot_tables/
+            data/predicate/: data/predicates/
+            data/item_modifier/: data/item_modifiers/
+            data/function: data/functions/
+    
     # Links are object editors. Each one maps to a unique editor with properties and such.
     links:
         # Each link is identifiable by it's id. Two links may not share the same id.
