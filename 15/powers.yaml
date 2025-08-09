@@ -5112,7 +5112,7 @@ links:
         type: string
         href: https://origins-math.readthedocs.io/en/latest/types/data_types/expression/
         ext: true
-        allow: '*a-z0-9_#^%!\/:.,+\-\(\)\[\]'
+        allow: '*a-z0-9_#^%!\/:.,+-\(\)\[\]'
     variables:
         type: object
         href: https://origins-math.readthedocs.io/en/latest/types/data_types/variable_declaration/
