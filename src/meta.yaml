@@ -97,6 +97,8 @@ data:
                   - loot_tables/
                   - advancements/
                   - item_modifiers/
+                optional:
+                  - assets/
 
         # The icons object identifies which folders should be given icons.
         # Currently, the icons that can be used are hard coded.
