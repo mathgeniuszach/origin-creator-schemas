@@ -2807,7 +2807,7 @@ links:
                   - origins-math:current_biome_linked_resource
                   - origins-math:damage_dealt_linked_resource
                   - origins-math:damage_taken_linked_resource
-                  - origins-math:living_entity_linked_reesource
+                  - origins-math:living_entity_linked_resource
                   - origins-math:healing_linked_resource
                   - origins-math:nbt_linked_resource
                   - origins-math:player_linked_resource
