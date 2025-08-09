@@ -5230,7 +5230,7 @@ links:
           - YAW
           - ROLL
     entity_property:
-        enum: 
+        enum:
           - HEALTH
           - RELATIVE_HEALTH
           - ABSORPTION
