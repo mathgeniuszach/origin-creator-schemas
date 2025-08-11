@@ -1431,7 +1431,6 @@ links:
                             operation:
                                 desc: Determines if the action should add or set the value of the resource.
                                 enum: [add,set]
-                                default: add
                         string-origins-math:variable_execute_command:
                             command:
                                 desc: The command to execute on the entity.
@@ -2218,7 +2217,6 @@ links:
                             operation:
                                 desc: Determines if the action should add or set the value of the resource.
                                 enum: [add,set]
-                                default: add
                         string-origins-math:variable_change_resource:
                             resource:
                                 desc: The namespace and ID of the power that uses the Resource (Power Type) or has a built-in cooldown.
@@ -2233,7 +2231,6 @@ links:
                             operation:
                                 desc: Determines if the action should add or set the value of the resource.
                                 enum: [add,set]
-                                default: add
                         string-origins-math:variable_execute_command:
                             command:
                                 desc: The command to execute on the entity.
