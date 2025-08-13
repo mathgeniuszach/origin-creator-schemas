@@ -1638,12 +1638,12 @@ links:
                         string-origins:apply_effect:
                             effect:
                                 desc: If set, this status effect will be applied by this action.
-                                link: effect
+                                link: math_effect
                             effects:
                                 desc: If set, these status effects will be applied by this action.
                                 type: list
                                 vals:
-                                    link: effect
+                                    link: math_effect
                         string-origins:area_of_effect:
                             radius:
                                 desc: Determines the radius of the area. Defaults to 16.
