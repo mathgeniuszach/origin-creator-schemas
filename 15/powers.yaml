@@ -562,7 +562,8 @@ links:
                         string-origins:raycast:
                             distance:
                                 desc: Determines the maximum distance the raycast will travel.
-                                link: math_number_20
+                                type: number
+                                default: 20
                             block:
                                 desc: If set to false, the raycast will ignore blocks.
                                 type: boolean
