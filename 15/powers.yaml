@@ -616,7 +616,7 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
-                                link: math_integer
+                                type: integer
                         string-origins:riding_recursive:
                             bientity_condition:
                                 desc: If specified, only check for the entities that fulfills the bi-entity condition.
@@ -1384,13 +1384,13 @@ links:
                         string-origins:add_velocity:
                             x:
                                 desc: The amount of velocity to add on the x-axis. Defaults to 0.
-                                link: math_number
+                                type: number
                             y:
                                 desc: The amount of velocity to add on the y-axis. Defaults to 0.
-                                link: math_number
+                                type: number
                             z:
                                 desc: The amount of velocity to add on the z-axis. Defaults to 0.
-                                link: math_number
+                                type: number
                             client:
                                 desc: If this is false, the action will not execute on the client.
                                 type: boolean
@@ -1405,7 +1405,8 @@ links:
                         string-origins:damage:
                             amount:
                                 desc: The amount of damage to deal.
-                                link: math_number_min_0
+                                type: number
+                                min: 0
                             source:
                                 desc: The damage source to be used. Controls e.g. the death message, invulnerabilities (e.g. towards fire), or whether armor is taken into account.
                                 link: damage_source
@@ -1599,13 +1600,13 @@ links:
                         string-origins:add_velocity:
                             x:
                                 desc: The amount of velocity to add on the x-axis. Defaults to 0.
-                                link: math_number
+                                type: number
                             y:
                                 desc: The amount of velocity to add on the y-axis. Defaults to 0.
-                                link: math_number
+                                type: number
                             z:
                                 desc: The amount of velocity to add on the z-axis. Defaults to 0.
-                                link: math_number
+                                type: number
                             space:
                                 desc: The space to perform the velocity addition in.
                                 href: https://origins.readthedocs.io/en/latest/misc/extras/space/#space
@@ -1639,12 +1640,12 @@ links:
                         string-origins:apply_effect:
                             effect:
                                 desc: If set, this status effect will be applied by this action.
-                                link: math_effect
+                                link: effect
                             effects:
                                 desc: If set, these status effects will be applied by this action.
                                 type: list
                                 vals:
-                                    link: math_effect
+                                    link: effect
                         string-origins:area_of_effect:
                             radius:
                                 desc: Determines the radius of the area. Defaults to 16.
@@ -1674,7 +1675,7 @@ links:
                                 hooks: [ns]
                             change:
                                 desc: This value will be added to the resource (won't go below min or above max of the Resource Resource (Power Type)).
-                                link: math_integer
+                                type: integer
                             operation:
                                 desc: Determines if the action should add or set the value of the resource. Accepts "add" or "set".
                                 enum: [add, set]
@@ -1687,7 +1688,8 @@ links:
                         string-origins:damage:
                             amount:
                                 desc: The amount of damage to deal.
-                                link: math_number_min_0
+                                type: number
+                                min: 0
                             source:
                                 desc: The damage source to be used. Controls e.g. the death message, invulnerabilities (e.g. towards fire), or whether armor is taken into account.
                                 link: damage_source
@@ -2120,15 +2122,13 @@ links:
                                 link: particle
                             count:
                                 desc: How much of the specified particle type will be spawned.
-                                or:
-                                  - type: integer
-                                    min: 1
-                                    default: 1
-                                  - type: string
-                                    allow: '*a-z0-9_\/:.-'
+                                type: integer
+                                min: 1
+                                default: 1
                             speed:
                                 desc: Determines the speed of the specified particle type. Defaults to 0.
-                                link: math_number_0
+                                type: number
+                                default: 0
                             force:
                                 desc: If set to true, the specified particle type that will be spawned can be seen from a far distance.
                                 type: boolean
@@ -2137,7 +2137,8 @@ links:
                                 link: vector
                             offset_y:
                                 desc: The offset of where the particle will be centered in the Y axis. Defaults to 0.5.
-                                link: math_number
+                                type: number
+                                default: 0.5
                         string-origins:swing_hand:
                             hand:
                                 desc: Determines which hand is swung.
@@ -2343,7 +2344,8 @@ links:
                         string-origins:damage:
                             amount:
                                 desc: The amount of damage it should do to the item stack.
-                                link: math_integer_1
+                                type: integer
+                                default: 1
                             ignore_unbreaking:
                                 desc: Determines if this action should ignore the Unbreaking enchantment.
                                 type: boolean
