@@ -35,6 +35,7 @@ links:
 
                       - origins-math:distance
                       - origins-math:relative_rotation
+                      - origins-math:riding_recursive
                     more:
                         string-origins:and:
                             conditions:
@@ -128,6 +129,7 @@ links:
                                 desc: The value to compare the calculated angle value to.
                                 link: math_number
                         string-origins:riding_recursive: {}
+                        string-origins-math:riding_recursive: {}
                         string-origins:riding_root: {}
                         string-origins:riding: {}
                         string-origins:target_condition:
@@ -1194,6 +1196,15 @@ links:
                       - origins:nbt
                       - origins:relative_durability
                       - origins:smeltable
+
+                      - $Origins Math
+
+                      - origins-math:amount
+                      - origins-math:armor_value
+                      - origins-math:durability
+                      - origins-math:enchantment
+                      - origins-math:harvest_level
+                      - origins-math:relative_durability
                     more:
                         string-origins:and:
                             conditions:
@@ -1219,6 +1230,13 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
+                                type: integer
+                        string-origins-math:amount:
+                            comparison:
+                                desc: Determines how to compare the number of items in this stack to the specified value
+                                link: comparison
+                            compare_to:
+                                desc: The value to compare to.
                                 link: math_integer
                         string-origins:armor_value:
                             comparison:
@@ -1228,6 +1246,13 @@ links:
                                 desc: The value to compare to.
                                 link: math_integer
                         string-origins:durability:
+                            comparison:
+                                desc: How the durability should be compared to the specified value.
+                                link: comparison
+                            compare_to:
+                                desc: The value to compare to.
+                                type: integer
+                        string-origins-math:durability:
                             comparison:
                                 desc: How the durability should be compared to the specified value.
                                 link: comparison
@@ -1245,10 +1270,29 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
+                                type: integer
+                        string-origins-math:enchantment:
+                            enchantment:
+                                desc: Optional; ID of the enchantment of interest to check the level of on the item, e.g. minecraft:protection. If not provided, all enchantments are counted.
+                                type: string
+                                allow: '*a-z0-9_#\/:.-'
+                            comparison:
+                                desc: How the enchantment level should be compared to the specified value.
+                                link: comparison
+                            compare_to:
+                                desc: The value to compare to.
                                 link: math_integer
                         string-origins:fireproof: {}
                         string-origins:food: {}
                         string-origins:harvest_level:
+                            comparison:
+                                desc: How the item's harvest level should be compared to the specified value. Click to visit the wiki to learn more about harvest levels.
+                                href: https://minecraft.wiki/w/Tiers
+                                link: comparison
+                            compare_to:
+                                desc: The value to compare to.
+                                type: number
+                        string-origins-math:harvest_level:
                             comparison:
                                 desc: How the item's harvest level should be compared to the specified value. Click to visit the wiki to learn more about harvest levels.
                                 href: https://minecraft.wiki/w/Tiers
@@ -1271,6 +1315,13 @@ links:
                                 type: string
                                 ext: true
                         string-origins:relative_durability:
+                            comparison:
+                                desc: How the relative durability should be compared to the specified value.
+                                link: comparison
+                            compare_to:
+                                desc: The value to compare to.
+                                type: number
+                        string-origins-math:relative_durability:
                             comparison:
                                 desc: How the relative durability should be compared to the specified value.
                                 link: comparison
@@ -1621,6 +1672,10 @@ links:
                       - origins:out_of_world
                       - origins:projectile
                       - origins:unblockable
+
+                      - $Origins Math
+
+                      - origins-math:amount
                     more:
                         string-origins:and:
                             conditions:
@@ -1646,6 +1701,13 @@ links:
                             compare_to:
                                 desc: The value to compare to.
                                 type: number
+                        string-origins-math:amount:
+                            comparison:
+                                desc: How the amount of damage should be compared to the specified value.
+                                link: comparison
+                            compare_to:
+                                desc: The value to compare to.
+                                link: math_number
                         string-origins:attacker:
                             entity_condition:
                                 desc: If set, the attacking entity must fulfill the provided entity condition in order for this condition to evaluate to true.
@@ -1980,7 +2042,10 @@ links:
                       - eggolib:calculate_resource
 
                       - $Origins Math
+
+                      - $Updated Actions
                       
+                      - $Math Actions
                       - origins-math:change_resource
                       - origins-math:variable_change_resource
                       - origins-math:variable_execute_command
