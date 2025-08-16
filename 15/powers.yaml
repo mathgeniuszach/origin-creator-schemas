@@ -1301,7 +1301,11 @@ links:
                       - origins:target_action
 
                       - $Origins Math
-
+                      
+                      - origins-math:chance
+                      - origins-math:damage
+                      - origins-math:delay
+                      - origins-math:add_velocity
                       - origins-math:copy_resource_value
                       - origins-math:variable_execute_command
                     more:
@@ -1313,6 +1317,16 @@ links:
                                 vals:
                                     link: bi_entity_action
                         string-origins:chance:
+                            chance:
+                                desc: The chance that the action will execute, from 0 to 1. (E.g. 0.1 means 10% chance, 0.95 means 95% chance)
+                                type: number
+                            action:
+                                desc: The action which might be executed.
+                                link: bi_entity_action
+                            fail_action:
+                                desc: The action to execute if the specified action in the action field is not executed.
+                                link: bi_entity_action
+                        string-origins-math:chance:
                             chance:
                                 desc: The chance that the action will execute, from 0 to 1. (E.g. 0.1 means 10% chance, 0.95 means 95% chance)
                                 link: math_number
@@ -1337,6 +1351,13 @@ links:
                                             desc: The action which might be executed.
                                             link: bi_entity_action
                         string-origins:delay:
+                            action:
+                                desc: The action which will be executed after the delay.
+                                link: bi_entity_action
+                            ticks:
+                                desc: The amount of ticks until the action is executed.
+                                type: integer
+                        string-origins-math:delay:
                             action:
                                 desc: The action which will be executed after the delay.
                                 link: bi_entity_action
@@ -1407,6 +1428,38 @@ links:
                                 desc: The amount of damage to deal.
                                 type: number
                                 min: 0
+                            source:
+                                desc: The damage source to be used. Controls e.g. the death message, invulnerabilities (e.g. towards fire), or whether armor is taken into account.
+                                link: damage_source
+                            damage_type:
+                                desc: The damage type to be used. Controls e.g. the death message, invulnerabilities (e.g. towards fire), or whether armor is taken into account.
+                                type: string
+                                allow: '*a-z0-9_#\/:.-'
+                        string-origins-math:add_velocity:
+                            x:
+                                desc: The amount of velocity to add on the x-axis. Defaults to 0.
+                                link: math_number
+                            y:
+                                desc: The amount of velocity to add on the y-axis. Defaults to 0.
+                                link: math_number
+                            z:
+                                desc: The amount of velocity to add on the z-axis. Defaults to 0.
+                                link: math_number
+                            client:
+                                desc: If this is false, the action will not execute on the client.
+                                type: boolean
+                                default: true
+                            server:
+                                desc: If this is false, the action will not execute on the server.
+                                type: boolean
+                                default: true
+                            set:
+                                desc: If this is true, the action will act as a "set" velocity action, overriding the entity's current velocity instead of adding to it.
+                                type: boolean
+                        string-origins-math:damage:
+                            amount:
+                                desc: The amount of damage to deal.
+                                link: math_number_min_0
                             source:
                                 desc: The damage source to be used. Controls e.g. the death message, invulnerabilities (e.g. towards fire), or whether armor is taken into account.
                                 link: damage_source
