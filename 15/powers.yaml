@@ -30,6 +30,11 @@ links:
                       - origins:riding
                       - origins:target_condition
                       - origins:undirected
+                      
+                      - $Origins Math
+
+                      - origins-math:distance
+                      - origins-math:relative_rotation
                     more:
                         string-origins:and:
                             conditions:
@@ -69,6 +74,13 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The distance (in blocks) to compare the distance between the actor and target to.
+                                type: number
+                        string-origins-math:distance:
+                            comparison:
+                                desc: How to compare the distance against the specified value.
+                                link: comparison
+                            compare_to:
+                                desc: The distance (in blocks) to compare the distance between the actor and target to.
                                 link: math_number
                         string-origins:either:
                             condition:
@@ -76,6 +88,26 @@ links:
                                 link: entity_cond
                         string-origins:owner: {}
                         string-origins:relative_rotation:
+                            axes:
+                                desc: The axes to get the angle values to calculate, and compare to.
+                                type: list
+                                vals:
+                                    enum: [x, y, z]
+                            actor_rotation:
+                                desc: Determines the initial point of the rotation for the actor. Accepts "head" or "body".
+                                enum: [head, body]
+                                default: 0
+                            target_rotation:
+                                desc: Determines the initial position of the rotation for the target. Accepts "head" or "body".
+                                enum: [head, body]
+                                default: 1
+                            comparison:
+                                desc: Determines how the calculated angle value will be compared to the specified value.
+                                link: comparison
+                            compare_to:
+                                desc: The value to compare the calculated angle value to.
+                                type: number
+                        string-origins-math:relative_rotation:
                             axes:
                                 desc: The axes to get the angle values to calculate, and compare to.
                                 type: list
@@ -198,6 +230,33 @@ links:
 
                       - $Origins Math
 
+                      - $Updated Conditions
+                      - origins-math:air
+                      - origins-math:attribute
+                      - origins-math:block_collision
+                      - origins-math:block_in_radius
+                      - origins-math:brightness
+                      - origins-math:command
+                      - origins-math:distance_from_coordinates
+                      - origins-math:enchantment
+                      - origins-math:fall_distance
+                      - origins-math:fluid_height
+                      - origins-math:food_level
+                      - origins-math:health
+                      - origins-math:in_block_anywhere
+                      - origins-math:inventory
+                      - origins-math:passenger
+                      - origins-math:raycast
+                      - origins-math:relative_health
+                      - origins-math:resource
+                      - origins-math:riding_recursive
+                      - origins-math:saturation_level
+                      - origins-math:scoreboard
+                      - origins-math:status_effect
+                      - origins-math:time_of_day
+                      - origins-math:xp_levels
+                      - origins-math:xp_points
+                      - $Resource Comparators
                       - origins-math:compare_resources
                       - origins-math:empty_resource
                       - origins-math:full_resource
@@ -237,8 +296,27 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
-                                link: math_integer
+                                type: integer
                         string-origins:attribute:
+                            attribute:
+                                desc: ID of the attribute of which the value should be checked.
+                                href: https://minecraft.wiki/w/Attribute
+                                type: string
+                                allow: '*a-z0-9_#\/:.-'
+                            comparison:
+                                desc: How the attribute's value should be compared to the specified value.
+                                link: comparison
+                            compare_to:
+                                desc: The value to compare to.
+                                type: number
+                        string-origins-math:air:
+                            comparison:
+                                desc: How the breath / air / bubble bar (in ticks) should be compared to the specified value.
+                                link: comparison
+                            compare_to:
+                                desc: The value to compare to.
+                                link: math_integer
+                        string-origins-math:attribute:
                             attribute:
                                 desc: ID of the attribute of which the value should be checked.
                                 href: https://minecraft.wiki/w/Attribute
@@ -273,6 +351,25 @@ links:
                             offset_x:
                                 desc: |
                                     By how much of the bounding box size should the box be offset in the X direction (e.g.: 0 = no offset, 1 = offset of exact width, 2 = offset of twice the width of the bounding box)
+                                type: number
+                                default: 0
+                            offset_y:
+                                desc: |
+                                    By how much of the bounding box size should the box be offset in the Y direction (e.g.: 0 = no offset, 1 = offset of exact width, 2 = offset of twice the width of the bounding box)
+                                type: number
+                                default: 0
+                            offset_z:
+                                desc: |
+                                    By how much of the bounding box size should the box be offset in the Z direction (e.g.: 0 = no offset, 1 = offset of exact width, 2 = offset of twice the width of the bounding box)
+                                type: number
+                                default: 0
+                        string-origins-math:block_collision:
+                            block_condition:
+                                desc: If specified, the condition type will only evaluate to true if the bounding box of the entity is colliding with a block that fulfills this condition.
+                                link: block_cond
+                            offset_x:
+                                desc: |
+                                    By how much of the bounding box size should the box be offset in the X direction (e.g.: 0 = no offset, 1 = offset of exact width, 2 = offset of twice the width of the bounding box)
                                 link: math_number_0
                             offset_y:
                                 desc: |
@@ -288,6 +385,30 @@ links:
                                 link: block_cond
                             radius:
                                 desc: The radius to check blocks in.
+                                type: integer
+                            shape:
+                                desc: Determines the shape of the radius. Accepts "cube", "star" or "sphere".
+                                enum: [cube, star, sphere]
+                            comparison:
+                                desc: How the number of blocks in the radius which fulfill block_condition should be compared to the specified value.
+                                link: comparison
+                            compare_to:
+                                desc: The value to compare to.
+                                type: integer
+                                default: 1
+                        string-origins:brightness:
+                            comparison:
+                                desc: How to compare the brightness at the player's eyes against the specified value.
+                                link: comparison
+                            compare_to:
+                                desc: The value to compare to.
+                                type: number
+                        string-origins-math:block_in_radius:
+                            block_condition:
+                                desc: The block condition which is applied to the block at the player's feet.
+                                link: block_cond
+                            radius:
+                                desc: The radius to check blocks in.
                                 link: math_integer
                             shape:
                                 desc: Determines the shape of the radius. Accepts "cube", "star" or "sphere".
@@ -298,7 +419,7 @@ links:
                             compare_to:
                                 desc: The value to compare to.
                                 link: math_integer_1
-                        string-origins:brightness:
+                        string-origins-math:brightness:
                             comparison:
                                 desc: How to compare the brightness at the player's eyes against the specified value.
                                 link: comparison
@@ -317,6 +438,18 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
+                                type: integer
+                                default: 1
+                        string-origins-math:command:
+                            command:
+                                desc: Command to run as and at the entity evaluating this condition.
+                                type: string
+                                ext: true
+                            comparison:
+                                desc: How to compare the command's result (all commands return 0 on failure and 1 or more on success. Some commands even return back the count/number of something) to the specified value.
+                                link: comparison
+                            compare_to:
+                                desc: The value to compare to.
                                 link: math_integer_1
                         string-origins:creative_flying: {}
                         string-origins:daytime: {}
@@ -326,6 +459,41 @@ links:
                                 type: string
                                 allow: '*a-z0-9_#\/:.-'
                         string-origins:distance_from_coordinates:
+                            reference:
+                                desc: The point to compare the distance to.
+                                enum: [world_origin, world_spawn]
+                            offset:
+                                desc: If specified, determines how much the reference point should be offset.
+                                link: vector
+                            ignore_x:
+                                desc: Determines whether to consider the X axis to be 0.
+                                type: boolean
+                            ignore_y:
+                                desc: Determines whether to consider the Y axis to be 0.
+                                type: boolean
+                            ignore_z:
+                                desc: Determines whether to consider the Z axis to be 0.
+                                type: boolean
+                            shape:
+                                desc: Determines the shape of the check.
+                                enum: [cube, star, sphere]
+                            scale_reference_to_dimension:
+                                desc: Determines whether to check for the reference point whilst considering the coordinate scale of the dimension.
+                                type: boolean
+                                default: true
+                            result_on_the_wrong_dimension:
+                                desc: If specified, this value will override the result of the comparison if the block being tested is not in the reference's dimension.
+                                type: boolean
+                            round_to_digit:
+                                desc: If specified, rounds the result to the closest number with the specified amount of digits after the comma. Negative numbers also work.
+                                type: integer
+                            comparison:
+                                desc: Determines how the calculated distance is compared to the specified value.
+                                link: comparison
+                            compare_to:
+                                desc: The value to compare the calculated distance to.
+                                type: number
+                        string-origins-math:distance_from_coordinates:
                             reference:
                                 desc: The point to compare the distance to.
                                 enum: [world_origin, world_spawn]
@@ -381,6 +549,20 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
+                                type: integer
+                        string-origins-math:enchantment:
+                            enchantment:
+                                desc: ID of the enchantment of interest.
+                                type: string
+                                allow: '*a-z0-9_#\/:.-'
+                            calculation:
+                                desc: Which number to compare - either the sum of levels of this enchantment on all of the player's equipment, or the max level of this enchantment on any of the player's equipment.
+                                enum: [sum, max]
+                            comparison:
+                                desc: How the enchantment level should be compared to the specified value.
+                                link: comparison
+                            compare_to:
+                                desc: The value to compare to.
                                 link: math_integer
                         string-origins:entity_group:
                             group:
@@ -408,6 +590,13 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
+                                type: number
+                        string-origins-math:fall_distance:
+                            comparison:
+                                desc: How the player's current fall distance should be compared to the specified value. Note that the value is 0 if the player has slow falling.
+                                link: comparison
+                            compare_to:
+                                desc: The value to compare to.
                                 link: math_number
                         string-origins:fall_flying: {}
                         string-origins:fluid_height:
@@ -421,8 +610,27 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
-                                link: math_number
+                                type: number
                         string-origins:food_level:
+                            comparison:
+                                desc: How the player's current food level should be compared to the specified value. In a range from 0 to 20.
+                                link: comparison
+                            compare_to:
+                                desc: The value to compare to.
+                                type: number
+                        string-origins-math:fluid_height:
+                            fluid:
+                                desc: |
+                                    ID of the fluid tag of which the height should be checked. Most important examples: minecraft:water and minecraft:lava.
+                                type: string
+                                allow: '*a-z0-9_#\/:.-'
+                            comparison:
+                                desc: How the fluid height should be compared to the specified value. A fluid height of 0 means the player is not touching the fluid.
+                                link: comparison
+                            compare_to:
+                                desc: The value to compare to.
+                                link: math_number
+                        string-origins-math:food_level:
                             comparison:
                                 desc: How the player's current food level should be compared to the specified value. In a range from 0 to 20.
                                 link: comparison
@@ -440,8 +648,26 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
+                                type: number
+                        string-origins-math:health:
+                            comparison:
+                                desc: How the player's health should be compared to the specified value. Ranges from 0 - 20.
+                                link: comparison
+                            compare_to:
+                                desc: The value to compare to.
                                 link: math_number
                         string-origins:in_block_anywhere:
+                            block_condition:
+                                desc: The block condition which blocks need to fulfill in order to count for this condition.
+                                link: block_cond
+                            comparison:
+                                desc: How the number of blocks which overlap and fulfill block_condition should be compared to the specified value.
+                                link: comparison
+                            compare_to:
+                                desc: The value to compare to.
+                                type: integer
+                                default: 1
+                        string-origins-math:in_block_anywhere:
                             block_condition:
                                 desc: The block condition which blocks need to fulfill in order to count for this condition.
                                 link: block_cond
@@ -462,6 +688,35 @@ links:
                                 type: string
                                 allow: '*a-z0-9_\/:.-'
                         string-origins:inventory:
+                            inventory_types:
+                                desc: Determines whether to check for items in the entity's inventory, inventories of powers present in the entity, or both. Defaults to ["inventory"]. If "inventory" is included, the player's main inventory will be checked. If "power" is included the player's bonus inventories given with powers will also be checked.
+                                type: list
+                                vals:
+                                    enum: [inventory, power]
+                            process_mode:
+                                link: process_mode
+                            item_condition:
+                                desc: If specified, only account for items from the specified inventory/inventories that fulfill this condition.
+                                link: item_cond
+                            slots:
+                                desc: If specified, only items from these specified item slots are evaluated.
+                                link: slots
+                            slot:
+                                desc: If specified, only the item from this specified item slot is evaluated.
+                                link: slot
+                            power:
+                                desc: If specified and if inventory_types includes "power", the items in the inventory of only this power specifically will be evaluated.
+                                type: string
+                                allow: '*a-z0-9_\/:.-'
+                                hooks: [ns]
+                            comparison:
+                                desc: Determines how the amount of items/stacks that were evaluated are compared to the specified value.
+                                link: comparison
+                            compare_to:
+                                desc: The value at which the amount of items/stacks that were evaluated are compared to.
+                                type: integer
+                                default: 0
+                        string-origins-math:inventory:
                             inventory_types:
                                 desc: Determines whether to check for items in the entity's inventory, inventories of powers present in the entity, or both. Defaults to ["inventory"]. If "inventory" is included, the player's main inventory will be checked. If "power" is included the player's bonus inventories given with powers will also be checked.
                                 type: list
@@ -522,8 +777,30 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: Which value the amount of entities currently riding the entity should be compared to.
+                                type: integer
+                                default: 1
+                        string-origins-math:passenger_recursive:
+                            bientity_condition:
+                                desc: If specified, only check for the entities that fulfills the bi-entity condition.
+                                link: bi_entity_cond
+                            comparison:
+                                desc: How the amount of entities that are currently riding the entity should be compared to the specified value.
+                                link: comparison
+                            compare_to:
+                                desc: Which value the amount of entities currently riding the entity should be compared to.
                                 link: math_integer_1
                         string-origins:passenger:
+                            bientity_condition:
+                                desc: If specified, only check for the entities that fulfills the bi-entity condition.
+                                link: bi_entity_cond
+                            comparison:
+                                desc: How the amount of entities that are currently riding the entity should be compared to the specified value.
+                                link: comparison
+                            compare_to:
+                                desc: Which value the amount of entities currently riding the entity should be compared to.
+                                type: integer
+                                default: 1
+                        string-origins-math:passenger:
                             bientity_condition:
                                 desc: If specified, only check for the entities that fulfills the bi-entity condition.
                                 link: bi_entity_cond
@@ -598,7 +875,52 @@ links:
                             block_condition:
                                 desc: If specified, the entity condition type will check if the block that was hit by the raycast fulfills this block condition type.
                                 link: block_cond
+                        string-origins-math:raycast:
+                            distance:
+                                desc: Determines the maximum distance the raycast will travel.
+                                link: math_number_20
+                            block:
+                                desc: If set to false, the raycast will ignore blocks.
+                                type: boolean
+                                default: true
+                            entity:
+                                desc: If set to false, the raycast will ignore entities.
+                                type: boolean
+                                default: true
+                            shape_type:
+                                desc: |
+                                    Determines how the raycast handles blocks.
+
+                                    If set to "outline", the raycast will take the shape of the collision box of the block into account.
+                                    If set to "visual", the raycast will ignore blocks that are see-through (e.g: Glass, Tinted Glass, etc.).
+                                    If set to "collider", the raycast will take physical collision of the block into account.
+                                enum: [outline, visual, collider]
+                            fluid_handling:
+                                desc: |
+                                    Determines how the raycast handles fluids.
+
+                                    If set to "any", the raycast will ignore source and flowing fluids.
+                                    If set to "source", the raycast will only go through source fluids.
+                                    If set to "none", the raycast won't go through any kind of fluids.
+                                enum: [any, source, none]
+                                gap: true
+                            match_bientity_condition:
+                                desc: If specified, the entity condition type will check if this bi-entity condition type is fulfilled by the entity that the raycast has gone through. If not, the entity will be ignored.
+                                link: bi_entity_cond
+                            hit_bientity_condition:
+                                desc: If specified, the entity condition type will check if the entity that was hit by the raycast fulfills this bi-entity condition type.
+                                link: bi_entity_cond
+                            block_condition:
+                                desc: If specified, the entity condition type will check if the block that was hit by the raycast fulfills this block condition type.
+                                link: block_cond
                         string-origins:relative_health:
+                            comparison:
+                                desc: How the relative health of the player should be compared to the specified value.
+                                link: comparison
+                            compare_to:
+                                desc: The value to compare to.
+                                type: number
+                        string-origins-math:relative_health:
                             comparison:
                                 desc: How the relative health of the player should be compared to the specified value.
                                 link: comparison
@@ -617,7 +939,30 @@ links:
                             compare_to:
                                 desc: The value to compare to.
                                 type: integer
+                        string-origins-math:resource:
+                            resource:
+                                desc: ID of the power type that defines the resource. Must be a Resource (Power Type) which exists on the player.
+                                type: string
+                                allow: '*a-z0-9_#\/:.-'
+                                hooks: [ns]
+                            comparison:
+                                desc: How the resource's value should be compared to the specified value.
+                                link: comparison
+                            compare_to:
+                                desc: The value to compare to.
+                                link: math_integer
                         string-origins:riding_recursive:
+                            bientity_condition:
+                                desc: If specified, only check for the entities that fulfills the bi-entity condition.
+                                link: bi_entity_cond
+                            comparison:
+                                desc: How the amount of entities currently being ridden should be compared to the specified value.
+                                link: comparison
+                            compare_to:
+                                desc: Which value the amount of entities currently being ridden should be compared to.
+                                type: integer
+                                default: 1
+                        string-origins-math:riding_recursive:
                             bientity_condition:
                                 desc: If specified, only check for the entities that fulfills the bi-entity condition.
                                 link: bi_entity_cond
@@ -641,8 +986,28 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
+                                type: number
+                        string-origins-math:saturation_level:
+                            comparison:
+                                desc: How the saturation level should be compared to the specified value.
+                                link: comparison
+                            compare_to:
+                                desc: The value to compare to.
                                 link: math_number
                         string-origins:scoreboard:
+                            name:
+                                desc: A selector to retrieve the scoreboard objective from. Leave blank for the entity with the power.
+                                type: string
+                            objective:
+                                desc: The name of the scoreboard objective to retrieve the value from (referred to as the score) and compare.
+                                type: string
+                            comparison:
+                                desc: How the player's score should be compared to the specified value.
+                                link: comparison
+                            compare_to:
+                                desc: The value to compare to.
+                                type: integer
+                        string-origins-math:scoreboard:
                             name:
                                 desc: A selector to retrieve the scoreboard objective from. Leave blank for the entity with the power.
                                 type: string
@@ -658,6 +1023,23 @@ links:
                         string-origins:sneaking: {}
                         string-origins:sprinting: {}
                         string-origins:status_effect:
+                            effect:
+                                desc: ID of the status effect the player should have.
+                                type: string
+                                allow: '*a-z0-9_#\/:.-'
+                            min_amplifier:
+                                desc: The minimum amplifier the status effect should have in order to pass the check. Defaults to 0.
+                                link: integer_amp
+                            max_amplifier:
+                                desc: The maximum amplifier the status effect should have in order to pass the check. Defaults to 2147483647.
+                                link: integer_amp
+                            min_duration:
+                                desc: The minimum duration the status effect should have in order to pass the check. Defaults to 0.
+                                link: integer_dur
+                            max_duration:
+                                desc: The maximum duration the status effect should have in order to pass the check. Defaults to 2147483647.
+                                link: integer_dur
+                        string-origins-math:status_effect:
                             effect:
                                 desc: ID of the status effect the player should have.
                                 type: string
@@ -688,6 +1070,13 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
+                                type: integer
+                        string-origins-math:time_of_day:
+                            comparison:
+                                desc: How the current day time ticks of the world should be compared to the specified value.
+                                link: comparison
+                            compare_to:
+                                desc: The value to compare to.
                                 link: math_integer
                         string-origins:using_effective_tool: {}
                         string-origins:using_item:
@@ -700,8 +1089,22 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
-                                link: math_integer
+                                type: integer
                         string-origins:xp_points:
+                            comparison:
+                                desc: How the experience points of the player should be compared to the specified value.
+                                link: comparison
+                            compare_to:
+                                desc: The value to compare to.
+                                type: integer
+                        string-origins-math:xp_levels:
+                            comparison:
+                                desc: How the experience level of the player should be compared to the specified value.
+                                link: comparison
+                            compare_to:
+                                desc: The value to compare to.
+                                link: math_integer
+                        string-origins-math:xp_points:
                             comparison:
                                 desc: How the experience points of the player should be compared to the specified value.
                                 link: comparison
@@ -5234,6 +5637,16 @@ links:
             default: 20
           - type: string
             allow: '*a-z0-9_\/:.-'
+    integer_amp:
+        desc: The minimum and maximum amplifier of the status effect.
+        type: integer
+        min: 0
+        max: 2147483647
+    integer_dur:
+        desc: The minimum and maximum duration of the status effect.
+        type: integer
+        min: -1
+        max: 2147483647
     math_integer_amp:
         desc: A positive Integer or Identifier that links to a Modifiable Resource (Power Type), Resource (Power Type) or a power type that has a built-in cooldown (using remaining ticks as the value).
         or:
