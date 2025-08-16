@@ -1244,6 +1244,13 @@ links:
                                 link: comparison
                             compare_to:
                                 desc: The value to compare to.
+                                type: integer
+                        string-origins-math:armor_value:
+                            comparison:
+                                desc: How the item's armor value should be compared to the specified value.
+                                link: comparison
+                            compare_to:
+                                desc: The value to compare to.
                                 link: math_integer
                         string-origins:durability:
                             comparison:
@@ -2044,7 +2051,27 @@ links:
                       - $Origins Math
 
                       - $Updated Actions
-                      
+                      - origins-math:chance
+                      - origins-math:delay
+                      - origins-math:add_velocity
+                      - origins-math:add_xp
+                      - origins-math:area_of_effect
+                      - origins-math:damage
+                      - origins-math:drop_inventory
+                      - origins-math:exhaust
+                      - origins-math:explode
+                      - origins-math:feed
+                      - orignis-math:gain_air
+                      - origins-math:fire_projectile
+                      - origins-math:heal
+                      - origins-math:modify_inventory
+                      - origins-math:play_sound
+                      - origins-math:raycast
+                      - origins-math:set_fall_distance
+                      - origins-math:set_on_fire
+                      - origins-math:set_resource
+                      - origins-math:spawn_effect_cloud
+                      - origins-math:spawn_particles
                       - $Math Actions
                       - origins-math:change_resource
                       - origins-math:variable_change_resource
@@ -2059,6 +2086,16 @@ links:
                                 vals:
                                     link: entity_action
                         string-origins:chance:
+                            chance:
+                                desc: The chance that the action will execute, from 0 to 1. (E.g. 0.1 means 10% chance, 0.95 means 95% chance)
+                                type: number
+                            action:
+                                desc: The action which might be executed.
+                                link: entity_action
+                            fail_action:
+                                desc: The action to execute if the specified action in the action field is not executed.
+                                link: entity_action
+                        string-origins-math:chance:
                             chance:
                                 desc: The chance that the action will execute, from 0 to 1. (E.g. 0.1 means 10% chance, 0.95 means 95% chance)
                                 link: math_number
@@ -2077,11 +2114,19 @@ links:
                                     props:
                                         weight:
                                             desc: The chance of this action being executed is weight/total_weight_of_actions
-                                            link: math_integer_1
+                                            type: integer
+                                            default: 1
                                         element:
                                             desc: The action which might be executed.
                                             link: entity_action
                         string-origins:delay:
+                            action:
+                                desc: The action which will be executed after the delay.
+                                link: entity_action
+                            ticks:
+                                desc: The amount of ticks until the action is executed.
+                                type: integer
+                        string-origins-math:delay:
                             action:
                                 desc: The action which will be executed after the delay.
                                 link: entity_action
@@ -2151,7 +2196,48 @@ links:
                             set:
                                 desc: If this is true, the action will act as a "set" velocity action, overriding the entity's current velocity instead of adding to it.
                                 type: boolean
+                        string-origins-math:add_velocity:
+                            x:
+                                desc: The amount of velocity to add on the x-axis. Defaults to 0.
+                                link: math_number
+                            y:
+                                desc: The amount of velocity to add on the y-axis. Defaults to 0.
+                                link: math_number
+                            z:
+                                desc: The amount of velocity to add on the z-axis. Defaults to 0.
+                                link: math_number
+                            space:
+                                desc: The space to perform the velocity addition in.
+                                href: https://origins.readthedocs.io/en/latest/misc/extras/space/#space
+                                enum:
+                                  - world
+                                  - local
+                                  - local_horizontal
+                                  - local_horizontal_normalized
+                                  - velocity
+                                  - velocity_normalized
+                                  - velocity_horizontal
+                                  - velocity_horizontal_normalized
+                            client:
+                                desc: If this is false, the action will not execute on the client.
+                                type: boolean
+                                default: true
+                            server:
+                                desc: If this is false, the action will not execute on the server.
+                                type: boolean
+                                default: true
+                            set:
+                                desc: If this is true, the action will act as a "set" velocity action, overriding the entity's current velocity instead of adding to it.
+                                type: boolean
                         string-origins:add_xp:
+                            points:
+                                desc: If set, this is the amount experience points that will be given to the player. Can not be negative.
+                                type: integer
+                                min: 0
+                            levels:
+                                desc: If set, this is the amount experience levels that will be given to the player. Can be negative and thus used to subtract levels.
+                                type: integer
+                        string-origins-math:add_xp:
                             points:
                                 desc: If set, this is the amount experience points that will be given to the player. Can not be negative.
                                 link: math_integer_min_0
@@ -2168,6 +2254,20 @@ links:
                                 vals:
                                     link: effect
                         string-origins:area_of_effect:
+                            radius:
+                                desc: Determines the radius of the area. Defaults to 16.
+                                type: number
+                                default: 16
+                            include_target:
+                                desc: Determines whether the entity this action was executed on is included in the radius check.
+                                type: boolean
+                            bientity_condition:
+                                desc: If specified, only execute the specified bi-entity action if this bi-entity condition type is fulfilled by either or both the 'actor' (the entity that has the power) or 'target' (the entities within the specified radius).
+                                link: bi_entity_cond
+                            bientity_action:
+                                desc: If specified, this bi-entity action type may be executed on either or both the 'actor' (the entity that has the power) and target (the entities within the specified radius).
+                                link: bi_entity_action
+                        string-origins-math:area_of_effect:
                             radius:
                                 desc: Determines the radius of the area. Defaults to 16.
                                 or:
@@ -2218,8 +2318,51 @@ links:
                                 desc: The damage type to be used. Controls e.g. the death message, invulnerabilities (e.g. towards fire), or whether armor is taken into account.
                                 type: string
                                 allow: '*a-z0-9_#\/:.-'
+                        string-origins-math:damage:
+                            amount:
+                                desc: The amount of damage to deal.
+                                link: math_number_min_0
+                            source:
+                                desc: The damage source to be used. Controls e.g. the death message, invulnerabilities (e.g. towards fire), or whether armor is taken into account.
+                                link: damage_source
+                            damage_type:
+                                desc: The damage type to be used. Controls e.g. the death message, invulnerabilities (e.g. towards fire), or whether armor is taken into account.
+                                type: string
+                                allow: '*a-z0-9_#\/:.-'
                         string-origins:dismount: {}
                         string-origins:drop_inventory:
+                            inventory_type:
+                                desc: Either "inventory" or "power". If "inventory", drops items in the player's main inventory. If "power", Drops items to the player's bonus inventory given with a power.
+                                enum: [inventory, power]
+                            entity_action:
+                                desc: If set, applies this action to the entity that has their inventory being dropped.
+                                link: entity_action
+                            item_action:
+                                desc: Item action applied to the items in the given slots.
+                                link: item_action
+                            item_condition:
+                                desc: If set, this item condition must match the items in the given slots to have the action applied.
+                                link: item_cond
+                            slots:
+                                link: slots
+                            slot:
+                                link: slot
+                            amount:
+                                desc: If specified, the affected items will be split by this amount.
+                                type: integer
+                            power:
+                                desc: If "Inventory Type" is set to "power", this is the power linked to the inventory to drop.
+                                type: string
+                                allow: '*a-z0-9_#\/:.-'
+                                hooks: [ns]
+                            throw_randomly:
+                                desc: Whether or not to throw the item in a random direction around the player instead of in front of them.
+                                type: boolean
+                            retain_ownership:
+                                desc: Whether or not the item's "Owner" tag is set to the player the item came from.
+                                type: boolean
+                                default: true
+                        string-origins-math:drop_inventory:
                             inventory_type:
                                 desc: Either "inventory" or "power". If "inventory", drops items in the player's main inventory. If "power", Drops items to the player's bonus inventory given with a power.
                                 enum: [inventory, power]
@@ -2273,8 +2416,32 @@ links:
                         string-origins:exhaust:
                             amount:
                                 desc: The amount of exhaustion to apply to the player.
+                                type: number
+                        string-origins-math:exhaust:
+                            amount:
+                                desc: The amount of exhaustion to apply to the player.
                                 link: math_number
                         string-origins:explode:
+                            power:
+                                desc: Determines the power of the explosion.
+                                type: number
+                            destruction_type:
+                                desc: Determines if the explosion should destroy the terrain, destroy the terrain and drop the loot of the blocks, or none. Accepts either "destroy", "break" or "none".
+                                enum: [break, destroy, none]
+                            damage_self:
+                                desc: Determines if the player should take damage from the explosion.
+                                type: boolean
+                                default: true
+                            indestructible:
+                                desc: If set, blocks specified in this block condition object is not destroyed by the explosion.
+                                link: block_cond
+                            destructible:
+                                desc: If set, blocks specified in this block condition object will be the only blocks destroyed by the explosion.
+                                link: block_cond
+                            create_fire:
+                                desc: Determines if the explosion should create fire.
+                                type: boolean
+                        string-origins-math:explode:
                             power:
                                 desc: Determines the power of the explosion.
                                 link: math_number
@@ -2298,11 +2465,45 @@ links:
                         string-origins:feed:
                             food:
                                 desc: The food amount to restore.
+                                type: integer
+                            saturation:
+                                desc: The saturation amount to restore.
+                                type: number
+                        string-origins-math:feed:
+                            food:
+                                desc: The food amount to restore.
                                 link: math_integer
                             saturation:
                                 desc: The saturation amount to restore.
                                 link: math_number
                         string-origins:fire_projectile:
+                            entity_type:
+                                desc: The ID of the entity type that will be fired.
+                                type: string
+                                allow: '*a-z0-9_#\/:.-'
+                            count:
+                                desc: The amount of projectiles to fire each use. Defaults to 1.
+                                type: integer
+                                default: 1
+                                min: 1
+                            speed:
+                                desc: The speed applied to the fired projectile. Defaults to 1.5.
+                                type: number
+                                min: 0
+                                default: 1.5
+                            divergence:
+                                desc: How much each projectile fired is affected by random spread. Defaults to 1.
+                                type: number
+                                min: 0
+                                default: 1
+                            tag:
+                                desc: NBT data of the entity.
+                                type: string
+                                ext: true
+                            projectile_action:
+                                desc: An action which will run on the projectile.
+                                link: entity_action
+                        string-origins-math:fire_projectile:
                             entity_type:
                                 desc: The ID of the entity type that will be fired.
                                 type: string
@@ -2341,6 +2542,10 @@ links:
                         string-origins:gain_air:
                             value:
                                 desc: The amount of breath to restore.
+                                type: integer
+                        string-origins-math:gain_air:
+                            value:
+                                desc: The amount of breath to restore.
                                 link: math_integer
                         string-origins:give:
                             stack:
@@ -2370,12 +2575,44 @@ links:
                         string-origins:heal:
                             amount:
                                 desc: The amount of health to restore.
+                                type: number
+                        string-origins-math:heal:
+                            amount:
+                                desc: The amount of health to restore.
                                 link: math_number
                         string-origins:modify_death_ticks:
                             modifier:
                                 desc: If specified, this modifier will be applied to its corresponding attribute.
-                                link: math_a_mod
+                                link: a_mod
                         string-origins:modify_inventory:
+                            inventory_type:
+                                desc: Either "inventory" or "power". If "inventory", applies modifications to the player's main inventory. If "power", Applies modifications to the player's bonus inventory given with a power.
+                                enum: [inventory, power]
+                            entity_action:
+                                desc: If set, applies this action to the entity that has their inventory being modified.
+                                link: entity_action
+                            item_action:
+                                desc: Item action applied to the items in the given slots.
+                                link: item_action
+                            item_condition:
+                                desc: If set, this item condition must match the items in the given slots to have the action applied.
+                                link: item_cond
+                            slots:
+                                link: slots
+                            slot:
+                                link: slot
+                            power:
+                                desc: If "Inventory Type" is set to "power", this is the power linked to the inventory to modify.
+                                type: string
+                                allow: '*a-z0-9_#\/:.-'
+                                hooks: [ns]
+                            process_mode:
+                                link: process_mode
+                            limit:
+                                desc: Determines the max amount of times the action should modify item stacks in the inventory. If the specified value is <= 0, then there will be no limit.
+                                type: integer
+                                default: 0
+                        string-origins-math:modify_inventory:
                             inventory_type:
                                 desc: Either "inventory" or "power". If "inventory", applies modifications to the player's main inventory. If "power", Applies modifications to the player's bonus inventory given with a power.
                                 enum: [inventory, power]
@@ -2410,14 +2647,14 @@ links:
                                 hooks: [ns]
                             modifier:
                                 desc: The modifier to apply to the given power resource.
-                                link: math_a_mod
+                                link: a_mod
                         string-origins:modify_stat:
                             stat:
                                 desc: The statistic to modify.
                                 link: stat
                             modifier:
                                 desc: The modifier to apply to the given stat.
-                                link: math_a_mod
+                                link: a_mod
                         string-origins:passenger_action:
                             action:
                                 desc: If set, executes the specified action on the passenger entity.
@@ -2432,6 +2669,22 @@ links:
                                 desc: If set to true, executes the specified actions on all the passenger entities, if there are more than one.
                                 type: boolean
                         string-origins:play_sound:
+                            sound:
+                                desc: ID of the sound to play.
+                                type: string
+                                allow: '*a-z0-9_#\/:.-'
+                            volume:
+                                desc: The volume of the sound.
+                                type: number
+                                default: 1
+                                min: 0
+                            pitch:
+                                desc: The pitch of the sound.
+                                type: number
+                                default: 1
+                                min: 0
+                                max: 2
+                        string-origins-math:play_sound:
                             sound:
                                 desc: ID of the sound to play.
                                 type: string
@@ -2454,6 +2707,73 @@ links:
                                   - type: string
                                     allow: '*a-z0-9_\/:.-'
                         string-origins:raycast:
+                            distance:
+                                desc: Determines the maximum distance the raycast will travel.
+                                type: number
+                                default: 20
+                            block:
+                                desc: If set to false, the raycast will ignore blocks.
+                                type: boolean
+                                default: true
+                            entity:
+                                desc: If set to false, the raycast will ignore entities.
+                                type: boolean
+                                default: true
+                            shape_type:
+                                desc: |
+                                    Determines how the raycast handles blocks.
+
+                                    If set to "outline", the raycast will take the shape of the collision box of the block into account.
+                                    If set to "visual", the raycast will ignore blocks that are see-through (e.g: Glass, Tinted Glass, etc.).
+                                    If set to "collider", the raycast will take physical collision of the block into account.
+                                enum: [outline, visual, collider]
+                            fluid_handling:
+                                desc: |
+                                    Determines how the raycast handles fluids.
+
+                                    If set to "any", the raycast will ignore source and flowing fluids.
+                                    If set to "source", the raycast will only go through source fluids.
+                                    If set to "none", the raycast won't go through any kind of fluids.
+                                enum: [any, source, none]
+                                gap: true
+                            bientity_condition:
+                                desc: If specified, the specified bi-entity action type will only be executed if the specified bi-entity condition type is fulfilled by either or both the 'actor' (the entity that has the power) or 'target' (the entity that was hit by the raycast).
+                                link: bi_entity_cond
+                            bientity_action:
+                                desc: If specified, this bi-entity action type will be executed on either or both the 'actor' (the entity that has the power) or 'target' (the entity that was hit by the raycast).
+                                link: bi_entity_action
+                            block_action:
+                                desc: If specified, this block action type will be executed on the block the raycast has hit.
+                                link: block_action
+                                gap: true
+                            before_action:
+                                desc: If specified, execute this entity action type before casting a ray.
+                                link: entity_action
+                            hit_action:
+                                desc: If specified, execute this entity action type if the raycast has hit an entity/block.
+                                link: entity_action
+                            miss_action:
+                                desc: If specified, execute this entity action type if the raycast did not hit an entity/block.
+                                link: entity_action
+                                gap: true
+                            command_at_hit:
+                                desc: The command to execute upon the block/entity the raycast has hit.
+                                type: string
+                                ext: true
+                            command_hit_offset:
+                                desc: Determines the offset of the command specified in the command_at_hit field.
+                                link: math_number
+                            command_along_ray:
+                                desc: The command to execute for each step of the raycast.
+                                type: string
+                                ext: true
+                            command_step:
+                                desc: Determines the size of the step of the raycast. Defaults to 1.
+                                type: number
+                            command_along_ray_only_on_hit:
+                                desc: Determines if the command specified in the command_along_ray field should be executed only if the raycast has hit a block/entity.
+                                type: boolean
+                        string-origins-math:raycast:
                             distance:
                                 desc: Determines the maximum distance the raycast will travel.
                                 link: math_number_20
@@ -2589,11 +2909,11 @@ links:
                         string-origins:set_fall_distance:
                             fall_distance:
                                 desc: The desired fall distance value.
-                                link: math_number
+                                type: number
                         string-origins:set_on_fire:
                             duration:
                                 desc: The amount of seconds the entity should burn.
-                                link: math_integer
+                                type: integer
                                 default: 4
                         string-origins:set_resource:
                             resource:
@@ -2603,8 +2923,47 @@ links:
                                 hooks: [ns]
                             value:
                                 desc: The value the resource will be set to (won't go below min or above max of the Resource).
-                                link: math_integer
+                                type: integer
                         string-origins:spawn_effect_cloud:
+                            radius:
+                                desc: The radius of the cloud.
+                                type: number
+                                default: 3
+                            radius_on_use:
+                                desc: How much the radius should change when an effect is applied.
+                                type: number
+                                default: -0.5
+                            wait_time:
+                                desc: How many ticks to wait until the cloud takes effect.
+                                type: integer
+                                default: 10
+                            effect:
+                                desc: If set, this status effect will be applied by the cloud to the entities inside it.
+                                link: effect
+                            effects:
+                                desc: If set, these status effects will be applied by the cloud to the entities inside it.
+                                type: list
+                                vals:
+                                    link: effect
+                        string-origins-math:set_fall_distance:
+                            fall_distance:
+                                desc: The desired fall distance value.
+                                link: math_number
+                        string-origins-math:set_on_fire:
+                            duration:
+                                desc: The amount of seconds the entity should burn.
+                                link: math_integer
+                                default: 4
+                        string-origins-math:set_resource:
+                            resource:
+                                desc: ID of the power type that defines the resource to change the value of. Must be a Resource (Power Type) which exists on the player.
+                                type: string
+                                allow: '*a-z0-9_#\/:.-'
+                                hooks: [ns]
+                            value:
+                                desc: The value the resource will be set to (won't go below min or above max of the Resource).
+                                link: math_integer
+                        string-origins-math:spawn_effect_cloud:
                             radius:
                                 desc: The radius of the cloud.
                                 link: math_number
@@ -2659,6 +3018,27 @@ links:
                             offset_y:
                                 desc: The offset of where the particle will be centered in the Y axis. Defaults to 0.5.
                                 type: number
+                                default: 0.5
+                        string-origins-math:spawn_particles:
+                            particle:
+                                desc: The particle type that will be spawned.
+                                link: particle
+                            count:
+                                desc: How much of the specified particle type will be spawned.
+                                link: math_integer_1
+                                min: 1
+                            speed:
+                                desc: Determines the speed of the specified particle type. Defaults to 0.
+                                link: math_number_0
+                            force:
+                                desc: If set to true, the specified particle type that will be spawned can be seen from a far distance.
+                                type: boolean
+                            spread:
+                                desc: Determines the size of the three-dimensional cuboid volume to spawn the specified particle type in. Defaults to (0.5, 0.25, 0.5).
+                                link: vector
+                            offset_y:
+                                desc: The offset of where the particle will be centered in the Y axis. Defaults to 0.5.
+                                link: math_number
                                 default: 0.5
                         string-origins:swing_hand:
                             hand:
@@ -2790,6 +3170,12 @@ links:
                       - $Apugli
                       - apugli:cooldown
                       - apugli:damage
+                      - $Origins Math
+                      - origins-math:chance
+                      - origins-math:delay
+                      - origins-math:consume
+                      - origins-math:damage
+                      - origins-math:remove-enchantment
                     more:
                         string-origins:nothing: {}
                         string-origins:and:
@@ -2799,6 +3185,16 @@ links:
                                 vals:
                                     link: item_action
                         string-origins:chance:
+                            chance:
+                                desc: The chance that the action will execute, from 0 to 1. (E.g. 0.1 means 10% chance, 0.95 means 95% chance)
+                                type: number
+                            action:
+                                desc: The action which might be executed.
+                                link: item_action
+                            fail_action:
+                                desc: The action to execute if the specified action in the action field is not executed.
+                                link: item_action
+                        string-origins-math:chance:
                             chance:
                                 desc: The chance that the action will execute, from 0 to 1. (E.g. 0.1 means 10% chance, 0.95 means 95% chance)
                                 link: math_number
@@ -2817,11 +3213,19 @@ links:
                                     props:
                                         weight:
                                             desc: The chance of this action being executed is weight/total_weight_of_actions
-                                            link: math_integer_1
+                                            type: integer
+                                            default: 1
                                         element:
                                             desc: The action which might be executed.
                                             link: item_action
                         string-origins:delay:
+                            action:
+                                desc: The action which will be executed after the delay.
+                                link: item_action
+                            ticks:
+                                desc: The amount of ticks until the action is executed.
+                                type: integer
+                        string-origins-math:delay:
                             action:
                                 desc: The action which will be executed after the delay.
                                 link: item_action
@@ -2861,12 +3265,24 @@ links:
                         string-origins:consume:
                             amount:
                                 desc: The amount of items to remove. Defaults to 1.
-                                link: math_integer
+                                type: integer
+                                default: 1
                         string-origins:damage:
                             amount:
                                 desc: The amount of damage it should do to the item stack.
                                 type: integer
                                 default: 1
+                            ignore_unbreaking:
+                                desc: Determines if this action should ignore the Unbreaking enchantment.
+                                type: boolean
+                        string-origins-math:consume:
+                            amount:
+                                desc: The amount of items to remove. Defaults to 1.
+                                link: math_integer_1
+                        string-origins-math:damage:
+                            amount:
+                                desc: The amount of damage it should do to the item stack.
+                                link: math_integer_1
                             ignore_unbreaking:
                                 desc: Determines if this action should ignore the Unbreaking enchantment.
                                 type: boolean
@@ -2893,6 +3309,23 @@ links:
                                     allow: '*a-z0-9_#\/:.-'
                             levels:
                                 desc: If set, specifies the maximum number of levels to remove.
+                                type: integer
+                            reset_repair_cost:
+                                desc: Whether or not to reset the repair cost on the item.
+                                type: boolean
+                        string-origins-math:remove_enchantment:
+                            enchantment:
+                                desc: If set, specifies a single enchantment to remove,
+                                type: string
+                                allow: '*a-z0-9_#\/:.-'
+                            enchantments:
+                                desc: If set, specifies a single enchantment to remove,
+                                type: list
+                                vals:
+                                    type: string
+                                    allow: '*a-z0-9_#\/:.-'
+                            levels:
+                                desc: If set, specifies the maximum number of levels to remove.
                                 link: math_integer
                             reset_repair_cost:
                                 desc: Whether or not to reset the repair cost on the item.
@@ -2905,12 +3338,13 @@ links:
                             ticks:
                                 desc: The amount of ticks that the cooldown should be active for.
                                 href: https://apugli.readthedocs.io/en/latest/types/item_action_types/cooldown
-                                link: math_integer_20
+                                type: integer
+                                default: 20
                         string-apugli:damage:
                             amount:
                                 desc: The amount of damage it should do to the item stack.
                                 href: https://apugli.readthedocs.io/en/latest/types/item_action_types/damage
-                                link: math_integer
+                                type: integer
                             ignore_unbreaking:
                                 desc: Determines if this action should ignore the Unbreaking enchantment.
                                 type: boolean
