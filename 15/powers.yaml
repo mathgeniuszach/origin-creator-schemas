@@ -1966,11 +1966,11 @@ links:
                             actor_selector:
                                 desc: The substring that refers to the actor entity. All instances of this string will be replaced with the actor entity's UUID.
                                 type: string
-                                default: "%a"
+                                default: "\x25a"
                             target_selector:
                                 desc: The substring that refers to the target entity. All instances of this string will be replaced with the target entity's UUID.
                                 type: string
-                                default: "%t"
+                                default: "\x25t"
                             variables:
                                 desc: A variable declaration declaring variables used inside the command.
                                 link: variables
