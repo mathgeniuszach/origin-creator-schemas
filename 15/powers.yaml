@@ -6088,6 +6088,13 @@ links:
             default: 0
           - type: string
             allow: '*a-z0-9_\/:.-'
+    math_number_1:
+        desc: A Float or Identifier that links to a Resource (Power Type) or it's extensions, or a power type that has a built-in cooldown (using remaining ticks as the value).
+        or:
+          - type: number
+            default: 1.0
+          - type: string
+            allow: '*a-z0-9_\/:.-'
     math_number_min_0:
         desc: A positive Float or Identifier that links to a Resource (Power Type) or it's extensions, or a power type that has a built-in cooldown (using remaining ticks as the value).
         or:
