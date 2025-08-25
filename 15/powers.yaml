@@ -5125,12 +5125,12 @@ links:
                     string-origins:modify_swim_speed:
                         modifier:
                             desc: If specified, this modifier will be applied to the player's swim speed.
-                            link: aa_mod
+                            link: a_mod_red
                         modifiers:
                             desc: If specified, these modifiers will be applied to the player's swim speed.
                             type: list
                             vals:
-                                link: aa_mod
+                                link: a_mod_red
                     string-origins:modify_velocity:
                         modifier:
                             desc: If specified, this modifier will be applied to the player's velocity in the given axes.
@@ -5702,6 +5702,26 @@ links:
                 type: string
             modifier:
                 link: a_mod
+    a_mod_red:
+        desc: An Object used to specify how a specific attribute should be modified.
+        href: https://origins.readthedocs.io/en/latest/types/data_types/attribute_modifier/
+        type: object
+        props:
+            operation:
+                link: aa_mod_op
+            value:
+                desc: The value with which to apply the operation to the value.
+                type: number
+                default: 0
+            resource:
+                desc: If specified, the value of this power will be used instead of the value specified in the value field.
+                type: string
+                allow: '*a-z0-9_#\/:.-'
+            name:
+                desc: (Optional) A descriptive name for the modifier, describing where it comes from.
+                type: string
+            modifier:
+                link: a_mod_red
     math_a_mod:
         desc: An Object used to specify how a specific attribute should be modified.
         href: https://origins.readthedocs.io/en/latest/types/data_types/attribute_modifier/
