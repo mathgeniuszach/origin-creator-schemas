@@ -5125,12 +5125,12 @@ links:
                     string-origins:modify_swim_speed:
                         modifier:
                             desc: If specified, this modifier will be applied to the player's swim speed.
-                            link: a_mod
+                            link: aa_mod
                         modifiers:
                             desc: If specified, these modifiers will be applied to the player's swim speed.
                             type: list
                             vals:
-                                link: a_mod
+                                link: aa_mod
                     string-origins:modify_velocity:
                         modifier:
                             desc: If specified, this modifier will be applied to the player's velocity in the given axes.
