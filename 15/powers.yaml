@@ -4376,7 +4376,7 @@ links:
                     string-origins:status_bar_texture:
                         texture:
                             desc: The ID of the sprite sheet to replace the default one with. Click to see what the vanilla sprite sheet looks like.
-                            href: https://media.discordapp.net/attachments/802622603008409600/893716345055772682/unknown.png
+                            href: https://raw.githubusercontent.com/misode/mcmeta/6d496b1a91476c4fdd45fdb093d0319141f9c109/assets/minecraft/textures/gui/icons.png
                             type: string
                             allow: '*a-z0-9_#\/:.-'
                     string-origins:swimming: {}
