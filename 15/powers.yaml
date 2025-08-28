@@ -2762,7 +2762,7 @@ links:
                                 ext: true
                             command_hit_offset:
                                 desc: Determines the offset of the command specified in the command_at_hit field.
-                                link: number
+                                type: number
                             command_along_ray:
                                 desc: The command to execute for each step of the raycast.
                                 type: string
