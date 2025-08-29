@@ -3771,6 +3771,7 @@ links:
 
                   - $Modifying Types
                   - origins-math:modify_attribute_linked_resource
+                  - origins-math:modify_knockback
                   - origins-math:modify_resource_maximum
                   - origins-math:modify_resource_minimum
                   - origins-math:modify_simple
@@ -5448,6 +5449,14 @@ links:
                         bientity_action:
                             desc: If specified, the specified actions will be executed once the amount of damage dealt has been set, with the 'actor' being the entity dealing the damage and the 'target' being the entity that receives the damage.
                             link: bi_entity_action
+                        modifier:
+                            desc: If specified, this modifier will be applied to the damage dealt.
+                            link: a_mod
+                        modifiers:
+                            desc: If specified, these modifiers will be applied to the damage dealt.
+                            type: list
+                            vals:
+                                link: a_mod
                     string-origins-math:damage_taken_linked_resource:
                         duration:
                             desc: The amount of ticks the damage amount is stored for.
@@ -5458,6 +5467,14 @@ links:
                         bientity_action:
                             desc: If specified, the specified actions will be executed once the amount of damage taken has been set, with the 'actor' being the entity taking the damage and the 'target' being the entity that deals the damage.
                             link: bi_entity_action
+                        modifier:
+                            desc: If specified, this modifier will be applied to the damage taken.
+                            link: a_mod
+                        modifiers:
+                            desc: If specified, these modifiers will be applied to the damage taken.
+                            type: list
+                            vals:
+                                link: a_mod
                     string-origins-math:living_entity_linked_resource:
                         property:
                             desc: The specific property of the entity that this power will take as it's value.
@@ -5504,6 +5521,16 @@ links:
                             type: list
                             vals:
                                 link: a_mod
+                    string-origins-math:modify_knockback:
+                        x:
+                            desc: The modifiers to apply to the knockback on the x-axis.
+                            link: a_mod
+                        y:
+                            desc: The modifiers to apply to the knockback on the y-axis.
+                            link: a_mod
+                        z:
+                            desc: The modifiers to apply to the knockback on the z-axis.
+                            link: a_mod
                     string-origins-math:modify_resource_maximum:
                         resource:
                             desc: The namespace and ID of the power that uses the Modifiable Resource (Power Type)
