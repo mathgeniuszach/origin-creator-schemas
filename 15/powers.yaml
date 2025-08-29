@@ -3862,7 +3862,7 @@ links:
                         hud_render:
                             desc: Specifies how and if a cooldown bar is rendered.
                             link: hud_render
-                        origins-math:hud_render:
+                        origins-math\:hud_render:
                             desc: (Origins Math) Specifies how and if a cooldown bar is rendered.
                             link: math_hud_render
                     string-origins:creative_flight: {}
@@ -3973,7 +3973,7 @@ links:
                         hud_render:
                             desc: Specifies how and if a cooldown bar is rendered.
                             link: hud_render
-                        origins-math:hud_render:
+                        origins-math\:hud_render:
                             desc: (Origins Math) Specifies how and if a cooldown bar is rendered.
                             link: math_hud_render
                         count:
@@ -4100,7 +4100,7 @@ links:
                         hud_render:
                             desc: Specifies how and if a cooldown bar is rendered.
                             link: hud_render
-                        origins-math:hud_render:
+                        origins-math\:hud_render:
                             desc: (Origins Math) Specifies how and if a cooldown bar is rendered.
                             link: math_hud_render
                         sound:
@@ -4290,7 +4290,7 @@ links:
                         hud_render:
                             desc: Specifies how and if the resource is displayed with a bar on the HUD.
                             link: hud_render
-                        origins-math:hud_render:
+                        origins-math\:hud_render:
                             desc: (Origins Math) Specifies how and if the resource is displayed with a bar on the HUD.
                             link: math_hud_render
                         min_action:
@@ -4595,7 +4595,7 @@ links:
                         hud_render:
                             desc: Determines how the cooldown of this power is visualized on the HUD.
                             link: hud_render
-                        origins-math:hud_render:
+                        origins-math\:hud_render:
                             desc: (Origins Math) Specifies how the cooldown of this power is visualized on the HUD.
                             link: math_hud_render
                     string-origins:action_on_item_use:
@@ -4665,7 +4665,7 @@ links:
                         hud_render:
                             desc: Determines how the cooldown of this power is visualized on the HUD.
                             link: hud_render
-                        origins-math:hud_render:
+                        origins-math\:hud_render:
                             desc: (Origins Math) Determines how the cooldown of this power is visualized on the HUD.
                             link: math_hud_render
                     string-origins:action_when_hit:
@@ -4686,7 +4686,7 @@ links:
                         hud_render:
                             desc: Determines how the cooldown of this power is visualized on the HUD.
                             link: hud_render
-                        origins-math:hud_render:
+                        origins-math\:hud_render:
                             desc: (Origins Math) Determines how the cooldown of this power is visualized on the HUD.
                             link: math_hud_render
                     string-origins:active_self:
@@ -4700,7 +4700,7 @@ links:
                         hud_render:
                             desc: Determines how the cooldown of this power is visualized on the HUD.
                             link: hud_render
-                        origins-math:hud_render:
+                        origins-math\:hud_render:
                             desc: (Origins Math) Determines how the cooldown of this power is visualized on the HUD.
                             link: math_hud_render
                         key:
@@ -4721,7 +4721,7 @@ links:
                         hud_render:
                             desc: Determines how the cooldown of this power is visualized on the HUD.
                             link: hud_render
-                        origins-math:hud_render:
+                        origins-math\:hud_render:
                             desc: (Origins Math) Determines how the cooldown of this power is visualized on the HUD.
                             link: math_hud_render
                     string-origins:self_action_on_hit:
@@ -4741,7 +4741,7 @@ links:
                         hud_render:
                             desc: Determines how the cooldown of this power is visualized on the HUD.
                             link: hud_render
-                        origins-math:hud_render:
+                        origins-math\:hud_render:
                             desc: (Origins Math) Determines how the cooldown of this power is visualized on the HUD.
                             link: math_hud_render
                     string-origins:self_action_on_kill:
@@ -4762,7 +4762,7 @@ links:
                         hud_render:
                             desc: Determines how the cooldown of this power is visualized on the HUD.
                             link: hud_render
-                        origins-math:hud_render:
+                        origins-math\:hud_render:
                             desc: (Origins Math) Determines how the cooldown of this power is visualized on the HUD.
                             link: math_hud_render
                     string-origins:self_action_when_hit:
@@ -4780,7 +4780,7 @@ links:
                         hud_render:
                             desc: Determines how the cooldown of this power is visualized on the HUD.
                             link: hud_render
-                        origins-math:hud_render:
+                        origins-math\:hud_render:
                             desc: (Origins Math) Determines how the cooldown of this power is visualized on the HUD.
                             link: math_hud_render
                     string-origins:target_action_on_hit:
@@ -4801,7 +4801,7 @@ links:
                         hud_render:
                             desc: Determines how the cooldown of this power is visualized on the HUD.
                             link: hud_render
-                        origins-math:hud_render:
+                        origins-math\:hud_render:
                             desc: (Origins Math) Determines how the cooldown of this power is visualized on the HUD.
                             link: math_hud_render
                     string-origins:modify_air_speed:
@@ -5449,7 +5449,7 @@ links:
                         hud_render:
                             desc: Determines how the resource is visualized on the HUD.
                             link: hud_render
-                        origins-math:hud_render:
+                        origins-math\:hud_render:
                             desc: (Origins Math) Determines how the resource is visualized on the HUD.
                             link: math_hud_render
                         start_value:
