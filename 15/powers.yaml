@@ -3116,7 +3116,7 @@ links:
                                 allow: '*a-z0-9_\/:.-'
                             change:
                                 desc: This value will be added to the resource (won't go below min or above max of the Resource (Power Type)).
-                                link: math_number
+                                type: number
                             operation:
                                 desc: Determines if the action should add or set the value of the resource.
                                 enum: [add,set]
