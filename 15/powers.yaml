@@ -5386,7 +5386,7 @@ links:
                     string-apugli:prevent_sound:
                         category:
                             desc: If specified, all sound events from this category will be prevented from being heard by the entity that has the power.
-                            enum: ['ambient', 'blocks', 'hostile', 'master', 'music', 'neutral', 'players', 'records', 'voice', 'weather']
+                            enum: ['', 'ambient', 'blocks', 'hostile', 'master', 'music', 'neutral', 'players', 'records', 'voice', 'weather']
                         categories:
                             desc: If specified, all sound events from these categories will be prevented from being heard by the entity that has the power. Can accept "ambient", "blocks", "hostile", "master", "music", "neutral", "players", "records", "voice" and "weather".
                             type: list
