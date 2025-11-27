@@ -1,4 +1,4 @@
-$: 155
+$: 156
 6:
   - meta
   - recipes
@@ -39,6 +39,7 @@ $: 155
   - advancements
   - loot_tables
   - item_modifiers
+  - global_powers
 15:
   - predicates
   - powers
